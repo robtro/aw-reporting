@@ -365,13 +365,18 @@ public class AwReporting {
     OptionBuilder.isRequired(false);
     options.addOption(OptionBuilder.create("dateRange"));
 
-    OptionBuilder.withArgName("htmlTemplateFile> <outputDirectory");
-    OptionBuilder.withValueSeparator(' ');
-    OptionBuilder.hasArgs(2);
-    OptionBuilder.withDescription("Generate Monthly Account Reports for all Accounts in PDF\n"
-        + "NOTE: For PDF use aw-report-sample-for-pdf.properties instead, "
-        + "the fields need to be different.");
-    options.addOption(OptionBuilder.create("generatePdf"));
+
+    OptionBuilder.withArgName("htmlTemplate");
+    OptionBuilder.hasArg(true);
+    OptionBuilder.withDescription("HTML Template file");
+    OptionBuilder.isRequired(true);
+    options.addOption(OptionBuilder.create("htmlTemplate"));
+
+    OptionBuilder.withArgName("outputDirectory");
+    OptionBuilder.hasArg(true);
+    OptionBuilder.withDescription("Output Directory");
+    OptionBuilder.isRequired(true);
+    options.addOption(OptionBuilder.create("outputDirectory"));
 
     OptionBuilder.withArgName("accountIdsFile");
     OptionBuilder.hasArg(true);

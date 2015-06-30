@@ -69,11 +69,13 @@ public class RunnableKratuTest {
     dateStart.set(Calendar.HOUR_OF_DAY, 0);
     dateStart.set(Calendar.MINUTE, 0);
     dateStart.set(Calendar.SECOND, 0);
+    dateStart.add(Calendar.HOUR, 12);
 
     dateStartLastMinute.setTime(DateUtil.parseDateTime("20140101").toDate());
     dateStartLastMinute.set(Calendar.HOUR_OF_DAY, 23);
     dateStartLastMinute.set(Calendar.MINUTE, 59);
     dateStartLastMinute.set(Calendar.SECOND, 59);
+    dateStartLastMinute.add(Calendar.HOUR, 12);
 
     // creating one list wuth 3 nonMCC accounts
     Account account1 = new Account();

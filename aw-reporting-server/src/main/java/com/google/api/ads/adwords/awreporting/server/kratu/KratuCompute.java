@@ -177,12 +177,14 @@ public class KratuCompute {
     dayStart.set(Calendar.HOUR_OF_DAY, 0);
     dayStart.set(Calendar.MINUTE, 0);
     dayStart.set(Calendar.SECOND, 0);
+    dayStart.add(Calendar.HOUR, 12);
     
     Calendar dayEnd = Calendar.getInstance();
     dayEnd.setTime(day);
     dayEnd.set(Calendar.HOUR_OF_DAY, 23);
     dayEnd.set(Calendar.MINUTE, 59);
     dayEnd.set(Calendar.SECOND, 59);
+    dayEnd.add(Calendar.HOUR, 12);
 
     Long accountId = account.getExternalCustomerId();
 

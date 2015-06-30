@@ -73,12 +73,14 @@ public class RunnableKratu implements Runnable {
           dayToProcess.set(Calendar.HOUR_OF_DAY, 0);
           dayToProcess.set(Calendar.MINUTE, 0);
           dayToProcess.set(Calendar.SECOND, 0);
+          dayToProcess.add(Calendar.HOUR, 12);
 
           Calendar lastDay = Calendar.getInstance();
           lastDay.setTime(dateEnd);
           lastDay.set(Calendar.HOUR_OF_DAY, 23);
           lastDay.set(Calendar.MINUTE, 59);
           lastDay.set(Calendar.SECOND, 59);
+          lastDay.add(Calendar.HOUR, 12);
 
           while(dayToProcess.compareTo(lastDay) <= 0) {
 

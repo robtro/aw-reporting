@@ -83,16 +83,19 @@ public class KratuComputeTest {
     day1.set(Calendar.HOUR_OF_DAY, 0);
     day1.set(Calendar.MINUTE, 0);
     day1.set(Calendar.SECOND, 0);
+    day1.add(Calendar.HOUR, 12);
     
     day1LastMinute.setTime(DateUtil.parseDateTime("20140601").toDate());
     day1LastMinute.set(Calendar.HOUR_OF_DAY, 23);
     day1LastMinute.set(Calendar.MINUTE, 59);
     day1LastMinute.set(Calendar.SECOND, 59);
+    day1LastMinute.add(Calendar.HOUR, 12);
 
     day2.setTime(DateUtil.parseDateTime("20140602").toDate());
     day2.set(Calendar.HOUR_OF_DAY, 0);
     day2.set(Calendar.MINUTE, 0);
     day2.set(Calendar.SECOND, 0);
+    day2.add(Calendar.HOUR, 12);
 
     account = new Account();
     account.setCurrencyCode("EUR");

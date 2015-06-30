@@ -145,13 +145,6 @@
 
         String propertyReportWriterType = properties.getProperty("aw.report.exporter.reportwritertype");
 
-        Boolean writeHtml = false;
-     
-        Boolean writePdf = false;
-       
-        Boolean writeDriveDoc = false;
-
-
       } else {
       	LOGGER.info("No data found for account " + accountId);
       }

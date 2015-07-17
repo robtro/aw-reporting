@@ -86,7 +86,7 @@ public class SqlReportEntitiesPersister implements EntityPersister {
       session.saveOrUpdate(report);
       batchFlush++;
 
-      if (batchFlush == BATCH_SIZE) {
+      if (batchFlush % BATCH_SIZE == 0) {
         session.flush();
         session.clear();
       }

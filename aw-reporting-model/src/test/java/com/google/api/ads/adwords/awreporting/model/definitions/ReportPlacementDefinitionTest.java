@@ -14,7 +14,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlacement;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -52,7 +52,7 @@ AbstractReportDefinitionTest<ReportPlacement> {
     Assert.assertEquals("www.common.se", first.getDisplayName());
     Assert.assertEquals(" --", first.getCriterionId());
     Assert.assertEquals(0l, first.getMaxCpm().longValue());
-    Assert.assertEquals("www.common.se", first.getPlacementUrl());
+    Assert.assertEquals("www.common.se", first.getCriteria());
     Assert.assertEquals("2014-03-01", first.getMonth());
     Assert.assertEquals(1.61, first.getCost().doubleValue());
     Assert.assertEquals(1, first.getClicks().longValue());
@@ -76,7 +76,7 @@ AbstractReportDefinitionTest<ReportPlacement> {
     Assert.assertEquals("raspberry.com", last.getDisplayName());
     Assert.assertEquals(" --", last.getCriterionId());
     Assert.assertEquals(0l, last.getMaxCpm().longValue());
-    Assert.assertEquals("raspberry.com", last.getPlacementUrl());
+    Assert.assertEquals("raspberry.com", last.getCriteria());
     Assert.assertEquals("2014-03-01", last.getMonth());
     Assert.assertEquals(1.90, last.getCost().doubleValue());
     Assert.assertEquals(1, last.getClicks().longValue());
@@ -153,7 +153,7 @@ AbstractReportDefinitionTest<ReportPlacement> {
         "IsRestrict",
         "CpcBid",
         "CpmBid",
-        "PlacementUrl",
+        "Criteria",
         "TargetingSetting",
         "ActiveViewCpm",
         "ActiveViewImpressions",
@@ -162,7 +162,10 @@ AbstractReportDefinitionTest<ReportPlacement> {
         "FinalMobileUrls",
         "FinalUrls",
         "TrackingUrlTemplate",
-        "UrlCustomParameters"
+        "UrlCustomParameters",
+        "GmailForwards",
+        "GmailSaves",
+        "GmailSaves"
     };
   }
 }

@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteriaPerformance;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -163,7 +163,10 @@ AbstractReportDefinitionTest<ReportCriteriaPerformance> {
         "FinalMobileUrls",
         "FinalUrls",
         "TrackingUrlTemplate",
-        "UrlCustomParameters"
-        };
+        "UrlCustomParameters",
+        "GmailForwards",
+        "GmailSaves",
+        "GmailSaves"
+    };
   }
 }

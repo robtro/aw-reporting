@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -65,7 +65,7 @@ public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals("enabled", first.getStatus());
     Assert.assertEquals(10.00, first.getQualityScoreAsBigDecimal().doubleValue());
     Assert.assertEquals("Broad", first.getKeywordMatchType());
-    Assert.assertEquals("achat forêt", first.getKeywordText());
+    Assert.assertEquals("achat forêt", first.getCriteria());
     Assert.assertEquals("", first.getCriteriaDestinationUrl());
     Assert.assertFalse(first.isNegative());
 
@@ -97,7 +97,7 @@ public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals("enabled", last.getStatus());
     Assert.assertEquals(10.00, last.getQualityScoreAsBigDecimal().doubleValue());
     Assert.assertEquals("Broad", last.getKeywordMatchType());
-    Assert.assertEquals("propriete sologne a vendre", last.getKeywordText());
+    Assert.assertEquals("propriete sologne a vendre", last.getCriteria());
     Assert.assertEquals("", last.getCriteriaDestinationUrl());
     Assert.assertFalse(last.isNegative());
 
@@ -172,7 +172,7 @@ public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<Re
         "Status",
         "QualityScore",
         "KeywordMatchType",
-        "KeywordText",
+        "Criteria",
         "CriteriaDestinationUrl",
         "IsNegative",
         "CampaignName",
@@ -197,7 +197,10 @@ public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<Re
         "AveragePageviews",
         "AverageTimeOnSite",
         "BounceRate",
-        "PercentNewVisitors"
+        "PercentNewVisitors",
+        "GmailForwards",
+        "GmailSaves",
+        "GmailSaves"
     };
   }
 }

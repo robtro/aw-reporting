@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -52,7 +52,7 @@ public class ReportCampaignNegativeKeywordDefinitionTest
     Assert.assertEquals(11533780L, first.getKeywordId().longValue());
     Assert.assertEquals(116981433L, first.getCampaignId().longValue());
     Assert.assertEquals("Broad", first.getKeywordMatchType());
-    Assert.assertEquals("gratuite", first.getKeywordText());
+    Assert.assertEquals("gratuite", first.getCriteria());
     Assert.assertTrue(first.isNegative());
 
   }
@@ -68,7 +68,7 @@ public class ReportCampaignNegativeKeywordDefinitionTest
     Assert.assertEquals(11679830L, last.getKeywordId().longValue());
     Assert.assertEquals(116996313L, last.getCampaignId().longValue());
     Assert.assertEquals("Broad", last.getKeywordMatchType());
-    Assert.assertEquals("gratuit", last.getKeywordText());
+    Assert.assertEquals("gratuit", last.getCriteria());
     Assert.assertTrue(last.isNegative());
 
   }
@@ -89,6 +89,14 @@ public class ReportCampaignNegativeKeywordDefinitionTest
    */
   @Override
   protected String[] retrievePropertiesToBeSelected() {
-    return new String[] {"CampaignId", "Id", "KeywordMatchType", "KeywordText", "IsNegative"};
+    return new String[] {
+        "CampaignId",
+        "CampaignName",
+        "CampaignStatus",
+        "Id",
+        "KeywordMatchType",
+        "Criteria",
+        "IsNegative"
+    };
   }
 }

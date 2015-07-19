@@ -29,11 +29,11 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
-import com.google.api.ads.adwords.lib.jaxb.v201502.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201502.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201506.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.Selector;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 

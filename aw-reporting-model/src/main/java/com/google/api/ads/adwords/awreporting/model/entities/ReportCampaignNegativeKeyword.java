@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,13 +43,21 @@ public class ReportCampaignNegativeKeyword extends Report {
   @CsvField(value = "Match type", reportField = "KeywordMatchType")
   private String keywordMatchType;
 
-  @Column(name = "KEYWORD_TEXT", length = 255)
-  @CsvField(value = "Negative keyword", reportField = "KeywordText")
-  private String keywordText;
+  @Column(name = "CRITERIA", length = 255)
+  @CsvField(value = "Negative keyword", reportField = "Criteria")
+  private String criteria;
 
   @Column(name = "CAMPAIGN_ID")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
   private Long campaignId;
+  
+  @Column(name = "CAMPAIGN_NAME", length = 255)
+  @CsvField(value = "Campaign", reportField = "CampaignName")
+  private String campaignName;
+  
+  @Column(name = "CAMPAIGN_STATUS", length = 32)
+  @CsvField(value = "Campaign state", reportField = "CampaignStatus")
+  private String campaignStatus;
 
   @Column(name = "IS_NEGATIVE")
   @CsvField(value = "Is negative", reportField = "IsNegative")
@@ -115,13 +123,13 @@ public class ReportCampaignNegativeKeyword extends Report {
     this.keywordMatchType = keywordMatchType;
   }
 
-  // keywordText
-  public String getKeywordText() {
-    return keywordText;
+  // criteria
+  public String getCriteria() {
+    return criteria;
   }
 
-  public void setKeywordText(String keywordText) {
-    this.keywordText = keywordText;
+  public void setCriteria(String criteria) {
+    this.criteria = criteria;
   }
 
   // campaignId
@@ -131,5 +139,21 @@ public class ReportCampaignNegativeKeyword extends Report {
 
   public void setCampaignId(Long campaignId) {
     this.campaignId = campaignId;
+  }
+  
+  public String getCampaignName() {
+    return campaignName;
+  }
+
+  public void setCampaignName(String campaignName) {
+    this.campaignName = campaignName;
+  }
+  
+  public String getCampaignStatus() {
+    return campaignStatus;
+  }
+
+  public void setCampaignStatus(String campaignStatus) {
+    this.campaignStatus = campaignStatus;
   }
 }

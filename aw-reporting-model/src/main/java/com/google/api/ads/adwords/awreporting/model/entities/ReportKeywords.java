@@ -38,7 +38,7 @@ import javax.persistence.Table;
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportKeyword")
 @CsvReport(value = ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT)
-public class ReportKeyword extends ReportBase {
+public class ReportKeywords extends ReportBase {
 
   @Column(name = "KEYWORD_ID")
   @CsvField(value = "Keyword ID", reportField = "Id")
@@ -208,10 +208,10 @@ public class ReportKeyword extends ReportBase {
   /**
    * Hibernate needs an empty constructor
    */
-  public ReportKeyword() {
+  public ReportKeywords() {
   }
 
-  public ReportKeyword(Long topAccountId, Long accountId) {
+  public ReportKeywords(Long topAccountId, Long accountId) {
     this.topAccountId = topAccountId;
     this.accountId = accountId;
   }

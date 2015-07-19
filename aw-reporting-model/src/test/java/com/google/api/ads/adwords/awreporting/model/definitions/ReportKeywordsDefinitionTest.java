@@ -14,7 +14,7 @@
 
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
@@ -28,14 +28,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
-public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<ReportKeyword> {
+public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<ReportKeywords> {
 
   /**
    * C'tor
    */
-  public ReportKeywordDefinitionTest() {
+  public ReportKeywordsDefinitionTest() {
 
-    super(ReportKeyword.class, ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT,
+    super(ReportKeywords.class, ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT,
         "src/test/resources/csv/keyword.csv");
   }
 
@@ -45,7 +45,7 @@ public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<Re
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testFirstEntry(ReportKeyword first) {
+  protected void testFirstEntry(ReportKeywords first) {
 
     Assert.assertEquals(8661954824L, first.getAccountId().longValue());
     Assert.assertEquals("2013-05-01", first.getDay());
@@ -77,7 +77,7 @@ public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<Re
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testLastEntry(ReportKeyword last) {
+  protected void testLastEntry(ReportKeywords last) {
 
     Assert.assertEquals(8661954824L, last.getAccountId().longValue());
     Assert.assertEquals("2013-05-10", last.getDay());

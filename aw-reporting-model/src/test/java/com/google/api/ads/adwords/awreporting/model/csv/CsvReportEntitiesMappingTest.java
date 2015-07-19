@@ -22,10 +22,10 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBudget;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteriaPerformance;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDisplayKeyword;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
@@ -70,7 +70,7 @@ public class CsvReportEntitiesMappingTest {
     this.assertBeanClassIsCorrectForType(ReportAd.class,
         ReportDefinitionReportType.AD_PERFORMANCE_REPORT);
 
-    this.assertBeanClassIsCorrectForType(ReportKeyword.class,
+    this.assertBeanClassIsCorrectForType(ReportKeywords.class,
         ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportCampaignNegativeKeyword.class,
@@ -79,7 +79,7 @@ public class CsvReportEntitiesMappingTest {
     this.assertBeanClassIsCorrectForType(ReportBudget.class,
         ReportDefinitionReportType.BUDGET_PERFORMANCE_REPORT);
 
-    this.assertBeanClassIsCorrectForType(ReportCriteriaPerformance.class,
+    this.assertBeanClassIsCorrectForType(ReportCriteria.class,
         ReportDefinitionReportType.CRITERIA_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportDestinationUrl.class,

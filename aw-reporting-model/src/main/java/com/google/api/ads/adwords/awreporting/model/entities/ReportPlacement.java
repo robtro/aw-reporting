@@ -34,7 +34,7 @@ import java.math.BigDecimal;
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity
-@Table(name = "AW_ReportPlacementPerformance")
+@Table(name = "AW_ReportPlacement")
 @CsvReport(value = ReportDefinitionReportType.PLACEMENT_PERFORMANCE_REPORT)
 public class ReportPlacement extends ReportBase {
 

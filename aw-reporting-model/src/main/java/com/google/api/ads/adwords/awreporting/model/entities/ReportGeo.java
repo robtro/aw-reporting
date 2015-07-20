@@ -29,7 +29,7 @@ import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity
-@Table(name = "AW_ReportGeoPerformance")
+@Table(name = "AW_ReportGeo")
 @CsvReport(value = ReportDefinitionReportType.GEO_PERFORMANCE_REPORT)
 public class ReportGeo extends ReportBase {
 

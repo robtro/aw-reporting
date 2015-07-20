@@ -14,15 +14,15 @@
 
 package com.google.api.ads.adwords.awreporting.server.rest.reports;
 
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
 
 /**
  * ReportKeywordRest
  * 
  * @author jtoledo@google.com (Julian Toledo)
  */
-public class ReportKeywordRest extends AbstractReportRest<ReportKeywords> {
+public class ReportKeywordRest extends AbstractReportRest<ReportKeyword> {
   public ReportKeywordRest() {
-    super(ReportKeywords.class);
+    super(ReportKeyword.class);
   }
 }

@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -172,9 +172,6 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "AverageTimeOnSite",
         "BounceRate",
         "PercentNewVisitors",
-        "GmailForwards",
-        "GmailSaves",
-        "GmailSaves"
     };
   }
 }

@@ -21,9 +21,9 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBudget;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteriaPerformance;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
@@ -454,9 +454,9 @@ public class RestServer extends com.google.api.ads.adwords.awreporting.server.re
     ObjectifyService.register(ReportBudget.class);
     ObjectifyService.register(ReportCampaign.class);
     ObjectifyService.register(ReportCampaignNegativeKeyword.class);
-    ObjectifyService.register(ReportCriteria.class);
+    ObjectifyService.register(ReportCriteriaPerformance.class);
     ObjectifyService.register(ReportDestinationUrl.class);
-    ObjectifyService.register(ReportKeywords.class);
+    ObjectifyService.register(ReportKeyword.class);
     ObjectifyService.register(ReportPlaceholderFeedItem.class);
     ObjectifyService.register(ReportUrl.class);
 

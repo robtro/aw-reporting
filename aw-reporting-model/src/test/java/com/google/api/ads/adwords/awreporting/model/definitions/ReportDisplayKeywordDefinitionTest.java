@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDisplayKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -62,7 +62,7 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
     Assert.assertEquals("Gen", first.getAdGroupName());
     Assert.assertEquals("", first.getCriteriaDestinationUrl());
     Assert.assertEquals(10024300L, first.getKeywordId().longValue());
-    Assert.assertEquals("restaurant", first.getCriteria());
+    Assert.assertEquals("restaurant", first.getKeywordText());
     Assert.assertFalse(first.isNegative());
   }
 
@@ -89,7 +89,7 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
     Assert.assertEquals("Display", last.getAdGroupName());
     Assert.assertEquals("", last.getCriteriaDestinationUrl());
     Assert.assertEquals(32912034877L, last.getKeywordId().longValue());
-    Assert.assertEquals("restaurant italien 34", last.getCriteria());
+    Assert.assertEquals("restaurant italien 34", last.getKeywordText());
     Assert.assertFalse(last.isNegative());
   }
 
@@ -163,7 +163,7 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
         "Id",
         "IsNegative",
         "IsRestrict",
-        "Criteria",
+        "KeywordText",
         "CpcBid",
         "CpmBid",
         "TargetingSetting",
@@ -174,10 +174,7 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
         "FinalMobileUrls",
         "FinalUrls",
         "TrackingUrlTemplate",
-        "UrlCustomParameters",
-        "GmailForwards",
-        "GmailSaves",
-        "GmailSaves"
+        "UrlCustomParameters"
     };
   }
 }

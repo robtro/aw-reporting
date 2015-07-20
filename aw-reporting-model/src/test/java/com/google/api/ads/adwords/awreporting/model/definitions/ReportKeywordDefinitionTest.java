@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -28,14 +28,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
-public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<ReportKeywords> {
+public class ReportKeywordDefinitionTest extends AbstractReportDefinitionTest<ReportKeyword> {
 
   /**
    * C'tor
    */
-  public ReportKeywordsDefinitionTest() {
+  public ReportKeywordDefinitionTest() {
 
-    super(ReportKeywords.class, ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT,
+    super(ReportKeyword.class, ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT,
         "src/test/resources/csv/keyword.csv");
   }
 
@@ -45,7 +45,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testFirstEntry(ReportKeywords first) {
+  protected void testFirstEntry(ReportKeyword first) {
 
     Assert.assertEquals(8661954824L, first.getAccountId().longValue());
     Assert.assertEquals("2013-05-01", first.getDay());
@@ -65,7 +65,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals("enabled", first.getStatus());
     Assert.assertEquals(10.00, first.getQualityScoreAsBigDecimal().doubleValue());
     Assert.assertEquals("Broad", first.getKeywordMatchType());
-    Assert.assertEquals("achat forêt", first.getCriteria());
+    Assert.assertEquals("achat forêt", first.getKeywordText());
     Assert.assertEquals("", first.getCriteriaDestinationUrl());
     Assert.assertFalse(first.isNegative());
 
@@ -77,7 +77,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testLastEntry(ReportKeywords last) {
+  protected void testLastEntry(ReportKeyword last) {
 
     Assert.assertEquals(8661954824L, last.getAccountId().longValue());
     Assert.assertEquals("2013-05-10", last.getDay());
@@ -97,7 +97,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals("enabled", last.getStatus());
     Assert.assertEquals(10.00, last.getQualityScoreAsBigDecimal().doubleValue());
     Assert.assertEquals("Broad", last.getKeywordMatchType());
-    Assert.assertEquals("propriete sologne a vendre", last.getCriteria());
+    Assert.assertEquals("propriete sologne a vendre", last.getKeywordText());
     Assert.assertEquals("", last.getCriteriaDestinationUrl());
     Assert.assertFalse(last.isNegative());
 
@@ -172,7 +172,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
         "Status",
         "QualityScore",
         "KeywordMatchType",
-        "Criteria",
+        "KeywordText",
         "CriteriaDestinationUrl",
         "IsNegative",
         "CampaignName",
@@ -197,10 +197,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
         "AveragePageviews",
         "AverageTimeOnSite",
         "BounceRate",
-        "PercentNewVisitors",
-        "GmailForwards",
-        "GmailSaves",
-        "GmailSaves"
+        "PercentNewVisitors"
     };
   }
 }

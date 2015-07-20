@@ -22,7 +22,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -104,9 +104,9 @@ public class ReportPlacement extends ReportBase {
   @MoneyField
   private BigDecimal maxCpm;  
 
-  @Column(name = "CRITERIA")
-  @CsvField(value = "Placement", reportField = "Criteria")
-  private String criteria; 
+  @Column(name = "PLACEMENT_URL")
+  @CsvField(value = "Placement", reportField = "PlacementUrl")
+  private String placementUrl; 
 
   @Column(name = "TARGETING_SETTING")
   @CsvField(value = "Targeting Setting", reportField = "TargetingSetting")
@@ -144,18 +144,6 @@ public class ReportPlacement extends ReportBase {
   @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
-  
-  @Column(name = "GMAIL_FORWARDS")
-  @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
-  private Long gmailForwards;
-
-  @Column(name = "GMAIL_SAVES")
-  @CsvField(value = "Gmail saves", reportField = "GmailSaves")
-  private Long gmailSaves;
-
-  @Column(name = "GMAIL_SECONDARY_CLICKS")
-  @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
-  private Long gmailSecondaryClicks;
 
   /**
    * Hibernate needs an empty constructor
@@ -202,8 +190,8 @@ public class ReportPlacement extends ReportBase {
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
     }
-    if (this.getCriteria() != null && this.getCriteria().length() > 0) {
-      this.id += "-" + this.getCriteria();
+    if (this.getPlacementUrl() != null && this.getPlacementUrl().length() > 0) {
+      this.id += "-" + this.getPlacementUrl();
     }
   }
 
@@ -327,12 +315,12 @@ public class ReportPlacement extends ReportBase {
     this.maxCpm = maxCpm;
   }
 
-  public String getCriteria() {
-    return criteria;
+  public String getPlacementUrl() {
+    return placementUrl;
   }
 
-  public void setCriteria(String criteria) {
-    this.criteria = criteria;
+  public void setPlacementUrl(String placementUrl) {
+    this.placementUrl = placementUrl;
   }
 
   public String getTargetingSetting() {
@@ -433,29 +421,5 @@ public class ReportPlacement extends ReportBase {
   
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
-  }
-  
-  public Long getGmailForwards() {
-    return gmailForwards;
-  }
-  
-  public void setGmailForwards(Long gmailForwards) {
-    this.gmailForwards = gmailForwards;
-  }
-  
-  public Long getGmailSaves() {
-    return gmailSaves;
-  }
-  
-  public void setGmailSaves(Long gmailSaves) {
-    this.gmailSaves = gmailSaves;
-  }
-  
-  public Long getGmailSecondaryClicks() {
-    return gmailSecondaryClicks;
-  }
-  
-  public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
-    this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
 }

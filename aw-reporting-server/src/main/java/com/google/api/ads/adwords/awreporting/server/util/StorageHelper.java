@@ -20,7 +20,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
@@ -155,21 +155,21 @@ public class StorageHelper {
   }
 
   // ReportKeyword
-  public List<ReportKeywords> getReportKeywordByCampaignId(Long campaignId, Date dateStart,
+  public List<ReportKeyword> getReportKeywordByCampaignId(Long campaignId, Date dateStart,
       Date dateEnd) {
-    return entityPersister.get(ReportKeywords.class, ReportKeywords.CAMPAIGN_ID, campaignId,
+    return entityPersister.get(ReportKeyword.class, ReportKeyword.CAMPAIGN_ID, campaignId,
         Report.DAY, dateStart, dateEnd);
   }
 
-  public List<ReportKeywords> getReportKeywordByAdGroupId(Long adGroupId, Date dateStart,
+  public List<ReportKeyword> getReportKeywordByAdGroupId(Long adGroupId, Date dateStart,
       Date dateEnd) {
-    return entityPersister.get(ReportKeywords.class, ReportKeywords.ADGROUP_ID, adGroupId, Report.DAY,
+    return entityPersister.get(ReportKeyword.class, ReportKeyword.ADGROUP_ID, adGroupId, Report.DAY,
         dateStart, dateEnd);
   }
 
-  public List<ReportKeywords> getReportKeywordByKeywordId(Long keywordId, Date dateStart,
+  public List<ReportKeyword> getReportKeywordByKeywordId(Long keywordId, Date dateStart,
       Date dateEnd) {
-    return entityPersister.get(ReportKeywords.class, ReportKeywords.KEYWORD_ID, keywordId, Report.DAY,
+    return entityPersister.get(ReportKeyword.class, ReportKeyword.KEYWORD_ID, keywordId, Report.DAY,
         dateStart, dateEnd);
   }
 
@@ -252,30 +252,30 @@ public class StorageHelper {
     entityPersister.createIndex(ReportCampaign.class, indexes);
     entityPersister.createIndex(ReportAdGroup.class, indexes);
     entityPersister.createIndex(ReportAd.class, indexes);
-    entityPersister.createIndex(ReportKeywords.class, indexes);
+    entityPersister.createIndex(ReportKeyword.class, indexes);
     entityPersister.createIndex(ReportPlaceholderFeedItem.class, indexes);
 
     entityPersister.createIndex(ReportAccount.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportCampaign.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportAdGroup.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportAd.class, Report.ACCOUNT_ID);
-    entityPersister.createIndex(ReportKeywords.class, Report.ACCOUNT_ID);
+    entityPersister.createIndex(ReportKeyword.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportPlaceholderFeedItem.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportCampaignNegativeKeyword.class, Report.ACCOUNT_ID);
 
     entityPersister.createIndex(ReportCampaign.class, Report.CAMPAIGN_ID);
     entityPersister.createIndex(ReportAdGroup.class, Report.CAMPAIGN_ID);
     entityPersister.createIndex(ReportAd.class, Report.CAMPAIGN_ID);
-    entityPersister.createIndex(ReportKeywords.class, Report.CAMPAIGN_ID);
+    entityPersister.createIndex(ReportKeyword.class, Report.CAMPAIGN_ID);
     entityPersister.createIndex(ReportPlaceholderFeedItem.class, Report.CAMPAIGN_ID);
 
     entityPersister.createIndex(ReportAdGroup.class, Report.ADGROUP_ID);
     entityPersister.createIndex(ReportAd.class, Report.ADGROUP_ID);
-    entityPersister.createIndex(ReportKeywords.class, Report.ADGROUP_ID);
+    entityPersister.createIndex(ReportKeyword.class, Report.ADGROUP_ID);
 
     entityPersister.createIndex(ReportAd.class, Report.AD_ID);
 
-    entityPersister.createIndex(ReportKeywords.class, Report.KEYWORD_ID);
+    entityPersister.createIndex(ReportKeyword.class, Report.KEYWORD_ID);
 
     entityPersister.createIndex(ReportPlaceholderFeedItem.class, ReportPlaceholderFeedItem.FEED_ITEM_ID);
 

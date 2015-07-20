@@ -23,7 +23,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
 import com.google.api.ads.adwords.awreporting.server.entities.Account;
@@ -377,7 +377,7 @@ public class KratuComputeTest {
     assertEquals(classes.get(1), ReportCampaign.class);
     assertEquals(classes.get(2), ReportAdGroup.class);
     assertEquals(classes.get(3), ReportAd.class);
-    assertEquals(classes.get(4), ReportKeywords.class);
+    assertEquals(classes.get(4), ReportKeyword.class);
     assertEquals(classes.get(5), ReportPlaceholderFeedItem.class);
     
     List<Long> accountIds = accountIdCaptor.getAllValues();

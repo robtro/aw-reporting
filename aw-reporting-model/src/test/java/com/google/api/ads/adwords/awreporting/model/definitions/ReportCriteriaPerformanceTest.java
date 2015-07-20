@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteriaPerformance;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,15 +26,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
-public class ReportCriteriaTest extends
-AbstractReportDefinitionTest<ReportCriteria> {
+public class ReportCriteriaPerformanceTest extends
+AbstractReportDefinitionTest<ReportCriteriaPerformance> {
 
   /**
    * C'tor
    */
-  public ReportCriteriaTest() {
+  public ReportCriteriaPerformanceTest() {
 
-    super(ReportCriteria.class,
+    super(ReportCriteriaPerformance.class,
         ReportDefinitionReportType.CRITERIA_PERFORMANCE_REPORT,
         "src/test/resources/csv/criteria.csv");
   }
@@ -45,7 +45,7 @@ AbstractReportDefinitionTest<ReportCriteria> {
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testFirstEntry(ReportCriteria first) {
+  protected void testFirstEntry(ReportCriteriaPerformance first) {
     //Assert.assertEquals(1252422563L, first.getAccountId().longValue());
     //TODO
   }
@@ -56,7 +56,7 @@ AbstractReportDefinitionTest<ReportCriteria> {
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testLastEntry(ReportCriteria last) {
+  protected void testLastEntry(ReportCriteriaPerformance last) {
     //Assert.assertEquals(1252422563L, last.getAccountId().longValue());
     //TODO
   }
@@ -163,10 +163,7 @@ AbstractReportDefinitionTest<ReportCriteria> {
         "FinalMobileUrls",
         "FinalUrls",
         "TrackingUrlTemplate",
-        "UrlCustomParameters",
-        "GmailForwards",
-        "GmailSaves",
-        "GmailSaves"
-    };
+        "UrlCustomParameters"
+        };
   }
 }

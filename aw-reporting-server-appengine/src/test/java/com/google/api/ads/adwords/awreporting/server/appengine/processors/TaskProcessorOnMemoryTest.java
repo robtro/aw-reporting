@@ -25,7 +25,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.server.appengine.processors.TaskProcessorOnMemory;
 import com.google.api.ads.adwords.awreporting.util.FileUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionDateRangeType;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
 import com.google.api.ads.common.lib.exception.OAuthException;

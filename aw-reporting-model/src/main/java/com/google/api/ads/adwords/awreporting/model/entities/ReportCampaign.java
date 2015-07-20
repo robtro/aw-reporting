@@ -18,19 +18,15 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-
-import org.joda.time.DateTime;
 
 /**
  * Specific report class for ReportCampaign
@@ -178,26 +174,6 @@ public class ReportCampaign extends ReportBase {
   @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
-  
-  @Column(name = "GMAIL_FORWARDS")
-  @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
-  private Long gmailForwards;
-
-  @Column(name = "GMAIL_SAVES")
-  @CsvField(value = "Gmail saves", reportField = "GmailSaves")
-  private Long gmailSaves;
-
-  @Column(name = "GMAIL_SECONDARY_CLICKS")
-  @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
-  private Long gmailSecondaryClicks;
-  
-  @Column(name = "START_DATE")
-  @CsvField(value = "Start date", reportField = "StartDate")
-  protected Date startDate;
-
-  @Column(name = "END_DATE")
-  @CsvField(value = "End date", reportField = "EndDate")
-  protected Date endDate;
 
   /**
    * Hibernate needs an empty constructor
@@ -584,75 +560,5 @@ public class ReportCampaign extends ReportBase {
   
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
-  }
-  
-  public Long getGmailForwards() {
-    return gmailForwards;
-  }
-  
-  public void setGmailForwards(Long gmailForwards) {
-    this.gmailForwards = gmailForwards;
-  }
-  
-  public Long getGmailSaves() {
-    return gmailSaves;
-  }
-  
-  public void setGmailSaves(Long gmailSaves) {
-    this.gmailSaves = gmailSaves;
-  }
-  
-  public Long getGmailSecondaryClicks() {
-    return gmailSecondaryClicks;
-  }
-  
-  public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
-    this.gmailSecondaryClicks = gmailSecondaryClicks;
-  }
-  
-  public String getStartDate() {
-    if (startDate != null) {
-      return DateUtil.formatYearMonthDay(startDate);
-    } else {
-      return null;
-    }
-  }
-
-  public void setStartDate(DateTime startDate) {
-    this.startDate = new DateTime(startDate).toDate();
-  }
-
-  public void setStartDay(String startDate) {
-    try {
-      DateTime parseDateTime = DateUtil.parseDateTime(startDate);
-      if (parseDateTime != null) {
-        this.startDate = parseDateTime.toDate();
-      }
-    } catch (IllegalArgumentException e) {
-      this.startDate = null;
-    }
-  }
-  
-  public String getEndDate() {
-    if (endDate != null) {
-      return DateUtil.formatYearMonthDay(endDate);
-    } else {
-      return null;
-    }
-  }
-
-  public void setEndDate(DateTime endDate) {
-    this.endDate = new DateTime(endDate).toDate();
-  }
-
-  public void setEndDay(String endDate) {
-    try {
-      DateTime parseDateTime = DateUtil.parseDateTime(endDate);
-      if (parseDateTime != null) {
-        this.endDate = parseDateTime.toDate();
-      }
-    } catch (IllegalArgumentException e) {
-      this.endDate = null;
-    }
   }
 }

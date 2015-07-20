@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -38,7 +38,7 @@ import javax.persistence.Table;
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportKeyword")
 @CsvReport(value = ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT)
-public class ReportKeywords extends ReportBase {
+public class ReportKeyword extends ReportBase {
 
   @Column(name = "KEYWORD_ID")
   @CsvField(value = "Keyword ID", reportField = "Id")
@@ -52,9 +52,9 @@ public class ReportKeywords extends ReportBase {
   @CsvField(value = "Match type", reportField = "KeywordMatchType")
   private String keywordMatchType;
 
-  @Column(name = "CRITERIA", length = 255)
-  @CsvField(value = "Keyword", reportField = "Criteria")
-  private String criteria;
+  @Column(name = "KEYWORD_TEXT", length = 255)
+  @CsvField(value = "Keyword", reportField = "KeywordText")
+  private String keywordText;
 
   @Lob
   @Column(name = "CRITERIA_DESTINATION_URL", length = 2048)
@@ -192,26 +192,14 @@ public class ReportKeywords extends ReportBase {
   @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
-  
-  @Column(name = "GMAIL_FORWARDS")
-  @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
-  private Long gmailForwards;
-
-  @Column(name = "GMAIL_SAVES")
-  @CsvField(value = "Gmail saves", reportField = "GmailSaves")
-  private Long gmailSaves;
-
-  @Column(name = "GMAIL_SECONDARY_CLICKS")
-  @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
-  private Long gmailSecondaryClicks;
 
   /**
    * Hibernate needs an empty constructor
    */
-  public ReportKeywords() {
+  public ReportKeyword() {
   }
 
-  public ReportKeywords(Long topAccountId, Long accountId) {
+  public ReportKeyword(Long topAccountId, Long accountId) {
     this.topAccountId = topAccountId;
     this.accountId = accountId;
   }
@@ -278,12 +266,12 @@ public class ReportKeywords extends ReportBase {
   }
 
   // keywordText
-  public String getCriteria() {
-    return criteria;
+  public String getKeywordText() {
+    return keywordText;
   }
 
-  public void setCriteria(String criteria) {
-    this.criteria = criteria;
+  public void setKeywordText(String keywordText) {
+    this.keywordText = keywordText;
   }
 
   // criteriaDestinationUrl
@@ -649,29 +637,5 @@ public class ReportKeywords extends ReportBase {
   
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
-  }
-  
-  public Long getGmailForwards() {
-    return gmailForwards;
-  }
-  
-  public void setGmailForwards(Long gmailForwards) {
-    this.gmailForwards = gmailForwards;
-  }
-  
-  public Long getGmailSaves() {
-    return gmailSaves;
-  }
-  
-  public void setGmailSaves(Long gmailSaves) {
-    this.gmailSaves = gmailSaves;
-  }
-  
-  public Long getGmailSecondaryClicks() {
-    return gmailSecondaryClicks;
-  }
-  
-  public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
-    this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
 }

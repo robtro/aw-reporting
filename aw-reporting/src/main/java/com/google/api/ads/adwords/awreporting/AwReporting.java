@@ -15,6 +15,7 @@
 package com.google.api.ads.adwords.awreporting;
 
 import com.google.api.ads.adwords.awreporting.authentication.Authenticator;
+import com.google.api.ads.adwords.awreporting.exporter.ReportExporterLocal;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.processors.onfile.ReportProcessorOnFile;
 import com.google.api.ads.adwords.awreporting.proxy.JaxWsProxySelector;
@@ -22,7 +23,7 @@ import com.google.api.ads.adwords.awreporting.util.DataBaseType;
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.awreporting.util.ProcessorType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Lists;
 import com.google.api.client.util.Sets;
 

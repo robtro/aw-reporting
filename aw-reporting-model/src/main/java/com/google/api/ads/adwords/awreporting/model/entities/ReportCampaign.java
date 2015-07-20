@@ -622,7 +622,7 @@ public class ReportCampaign extends ReportBase {
     this.startDate = new DateTime(startDate).toDate();
   }
 
-  public void setStartDay(String startDate) {
+  public void setStartDate(String startDate) {
     try {
       DateTime parseDateTime = DateUtil.parseDateTime(startDate);
       if (parseDateTime != null) {
@@ -645,7 +645,7 @@ public class ReportCampaign extends ReportBase {
     this.endDate = new DateTime(endDate).toDate();
   }
 
-  public void setEndDay(String endDate) {
+  public void setEndDate(String endDate) {
     try {
       DateTime parseDateTime = DateUtil.parseDateTime(endDate);
       if (parseDateTime != null) {

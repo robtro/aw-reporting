@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import javax.persistence.Column;
@@ -45,6 +45,10 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   @Column(name = "CAMPAIGN_NAME", length = 255)
   @CsvField(value = "Campaign", reportField = "CampaignName")
   private String campaignName;
+  
+  @Column(name = "CAMPAIGN_STATUS", length = 32)
+  @CsvField(value = "Campaign state", reportField = "CampaignStatus")
+  private String campaignStatus;
 
   @Column(name = "STATUS", length = 32)
   @CsvField(value = "Feed item status", reportField = "Status")
@@ -57,6 +61,10 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   @Column(name = "ADGROUP_NAME", length = 255)
   @CsvField(value = "Ad group", reportField = "AdGroupName")
   private String adGroupName;
+  
+  @Column(name = "ADGROUP_STATUS", length = 32)
+  @CsvField(value = "Ad group state", reportField = "AdGroupStatus")
+  private String adGroupStatus;
 
   @Column(name = "AD_ID")
   @CsvField(value = "Ad ID", reportField = "AdId")
@@ -86,9 +94,9 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   @CsvField(value = "Target keyword match type", reportField = "KeywordMatchType")
   private String keywordMatchType;
   
-  @Column(name = "KEYWORD_TEXT", length=255)
-  @CsvField(value = "Target keyword text", reportField = "KeywordText")
-  private String keywordText;
+  @Column(name = "CRITERIA", length=255)
+  @CsvField(value = "Target keyword text", reportField = "Criteria")
+  private String criteria;
   
   @Column(name = "CONVERSION_TRACKER_ID")
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
@@ -189,6 +197,14 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   public void setCampaignName(String campaignName) {
     this.campaignName = campaignName;
   }
+  
+  public String getCampaignStatus() {
+    return campaignStatus;
+  }
+
+  public void setCampaignStatus(String campaignStatus) {
+    this.campaignStatus = campaignStatus;
+  }
 
   public String getStatus() {
     return status;
@@ -212,6 +228,14 @@ public class ReportPlaceholderFeedItem extends ReportBase {
 
   public void setAdGroupName(String adGroupName) {
     this.adGroupName = adGroupName;
+  }
+  
+  public String getAdGroupStatus() {
+    return adGroupStatus;
+  }
+
+  public void setAdGroupStatus(String adGroupStatus) {
+    this.adGroupStatus = adGroupStatus;
   }
 
   public Long getAdId() {
@@ -274,12 +298,12 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     this.keywordMatchType = keywordMatchType;
   }
   
-  public String getKeywordText() {
-    return keywordText;
+  public String getCriteria() {
+    return criteria;
   }
   
-  public void setKeywordText(String keywordText) {
-    this.keywordText = keywordText;
+  public void setCriteria(String criteria) {
+    this.criteria = criteria;
   }
   
   public Long getConversionTrackerId() {

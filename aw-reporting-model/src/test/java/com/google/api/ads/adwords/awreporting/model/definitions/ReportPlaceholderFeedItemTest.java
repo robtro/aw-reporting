@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -137,9 +137,11 @@ AbstractReportDefinitionTest<ReportPlaceholderFeedItem> {
         // Specific to PlaceHolderFeedItem Performance Report
         "CampaignId",
         "CampaignName",
+        "CampaignStatus",
         "Status",
         "AdGroupId",
         "AdGroupName",
+        "AdGroupStatus",
         "AdId",
         "FeedId",
         "FeedItemId",
@@ -147,7 +149,7 @@ AbstractReportDefinitionTest<ReportPlaceholderFeedItem> {
         "IsSelfAction",
         "KeywordId",
         "KeywordMatchType",
-        "KeywordText",
+        "Criteria",
         "ConversionTrackerId",
         "AttributeValues",
         "DisapprovalShortNames",

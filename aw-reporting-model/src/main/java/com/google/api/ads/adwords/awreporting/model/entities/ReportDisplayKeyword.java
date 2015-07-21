@@ -22,7 +22,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -86,9 +86,9 @@ public class ReportDisplayKeyword extends ReportBase {
   @CsvField(value = "Is restricting", reportField = "IsRestrict")
   private boolean restrict;
 
-  @Column(name = "KEYWORD_TEXT", length = 255)
-  @CsvField(value = "Keyword", reportField = "KeywordText")
-  private String keywordText;
+  @Column(name = "CRITERIA", length = 255)
+  @CsvField(value = "Keyword", reportField = "Criteria")
+  private String criteria;
   
   @Column(name = "MAX_CPC")
   @CsvField(value = "Max. CPC", reportField = "CpcBid")
@@ -136,6 +136,18 @@ public class ReportDisplayKeyword extends ReportBase {
   @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
+  
+  @Column(name = "GMAIL_FORWARDS")
+  @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
+  private Long gmailForwards;
+
+  @Column(name = "GMAIL_SAVES")
+  @CsvField(value = "Gmail saves", reportField = "GmailSaves")
+  private Long gmailSaves;
+
+  @Column(name = "GMAIL_SECONDARY_CLICKS")
+  @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
+  private Long gmailSecondaryClicks;
 
   /**
    * Hibernate needs an empty constructor
@@ -288,12 +300,12 @@ public class ReportDisplayKeyword extends ReportBase {
     this.restrict = restrict;
   }
   
-  public String getKeywordText() {
-	  return keywordText;
+  public String getCriteria() {
+	  return criteria;
   }
   
-  public void setKeywordText(String keywordText) {
-	  this.keywordText = keywordText;
+  public void setCriteria(String criteria) {
+	  this.criteria = criteria;
   }
 
   public String getMaxCpc() {
@@ -414,5 +426,29 @@ public class ReportDisplayKeyword extends ReportBase {
   
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
+  }
+  
+  public Long getGmailForwards() {
+    return gmailForwards;
+  }
+  
+  public void setGmailForwards(Long gmailForwards) {
+    this.gmailForwards = gmailForwards;
+  }
+  
+  public Long getGmailSaves() {
+    return gmailSaves;
+  }
+  
+  public void setGmailSaves(Long gmailSaves) {
+    this.gmailSaves = gmailSaves;
+  }
+  
+  public Long getGmailSecondaryClicks() {
+    return gmailSecondaryClicks;
+  }
+  
+  public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
+    this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
 }

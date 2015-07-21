@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.UrlHashUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201502.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -98,6 +98,18 @@ public class ReportDestinationUrl extends ReportBase {
   @Column(name = "CONVERSION_TRACKER_ID")
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
   private Long conversionTrackerId;
+  
+  @Column(name = "GMAIL_FORWARDS")
+  @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
+  private Long gmailForwards;
+
+  @Column(name = "GMAIL_SAVES")
+  @CsvField(value = "Gmail saves", reportField = "GmailSaves")
+  private Long gmailSaves;
+
+  @Column(name = "GMAIL_SECONDARY_CLICKS")
+  @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
+  private Long gmailSecondaryClicks;
 
   /**
    * Hibernate needs an empty constructor
@@ -271,5 +283,29 @@ public class ReportDestinationUrl extends ReportBase {
   
   public void setConversionTrackerId(Long conversionTrackerId) {
     this.conversionTrackerId = conversionTrackerId;
+  }
+  
+  public Long getGmailForwards() {
+    return gmailForwards;
+  }
+  
+  public void setGmailForwards(Long gmailForwards) {
+    this.gmailForwards = gmailForwards;
+  }
+  
+  public Long getGmailSaves() {
+    return gmailSaves;
+  }
+  
+  public void setGmailSaves(Long gmailSaves) {
+    this.gmailSaves = gmailSaves;
+  }
+  
+  public Long getGmailSecondaryClicks() {
+    return gmailSecondaryClicks;
+  }
+  
+  public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
+    this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
 }

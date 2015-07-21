@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.server.entities.Account;
 import com.google.api.ads.adwords.awreporting.server.entities.Kratu;
@@ -317,11 +317,11 @@ public class KratuCompute {
 
 
       // Process ReportKeyword Info
-      List<ReportKeyword> reportKeywordList = storageHelper.getReportByAccountId(ReportKeyword.class, accountId, dayStart.getTime(), dayEnd.getTime());
+      List<ReportKeywords> reportKeywordList = storageHelper.getReportByAccountId(ReportKeywords.class, accountId, dayStart.getTime(), dayEnd.getTime());
       Long sumImpressions = 0l;
       BigDecimal totalPositions = BigDecimal.ZERO;
       BigDecimal totalWeight = BigDecimal.ZERO;
-      for (ReportKeyword reportKeyword : reportKeywordList) {
+      for (ReportKeywords reportKeyword : reportKeywordList) {
         if (reportKeyword.getStatus().equals(ENABLED)) {
           if (!reportKeyword.isNegative()) {
             kratu.addNumberOfPositiveActiveKeywords(BigDecimal.ONE);

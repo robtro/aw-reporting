@@ -186,7 +186,7 @@ public class ReportCampaignDefinitionTest extends AbstractReportDefinitionTest<R
         "PercentNewVisitors",
         "GmailForwards",
         "GmailSaves",
-        "GmailSaves",
+        "GmailSecondaryClicks",
         "StartDate",
         "EndDate"
     };

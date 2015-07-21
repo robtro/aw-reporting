@@ -174,7 +174,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "PercentNewVisitors",
         "GmailForwards",
         "GmailSaves",
-        "GmailSaves"
+        "GmailSecondaryClicks"
     };
   }
 }

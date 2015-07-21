@@ -177,7 +177,7 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
         "UrlCustomParameters",
         "GmailForwards",
         "GmailSaves",
-        "GmailSaves"
+        "GmailSecondaryClicks"
     };
   }
 }

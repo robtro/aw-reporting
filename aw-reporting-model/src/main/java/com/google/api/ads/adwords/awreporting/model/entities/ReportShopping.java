@@ -29,7 +29,7 @@ import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity
-@Table(name = "AW_ReportShoppingPerformance")
+@Table(name = "AW_ReportShopping")
 @CsvReport(value = ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT)
 public class ReportShopping extends ReportBase {
 

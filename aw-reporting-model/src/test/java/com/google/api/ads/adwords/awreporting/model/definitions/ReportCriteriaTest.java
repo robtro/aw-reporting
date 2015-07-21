@@ -166,7 +166,7 @@ AbstractReportDefinitionTest<ReportCriteria> {
         "UrlCustomParameters",
         "GmailForwards",
         "GmailSaves",
-        "GmailSaves"
+        "GmailSecondaryClicks"
     };
   }
 }

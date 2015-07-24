@@ -35,7 +35,7 @@ public class ReportUrlDefinitionTest extends AbstractReportDefinitionTest<Report
    */
   public ReportUrlDefinitionTest() {
     super(ReportUrl.class, ReportDefinitionReportType.URL_PERFORMANCE_REPORT,
-        "src/test/resources/csv/managed-placement-url.csv");
+        "src/test/resources/csv/url.csv");
   }
 
   /**

@@ -35,7 +35,7 @@ public class ReportAdDefinitionTest extends AbstractReportDefinitionTest<ReportA
    */
   public ReportAdDefinitionTest() {
     super(ReportAd.class, ReportDefinitionReportType.AD_PERFORMANCE_REPORT,
-        "src/test/resources/csv/ad-performance.csv");
+        "src/test/resources/csv/ad.csv");
   }
 
   /**

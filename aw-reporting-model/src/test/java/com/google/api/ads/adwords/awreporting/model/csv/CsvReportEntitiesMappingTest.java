@@ -21,7 +21,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBudget;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDisplayKeyword;
@@ -73,7 +73,7 @@ public class CsvReportEntitiesMappingTest {
     this.assertBeanClassIsCorrectForType(ReportKeywords.class,
         ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT);
 
-    this.assertBeanClassIsCorrectForType(ReportCampaignNegativeKeyword.class,
+    this.assertBeanClassIsCorrectForType(ReportCampaignNegativeKeywords.class,
         ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportBudget.class,

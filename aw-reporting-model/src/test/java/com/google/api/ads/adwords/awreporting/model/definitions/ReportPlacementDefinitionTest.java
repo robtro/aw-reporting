@@ -39,7 +39,7 @@ AbstractReportDefinitionTest<ReportPlacement> {
 
     super(ReportPlacement.class,
         ReportDefinitionReportType.PLACEMENT_PERFORMANCE_REPORT,
-        "src/test/resources/csv/placement-performance.csv");
+        "src/test/resources/csv/placement.csv");
   }
 
   @Override

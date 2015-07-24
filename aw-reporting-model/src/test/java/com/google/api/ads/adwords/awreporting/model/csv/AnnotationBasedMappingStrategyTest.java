@@ -51,7 +51,7 @@ public class AnnotationBasedMappingStrategyTest {
     Locale.setDefault(Locale.US);
 
     CSVReader csvReader = new AwReportCsvReader(new InputStreamReader(
-        new FileInputStream("src/test/resources/csv/ad-performance.csv"), "UTF-8"), ',', '\"', 1);
+        new FileInputStream("src/test/resources/csv/ad.csv"), "UTF-8"), ',', '\"', 1);
 
     AnnotationBasedMappingStrategy<ReportAd> mappingStrategy =
         new AnnotationBasedMappingStrategy<ReportAd>(ReportAd.class);
@@ -112,7 +112,7 @@ public class AnnotationBasedMappingStrategyTest {
     Locale.setDefault(Locale.US);
 
     CSVReader csvReader = new AwReportCsvReader(new InputStreamReader(
-        new FileInputStream("src/test/resources/csv/ad-performance.csv"), "UTF-8"), ',', '\"', 1);
+        new FileInputStream("src/test/resources/csv/ad.csv"), "UTF-8"), ',', '\"', 1);
 
     AnnotationBasedMappingStrategy<ReportAd> mappingStrategy =
         new AnnotationBasedMappingStrategy<ReportAd>(ReportAd.class);

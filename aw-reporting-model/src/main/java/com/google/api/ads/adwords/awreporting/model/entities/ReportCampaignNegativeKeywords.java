@@ -30,10 +30,10 @@ import javax.persistence.Table;
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity
-@Table(name = "AW_ReportCampaignNegativeKeyword")
+@Table(name = "AW_ReportCampaignNegativeKeywords")
 @CsvReport(value = ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT,
     reportExclusions = {"ExternalCustomerId"})
-public class ReportCampaignNegativeKeyword extends Report {
+public class ReportCampaignNegativeKeywords extends Report {
 
   @Column(name = "KEYWORD_ID")
   @CsvField(value = "Keyword ID", reportField = "Id")
@@ -66,9 +66,9 @@ public class ReportCampaignNegativeKeyword extends Report {
   /**
    * Hibernate needs an empty constructor
    */
-  public ReportCampaignNegativeKeyword() {}
+  public ReportCampaignNegativeKeywords() {}
 
-  public ReportCampaignNegativeKeyword(Long topAccountId, Long accountId) {
+  public ReportCampaignNegativeKeywords(Long topAccountId, Long accountId) {
     this.topAccountId = topAccountId;
     this.accountId = accountId;
   }

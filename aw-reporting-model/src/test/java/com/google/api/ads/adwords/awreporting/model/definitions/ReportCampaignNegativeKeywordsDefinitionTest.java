@@ -14,7 +14,7 @@
 
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 import junit.framework.Assert;
@@ -28,17 +28,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
-public class ReportCampaignNegativeKeywordDefinitionTest
-    extends AbstractReportDefinitionTest<ReportCampaignNegativeKeyword> {
+public class ReportCampaignNegativeKeywordsDefinitionTest
+    extends AbstractReportDefinitionTest<ReportCampaignNegativeKeywords> {
 
   /**
    * C'tor
    */
-  public ReportCampaignNegativeKeywordDefinitionTest() {
+  public ReportCampaignNegativeKeywordsDefinitionTest() {
 
-    super(ReportCampaignNegativeKeyword.class,
+    super(ReportCampaignNegativeKeywords.class,
         ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT,
-        "src/test/resources/csv/campaign-negative.csv");
+        "src/test/resources/csv/campaign-negative-keywords.csv");
   }
 
   /**
@@ -47,7 +47,7 @@ public class ReportCampaignNegativeKeywordDefinitionTest
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testFirstEntry(ReportCampaignNegativeKeyword first) {
+  protected void testFirstEntry(ReportCampaignNegativeKeywords first) {
 
     Assert.assertEquals(11533780L, first.getKeywordId().longValue());
     Assert.assertEquals(116981433L, first.getCampaignId().longValue());
@@ -63,7 +63,7 @@ public class ReportCampaignNegativeKeywordDefinitionTest
    * com.google.api.ads.adwords.awreporting.model.entities.Report)
    */
   @Override
-  protected void testLastEntry(ReportCampaignNegativeKeyword last) {
+  protected void testLastEntry(ReportCampaignNegativeKeywords last) {
 
     Assert.assertEquals(11679830L, last.getKeywordId().longValue());
     Assert.assertEquals(116996313L, last.getCampaignId().longValue());

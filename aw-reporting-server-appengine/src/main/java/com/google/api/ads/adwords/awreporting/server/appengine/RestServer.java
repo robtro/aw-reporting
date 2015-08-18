@@ -20,7 +20,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBudget;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
@@ -453,7 +453,7 @@ public class RestServer extends com.google.api.ads.adwords.awreporting.server.re
     ObjectifyService.register(ReportAdGroup.class);
     ObjectifyService.register(ReportBudget.class);
     ObjectifyService.register(ReportCampaign.class);
-    ObjectifyService.register(ReportCampaignNegativeKeyword.class);
+    ObjectifyService.register(ReportCampaignNegativeKeywords.class);
     ObjectifyService.register(ReportCriteria.class);
     ObjectifyService.register(ReportDestinationUrl.class);
     ObjectifyService.register(ReportKeywords.class);

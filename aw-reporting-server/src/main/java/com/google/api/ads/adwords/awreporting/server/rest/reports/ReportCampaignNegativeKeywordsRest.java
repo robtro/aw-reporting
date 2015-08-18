@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.server.rest.reports;
 
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.awreporting.server.rest.AbstractBaseResource;
 import com.google.api.ads.adwords.awreporting.server.rest.RestServer;
 import com.google.api.ads.adwords.awreporting.server.util.StorageHelper;
@@ -33,7 +33,7 @@ import java.util.List;
  * 
  * @author jtoledo@google.com (Julian Toledo)
  */
-public class ReportCampaignNegativeKeywordRest extends AbstractBaseResource {
+public class ReportCampaignNegativeKeywordsRest extends AbstractBaseResource {
 
   private StorageHelper storageHelper = RestServer.getStorageHelper();
 
@@ -49,29 +49,29 @@ public class ReportCampaignNegativeKeywordRest extends AbstractBaseResource {
       Date dateStart = getParameterAsDate("dateStart");
       Date dateEnd = getParameterAsDate("dateEnd");
 
-      List<ReportCampaignNegativeKeyword> listReport = null;
+      List<ReportCampaignNegativeKeywords> listReport = null;
 
       if (topAccountId != null &&
           accountId == null &&
           campaignId == null &&
           criterionId == null) {
 
-        listReport = storageHelper.getReportCampaignNegativeKeywordByAccountAndEndDateInRange(
+        listReport = storageHelper.getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(
             Report.TOP_ACCOUNT_ID, topAccountId, dateStart, dateEnd);
       }
 
       if (accountId != null) {
-        listReport = storageHelper.getReportCampaignNegativeKeywordByAccountAndEndDateInRange(
+        listReport = storageHelper.getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(
             Report.ACCOUNT_ID, accountId, dateStart, dateEnd);
       }
 
       if (campaignId != null) {
-        listReport = storageHelper.getReportCampaignNegativeKeywordByAccountAndEndDateInRange(
+        listReport = storageHelper.getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(
             Report.CAMPAIGN_ID, campaignId, dateStart, dateEnd);
       }
 
       if (criterionId != null) {
-        listReport = storageHelper.getReportCampaignNegativeKeywordByAccountAndEndDateInRange(
+        listReport = storageHelper.getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(
             Report.KEYWORD_ID, criterionId, dateStart, dateEnd);
       }
 

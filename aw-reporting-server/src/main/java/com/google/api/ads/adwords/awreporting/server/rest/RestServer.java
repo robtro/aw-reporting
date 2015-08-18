@@ -24,9 +24,9 @@ import com.google.api.ads.adwords.awreporting.server.rest.reports.PreviewReportR
 import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportAccountRest;
 import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportAdGroupRest;
 import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportAdRest;
-import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportCampaignNegativeKeywordRest;
+import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportCampaignNegativeKeywordsRest;
 import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportCampaignRest;
-import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportKeywordRest;
+import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportKeywordsRest;
 import com.google.api.ads.adwords.awreporting.server.rest.reports.ReportPlaceholderFeedItemRest;
 import com.google.api.ads.adwords.awreporting.server.util.StorageHelper;
 import com.google.api.ads.adwords.awreporting.util.DataBaseType;
@@ -217,18 +217,18 @@ public class RestServer extends Application {
     // dateRangeType=DAY or dateRangeType=MONTH
     // @offset number of results to skip [OPTIONAL]
     // @limit number of results to return[OPTIONAL]
-    router.attach("/mcc/{topAccountId}/reportkeyword", ReportKeywordRest.class); //LIST All
-    router.attach("/mcc/{topAccountId}/reportkeyword/{accountId}", ReportKeywordRest.class); //LIST Account level
-    router.attach("/mcc/{topAccountId}/reportkeyword/campaign/{campaignId}", ReportKeywordRest.class); //LIST Campaign level
-    router.attach("/mcc/{topAccountId}/reportkeyword/adgroup/{adGroupId}", ReportKeywordRest.class); //LIST AdGroup level
-    router.attach("/mcc/{topAccountId}/reportkeyword/keyword/{criterionId}", ReportKeywordRest.class); //LIST Keyword level
+    router.attach("/mcc/{topAccountId}/reportkeywords", ReportKeywordsRest.class); //LIST All
+    router.attach("/mcc/{topAccountId}/reportkeywords/{accountId}", ReportKeywordsRest.class); //LIST Account level
+    router.attach("/mcc/{topAccountId}/reportkeywords/campaign/{campaignId}", ReportKeywordsRest.class); //LIST Campaign level
+    router.attach("/mcc/{topAccountId}/reportkeywords/adgroup/{adGroupId}", ReportKeywordsRest.class); //LIST AdGroup level
+    router.attach("/mcc/{topAccountId}/reportkeywords/keyword/{criterionId}", ReportKeywordsRest.class); //LIST Keyword level
 
-    // ReportCampaignNegativeKeyword
+    // ReportCampaignNegativeKeywords
     // This one does not support dateStart and dateEnd
-    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeyword", ReportCampaignNegativeKeywordRest.class); //LIST All
-    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeyword/{accountId}", ReportCampaignNegativeKeywordRest.class); //LIST Account level
-    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeyword/campaign/{campaignId}", ReportCampaignNegativeKeywordRest.class); //LIST Campaign level
-    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeyword/keyword/{criterionId}", ReportCampaignNegativeKeywordRest.class); //LIST Keyword level
+    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeywords", ReportCampaignNegativeKeywordsRest.class); //LIST All
+    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeywords/{accountId}", ReportCampaignNegativeKeywordsRest.class); //LIST Account level
+    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeywords/campaign/{campaignId}", ReportCampaignNegativeKeywordsRest.class); //LIST Campaign level
+    router.attach("/mcc/{topAccountId}/reportcampaignnegativekeywords/keyword/{criterionId}", ReportCampaignNegativeKeywordsRest.class); //LIST Keyword level
 
     // ReportPlaceholderFeedItem
     // ?dateStart=yyyyMMdd&dateEnd=yyyyMMdd

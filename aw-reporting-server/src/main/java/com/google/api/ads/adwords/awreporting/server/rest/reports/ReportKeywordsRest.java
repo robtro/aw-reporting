@@ -21,8 +21,8 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
  * 
  * @author jtoledo@google.com (Julian Toledo)
  */
-public class ReportKeywordRest extends AbstractReportRest<ReportKeywords> {
-  public ReportKeywordRest() {
+public class ReportKeywordsRest extends AbstractReportRest<ReportKeywords> {
+  public ReportKeywordsRest() {
     super(ReportKeywords.class);
   }
 }

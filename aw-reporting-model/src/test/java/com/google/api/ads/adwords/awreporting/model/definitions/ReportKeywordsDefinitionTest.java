@@ -63,7 +63,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(3398915357L, first.getAdGroupId().longValue());
     Assert.assertEquals(41933620L, first.getKeywordId().longValue());
     Assert.assertEquals("enabled", first.getStatus());
-    Assert.assertEquals(10.00, first.getQualityScoreAsBigDecimal().doubleValue());
+    Assert.assertEquals(10, first.getQualityScore().intValue());
     Assert.assertEquals("Broad", first.getKeywordMatchType());
     Assert.assertEquals("achat forêt", first.getCriteria());
     Assert.assertEquals("", first.getCriteriaDestinationUrl());
@@ -95,7 +95,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(3398915357L, last.getAdGroupId().longValue());
     Assert.assertEquals(44877775648L, last.getKeywordId().longValue());
     Assert.assertEquals("enabled", last.getStatus());
-    Assert.assertEquals(10.00, last.getQualityScoreAsBigDecimal().doubleValue());
+    Assert.assertEquals(10, last.getQualityScore().intValue());
     Assert.assertEquals("Broad", last.getKeywordMatchType());
     Assert.assertEquals("propriete sologne a vendre", last.getCriteria());
     Assert.assertEquals("", last.getCriteriaDestinationUrl());
@@ -193,7 +193,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
         "FinalUrls",
         "TrackingUrlTemplate",
         "UrlCustomParameters",
-        // Analytics Fieds        
+        // Analytics Fieds
         "AveragePageviews",
         "AverageTimeOnSite",
         "BounceRate",

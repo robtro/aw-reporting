@@ -26,13 +26,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
-public class ReportCriteriaTest extends
+public class ReportCriteriaDefinitionTest extends
 AbstractReportDefinitionTest<ReportCriteria> {
 
   /**
    * C'tor
    */
-  public ReportCriteriaTest() {
+  public ReportCriteriaDefinitionTest() {
 
     super(ReportCriteria.class,
         ReportDefinitionReportType.CRITERIA_PERFORMANCE_REPORT,

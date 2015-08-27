@@ -67,7 +67,7 @@ public class ReportAdGroup extends ReportBase {
   @Column(name = "CONVERSIONRATEMANYPERCLICKSIGNIFICANCE")
   @CsvField(value = "Conversion rate ACE indicator", reportField = "ConversionRateManyPerClickSignificance")
   protected BigDecimal conversionRateManyPerClickSignificance;
-  
+
   @Column(name = "CONVERSIONMANYPERCLICKSIGNIFICANCE")
   @CsvField(value = "Conversion ACE indicator", reportField = "ConversionManyPerClickSignificance")
   protected BigDecimal conversionManyPerClickSignificance;
@@ -75,7 +75,7 @@ public class ReportAdGroup extends ReportBase {
   @Column(name = "COSTPERCONVERSIONMANYPERCLICKSIGNIFICANCE")
   @CsvField(value = "Cost/conversion ACE indicator", reportField = "CostPerConversionManyPerClickSignificance")
   protected BigDecimal costPerConversionManyPerClickSignificance;
-  
+
   @Column(name = "CONVERTEDCLICKSSIGNIFICANCE")
   @CsvField(value = "Converted clicks ACE indicator", reportField = "ConvertedClicksSignificance")
   private BigDecimal convertedClicksSignificance;
@@ -91,7 +91,7 @@ public class ReportAdGroup extends ReportBase {
   @Column(name = "AVERAGE_TIME_ON_SITE")
   @CsvField(value = "Avg. visit duration (seconds)", reportField = "AverageTimeOnSite")
   private BigDecimal averageTimeOnSite;
-  
+
   @Column(name = "BOUNCE_RATE")
   @CsvField(value = "Bounce rate", reportField = "BounceRate")
   private BigDecimal bounceRate;
@@ -99,7 +99,7 @@ public class ReportAdGroup extends ReportBase {
   @Column(name = "PERCENT_NEW_VISITORS")
   @CsvField(value = "% new visits", reportField = "PercentNewVisitors")
   private BigDecimal percentNewVisitors;
-  
+
   @Column(name = "SEARCH_IMPRESSION_SHARE")
   @CsvField(value = "Search Impr. share", reportField = "SearchImpressionShare")
   private BigDecimal searchImpressionShare;
@@ -128,28 +128,28 @@ public class ReportAdGroup extends ReportBase {
   @Column(name = "HOUR_OF_DAY")
   @CsvField(value = "Hour of day", reportField = "HourOfDay")
   private Long hourOfDay;
-  
+
   @Column(name = "ACTIVE_VIEW_CPM")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewCpm")
   @MoneyField
   private BigDecimal activeViewCpm;
-  
+
   @Column(name = "ACTIVE_VIEW_IMPRESSIONS")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewImpressions")
   private Long activeViewImpressions;
-  
+
   @Column(name = "CONVERSION_TRACKER_ID")
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
   private Long conversionTrackerId;
-  
+
   @Column(name = "TRACKING_URL_TEMPLATE", length=2048)
   @CsvField(value = "Tracking template", reportField = "TrackingUrlTemplate")
   private String trackingUrlTemplate;
-  
+
   @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
-  
+
   @Column(name = "GMAIL_FORWARDS")
   @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
   private Long gmailForwards;
@@ -235,11 +235,11 @@ public class ReportAdGroup extends ReportBase {
   public void setAdGroupStatus(String adGroupStatus) {
     this.adGroupStatus = adGroupStatus;
   }
-  
+
   public String getClickConversionRateSignificance() {
     return BigDecimalUtil.formatAsReadable(clickConversionRateSignificance);
   }
-  
+
   public BigDecimal getClickConversionRateSignificanceBigDecimal() {
     return clickConversionRateSignificance;
   }
@@ -251,7 +251,7 @@ public class ReportAdGroup extends ReportBase {
   public String getConversionRateManyPerClickSignificance() {
     return BigDecimalUtil.formatAsReadable(conversionRateManyPerClickSignificance);
   }
-  
+
   public BigDecimal getConversionRateManyPerClickSignificanceBigDecimal() {
     return conversionRateManyPerClickSignificance;
   }
@@ -260,11 +260,11 @@ public class ReportAdGroup extends ReportBase {
       String conversionRateManyPerClickSignificance) {
     this.conversionRateManyPerClickSignificance = BigDecimalUtil.parseFromNumberString(conversionRateManyPerClickSignificance);
   }
-  
+
   public String getConversionManyPerClickSignificance() {
     return BigDecimalUtil.formatAsReadable(conversionManyPerClickSignificance);
   }
-  
+
   public BigDecimal getConversionManyPerClickSignificanceBigDecimal() {
     return conversionManyPerClickSignificance;
   }
@@ -272,11 +272,11 @@ public class ReportAdGroup extends ReportBase {
   public void setConversionManyPerClickSignificance(String conversionManyPerClickSignificance) {
     this.conversionManyPerClickSignificance = BigDecimalUtil.parseFromNumberString(conversionManyPerClickSignificance);
   }
-  
+
   public String getCostPerConversionManyPerClickSignificance() {
     return BigDecimalUtil.formatAsReadable(costPerConversionManyPerClickSignificance);
   }
-  
+
   public BigDecimal getCostPerConversionManyPerClickSignificanceBigDecimal() {
     return costPerConversionManyPerClickSignificance;
   }
@@ -289,7 +289,7 @@ public class ReportAdGroup extends ReportBase {
   public String getConvertedClicksSignificance() {
     return BigDecimalUtil.formatAsReadable(convertedClicksSignificance);
   }
-  
+
   public BigDecimal getConvertedClicksSignificanceBigDecimal() {
     return convertedClicksSignificance;
   }
@@ -297,11 +297,11 @@ public class ReportAdGroup extends ReportBase {
   public void setConvertedClicksSignificance(String convertedClicksSignificance) {
     this.convertedClicksSignificance = BigDecimalUtil.parseFromNumberString(convertedClicksSignificance);
   }
-  
+
   public String getCostPerConvertedClickSignificance() {
     return BigDecimalUtil.formatAsReadable(costPerConvertedClickSignificance);
   }
-  
+
   public BigDecimal getCostPerConvertedClickSignificanceBigDecimal() {
     return costPerConvertedClickSignificance;
   }
@@ -317,7 +317,7 @@ public class ReportAdGroup extends ReportBase {
   public BigDecimal getAveragePageviewsBigDecimal() {
     return averagePageviews;
   }
-  
+
   public void setAveragePageviews(String averagePageviews) {
     this.averagePageviews =  BigDecimalUtil.parseFromNumberString(averagePageviews);
   }
@@ -329,7 +329,7 @@ public class ReportAdGroup extends ReportBase {
   public BigDecimal getAverageTimeOnSiteBigDecimal() {
     return averageTimeOnSite;
   }
-  
+
   public void setAverageTimeOnSite(String averageTimeOnSite) {
     this.averageTimeOnSite =  BigDecimalUtil.parseFromNumberString(averageTimeOnSite);
   }
@@ -341,7 +341,7 @@ public class ReportAdGroup extends ReportBase {
   public BigDecimal getBounceRateBigDecimal() {
     return bounceRate;
   }
-  
+
   public void setBounceRate(String bounceRate) {
     this.bounceRate =  BigDecimalUtil.parseFromNumberString(bounceRate);
   }
@@ -353,11 +353,11 @@ public class ReportAdGroup extends ReportBase {
   public BigDecimal getPercentNewVisitorsBigDecimal() {
     return percentNewVisitors;
   }
-  
+
   public void setPercentNewVisitors(String percentNewVisitors) {
     this.percentNewVisitors =  BigDecimalUtil.parseFromNumberString(percentNewVisitors);
   }
-  
+
   public String getSearchImpressionShare() {
     return BigDecimalUtil.formatAsReadable(this.searchImpressionShare);
   }
@@ -405,7 +405,7 @@ public class ReportAdGroup extends ReportBase {
   public void setContentLostISRank(String lostISRank) {
     this.contentLostISRank = BigDecimalUtil.parseFromNumberStringPercentage(lostISRank);
   }
-  
+
   public String getSearchExactMatchImpressionShare() {
     return BigDecimalUtil.formatAsReadable(this.searchExactMatchImpressionShare);
   }
@@ -417,7 +417,7 @@ public class ReportAdGroup extends ReportBase {
   public void setSearchExactMatchImpressionShare(String searchExactMatchImpressionShare) {
     this.searchExactMatchImpressionShare = BigDecimalUtil.parseFromNumberStringPercentage(searchExactMatchImpressionShare);
   }
-  
+
   public String getLabels() {
     return this.labels;
   }
@@ -437,11 +437,11 @@ public class ReportAdGroup extends ReportBase {
   public Long getHourOfDay() {
     return hourOfDay;
   }
-  
+
   public void setHourOfDay(Long hourOfDay) {
     this.hourOfDay = hourOfDay;
   }
-  
+
   public String getActiveViewCpm() {
     return BigDecimalUtil.formatAsReadable(activeViewCpm);
   }
@@ -453,60 +453,73 @@ public class ReportAdGroup extends ReportBase {
   public void setActiveViewCpm(String activeViewCpm) {
     this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
   }
-  
+
   public Long getActiveViewImpressions() {
     return activeViewImpressions;
   }
-  
+
   public void setActiveViewImpressions(Long activeViewImpressions) {
     this.activeViewImpressions = activeViewImpressions;
   }
-  
+
   public Long getConversionTrackerId() {
     return conversionTrackerId;
   }
-  
+
   public void setConversionTrackerId(Long conversionTrackerId) {
     this.conversionTrackerId = conversionTrackerId;
   }
-  
+
   public String getTrackingUrlTemplate() {
     return trackingUrlTemplate;
   }
-  
+
   public void setTrackingUrlTemplate(String trackingUrlTemplate) {
     this.trackingUrlTemplate = trackingUrlTemplate;
   }
-  
+
   public String getUrlCustomParameters() {
     return urlCustomParameters;
   }
-  
+
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
   }
-  
+
   public Long getGmailForwards() {
     return gmailForwards;
   }
-  
+
   public void setGmailForwards(Long gmailForwards) {
     this.gmailForwards = gmailForwards;
   }
-  
+
   public Long getGmailSaves() {
     return gmailSaves;
   }
-  
+
   public void setGmailSaves(Long gmailSaves) {
     this.gmailSaves = gmailSaves;
   }
-  
+
   public Long getGmailSecondaryClicks() {
     return gmailSecondaryClicks;
   }
-  
+
   public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
     this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
+
+  public String getTargetCpa() {
+    return BigDecimalUtil.formatAsReadable(targetCpa);
+  }
+
+  public void setTargetCpa(String targetCpa) {
+    this.targetCpa = BigDecimalUtil.parseFromNumberString(targetCpa);
+  }
+
+  public BigDecimal getTargetCpaBigDecimal() {
+    return this.targetCpa;
+  }
+
 }

@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1265
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 LucidaGrande;
 }
 {\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red52\green110\blue183;\red246\green246\blue246;
@@ -148,10 +148,6 @@ Check your database when the run finishes to be sure it's been populated with th
 \fs24 \cf2 java -Xmx1G -jar aw-reporting.jar -startDate YYYYMMDD -endDate YYYYMMDD -file <file>
 \fs26 \
 \
-
-\fs24 java -Xmx1G -jar aw-reporting.jar -generatePdf <htmlTemplateFile> <outputDirectory> -startDate YYYYMMDD -endDate YYYYMMDD -file <file>
-\fs26 \
-\
 \
 
 \fs24 Arguments:\
@@ -169,12 +165,6 @@ Check your database when the run finishes to be sure it's been populated with th
    -endDate <YYYMMDD>      End date for CUSTOM_DATE Reports (YYYYMMDD)\
 \
    -file <file>            aw-report-sample.properties file.\
-\
-   -generatePdf <htmlTemplateFile> <outputDirectory>\
-                           \
-                           Generate Monthly Account Reports for all Accounts in PDF\
-   \
-                           NOTE: For PDF use aw-report-sample-for-pdf.properties instead, the fields need to be different.\
 \
    -help                   Print this message.\
 \
@@ -233,16 +223,16 @@ Check your database when the run finishes to be sure it's been populated with th
 \b {\listtext	\'95	}CSV:
 \b0  The CSV classes use the OpenCSV library to convert CSV files into Java beans using annotations. The package also contains two new annotations to define the Report Definition Type and the mapping between java field, report\'92s Column Name and Display Name headers. For example:\
 \pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl500\sa300
-\ls2\ilvl1\cf2 {\listtext
-\f2 \uc0\u9702
-\f0 	}Annotation
+\ls2\ilvl1
+\f2 \cf2 \uc0\u9702 
+\f0 	Annotation
 \b @CsvReport
 \b0  at the Report class level, for example for ReportAccount:
 \f1\fs24 \cb4 @CsvReport(value= ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT) public class ReportAccount extends Report \{...
 \f0\fs30 \cb1 \
-{\listtext
-\f2 \uc0\u9702
-\f0 	}Annotation
+\ls2\ilvl1
+\f2 \uc0\u9702 
+\f0 	Annotation
 \b @CsvField
 \b0  at the java field level, for example for avgCpm:
 \f1\fs24 \cb4 @CsvField (value = "Avg. CPM", reportField = "AverageCpm") public BigDecimal avgCpm;
@@ -275,20 +265,9 @@ Check your database when the run finishes to be sure it's been populated with th
 \pard\pardeftab720\sl800
 
 \b\fs48 \cf3 \
-\pard\pardeftab720\sl800\sa300
-\cf2 PDF Generation\
-\pard\pardeftab720\sl500\sa300
-
-\b0\fs30 \cf2 PDF generation works monthly and also needs the use of a HTML template like ACCOUNT_PERFORMANCE_REPORT.tmpl\
-First run the date range without the -generatePdf to download the data needed to generate them.\
-Here's an example properties file for PDF generation:\
-\pard\pardeftab720\sl500
-\cf5 aw-report-sample-for-pdf.properties\
-\pard\pardeftab720\sl600
-
-\b\fs36 \cf3 \
 \pard\pardeftab720\sl600\sa300
-\cf2 Fine print\
+
+\fs36 \cf2 Fine print\
 \pard\pardeftab720\sl500\sa300
 
 \b0\fs30 \cf2 Pull requests are very much appreciated. Please sign the {\field{\*\fldinst{HYPERLINK "http://code.google.com/legal/individual-cla-v1.0.html"}}{\fldrslt \cf3 Google Individual Contributor License Agreement}} (There is a convenient online form) before submitting.\
@@ -296,7 +275,7 @@ Here's an example properties file for PDF generation:\
 
 \i\b\fs28 \cf2 Authors\
 \pard\pardeftab720\sl500
-{\field{\*\fldinst{HYPERLINK "https://plus.google.com/+JulianCToledo/"}}{\fldrslt
+{\field{\*\fldinst{HYPERLINK "https://plus.google.com/+JulianCToledo/"}}{\fldrslt 
 \i0\b0\fs30 \cf3 Julian Toledo (Google Inc.)}}
 \i0\b0\fs30 \
 \pard\pardeftab720\sl500

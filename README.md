@@ -186,8 +186,7 @@ This will create a "schema.sql" in the "target/" folder of the project.
 ## Details about the code
 
 For better organization and encapsulation, the project groups the reporting workflow into two parts:
-**Aw-Report-Model** for the logic (API services, downloader and processors) and **Aw-Reporting** for persistence, entities and the CSV mapping to AdWords information.
-
+**Aw-Report-Model** for persistence, entities and the CSV mapping to AdWords information and **Aw-Reporting** for the logic (API services, downloader and processors).
 
 ### Aw-Report-Model
 Provides all the necessary classes to persist data and the entities’ mapping to AdWords report data.

@@ -95,7 +95,7 @@ As it's running, the project will provide status messages about the reports it's
 
 Check your database when the run finishes to be sure it's been populated with the reporting data, e.g.:
 
-> SELECT * FROM AWReports.AW_ReportAd limit 1;
+> SELECT * FROM AWReports.AW_ReportAccount limit 1;
 
 ### Command line options 
 

@@ -89,7 +89,7 @@ Be sure to specify the properties file you edited above on the command line.
 
 It's possible to run the project using either Eclipse or the command line. If using Eclipse, open and run:
 
-> aw-reporting/src/main/java/com/google/api/ads/adwords/jaxws/extensions/AwReporting.java
+> aw-reporting/src/main/java/com/google/api/ads/adwords/awreporting/AwReporting.java
 
 As it's running, the project will provide status messages about the reports it's downloading on the command line. 
 

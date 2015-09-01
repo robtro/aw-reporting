@@ -58,6 +58,7 @@ public class ReportAdGroup extends ReportBase {
 
   @Column(name = "TARGETCPA")
   @CsvField(value = "Max. CPA (converted clicks)", reportField = "TargetCpa")
+  @MoneyField
   private BigDecimal targetCpa;
 
   @Column(name = "CLICKCONVERSIONRATESIGNIFICANCE")
@@ -514,12 +515,11 @@ public class ReportAdGroup extends ReportBase {
     return BigDecimalUtil.formatAsReadable(targetCpa);
   }
 
+  public BigDecimal getTargetCpaBigDecimal() {
+    return targetCpa;
+  }
+
   public void setTargetCpa(String targetCpa) {
     this.targetCpa = BigDecimalUtil.parseFromNumberString(targetCpa);
   }
-
-  public BigDecimal getTargetCpaBigDecimal() {
-    return this.targetCpa;
-  }
-
 }

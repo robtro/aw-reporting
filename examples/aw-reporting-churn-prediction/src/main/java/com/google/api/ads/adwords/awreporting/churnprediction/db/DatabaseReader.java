@@ -2,7 +2,6 @@ package com.google.api.ads.adwords.awreporting.churnprediction.db;
 
 import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
 import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountStatus;
-import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;

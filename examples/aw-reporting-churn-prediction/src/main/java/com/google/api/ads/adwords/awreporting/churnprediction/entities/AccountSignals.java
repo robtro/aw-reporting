@@ -451,9 +451,6 @@ public class AccountSignals implements Signals {
   @Column(name = "CPC_1M_TO_6M_RATIO")
   private double cpc1mto6mRatio;
 
-  /* (non-Javadoc)
-   * @see com.google.api.ads.adwords.awreporting.churnprediction.entities.IAccountSignals#getCid()
-   */
   public long getCid() {
     return cid;
   }
@@ -462,9 +459,6 @@ public class AccountSignals implements Signals {
     this.cid = cid;
   }
 
-  /* (non-Javadoc)
-   * @see com.google.api.ads.adwords.awreporting.churnprediction.entities.IAccountSignals#getCompanyName()
-   */
   public String getCompanyName() {
     return companyName;
   }
@@ -473,9 +467,6 @@ public class AccountSignals implements Signals {
     this.companyName = companyName;
   }
 
-  /* (non-Javadoc)
-   * @see com.google.api.ads.adwords.awreporting.churnprediction.entities.IAccountSignals#getDescriptiveName()
-   */
   public String getDescriptiveName() {
     return descriptiveName;
   }

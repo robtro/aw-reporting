@@ -5,7 +5,6 @@ import com.google.api.ads.adwords.awreporting.churnprediction.annotations.Averag
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.RatioSignal;
 import com.google.api.ads.adwords.awreporting.churnprediction.db.DatabaseReader;
 import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
-import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
 import com.google.api.ads.adwords.awreporting.churnprediction.entities.Signals;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;

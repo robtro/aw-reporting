@@ -34,7 +34,7 @@ public class DatabaseReader {
   @SuppressWarnings("unchecked")
   public List<ReportAccount> listAccountsForPastDays(
       long accountId, DateTime startDate, DateTime endDate) {
-    Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(ReportAccount.class);
+    Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ReportAccount.class);
 
     criteria.addOrder(Order.desc("day"))
         .add(Restrictions.between("date", startDate.toDate(), endDate.toDate()))
@@ -58,21 +58,28 @@ public class DatabaseReader {
   @Transactional
   @SuppressWarnings("unchecked")
   public List<AccountStatus> listAccountsStatus() {
-    Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(AccountStatus.class);
+    Criteria criteria = sessionFactory.getCurrentSession().createCriteria(AccountStatus.class);
 
     return criteria.list();
   }
 
   @Transactional
   public void saveSignals(AccountSignals accountSignals) {
-    this.sessionFactory.getCurrentSession().persist(accountSignals);
+    sessionFactory.getCurrentSession().persist(accountSignals);
+  }
+
+  @Transactional
+  public AccountSignals retrieveSignalsForAccount(long accountId) {
+    Criteria criteria = sessionFactory.getCurrentSession().createCriteria(AccountSignals.class);
+
+    return (AccountSignals)criteria.add(Restrictions.eq("cid", accountId)).uniqueResult();
   }
 
   @Transactional
   @SuppressWarnings("unchecked")
   public List<ReportKeywords> listKeywordsData(long accountId, DateTime day) {
     Criteria criteria =
-        this.sessionFactory.getCurrentSession().createCriteria(ReportKeywords.class);
+        sessionFactory.getCurrentSession().createCriteria(ReportKeywords.class);
 
     criteria.addOrder(Order.desc("day"))
         .add(Restrictions.eq("date", day.toDate()))
@@ -89,7 +96,7 @@ public class DatabaseReader {
 
   private int runCountQuery(Class<? extends ReportBase> reportType, long accountId, DateTime day,
       String distinctProperty, String statusProperty) {
-    Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(reportType);
+    Criteria criteria = sessionFactory.getCurrentSession().createCriteria(reportType);
 
     criteria.add(Restrictions.eq("date", day.toDate()))
         .add(Restrictions.eq("accountId", accountId))
@@ -102,7 +109,7 @@ public class DatabaseReader {
   @Transactional
   public DateTime retrieveLastGreaterThanZeroOcurrency(
       long accountId, DateTime date, String field) {
-    Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(ReportAccount.class);
+    Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ReportAccount.class);
     criteria.addOrder(Order.desc("day"))
         .add(Restrictions.ge("date", date.toDate()))
         .add(Restrictions.eq("accountId", accountId))
@@ -119,21 +126,21 @@ public class DatabaseReader {
 
   @Transactional
   public int countActiveCampaigns(long accountId, DateTime day) {
-    return this.runCountQuery(ReportCampaign.class, accountId, day, "campaignId", "campaignStatus");
+    return runCountQuery(ReportCampaign.class, accountId, day, "campaignId", "campaignStatus");
   }
 
   @Transactional
   public int countActiveAdGroups(long accountId, DateTime day) {
-    return this.runCountQuery(ReportAdGroup.class, accountId, day, "adGroupId", "adGroupStatus");
+    return runCountQuery(ReportAdGroup.class, accountId, day, "adGroupId", "adGroupStatus");
   }
 
   @Transactional
   public int countActiveAds(long accountId, DateTime day) {
-    return this.runCountQuery(ReportAd.class, accountId, day, "adId", "adState");
+    return runCountQuery(ReportAd.class, accountId, day, "adId", "adState");
   }
 
   @Transactional
   public int countActiveKeywords(long accountId, DateTime day) {
-    return this.runCountQuery(ReportKeywords.class, accountId, day, "keywordId", "status");
+    return runCountQuery(ReportKeywords.class, accountId, day, "keywordId", "status");
   }
 }

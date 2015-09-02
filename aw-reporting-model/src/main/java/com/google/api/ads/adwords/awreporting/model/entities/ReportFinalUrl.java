@@ -40,7 +40,7 @@ public class ReportFinalUrl extends ReportBase {
   
   @Column(name = "ACTIVE_VIEW_CPM")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewCpm")
-  //@MoneyField
+  @MoneyField
   private BigDecimal activeViewCpm;
 
   @Column(name = "ACTIVE_VIEW_IMPRESSIONS")
@@ -142,16 +142,20 @@ public class ReportFinalUrl extends ReportBase {
 
   }
 
-  public String getActiveViewCpm() {
-    return BigDecimalUtil.formatAsReadable(activeViewCpm);
-  }
+//  public String getActiveViewCpm() {
+//    return BigDecimalUtil.formatAsReadable(activeViewCpm);
+//  }
 
-  public BigDecimal getActiveViewCpmBigDecimal() {
+  public BigDecimal getActiveViewCpm() {
     return activeViewCpm;
   }
 
-  public void setActiveViewCpm(String activeViewCpm) {
-    this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
+//  public void setActiveViewCpm(String activeViewCpm) {
+//    this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
+//  }
+  
+  public void setActiveViewCpm(BigDecimal activeViewCpm) {
+    this.activeViewCpm = activeViewCpm;
   }
   
   public Long getActiveViewImpressions() {

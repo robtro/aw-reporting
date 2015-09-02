@@ -17,7 +17,6 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
-import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.UrlHashUtil;
 import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
@@ -139,20 +138,15 @@ public class ReportFinalUrl extends ReportBase {
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
     }
+    if (this.getSlot() != null && this.getSlot().length() > 0) {
+      this.id += "-" + this.getSlot();
+    }
 
   }
-
-//  public String getActiveViewCpm() {
-//    return BigDecimalUtil.formatAsReadable(activeViewCpm);
-//  }
 
   public BigDecimal getActiveViewCpm() {
     return activeViewCpm;
   }
-
-//  public void setActiveViewCpm(String activeViewCpm) {
-//    this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
-//  }
   
   public void setActiveViewCpm(BigDecimal activeViewCpm) {
     this.activeViewCpm = activeViewCpm;

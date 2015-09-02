@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "AW_AccountSignals")
-public class AccountSignals {
+public class AccountSignals implements Signals {
   // Attributes
   @Id
   @Column(unique = true, name = "CUSTOMER_ID")
@@ -451,6 +451,9 @@ public class AccountSignals {
   @Column(name = "CPC_1M_TO_6M_RATIO")
   private double cpc1mto6mRatio;
 
+  /* (non-Javadoc)
+   * @see com.google.api.ads.adwords.awreporting.churnprediction.entities.IAccountSignals#getCid()
+   */
   public long getCid() {
     return cid;
   }
@@ -459,6 +462,9 @@ public class AccountSignals {
     this.cid = cid;
   }
 
+  /* (non-Javadoc)
+   * @see com.google.api.ads.adwords.awreporting.churnprediction.entities.IAccountSignals#getCompanyName()
+   */
   public String getCompanyName() {
     return companyName;
   }
@@ -467,6 +473,9 @@ public class AccountSignals {
     this.companyName = companyName;
   }
 
+  /* (non-Javadoc)
+   * @see com.google.api.ads.adwords.awreporting.churnprediction.entities.IAccountSignals#getDescriptiveName()
+   */
   public String getDescriptiveName() {
     return descriptiveName;
   }

@@ -1,7 +1,7 @@
 package com.google.api.ads.adwords.awreporting.churnprediction.prediction;
 
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.ExcludeFromTraining;
-import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
+import com.google.api.ads.adwords.awreporting.churnprediction.entities.Signals;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -37,7 +37,7 @@ public class TrainingDataWriter implements Closeable {
     csvWriter = new CSVWriter(this.outputWriter);
   }
 
-  public void addSignals(String status, AccountSignals signals) throws IllegalAccessException,
+  public void addSignals(String status, Signals signals) throws IllegalAccessException,
       InvocationTargetException, NoSuchMethodException {
     // Sort values by field name to keep the training data consistently ordered.
     Map<String, String> fieldToValueMap = Maps.newTreeMap();
@@ -63,7 +63,6 @@ public class TrainingDataWriter implements Closeable {
    */
   @Override
   public void close() throws IOException {
-    csvWriter.flush();
     outputWriter.close();
     csvWriter.close();
   }

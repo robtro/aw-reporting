@@ -28,8 +28,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportFinalUrl
- *
- * @author allig@google.com (Allison Greene)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

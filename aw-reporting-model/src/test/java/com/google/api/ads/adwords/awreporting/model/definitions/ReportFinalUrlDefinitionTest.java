@@ -24,12 +24,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Tests the Ad Performance report definition.
+ * Tests the Final Url Report definition.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
-public class ReportFinalUrlDefinitionTest
-extends AbstractReportDefinitionTest<ReportFinalUrl> {
+public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<ReportFinalUrl> {
 
   /**
    * C'tor
@@ -39,11 +38,6 @@ extends AbstractReportDefinitionTest<ReportFinalUrl> {
         "src/test/resources/csv/final-url.csv");
   }
 
-  /**
-   * @see com.google.api.ads.adwords.awreporting.model.definitions.
-   * AbstractReportDefinitionTest#testFirstEntry(
-   * com.google.api.ads.adwords.awreporting.model.entities.Report)
-   */
   @Override
   protected void testFirstEntry(ReportFinalUrl row) {
 

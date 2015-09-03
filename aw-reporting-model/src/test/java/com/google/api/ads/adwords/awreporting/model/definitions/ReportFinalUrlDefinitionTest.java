@@ -86,11 +86,6 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
     
   }
 
-  /**
-   * @see com.google.api.ads.adwords.awreporting.model.definitions.
-   * AbstractReportDefinitionTest#testLastEntry(
-   * com.google.api.ads.adwords.awreporting.model.entities.Report)
-   */
   @Override
   protected void testLastEntry(ReportFinalUrl row) {
     Assert.assertEquals(123456789L, row.getCampaignId().longValue());
@@ -137,19 +132,11 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(2015L, row.getYear().longValue());
   }
 
-  /**
-   * @see com.google.api.ads.adwords.awreporting.model.definitions.
-   * AbstractReportDefinitionTest#retrieveCsvEntries()
-   */
   @Override
   protected int retrieveCsvEntries() {
     return 72;
   }
 
-  /**
-   * @see com.google.api.ads.adwords.awreporting.model.definitions.
-   * AbstractReportDefinitionTest#retrievePropertiesToBeSelected()
-   */
   @Override
   protected String[] retrievePropertiesToBeSelected() {
 

@@ -19,6 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportAgeRange;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBudget;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
@@ -26,6 +27,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDisplayKeyword;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportFinalUrl;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportGender;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
@@ -70,6 +72,9 @@ public class CsvReportEntitiesMappingTest {
 
     this.assertBeanClassIsCorrectForType(ReportAd.class,
         ReportDefinitionReportType.AD_PERFORMANCE_REPORT);
+    
+    this.assertBeanClassIsCorrectForType(ReportAgeRange.class,
+        ReportDefinitionReportType.AGE_RANGE_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportKeywords.class,
         ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT);
@@ -88,6 +93,9 @@ public class CsvReportEntitiesMappingTest {
     
     this.assertBeanClassIsCorrectForType(ReportFinalUrl.class,
         ReportDefinitionReportType.FINAL_URL_REPORT);
+    
+    this.assertBeanClassIsCorrectForType(ReportGender.class,
+        ReportDefinitionReportType.GENDER_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportPlaceholderFeedItem.class,
         ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT);
@@ -114,6 +122,7 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.CAMPAIGN_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.ADGROUP_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.AD_PERFORMANCE_REPORT));
+    Assert.assertTrue(reports.contains(ReportDefinitionReportType.AGE_RANGE_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT));
     Assert.assertTrue(
         reports.contains(ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT));
@@ -121,6 +130,7 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.CRITERIA_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.DESTINATION_URL_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.FINAL_URL_REPORT));
+    Assert.assertTrue(reports.contains(ReportDefinitionReportType.GENDER_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.URL_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.DISPLAY_KEYWORD_PERFORMANCE_REPORT));

@@ -22,6 +22,8 @@ import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
 import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
+import org.joda.time.DateTime;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -29,8 +31,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-
-import org.joda.time.DateTime;
 
 /**
  * Specific report class for ReportCampaign
@@ -43,7 +43,6 @@ import org.joda.time.DateTime;
 @Table(name = "AW_ReportCampaign")
 @CsvReport(value = ReportDefinitionReportType.CAMPAIGN_PERFORMANCE_REPORT)
 public class ReportCampaign extends ReportBase {
-
   @Column(name = "CAMPAIGN_ID")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
   private Long campaignId;
@@ -60,39 +59,47 @@ public class ReportCampaign extends ReportBase {
   @CsvField(value = "Budget", reportField = "Amount")
   @MoneyField
   private BigDecimal budget;
-  
+
   @Column(name = "BUDGET_ID")
   @CsvField(value = "Budget ID", reportField = "BudgetId")
   private Long budgetId;
 
   @Column(name = "CLICKCONVERSIONRATESIGNIFICANCE")
-  @CsvField(value = "Click conversion rate ACE indicator", reportField = "ClickConversionRateSignificance")
+  @CsvField(
+      value = "Click conversion rate ACE indicator",
+      reportField = "ClickConversionRateSignificance")
   protected BigDecimal clickConversionRateSignificance;
 
   @Column(name = "CONVERSIONRATEMANYPERCLICKSIGNIFICANCE")
-  @CsvField(value = "Conversion rate ACE indicator", reportField = "ConversionRateManyPerClickSignificance")
+  @CsvField(
+      value = "Conversion rate ACE indicator",
+      reportField = "ConversionRateManyPerClickSignificance")
   protected BigDecimal conversionRateManyPerClickSignificance;
-  
+
   @Column(name = "CONVERSIONMANYPERCLICKSIGNIFICANCE")
   @CsvField(value = "Conversion ACE indicator", reportField = "ConversionManyPerClickSignificance")
   protected BigDecimal conversionManyPerClickSignificance;
 
   @Column(name = "COSTPERCONVERSIONMANYPERCLICKSIGNIFICANCE")
-  @CsvField(value = "Cost/conversion ACE indicator", reportField = "CostPerConversionManyPerClickSignificance")
+  @CsvField(
+      value = "Cost/conversion ACE indicator",
+      reportField = "CostPerConversionManyPerClickSignificance")
   protected BigDecimal costPerConversionManyPerClickSignificance;
-  
+
   @Column(name = "CONVERTEDCLICKSSIGNIFICANCE")
   @CsvField(value = "Converted clicks ACE indicator", reportField = "ConvertedClicksSignificance")
   private BigDecimal convertedClicksSignificance;
 
   @Column(name = "COSTPERCONVERTEDCLICKSIGNIFICANCE")
-  @CsvField(value = "Cost/converted click ACE indicator", reportField = "CostPerConvertedClickSignificance")
+  @CsvField(
+      value = "Cost/converted click ACE indicator",
+      reportField = "CostPerConvertedClickSignificance")
   private BigDecimal costPerConvertedClickSignificance;
 
   @Column(name = "AVERAGE_FREQUENCY")
   @CsvField(value = "Avg. impr. freq. per cookie", reportField = "AverageFrequency")
   private BigDecimal averageFrequency;
-  
+
   @Column(name = "AVERAGE_PAGEVIEWS")
   @CsvField(value = "Pages / visit", reportField = "AveragePageviews")
   private BigDecimal averagePageviews;
@@ -100,7 +107,7 @@ public class ReportCampaign extends ReportBase {
   @Column(name = "AVERAGE_TIME_ON_SITE")
   @CsvField(value = "Avg. visit duration (seconds)", reportField = "AverageTimeOnSite")
   private BigDecimal averageTimeOnSite;
-  
+
   @Column(name = "BOUNCE_RATE")
   @CsvField(value = "Bounce rate", reportField = "BounceRate")
   private BigDecimal bounceRate;
@@ -153,32 +160,32 @@ public class ReportCampaign extends ReportBase {
   @Column(name = "ADVERTISING_CHANNEL_SUBTYPE", length = 32)
   @CsvField(value = "Advertising Sub Channel", reportField = "AdvertisingChannelSubType")
   protected String advertisingChannelSubType;
-  
+
   @Column(name = "IMPRESSION_REACH")
   @CsvField(value = "Unique cookies", reportField = "ImpressionReach")
   private Long impressionReach;
-  
+
   @Column(name = "ACTIVE_VIEW_CPM")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewCpm")
   @MoneyField
   private BigDecimal activeViewCpm;
-  
+
   @Column(name = "ACTIVE_VIEW_IMPRESSIONS")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewImpressions")
   private Long activeViewImpressions;
-  
+
   @Column(name = "CONVERSION_TRACKER_ID")
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
   private Long conversionTrackerId;
-  
-  @Column(name = "TRACKING_URL_TEMPLATE", length=2048)
+
+  @Column(name = "TRACKING_URL_TEMPLATE", length = 2048)
   @CsvField(value = "Tracking template", reportField = "TrackingUrlTemplate")
   private String trackingUrlTemplate;
-  
-  @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
+
+  @Column(name = "URL_CUSTOM_PARAMETERS", length = 2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
-  
+
   @Column(name = "GMAIL_FORWARDS")
   @CsvField(value = "Gmail forwards", reportField = "GmailForwards")
   private Long gmailForwards;
@@ -190,7 +197,7 @@ public class ReportCampaign extends ReportBase {
   @Column(name = "GMAIL_SECONDARY_CLICKS")
   @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
   private Long gmailSecondaryClicks;
-  
+
   @Column(name = "START_DATE")
   @CsvField(value = "Start date", reportField = "StartDate")
   protected Date startDate;
@@ -212,8 +219,11 @@ public class ReportCampaign extends ReportBase {
   @Override
   public void setId() {
     // Generating unique id after having accountId, campaignId and date
-    if (this.getAccountId() != null && this.getCampaignId() != null) {
-      this.id = this.getAccountId() + "-" + this.getCampaignId();
+    if (this.getAccountId() != null) {
+      this.id += "" + this.getAccountId();
+    }
+    if (this.getCampaignId() != null) {
+      this.id += "-" + this.getCampaignId();
     }
 
     this.id += setIdDates();
@@ -266,8 +276,8 @@ public class ReportCampaign extends ReportBase {
 
   public void setBudget(BigDecimal budget) {
     this.budget = budget;
-  }  
-  
+  }
+
   public Long getBudgetId() {
     return budgetId;
   }
@@ -279,44 +289,47 @@ public class ReportCampaign extends ReportBase {
   public String getClickConversionRateSignificance() {
     return BigDecimalUtil.formatAsReadable(clickConversionRateSignificance);
   }
-  
+
   public BigDecimal getClickConversionRateSignificanceBigDecimal() {
     return clickConversionRateSignificance;
   }
 
   public void setClickConversionRateSignificance(String clickConversionRateSignificance) {
-    this.clickConversionRateSignificance = BigDecimalUtil.parseFromNumberString(clickConversionRateSignificance);
+    this.clickConversionRateSignificance =
+        BigDecimalUtil.parseFromNumberString(clickConversionRateSignificance);
   }
 
   public String getConversionRateManyPerClickSignificance() {
     return BigDecimalUtil.formatAsReadable(conversionRateManyPerClickSignificance);
   }
-  
+
   public BigDecimal getConversionRateManyPerClickSignificanceBigDecimal() {
     return conversionRateManyPerClickSignificance;
   }
 
   public void setConversionRateManyPerClickSignificance(
       String conversionRateManyPerClickSignificance) {
-    this.conversionRateManyPerClickSignificance = BigDecimalUtil.parseFromNumberString(conversionRateManyPerClickSignificance);
+    this.conversionRateManyPerClickSignificance =
+        BigDecimalUtil.parseFromNumberString(conversionRateManyPerClickSignificance);
   }
-  
+
   public String getConversionManyPerClickSignificance() {
     return BigDecimalUtil.formatAsReadable(conversionManyPerClickSignificance);
   }
-  
+
   public BigDecimal getConversionManyPerClickSignificanceBigDecimal() {
     return conversionManyPerClickSignificance;
   }
 
   public void setConversionManyPerClickSignificance(String conversionManyPerClickSignificance) {
-    this.conversionManyPerClickSignificance = BigDecimalUtil.parseFromNumberString(conversionManyPerClickSignificance);
+    this.conversionManyPerClickSignificance =
+        BigDecimalUtil.parseFromNumberString(conversionManyPerClickSignificance);
   }
-  
+
   public String getCostPerConversionManyPerClickSignificance() {
     return BigDecimalUtil.formatAsReadable(costPerConversionManyPerClickSignificance);
   }
-  
+
   public BigDecimal getCostPerConversionManyPerClickSignificanceBigDecimal() {
     return costPerConversionManyPerClickSignificance;
   }
@@ -329,27 +342,29 @@ public class ReportCampaign extends ReportBase {
   public String getConvertedClicksSignificance() {
     return BigDecimalUtil.formatAsReadable(convertedClicksSignificance);
   }
-  
+
   public BigDecimal getConvertedClicksSignificanceBigDecimal() {
     return convertedClicksSignificance;
   }
 
   public void setConvertedClicksSignificance(String convertedClicksSignificance) {
-    this.convertedClicksSignificance = BigDecimalUtil.parseFromNumberString(convertedClicksSignificance);
+    this.convertedClicksSignificance =
+        BigDecimalUtil.parseFromNumberString(convertedClicksSignificance);
   }
-  
+
   public String getCostPerConvertedClickSignificance() {
     return BigDecimalUtil.formatAsReadable(costPerConvertedClickSignificance);
   }
-  
+
   public BigDecimal getCostPerConvertedClickSignificanceBigDecimal() {
     return costPerConvertedClickSignificance;
   }
 
   public void setCostPerConvertedClickSignificance(String costPerConvertedClickSignificance) {
-    this.costPerConvertedClickSignificance = BigDecimalUtil.parseFromNumberString(costPerConvertedClickSignificance);
+    this.costPerConvertedClickSignificance =
+        BigDecimalUtil.parseFromNumberString(costPerConvertedClickSignificance);
   }
-  
+
   public String getAverageFrequency() {
     return BigDecimalUtil.formatAsReadable(averageFrequency);
   }
@@ -357,11 +372,11 @@ public class ReportCampaign extends ReportBase {
   public BigDecimal getAverageFrequencyBigDecimal() {
     return averageFrequency;
   }
-  
+
   public void setAverageFrequency(String averageFrequency) {
-    this.averageFrequency =  BigDecimalUtil.parseFromNumberString(averageFrequency);
+    this.averageFrequency = BigDecimalUtil.parseFromNumberString(averageFrequency);
   }
-  
+
   public String getAveragePageviews() {
     return BigDecimalUtil.formatAsReadable(averagePageviews);
   }
@@ -369,9 +384,9 @@ public class ReportCampaign extends ReportBase {
   public BigDecimal getAveragePageviewsBigDecimal() {
     return averagePageviews;
   }
-  
+
   public void setAveragePageviews(String averagePageviews) {
-    this.averagePageviews =  BigDecimalUtil.parseFromNumberString(averagePageviews);
+    this.averagePageviews = BigDecimalUtil.parseFromNumberString(averagePageviews);
   }
 
   public String getAverageTimeOnSite() {
@@ -381,9 +396,9 @@ public class ReportCampaign extends ReportBase {
   public BigDecimal getAverageTimeOnSiteBigDecimal() {
     return averageTimeOnSite;
   }
-  
+
   public void setAverageTimeOnSite(String averageTimeOnSite) {
-    this.averageTimeOnSite =  BigDecimalUtil.parseFromNumberString(averageTimeOnSite);
+    this.averageTimeOnSite = BigDecimalUtil.parseFromNumberString(averageTimeOnSite);
   }
 
   public String getBounceRate() {
@@ -393,9 +408,9 @@ public class ReportCampaign extends ReportBase {
   public BigDecimal getBounceRateBigDecimal() {
     return bounceRate;
   }
-  
+
   public void setBounceRate(String bounceRate) {
-    this.bounceRate =  BigDecimalUtil.parseFromNumberString(bounceRate);
+    this.bounceRate = BigDecimalUtil.parseFromNumberString(bounceRate);
   }
 
   public String getPercentNewVisitors() {
@@ -405,11 +420,11 @@ public class ReportCampaign extends ReportBase {
   public BigDecimal getPercentNewVisitorsBigDecimal() {
     return percentNewVisitors;
   }
-  
+
   public void setPercentNewVisitors(String percentNewVisitors) {
-    this.percentNewVisitors =  BigDecimalUtil.parseFromNumberString(percentNewVisitors);
+    this.percentNewVisitors = BigDecimalUtil.parseFromNumberString(percentNewVisitors);
   }
-  
+
   public String getSearchImpressionShare() {
     return BigDecimalUtil.formatAsReadable(this.searchImpressionShare);
   }
@@ -419,9 +434,10 @@ public class ReportCampaign extends ReportBase {
   }
 
   public void setSearchImpressionShare(String searchImpressionShare) {
-    this.searchImpressionShare = BigDecimalUtil.parseFromNumberStringPercentage(searchImpressionShare);
+    this.searchImpressionShare =
+        BigDecimalUtil.parseFromNumberStringPercentage(searchImpressionShare);
   }
-  
+
   public String getSearchLostISBudget() {
     return BigDecimalUtil.formatAsReadable(this.searchLostISBudget);
   }
@@ -455,7 +471,8 @@ public class ReportCampaign extends ReportBase {
   }
 
   public void setContentImpressionShare(String contentImpressionShare) {
-    this.contentImpressionShare = BigDecimalUtil.parseFromNumberStringPercentage(contentImpressionShare);
+    this.contentImpressionShare =
+        BigDecimalUtil.parseFromNumberStringPercentage(contentImpressionShare);
   }
 
   public String getContentLostISBudget() {
@@ -481,7 +498,7 @@ public class ReportCampaign extends ReportBase {
   public void setContentLostISRank(String lostISRank) {
     this.contentLostISRank = BigDecimalUtil.parseFromNumberStringPercentage(lostISRank);
   }
-  
+
   public String getSearchExactMatchImpressionShare() {
     return BigDecimalUtil.formatAsReadable(this.searchExactMatchImpressionShare);
   }
@@ -491,9 +508,10 @@ public class ReportCampaign extends ReportBase {
   }
 
   public void setSearchExactMatchImpressionShare(String searchExactMatchImpressionShare) {
-    this.searchExactMatchImpressionShare = BigDecimalUtil.parseFromNumberStringPercentage(searchExactMatchImpressionShare);
+    this.searchExactMatchImpressionShare =
+        BigDecimalUtil.parseFromNumberStringPercentage(searchExactMatchImpressionShare);
   }
-  
+
   public String getLabels() {
     return this.labels;
   }
@@ -513,11 +531,11 @@ public class ReportCampaign extends ReportBase {
   public Long getHourOfDay() {
     return hourOfDay;
   }
-  
+
   public void setHourOfDay(Long hourOfDay) {
     this.hourOfDay = hourOfDay;
   }
-  
+
   public String getAdvertisingChannelType() {
     return advertisingChannelType;
   }
@@ -533,15 +551,15 @@ public class ReportCampaign extends ReportBase {
   public void setAdvertisingChannelSubType(String advertisingChannelSubType) {
     this.advertisingChannelSubType = advertisingChannelSubType;
   }
-  
+
   public Long getImpressionReach() {
     return impressionReach;
   }
-  
+
   public void setImpressoinReach(Long impressionReach) {
     this.impressionReach = impressionReach;
   }
-  
+
   public String getActiveViewCpm() {
     return BigDecimalUtil.formatAsReadable(activeViewCpm);
   }
@@ -553,63 +571,63 @@ public class ReportCampaign extends ReportBase {
   public void setActiveViewCpm(String activeViewCpm) {
     this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
   }
-  
+
   public Long getActiveViewImpressions() {
     return activeViewImpressions;
   }
-  
+
   public void setActiveViewImpressions(Long activeViewImpressions) {
     this.activeViewImpressions = activeViewImpressions;
   }
-  
+
   public Long getConversionTrackerId() {
     return conversionTrackerId;
   }
-  
+
   public void setConversionTrackerId(Long conversionTrackerId) {
     this.conversionTrackerId = conversionTrackerId;
   }
-  
+
   public String getTrackingUrlTemplate() {
     return trackingUrlTemplate;
   }
-  
+
   public void setTrackingUrlTemplate(String trackingUrlTemplate) {
     this.trackingUrlTemplate = trackingUrlTemplate;
   }
-  
+
   public String getUrlCustomParameters() {
     return urlCustomParameters;
   }
-  
+
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
   }
-  
+
   public Long getGmailForwards() {
     return gmailForwards;
   }
-  
+
   public void setGmailForwards(Long gmailForwards) {
     this.gmailForwards = gmailForwards;
   }
-  
+
   public Long getGmailSaves() {
     return gmailSaves;
   }
-  
+
   public void setGmailSaves(Long gmailSaves) {
     this.gmailSaves = gmailSaves;
   }
-  
+
   public Long getGmailSecondaryClicks() {
     return gmailSecondaryClicks;
   }
-  
+
   public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
     this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
-  
+
   public String getStartDate() {
     if (startDate != null) {
       return DateUtil.formatYearMonthDay(startDate);
@@ -632,7 +650,7 @@ public class ReportCampaign extends ReportBase {
       this.startDate = null;
     }
   }
-  
+
   public String getEndDate() {
     if (endDate != null) {
       return DateUtil.formatYearMonthDay(endDate);

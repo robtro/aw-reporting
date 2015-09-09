@@ -3,7 +3,7 @@ package com.google.api.ads.adwords.awreporting.churnprediction.signals;
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.AccumulatedSignal;
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.AverageSignal;
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.RatioSignal;
-import com.google.api.ads.adwords.awreporting.churnprediction.db.DatabaseReader;
+import com.google.api.ads.adwords.awreporting.churnprediction.db.DatabaseManager;
 import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
@@ -31,7 +31,7 @@ public class SignalProcessor {
   private KeywordsSignalsCalculator keywordsSignalsCalculator;
 
   @Autowired
-  private DatabaseReader databaseReportReader;
+  private DatabaseManager databaseReportReader;
 
   public AccountSignals createSignalsForAccount(
       long accountId, DateTime startDate, DateTime endDate) throws Exception {

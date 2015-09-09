@@ -1,6 +1,6 @@
 package com.google.api.ads.adwords.awreporting.churnprediction.db;
 
-import com.google.api.ads.adwords.awreporting.churnprediction.db.DatabaseReader;
+import com.google.api.ads.adwords.awreporting.churnprediction.db.DatabaseManager;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:aw-report-churn-prediction-test-beans.xml")
 public class DatabaseReportReaderTest {
   @Autowired
-  private DatabaseReader databaseReader;
+  private DatabaseManager databaseReader;
 
   @Test
   public void testDatabaseAccess() {

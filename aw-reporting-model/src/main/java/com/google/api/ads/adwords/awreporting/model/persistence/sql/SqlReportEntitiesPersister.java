@@ -55,7 +55,6 @@ import javax.persistence.Table;
 @Component
 @Qualifier("sqlEntitiesPersister")
 public class SqlReportEntitiesPersister implements EntityPersister {
-  
   private static final int BATCH_SIZE = 50;
 
   private SessionFactory sessionFactory;
@@ -76,14 +75,13 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public void persistReportEntities(List<? extends Report> reportEntities) {
-
     int batchFlush = 0;
 
     Session session = this.sessionFactory.getCurrentSession();
 
     for (Report report : reportEntities) {
       report.setId();
-      session.saveOrUpdate(report);
+      session.merge(report);
       batchFlush++;
 
       if (batchFlush % BATCH_SIZE == 0) {
@@ -102,7 +100,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional
   @SuppressWarnings("unchecked")
   public <T extends Report> List<T> listReports(Class<T> classT) {
-
     Criteria criteria = createCriteria(classT);
 
     return criteria.list();
@@ -115,7 +112,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
    * @return the criteria for the current session
    */
   private <T> Criteria createCriteria(Class<T> classT) {
-
     Session session = this.sessionFactory.getCurrentSession();
     return session.createCriteria(classT);
   }
@@ -126,7 +122,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public void removeReportEntities(Collection<? extends Report> reportEntities) {
-
     Session session = this.sessionFactory.getCurrentSession();
 
     for (Report report : reportEntities) {
@@ -143,7 +138,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
    * @return the list of results
    */
   private <T> Criteria createPaginatedCriteria(Class<T> classT, int numToSkip, int limit) {
-
     Criteria criteria = this.createCriteria(classT);
     criteria.setFirstResult(numToSkip);
     criteria.setMaxResults(limit);
@@ -157,7 +151,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
   public <T> List<T> get(Class<T> classT) {
-
     Criteria criteria = this.createCriteria(classT);
     return criteria.list();
   }
@@ -173,7 +166,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
   public <T> List<T> get(Class<T> classT, int numToSkip, int limit) {
-
     Criteria criteria = this.createPaginatedCriteria(classT, numToSkip, limit);
     return criteria.list();
   }
@@ -185,7 +177,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
   public <T, V> List<T> get(Class<T> classT, String key, V value) {
-
     Criteria criteria = this.createCriteria(classT);
     criteria.add(Restrictions.eq(key, value));
     return criteria.list();
@@ -202,7 +193,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
   public <T, V> List<T> get(Class<T> classT, String key, List<V> values) {
-
     Criteria criteria = this.createCriteria(classT);
     if (key != null) {
       criteria.add(Restrictions.in(key, values));
@@ -223,7 +213,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
   public <T, V> List<T> get(Class<T> classT, String key, V value, int numToSkip, int limit) {
-
     Criteria criteria = this.createPaginatedCriteria(classT, numToSkip, limit);
     criteria.add(Restrictions.eq(key, value));
     return criteria.list();
@@ -235,13 +224,8 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
-  public <T> List<T> get(Class<T> classT,
-      String key,
-      Object value,
-      String dateKey,
-      Date dateStart,
-      Date dateEnd) {
-
+  public <T> List<T> get(
+      Class<T> classT, String key, Object value, String dateKey, Date dateStart, Date dateEnd) {
     Criteria criteria = this.createCriteria(classT);
     if (key != null) {
       criteria.add(Restrictions.eq(key, value));
@@ -257,13 +241,8 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
-  public <T> List<T> get(Class<T> classT,
-      String key,
-      Object value,
-      String dateKey,
-      String dateStart,
-      String dateEnd) {
-
+  public <T> List<T> get(
+      Class<T> classT, String key, Object value, String dateKey, String dateStart, String dateEnd) {
     Criteria criteria = this.createCriteria(classT);
     if (key != null) {
       criteria.add(Restrictions.eq(key, value));
@@ -279,15 +258,8 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
-  public <T> List<T> get(Class<T> classT,
-      String key,
-      Object value,
-      String dateKey,
-      Date dateStart,
-      Date dateEnd,
-      int numToSkip,
-      int limit) {
-
+  public <T> List<T> get(Class<T> classT, String key, Object value, String dateKey, Date dateStart,
+      Date dateEnd, int numToSkip, int limit) {
     Criteria criteria = this.createPaginatedCriteria(classT, numToSkip, limit);
     criteria.add(Restrictions.eq(key, value));
     criteria.add(Restrictions.ge(dateKey, dateStart));
@@ -302,7 +274,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
   public <T, V> List<T> get(Class<T> classT, Map<String, V> keyValueList) {
-
     Criteria criteria = this.createCriteria(classT);
     for (Entry<String, V> entry : keyValueList.entrySet()) {
       criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
@@ -316,8 +287,8 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional(readOnly = true)
   @SuppressWarnings("unchecked")
-  public <T, V> List<T> get(Class<T> classT, Map<String, V> keyValueList, int numToSkip, int limit) {
-
+  public <T, V> List<T> get(
+      Class<T> classT, Map<String, V> keyValueList, int numToSkip, int limit) {
     Criteria criteria = this.createPaginatedCriteria(classT, numToSkip, limit);
     for (Entry<String, V> entry : keyValueList.entrySet()) {
       criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
@@ -331,7 +302,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public <T> void remove(T t) {
-
     Session session = this.sessionFactory.getCurrentSession();
     session.delete(t);
   }
@@ -342,15 +312,13 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public <T> void remove(Collection<T> listT) {
-
     Session session = this.sessionFactory.getCurrentSession();
     for (T t : listT) {
       session.delete(t);
     }
   }
 
-  private <T> Field getField(Class<T> classT, String fieldName)
-      throws NoSuchFieldException {
+  private <T> Field getField(Class<T> classT, String fieldName) throws NoSuchFieldException {
     try {
       return classT.getDeclaredField(fieldName);
     } catch (NoSuchFieldException e) {
@@ -395,7 +363,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public <T> void createIndex(Class<T> t, String key) {
-    
     try {
       Table table = t.getAnnotation(Table.class);
       String tableName = table.name();
@@ -404,18 +371,21 @@ public class SqlReportEntitiesPersister implements EntityPersister {
       Column column = property.getAnnotation(Column.class);
       String columnName = column.name();
 
-      String checkIndex = "SELECT COUNT(1) IndexIsThere FROM INFORMATION_SCHEMA.STATISTICS WHERE " +
-          "Table_name='" + tableName + "' AND index_name='AW_INDEX_" + columnName + "'";
+      String checkIndex =
+          "SELECT COUNT(1) IndexIsThere FROM INFORMATION_SCHEMA.STATISTICS WHERE "
+          + "Table_name='" + tableName + "' AND index_name='AW_INDEX_" + columnName + "'";
 
-      String newIndex = "ALTER TABLE  " + tableName + " ADD INDEX " + "AW_INDEX_" + columnName + " ( " + columnName + " )" ;
+      String newIndex =
+          "ALTER TABLE  " + tableName + " ADD INDEX "
+          + "AW_INDEX_" + columnName + " ( " + columnName + " )";
 
       Session session = this.sessionFactory.getCurrentSession();
-      
+
       List<?> list = session.createSQLQuery(checkIndex).list();
       if (String.valueOf(list.get(0)).equals("0")) {
-        System.out.println( "Creating Index AW_INDEX_" + columnName +" ON " + tableName );
+        System.out.println("Creating Index AW_INDEX_" + columnName + " ON " + tableName);
         SQLQuery sqlQuery = session.createSQLQuery(newIndex);
-        sqlQuery.executeUpdate();  
+        sqlQuery.executeUpdate();
       }
 
     } catch (NoSuchFieldException e) {
@@ -441,7 +411,7 @@ public class SqlReportEntitiesPersister implements EntityPersister {
       for (String key : keys) {
         Field property = getField(t, key);
         Column column = property.getAnnotation(Column.class);
-        
+
         if (position++ == 0) {
           columnNames += column.name();
           columnIndexName += column.name();
@@ -451,18 +421,21 @@ public class SqlReportEntitiesPersister implements EntityPersister {
         }
       }
 
-      String checkIndex = "SELECT COUNT(1) IndexIsThere FROM INFORMATION_SCHEMA.STATISTICS WHERE " +
-          "Table_name='" + tableName + "' AND index_name='AW_INDEX_" + columnIndexName + "'";
+      String checkIndex =
+          "SELECT COUNT(1) IndexIsThere FROM INFORMATION_SCHEMA.STATISTICS WHERE "
+          + "Table_name='" + tableName + "' AND index_name='AW_INDEX_" + columnIndexName + "'";
 
-      String newIndex = "ALTER TABLE  " + tableName + " ADD INDEX " + "AW_INDEX_" + columnIndexName + " ( " + columnNames + " )" ;
+      String newIndex =
+          "ALTER TABLE  " + tableName + " ADD INDEX "
+          + "AW_INDEX_" + columnIndexName + " ( " + columnNames + " )";
 
       Session session = this.sessionFactory.getCurrentSession();
-      
+
       List<?> list = session.createSQLQuery(checkIndex).list();
       if (String.valueOf(list.get(0)).equals("0")) {
-        System.out.println( "Creating Index AW_INDEX_" + columnIndexName +" ON " + tableName );
+        System.out.println("Creating Index AW_INDEX_" + columnIndexName + " ON " + tableName);
         SQLQuery sqlQuery = session.createSQLQuery(newIndex);
-        sqlQuery.executeUpdate();  
+        sqlQuery.executeUpdate();
       }
 
     } catch (NoSuchFieldException e) {
@@ -479,7 +452,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public <T> T save(T t) {
-
     Session session = this.sessionFactory.getCurrentSession();
     session.saveOrUpdate(t);
     return t;
@@ -492,7 +464,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Override
   @Transactional
   public <T> void save(List<T> reports) {
-
     Session session = this.sessionFactory.getCurrentSession();
     for (T report : reports) {
       session.saveOrUpdate(report);
@@ -507,7 +478,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @Transactional
   public <T extends Report> List<T> listMonthReports(
       Class<T> classT, long accountId, DateTime startDate, DateTime endDate) {
-
     Criteria criteria = this.createCriteria(classT);
     return this.listMonthReportsForCriteria(accountId, startDate, endDate, criteria);
   }
@@ -518,13 +488,8 @@ public class SqlReportEntitiesPersister implements EntityPersister {
    */
   @Override
   @Transactional
-  public <T extends Report> List<T> listMonthReports(Class<T> classT,
-      long accountId,
-      DateTime startDate,
-      DateTime endDate,
-      int page,
-      int amount) {
-
+  public <T extends Report> List<T> listMonthReports(
+      Class<T> classT, long accountId, DateTime startDate, DateTime endDate, int page, int amount) {
     Criteria criteria = this.createPaginatedCriteria(classT, page, amount);
     return this.listMonthReportsForCriteria(accountId, startDate, endDate, criteria);
   }
@@ -553,14 +518,14 @@ public class SqlReportEntitiesPersister implements EntityPersister {
 
   @Override
   @Transactional
-  public <T extends ReportBase> Map<String, Object> getReportDataAvailableByDate(Class<T> classT, long topAccountId, String dateKey) {
+  public <T extends ReportBase> Map<String, Object> getReportDataAvailableByDate(
+      Class<T> classT, long topAccountId, String dateKey) {
     Map<String, Object> map = Maps.newHashMap();
 
-    if (!accountExists(topAccountId)) {      
+    if (!accountExists(topAccountId)) {
       map.put("error", "invalid_params");
       map.put("message", "The requested MCC does not exist in the database.");
     } else {
-
       T tMin = getMinByDateKey(classT, topAccountId, dateKey);
       T tMax = getMaxByDateKey(classT, topAccountId, dateKey);
 
@@ -575,7 +540,6 @@ public class SqlReportEntitiesPersister implements EntityPersister {
           map.put("startDay", tMin.getDay());
           map.put("endDay", tMax.getDay());
         }
-
       }
     }
     return map;
@@ -584,7 +548,7 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @SuppressWarnings("unchecked")
   @Transactional
   public <T> T getMinByDateKey(Class<T> classT, long topAccountId, String dateKey) {
-    if (!accountExists(topAccountId)) {      
+    if (!accountExists(topAccountId)) {
       return null;
     } else {
       Criteria criteriaMin = this.createCriteria(classT);
@@ -600,7 +564,7 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   @SuppressWarnings("unchecked")
   @Transactional
   public <T> T getMaxByDateKey(Class<T> classT, long topAccountId, String dateKey) {
-    if (!accountExists(topAccountId)) {      
+    if (!accountExists(topAccountId)) {
       return null;
     } else {
       Criteria criteriaMin = this.createCriteria(classT);
@@ -614,16 +578,16 @@ public class SqlReportEntitiesPersister implements EntityPersister {
   }
 
   /**
-   * Checks if the account exists in the datastore.  This method does NOT validate an CID against AdWords.
+   * Checks if the account exists in the datastore.  This method does NOT validate an CID against
+   * AdWords.
    * @param topAccountId
    * @return true if account exists in datastore
    */
   private boolean accountExists(long topAccountId) {
     List<AuthMcc> list = get(AuthMcc.class, AuthMcc.TOP_ACCOUNT_ID, String.valueOf(topAccountId));
-    if(list != null && !list.isEmpty()) {
+    if (list != null && !list.isEmpty()) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }

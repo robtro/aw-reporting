@@ -27,6 +27,15 @@ examples/kratubackend/.project
 examples/kratubackend/.settings
 
 
+examples/aw-reporting-churn-prediction/target/*
+
+examples/aw-reporting-churn-prediction/.classpath
+
+examples/aw-reporting-churn-prediction/.project
+
+examples/aw-reporting-churn-prediction/.settings
+
+
 aw-reporting-server/target/*
 
 aw-reporting-server/.classpath

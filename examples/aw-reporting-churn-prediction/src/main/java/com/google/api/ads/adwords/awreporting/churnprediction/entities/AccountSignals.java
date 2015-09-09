@@ -2,6 +2,7 @@ package com.google.api.ads.adwords.awreporting.churnprediction.entities;
 
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.AccumulatedSignal;
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.AverageSignal;
+import com.google.api.ads.adwords.awreporting.churnprediction.annotations.ExcludeFromTraining;
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.RatioSignal;
 
 import javax.persistence.Column;
@@ -14,16 +15,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "AW_AccountSignals")
-public class AccountSignals {
+public class AccountSignals implements Signals {
   // Attributes
   @Id
   @Column(unique = true, name = "CUSTOMER_ID")
+  @ExcludeFromTraining
   private long cid;
 
   @Column(name = "COMPANY_NAME")
+  @ExcludeFromTraining
   private String companyName;
 
   @Column(name = "DESCRIPTIVE_NAME")
+  @ExcludeFromTraining
   private String descriptiveName;
 
   public AccountSignals() {}

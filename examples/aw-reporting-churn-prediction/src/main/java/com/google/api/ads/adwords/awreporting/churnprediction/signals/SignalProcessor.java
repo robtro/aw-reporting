@@ -5,6 +5,7 @@ import com.google.api.ads.adwords.awreporting.churnprediction.annotations.Averag
 import com.google.api.ads.adwords.awreporting.churnprediction.annotations.RatioSignal;
 import com.google.api.ads.adwords.awreporting.churnprediction.db.DatabaseManager;
 import com.google.api.ads.adwords.awreporting.churnprediction.entities.AccountSignals;
+import com.google.api.ads.adwords.awreporting.churnprediction.entities.Signals;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 
@@ -38,22 +39,22 @@ public class SignalProcessor {
     AccountSignals signals = new AccountSignals();
 
     List<ReportAccount> accountData =
-        this.databaseReportReader.listAccountsForPastDays(accountId, startDate, endDate);
-    this.fillOutSignalsForAccount(signals, accountData);
+        databaseReportReader.listAccountsForPastDays(accountId, startDate, endDate);
+    fillOutSignalsForAccount(signals, accountData);
 
     List<ReportKeywords> keywordData =
-        this.databaseReportReader.listKeywordsData(accountId, startDate);
-    this.fillOutSignalsForKeywords(signals, keywordData);
+        databaseReportReader.listKeywordsData(accountId, startDate);
+    fillOutSignalsForKeywords(signals, keywordData);
 
-    this.fillOutStatsFields(accountId, startDate, signals);
+    fillOutStatsFields(accountId, startDate, signals);
 
     return signals;
   }
 
 
-  public void fillOutSignalsForAccount(Object accountSignals, List<ReportAccount> accountData)
+  public void fillOutSignalsForAccount(Signals signals, List<ReportAccount> accountData)
       throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-    Field[] fields = accountSignals.getClass().getDeclaredFields();
+    Field[] fields = signals.getClass().getDeclaredFields();
     for (int i = 0; i < fields.length; i++) {
       Field field = fields[i];
 
@@ -74,28 +75,28 @@ public class SignalProcessor {
 
       if (calculator != null) {
         Object propertyValue = calculator.calculateValueForAccount(accountData, field);
-        PropertyUtils.setProperty(accountSignals, field.getName(), propertyValue);
+        PropertyUtils.setProperty(signals, field.getName(), propertyValue);
       }
     }
   }
 
   public void fillOutSignalsForKeywords(
       AccountSignals accountSignals, List<ReportKeywords> keywordData) {
-    this.keywordsSignalsCalculator.fillOutKeywordSignalsFields(accountSignals, keywordData);
+    keywordsSignalsCalculator.fillOutKeywordSignalsFields(accountSignals, keywordData);
   }
 
   public void fillOutStatsFields(long accountId, DateTime day, AccountSignals accountSignals) {
-    int activeAdGroups = this.databaseReportReader.countActiveAdGroups(accountId, day);
-    int activeAds = this.databaseReportReader.countActiveAds(accountId, day);
-    int activeCampaigns = this.databaseReportReader.countActiveCampaigns(accountId, day);
-    int activeKeywords = this.databaseReportReader.countActiveKeywords(accountId, day);
+    int activeAdGroups = databaseReportReader.countActiveAdGroups(accountId, day);
+    int activeAds = databaseReportReader.countActiveAds(accountId, day);
+    int activeCampaigns = databaseReportReader.countActiveCampaigns(accountId, day);
+    int activeKeywords = databaseReportReader.countActiveKeywords(accountId, day);
 
-    DateTime lastImpression = this.databaseReportReader.retrieveLastGreaterThanZeroOcurrency(
+    DateTime lastImpression = databaseReportReader.retrieveLastGreaterThanZeroOcurrency(
         accountId, day, "impressions");
     DateTime lastClick =
-        this.databaseReportReader.retrieveLastGreaterThanZeroOcurrency(accountId, day, "clicks");
+        databaseReportReader.retrieveLastGreaterThanZeroOcurrency(accountId, day, "clicks");
     DateTime lastSpend =
-        this.databaseReportReader.retrieveLastGreaterThanZeroOcurrency(accountId, day, "cost");
+        databaseReportReader.retrieveLastGreaterThanZeroOcurrency(accountId, day, "cost");
 
 
     accountSignals.setAdgroupsCount(activeAdGroups);

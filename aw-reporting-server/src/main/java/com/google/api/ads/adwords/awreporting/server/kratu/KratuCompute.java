@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.server.entities.Account;
@@ -386,9 +386,9 @@ public class KratuCompute {
         }
       }
 
-      // Process ReportCampaignNegativeKeyword Info
-      List<ReportCampaignNegativeKeyword> reportCampaignNegativeKeywordList =
-          storageHelper.getReportCampaignNegativeKeywordByAccountAndEndDateInRange(accountId, dayStart.getTime(), dayEnd.getTime());
+      // Process ReportCampaignNegativeKeywords Info
+      List<ReportCampaignNegativeKeywords> reportCampaignNegativeKeywordList =
+          storageHelper.getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(accountId, dayStart.getTime(), dayEnd.getTime());
       kratu.addNumberOfNegativeActiveKeywords(new BigDecimal(reportCampaignNegativeKeywordList.size()));
       kratu.addNumberOfCampaignNegativeActiveKeywords(new BigDecimal(reportCampaignNegativeKeywordList.size())); 
 

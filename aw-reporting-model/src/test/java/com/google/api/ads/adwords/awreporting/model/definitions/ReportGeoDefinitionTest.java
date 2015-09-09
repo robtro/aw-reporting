@@ -41,7 +41,7 @@ AbstractReportDefinitionTest<ReportGeo>{
 
     super(ReportGeo.class,
         ReportDefinitionReportType.GEO_PERFORMANCE_REPORT,
-        "src/test/resources/csv/geo-performance.csv");
+        "src/test/resources/csv/geo.csv");
   }
 
   @Override

@@ -149,11 +149,11 @@ public class ReportAdGroup extends ReportBase {
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
   private Long conversionTrackerId;
 
-  @Column(name = "TRACKING_URL_TEMPLATE", length = 2048)
+  @Column(name = "TRACKING_URL_TEMPLATE", length=2048)
   @CsvField(value = "Tracking template", reportField = "TrackingUrlTemplate")
   private String trackingUrlTemplate;
 
-  @Column(name = "URL_CUSTOM_PARAMETERS", length = 2048)
+  @Column(name = "URL_CUSTOM_PARAMETERS", length=2048)
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
 
@@ -527,4 +527,17 @@ public class ReportAdGroup extends ReportBase {
   public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
     this.gmailSecondaryClicks = gmailSecondaryClicks;
   }
+
+  public String getTargetCpa() {
+    return BigDecimalUtil.formatAsReadable(targetCpa);
+  }
+
+  public void setTargetCpa(String targetCpa) {
+    this.targetCpa = BigDecimalUtil.parseFromNumberString(targetCpa);
+  }
+
+  public BigDecimal getTargetCpaBigDecimal() {
+    return this.targetCpa;
+  }
+
 }

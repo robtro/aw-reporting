@@ -38,7 +38,7 @@ public class ReportVideoCampaignDefinitionTest extends
   public ReportVideoCampaignDefinitionTest() {
 
     super(ReportVideoCampaign.class, ReportDefinitionReportType.UNKNOWN,
-        "src/test/resources/csv/video-campaign-performance.csv");
+        "src/test/resources/csv/video-campaign.csv");
   }
 
   /**

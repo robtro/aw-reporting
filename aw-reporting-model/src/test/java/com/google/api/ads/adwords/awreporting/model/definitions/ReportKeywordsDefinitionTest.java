@@ -36,7 +36,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
   public ReportKeywordsDefinitionTest() {
 
     super(ReportKeywords.class, ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT,
-        "src/test/resources/csv/keyword.csv");
+        "src/test/resources/csv/keywords.csv");
   }
 
   /**

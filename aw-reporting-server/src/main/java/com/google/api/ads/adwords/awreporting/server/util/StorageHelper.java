@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
@@ -154,7 +154,7 @@ public class StorageHelper {
     return entityPersister.get(ReportAd.class, ReportAd.AD_ID, adId, Report.DAY, dateStart, dateEnd);
   }
 
-  // ReportKeyword
+  // ReportKeywords
   public List<ReportKeywords> getReportKeywordByCampaignId(Long campaignId, Date dateStart,
       Date dateEnd) {
     return entityPersister.get(ReportKeywords.class, ReportKeywords.CAMPAIGN_ID, campaignId,
@@ -186,25 +186,25 @@ public class StorageHelper {
         dateStart, dateEnd);
   }
 
-  // ReportCampaignNegativeKeyword
-  public List<ReportCampaignNegativeKeyword> getReportCampaignNegativeKeywordByEndDateInRange(
+  // ReportCampaignNegativeKeywords
+  public List<ReportCampaignNegativeKeywords> getReportCampaignNegativeKeywordByEndDateInRange(
       Date dateStart, Date dateEnd) {
 
-    return entityPersister.get(ReportCampaignNegativeKeyword.class, null, null, Report.DATE_END,
+    return entityPersister.get(ReportCampaignNegativeKeywords.class, null, null, Report.DATE_END,
         DateUtil.formatYearMonthDayNoDash(dateStart), DateUtil.formatYearMonthDayNoDash(dateEnd));
   }
 
-  public List<ReportCampaignNegativeKeyword> getReportCampaignNegativeKeywordByAccountAndEndDateInRange(
+  public List<ReportCampaignNegativeKeywords> getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(
       Long accountId, Date dateStart, Date dateEnd) {
 
-    return entityPersister.get(ReportCampaignNegativeKeyword.class, Report.ACCOUNT_ID, accountId, Report.DATE_END,
+    return entityPersister.get(ReportCampaignNegativeKeywords.class, Report.ACCOUNT_ID, accountId, Report.DATE_END,
         DateUtil.formatYearMonthDayNoDash(dateStart), DateUtil.formatYearMonthDayNoDash(dateEnd));
   }
 
-  public List<ReportCampaignNegativeKeyword> getReportCampaignNegativeKeywordByAccountAndEndDateInRange(
+  public List<ReportCampaignNegativeKeywords> getReportCampaignNegativeKeywordsByAccountAndEndDateInRange(
       String key, Object value, Date dateStart, Date dateEnd) {
 
-    return entityPersister.get(ReportCampaignNegativeKeyword.class, key, value, Report.DATE_END,
+    return entityPersister.get(ReportCampaignNegativeKeywords.class, key, value, Report.DATE_END,
         DateUtil.formatYearMonthDayNoDash(dateStart), DateUtil.formatYearMonthDayNoDash(dateEnd));
   }
 
@@ -261,7 +261,7 @@ public class StorageHelper {
     entityPersister.createIndex(ReportAd.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportKeywords.class, Report.ACCOUNT_ID);
     entityPersister.createIndex(ReportPlaceholderFeedItem.class, Report.ACCOUNT_ID);
-    entityPersister.createIndex(ReportCampaignNegativeKeyword.class, Report.ACCOUNT_ID);
+    entityPersister.createIndex(ReportCampaignNegativeKeywords.class, Report.ACCOUNT_ID);
 
     entityPersister.createIndex(ReportCampaign.class, Report.CAMPAIGN_ID);
     entityPersister.createIndex(ReportAdGroup.class, Report.CAMPAIGN_ID);

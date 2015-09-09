@@ -36,7 +36,7 @@ public class ReportShoppingDefinitionTest extends AbstractReportDefinitionTest<R
   public ReportShoppingDefinitionTest() {
 
     super(ReportShopping.class, ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT,
-        "src/test/resources/csv/shopping-performance.csv");
+        "src/test/resources/csv/shopping.csv");
   }
 
   /**

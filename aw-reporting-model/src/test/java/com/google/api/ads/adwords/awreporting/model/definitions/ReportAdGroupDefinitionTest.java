@@ -60,6 +60,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals(129807304L, first.getCampaignId().longValue());
     Assert.assertEquals(7253055064L, first.getAdGroupId().longValue());
     Assert.assertEquals("enabled", first.getAdGroupStatus());
+    Assert.assertEquals(0, first.getTargetCpaBigDecimal().intValue());
 
   }
 
@@ -85,6 +86,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals(129807304L, last.getCampaignId().longValue());
     Assert.assertEquals(7253055064L, last.getAdGroupId().longValue());
     Assert.assertEquals("enabled", last.getAdGroupStatus());
+    Assert.assertEquals(0, last.getTargetCpaBigDecimal().intValue());
 
   }
 
@@ -167,7 +169,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "ConversionTrackerId",
         "TrackingUrlTemplate",
         "UrlCustomParameters",
-        // Analytics Fieds        
+        // Analytics Fieds
         "AveragePageviews",
         "AverageTimeOnSite",
         "BounceRate",

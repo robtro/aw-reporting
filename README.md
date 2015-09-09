@@ -13,9 +13,7 @@ Please let us know if you run into issues in the project's issue tracker (https:
 ## Overview
 AwReporting is an open-source Java framework for large scale AdWords API reporting.
 
-* You can use this project to generate reports for all the AdWords accounts managed by an MCC. 
-
-* 15 common reports are included in the reference implementation. You can easily follow the code examples to implement more. 
+* 18 common reports are included in the reference implementation. You can easily follow the code examples to implement more. 
 
 * Reports are stored in your **relational database**, so you can integrate them with your existing systems.
 
@@ -108,8 +106,6 @@ Set the following command line options before running the project:
 Note: aw-reporting.jar is in the aw-reporting/aw-reporting/target/ directory.
 
 <code>java -Xmx1G -jar aw-reporting.jar -startDate YYYYMMDD -endDate YYYYMMDD -file &lt;file&gt;</code>
-
-<code>java -Xmx1G -jar aw-reporting.jar -generatePdf &lt;htmlTemplateFile&gt; &lt;outputDirectory&gt; -startDate YYYYMMDD -endDate YYYYMMDD -file &lt;file&gt;</code>
 
 
 <code>Arguments:

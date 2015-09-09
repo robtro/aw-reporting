@@ -36,7 +36,7 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
   public ReportDisplayKeywordDefinitionTest() {
 
     super(ReportDisplayKeyword.class, ReportDefinitionReportType.DISPLAY_KEYWORD_PERFORMANCE_REPORT,
-        "src/test/resources/csv/display-keyword-performance.csv");
+        "src/test/resources/csv/display-keyword.csv");
   }
 
   /**

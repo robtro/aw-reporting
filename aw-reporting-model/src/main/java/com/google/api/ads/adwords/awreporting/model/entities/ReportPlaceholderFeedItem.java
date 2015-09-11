@@ -51,7 +51,7 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   private String campaignStatus;
 
   @Column(name = "STATUS", length = 32)
-  @CsvField(value = "Feed item status", reportField = "Status")
+  @CsvField(value = "Item state", reportField = "Status")
   private String status;
 
   @Column(name = "ADGROUP_ID")
@@ -75,7 +75,7 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   private Long feedId;
 
   @Column(name = "FEED_ITEM_ID")
-  @CsvField(value = "Feed item ID", reportField = "FeedItemId")
+  @CsvField(value = "Item ID", reportField = "FeedItemId")
   private Long feedItemId;
 
   @Column(name = "FEED_PLACEHOLDER_TYPE")

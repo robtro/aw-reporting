@@ -130,33 +130,21 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     // Generating unique id after having date and accountId
     if (this.getAccountId() != null) {
       this.id = this.getAccountId().toString();
-    } else {
-      this.id = "null";
     }
     if (this.getCampaignId() != null) {
       this.id += "-" + this.getCampaignId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getAdGroupId() != null) {
       this.id += "-" + this.getAdGroupId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getAdId() != null) {
       this.id += "-" + this.getAdId().toString();
-    } else {
-      this.id += "null";
-    }
-    if (this.getFeedItemId() != null) {
-      this.id += "-" + this.getFeedItemId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getFeedId() != null) {
       this.id += "-" + this.getFeedId().toString();
-    } else {
-      this.id += "null";
+    }
+    if (this.getFeedItemId() != null) {
+      this.id += "-" + this.getFeedItemId().toString();
     }
 
     this.id += setIdDates();
@@ -173,12 +161,6 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     }
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
-    }
-    this.id += "-" + String.valueOf(this.getFeedPlaceholderType());
-    if (this.getIsSelfAction() != null) {
-      this.id += this.getIsSelfAction();
-    } else {
-        this.id += "null";
     }
   }
 

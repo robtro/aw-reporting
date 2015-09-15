@@ -374,8 +374,7 @@ import java.util.Set;
     HelpFormatter formatter = new HelpFormatter();
     formatter.setWidth(120);
     formatter.printHelp(" java -Xmx1G -jar aw-reporting.jar -startDate YYYYMMDD -endDate YYYYMMDD "
-        + "-file <file>\n java -Xmx1G -jar aw-reporting.jar "
-        + "-startDate YYYYMMDD -endDate YYYYMMDD -file <file>", "\nArguments:", options, "");
+        + "-file <file>\n", "Arguments:", options, "");
     System.out.println();
   }
 

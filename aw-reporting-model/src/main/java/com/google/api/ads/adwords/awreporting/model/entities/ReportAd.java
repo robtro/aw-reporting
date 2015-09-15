@@ -86,6 +86,10 @@ public class ReportAd extends ReportBase {
   @Column(name = "CREATIVE_APPROVAL_STATUS", length = 32)
   @CsvField(value = "Ad Approval Status", reportField = "CreativeApprovalStatus")
   private String creativeApprovalStatus;
+  
+  @Column(name = "ADGROUPAD_DISAPPROVAL_REASONS", length=2048)
+  @CsvField(value = "Disapproval reasons", reportField = "AdGroupAdDisapprovalReasons")
+  private String adGroupAdDisapprovalReasons;
 
   @Column(name = "CLICKCONVERSIONRATESIGNIFICANCE")
   @CsvField(value = "Click conversion rate ACE indicator", reportField = "ClickConversionRateSignificance")
@@ -357,6 +361,22 @@ public class ReportAd extends ReportBase {
 
   public void setCreativeApprovalStatus(String creativeApprovalStatus) {
     this.creativeApprovalStatus = creativeApprovalStatus;
+  }
+  
+  public String getAdGroupAdDisapprovalReasons() {
+    return adGroupAdDisapprovalReasons;
+  }
+  
+  public boolean hasAdGroupAdDisapprovalReason(String adGroupAdDisapprovalReason) {
+    if (adGroupAdDisapprovalReasons != null && adGroupAdDisapprovalReasons.length() > 0) {
+      return Lists.newArrayList(adGroupAdDisapprovalReasons.split(";")).contains(adGroupAdDisapprovalReason);
+    } else {
+      return false;
+    }
+  }
+  
+  public void setAdGroupAdDisapprovalReasons(String adGroupAdDisapprovalReasons) {
+    this.adGroupAdDisapprovalReasons = adGroupAdDisapprovalReasons;
   }
   
   public String getClickConversionRateSignificance() {

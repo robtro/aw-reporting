@@ -51,7 +51,7 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   private String campaignStatus;
 
   @Column(name = "STATUS", length = 32)
-  @CsvField(value = "Feed item status", reportField = "Status")
+  @CsvField(value = "Item state", reportField = "Status")
   private String status;
 
   @Column(name = "ADGROUP_ID")
@@ -75,7 +75,7 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   private Long feedId;
 
   @Column(name = "FEED_ITEM_ID")
-  @CsvField(value = "Feed item ID", reportField = "FeedItemId")
+  @CsvField(value = "Item ID", reportField = "FeedItemId")
   private Long feedItemId;
 
   @Column(name = "FEED_PLACEHOLDER_TYPE")
@@ -134,33 +134,21 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     // Generating unique id after having date and accountId
     if (this.getAccountId() != null) {
       this.id = this.getAccountId().toString();
-    } else {
-      this.id = "null";
     }
     if (this.getCampaignId() != null) {
       this.id += "-" + this.getCampaignId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getAdGroupId() != null) {
       this.id += "-" + this.getAdGroupId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getAdId() != null) {
       this.id += "-" + this.getAdId().toString();
-    } else {
-      this.id += "null";
-    }
-    if (this.getFeedItemId() != null) {
-      this.id += "-" + this.getFeedItemId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getFeedId() != null) {
       this.id += "-" + this.getFeedId().toString();
-    } else {
-      this.id += "null";
+    }
+    if (this.getFeedItemId() != null) {
+      this.id += "-" + this.getFeedItemId().toString();
     }
 
     this.id += setIdDates();
@@ -177,12 +165,6 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     }
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
-    }
-    this.id += "-" + String.valueOf(this.getFeedPlaceholderType());
-    if (this.getIsSelfAction() != null) {
-      this.id += this.getIsSelfAction();
-    } else {
-        this.id += "null";
     }
     if (this.getSlot() != null && this.getSlot().length() > 0) {
       this.id += "-" + this.getSlot();

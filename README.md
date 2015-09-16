@@ -89,13 +89,13 @@ Be sure to specify the properties file you edited above on the command line.
 
 It's possible to run the project using either Eclipse or the command line. If using Eclipse, open and run:
 
-> aw-reporting/src/main/java/com/google/api/ads/adwords/jaxws/extensions/AwReporting.java
+> aw-reporting/src/main/java/com/google/api/ads/adwords/awreporting/AwReporting.java
 
 As it's running, the project will provide status messages about the reports it's downloading on the command line. 
 
 Check your database when the run finishes to be sure it's been populated with the reporting data, e.g.:
 
-> SELECT * FROM AWReports.AW_ReportAd limit 1;
+> SELECT * FROM AWReports.AW_ReportAccount limit 1;
 
 ### Command line options 
 
@@ -186,8 +186,7 @@ This will create a "schema.sql" in the "target/" folder of the project.
 ## Details about the code
 
 For better organization and encapsulation, the project groups the reporting workflow into two parts:
-**Aw-Report-Model** for the logic (API services, downloader and processors) and **Aw-Reporting** for persistence, entities and the CSV mapping to AdWords information.
-
+**Aw-Report-Model** for persistence, entities and the CSV mapping to AdWords information and **Aw-Reporting** for the logic (API services, downloader and processors).
 
 ### Aw-Report-Model
 Provides all the necessary classes to persist data and the entities’ mapping to AdWords report data.

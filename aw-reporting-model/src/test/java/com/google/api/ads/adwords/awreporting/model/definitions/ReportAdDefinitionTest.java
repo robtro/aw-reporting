@@ -169,6 +169,7 @@ public class ReportAdDefinitionTest extends AbstractReportDefinitionTest<ReportA
         "Description1",
         "Description2",
         "CreativeApprovalStatus",
+        "AdGroupAdDisapprovalReasons",
         "Labels",
         "CampaignName",
         "AdGroupName",

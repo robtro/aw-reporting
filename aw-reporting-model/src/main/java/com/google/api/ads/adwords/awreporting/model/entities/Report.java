@@ -17,15 +17,19 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.persistence.mongodb.MongoEntity;
 
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.joda.time.DateTime;
 
 import com.googlecode.objectify.annotation.Index;
 
+import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 /**
  * The base abstract class for all Reports
@@ -54,6 +58,9 @@ public abstract class Report implements MongoEntity {
   public static final String DAY = "day";
 
   private static final String EMPTY_VALUE = "--";
+  
+  @Transient
+  private List<String> segmentedFields;
 
   @Id
   @com.googlecode.objectify.annotation.Id
@@ -169,6 +176,40 @@ public abstract class Report implements MongoEntity {
 
   public void setDateEnd(String dateEnd) {
     this.dateEnd = dateEnd;
+  }
+  
+  public List<String> getSegmentedFields(){
+    return segmentedFields;
+  }
+  
+  public void setSegmentedFields(List<String> segmentedFields){
+    this.segmentedFields = segmentedFields;
+  }
+  
+  public String getSegmentedId() {
+    String segmentedId = "";
+    if (getSegmentedFields() != null && getSegmentedFields().size() > 0) {
+      Class<?> clazz = this.getClass();
+      List<Field> fields = FieldUtils.getFieldsListWithAnnotation(clazz, CsvField.class);
+
+      for (Field field : fields) {
+        if (field.isAnnotationPresent(CsvField.class)) {
+          CsvField reportFieldAnnotation = field.getAnnotation(CsvField.class);
+          if (getSegmentedFields().contains(reportFieldAnnotation.reportField())) {
+            try {
+              Object value = FieldUtils.readField(field, this, true);
+              if (value != null) {
+                segmentedId += "-" + value.toString();
+              }
+            } catch (IllegalAccessException e) {
+              // ignore
+              e.printStackTrace();
+            }
+          }
+        }
+      }
+    }
+    return segmentedId;
   }
 
   @Override

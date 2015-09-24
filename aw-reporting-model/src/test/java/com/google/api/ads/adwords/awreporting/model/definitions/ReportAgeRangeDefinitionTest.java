@@ -213,7 +213,6 @@ AbstractReportDefinitionTest<ReportAgeRange> {
         "UrlCustomParameters"
     };
   }
-<<<<<<< HEAD
 
   @Override
   protected List<String> retrieveSegmentedProperties() {
@@ -226,6 +225,4 @@ AbstractReportDefinitionTest<ReportAgeRange> {
         "Device"
     );
   }
-=======
->>>>>>> Add Age Range & Gender reports (#161)
 }

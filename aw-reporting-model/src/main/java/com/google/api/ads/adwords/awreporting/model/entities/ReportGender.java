@@ -81,7 +81,7 @@ public class ReportGender extends ReportBase {
   private Long conversionTrackerId;
   
   @Column(name = "MAX_CPC")
-  @CsvField(value = "Max. CPC", reportField = "CpcBid")
+  @CsvField(value = "Default max. CPC", reportField = "CpcBid")
   @MoneyField
   private BigDecimal maxCpc;
   
@@ -284,17 +284,14 @@ public class ReportGender extends ReportBase {
     this.conversionTrackerId = conversionTrackerId;
   }
 
-  public String getMaxCpc() {
-    return BigDecimalUtil.formatAsReadable(maxCpc);
-  }
-  
-  public BigDecimal getMaxCpcBigDecimal() {
+  public BigDecimal getMaxCpc() {
     return maxCpc;
   }
 
-  public void setMaxCpc(String maxCpc) {
-    this.maxCpc = BigDecimalUtil.parseFromNumberString(maxCpc);
+  public void setMaxCpc(BigDecimal maxCpc) {
+    this.maxCpc = maxCpc;
   }
+
 
   public String getCpcBidSource() {
     return cpcBidSource;
@@ -304,16 +301,12 @@ public class ReportGender extends ReportBase {
     this.cpcBidSource = cpcBidSource;
   }
 
-  public String getMaxCpm() {
-    return BigDecimalUtil.formatAsReadable(maxCpm);
-  }
-  
-  public BigDecimal getMaxCpmBigDecimal() {
+  public BigDecimal getMaxCpm() {
     return maxCpm;
   }
 
-  public void setMaxCpm(String maxCpm) {
-    this.maxCpm = BigDecimalUtil.parseFromNumberString(maxCpm);
+  public void setMaxCpm(BigDecimal maxCpm) {
+    this.maxCpm = maxCpm;
   }
 
   public String getCpmBidSource() {

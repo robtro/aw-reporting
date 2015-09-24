@@ -91,14 +91,14 @@ public class ReportDisplayKeyword extends ReportBase {
   private String criteria;
   
   @Column(name = "MAX_CPC")
-  @CsvField(value = "Max. CPC", reportField = "CpcBid")
+  @CsvField(value = "Default max. CPC", reportField = "CpcBid")
   @MoneyField
-  private String maxCpc;
+  private BigDecimal maxCpc;
 
   @Column(name = "MAX_CPM")
   @CsvField(value = "Max. CPM", reportField = "CpmBid")
   @MoneyField
-  private String maxCpm;
+  private BigDecimal maxCpm;
 
   @Column(name = "TARGETING_SETTING")
   @CsvField(value = "Targeting Setting", reportField = "TargetingSetting")
@@ -308,24 +308,20 @@ public class ReportDisplayKeyword extends ReportBase {
 	  this.criteria = criteria;
   }
 
-  public String getMaxCpc() {
+  public BigDecimal getMaxCpc() {
     return maxCpc;
   }
 
-  public void setMaxCpc(String maxCpc) {
+  public void setMaxCpc(BigDecimal maxCpc) {
     this.maxCpc = maxCpc;
   }
 
-  public String getMaxCpm() {
+  public BigDecimal getMaxCpm() {
     return maxCpm;
   }
 
-  public void setMaxCpm(String maxCpm) {
+  public void setMaxCpm(BigDecimal maxCpm) {
     this.maxCpm = maxCpm;
-  }
-
-  public boolean getTargetingSetting() {
-    return targetingSetting;
   }
 
   public void setTargetingSetting(String targetingSetting) {

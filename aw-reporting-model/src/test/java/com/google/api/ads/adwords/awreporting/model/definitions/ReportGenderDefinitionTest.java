@@ -69,6 +69,7 @@ AbstractReportDefinitionTest<ReportGender> {
     Assert.assertEquals(0.00, row.getConversionValueBigDecimal().doubleValue());
     Assert.assertEquals(0.00, row.getCostPerConversionManyPerClick().doubleValue());
     
+    Assert.assertEquals(0.00, row.getMaxCpc().doubleValue());
     Assert.assertEquals("ad group criteria", row.getCpcBidSource());
     Assert.assertEquals("Male", row.getCriteria());
     Assert.assertEquals("http://example.com/index/A", row.getCriteriaDestinationUrl());
@@ -114,6 +115,7 @@ AbstractReportDefinitionTest<ReportGender> {
     Assert.assertEquals(0.00, row.getConversionValueBigDecimal().doubleValue());
     Assert.assertEquals(0.00, row.getCostPerConversionManyPerClick().doubleValue());
     
+    Assert.assertEquals(2.50, row.getMaxCpc().doubleValue());
     Assert.assertEquals("ad group criteria", row.getCpcBidSource());
     Assert.assertEquals("Undetermined", row.getCriteria());
     Assert.assertEquals("http://example.com/index/A", row.getCriteriaDestinationUrl());

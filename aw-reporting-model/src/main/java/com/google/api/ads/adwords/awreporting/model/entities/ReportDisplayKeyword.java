@@ -91,7 +91,7 @@ public class ReportDisplayKeyword extends ReportBase {
   private String criteria;
   
   @Column(name = "MAX_CPC")
-  @CsvField(value = "Default max. CPC", reportField = "CpcBid")
+  @CsvField(value = "Max. CPC", reportField = "CpcBid")
   @MoneyField
   private BigDecimal maxCpc;
 

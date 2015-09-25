@@ -132,7 +132,7 @@ public class ReportCriteria extends ReportBase {
   private String isNegative;
 
   @Column(name = "MAX_CPC")
-  @CsvField(value = "Default max. CPC", reportField = "CpcBid")
+  @CsvField(value = "Max. CPC", reportField = "CpcBid")
   @MoneyField
   private BigDecimal maxCpc;
 

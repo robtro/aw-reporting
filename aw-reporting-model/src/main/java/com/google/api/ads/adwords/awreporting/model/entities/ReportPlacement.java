@@ -95,7 +95,7 @@ public class ReportPlacement extends ReportBase {
   private String isRestrict;
 
   @Column(name = "MAX_CPC")
-  @CsvField(value = "Default max. CPC", reportField = "CpcBid")
+  @CsvField(value = "Max. CPC", reportField = "CpcBid")
   @MoneyField
   private BigDecimal maxCpc;
 

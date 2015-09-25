@@ -17,6 +17,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.persistence.mongodb.MongoEntity;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.joda.time.DateTime;
 
@@ -199,7 +200,10 @@ public abstract class Report implements MongoEntity {
             try {
               Object value = FieldUtils.readField(field, this, true);
               if (value != null) {
-                segmentedId += "-" + value.toString();
+                String valueAsString = value.toString().replaceAll("-", "");
+                if (StringUtils.isNotBlank(valueAsString)){
+                  segmentedId += "-" + valueAsString.trim();
+                }
               }
             } catch (IllegalAccessException e) {
               // ignore

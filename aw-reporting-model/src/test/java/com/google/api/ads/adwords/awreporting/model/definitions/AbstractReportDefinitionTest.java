@@ -166,7 +166,7 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
 
     Assert.assertTrue(parsedBeans.size() > 1);
 
-    for (T report:parsedBeans){
+    for (T report : parsedBeans){
       report.setSegmentedFields(this.retrieveSegmentedProperties());
     }
 

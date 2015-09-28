@@ -28,7 +28,6 @@ import org.apache.log4j.Logger;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.MappingStrategy;
 
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.CsvParserIterator;
@@ -177,9 +176,9 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
     if (new File(fileAbsolutePath + ".gunzip").exists()) {
       fileAbsolutePath = fileAbsolutePath + ".gunzip";
     }
-    LOGGER.debug("Creating AwReportCsvReader for file: " + fileAbsolutePath);
-    return new AwReportCsvReader(
-        new InputStreamReader(new FileInputStream(fileAbsolutePath), "UTF-8"), ',', '\"', 1);
+    LOGGER.debug("Creating CSVReader for file: " + fileAbsolutePath);
+    return new CSVReader(
+        new InputStreamReader(new FileInputStream(fileAbsolutePath), "UTF-8"), ',', '\"');
   }
 
   /**

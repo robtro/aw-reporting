@@ -87,7 +87,7 @@ public class AnnotationBasedMappingStrategy<T extends Report> implements Mapping
   /**
    * Captures the header of the CSV file.
    *
-   *  This method scans the class of the bean for the proper annotations, and associate the correct
+   * This method scans the class of the bean for the proper annotations, and associate the correct
    * column index to the correct field.
    *
    * @param csvReader the {@code CSVReader}

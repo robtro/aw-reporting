@@ -28,7 +28,6 @@ import org.apache.log4j.Logger;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.MappingStrategy;
 
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.CsvParserIterator;
@@ -178,8 +177,7 @@ public class RunnableProcessorOnMemory<R extends Report> implements Runnable {
    * @throws UnsupportedEncodingException should not happen.
    */
   private CSVReader createCsvReader(InputStream inputStream) throws UnsupportedEncodingException {
-    return new AwReportCsvReader(
-        new InputStreamReader(inputStream, "UTF-8"), ',', '\"', 1);
+    return new CSVReader(new InputStreamReader(inputStream, "UTF-8"), ',', '\"');
   }
 
   /**

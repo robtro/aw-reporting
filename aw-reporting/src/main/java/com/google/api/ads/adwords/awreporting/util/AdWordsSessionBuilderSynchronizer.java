@@ -24,9 +24,9 @@ public class AdWordsSessionBuilderSynchronizer {
       AdWordsSession.Builder builder, boolean includeZeroImpressions) {
     
     ReportingConfiguration reportingConfig = new ReportingConfiguration.Builder()
-        .skipReportHeader(false)
+        .skipReportHeader(true)
         .skipColumnHeader(false)
-        .skipReportSummary(false)
+        .skipReportSummary(true)
         .includeZeroImpressions(includeZeroImpressions)
         .build();
     builder.withReportingConfiguration(reportingConfig);

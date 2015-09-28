@@ -15,7 +15,6 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.csv.AnnotationBasedMappingStrategy;
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.csv.CsvReportEntitiesMapping;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBase;
@@ -122,8 +121,8 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
   @Test
   public void testCSVMapping() throws UnsupportedEncodingException, FileNotFoundException {
 
-    CSVReader csvReader = new AwReportCsvReader(
-        new InputStreamReader(new FileInputStream(this.csvFileLocation), "UTF-8"), ',', '\"', 1);
+    CSVReader csvReader = new CSVReader(
+        new InputStreamReader(new FileInputStream(this.csvFileLocation), "UTF-8"), ',', '\"');
 
     AnnotationBasedMappingStrategy<T> mappingStrategy =
         new AnnotationBasedMappingStrategy<T>(this.reportBeanClass);
@@ -152,8 +151,8 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
   @Test
   public void testSQLPersistence() throws UnsupportedEncodingException, FileNotFoundException {
 
-    CSVReader csvReader = new AwReportCsvReader(
-        new InputStreamReader(new FileInputStream(this.csvFileLocation), "UTF-8"), ',', '\"', 1);
+    CSVReader csvReader = new CSVReader(
+        new InputStreamReader(new FileInputStream(this.csvFileLocation), "UTF-8"), ',', '\"');
 
     AnnotationBasedMappingStrategy<T> mappingStrategy =
         new AnnotationBasedMappingStrategy<T>(this.reportBeanClass);

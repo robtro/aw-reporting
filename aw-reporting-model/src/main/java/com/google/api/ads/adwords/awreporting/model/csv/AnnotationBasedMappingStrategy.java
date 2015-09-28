@@ -42,8 +42,8 @@ import java.util.Map;
  * {@link Report}. A code example on how to use this mapping strategy:
  *
  * <pre>    {@code
- * CSVReader csvReader = new AwReportCsvReader(new InputStreamReader(
- *    new FileInputStream("file-name"), "UTF-8"), ',', '\"', 1);
+ * CSVReader csvReader = new CSVReader(new InputStreamReader(
+ *    new FileInputStream("file-name"), "UTF-8"), ',', '\"');
  *
  * AnnotationBasedMappingStrategy<ReportAd> mappingStrategy =
  *    new AnnotationBasedMappingStrategy<ReportAd>(ReportAd.class);
@@ -52,7 +52,7 @@ import java.util.Map;
  * List<ReportAd> parsedBeans = csvToBean.parse(mappingStrategy, csvReader);
  *}</pre>
  *
- * The example uses a {@link AwReportCsvReader} in order to parse the CSV files from the AdWords
+ * The example uses a {@link CSVReader} in order to parse the CSV files from the AdWords
  * report API.
  *
  * @author gustavomoreira@google.com (Gustavo Moreira)

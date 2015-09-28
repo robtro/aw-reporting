@@ -1,6 +1,7 @@
 package com.google.api.ads.adwords.awreporting.util;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
+import com.google.api.ads.adwords.lib.client.reporting.ReportingConfiguration;
 import com.google.api.ads.common.lib.exception.ValidationException;
 
 /**
@@ -19,7 +20,17 @@ public class AdWordsSessionBuilderSynchronizer {
    *
    * @param builder the session builder for the API.
    */
-  public AdWordsSessionBuilderSynchronizer(AdWordsSession.Builder builder) {
+  public AdWordsSessionBuilderSynchronizer(
+      AdWordsSession.Builder builder, boolean includeZeroImpressions) {
+    
+    ReportingConfiguration reportingConfig = new ReportingConfiguration.Builder()
+        .skipReportHeader(false)
+        .skipColumnHeader(false)
+        .skipReportSummary(false)
+        .includeZeroImpressions(includeZeroImpressions)
+        .build();
+    builder.withReportingConfiguration(reportingConfig);
+    
     this.builder = builder;
   }
 

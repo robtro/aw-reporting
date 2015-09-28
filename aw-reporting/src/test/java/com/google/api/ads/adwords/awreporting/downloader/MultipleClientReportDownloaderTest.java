@@ -77,7 +77,8 @@ public class MultipleClientReportDownloaderTest {
             .withUserAgent("UserAgent")
             .withOAuth2Credential( new GoogleCredential.Builder().build());
     
-    AdWordsSessionBuilderSynchronizer adWordsSessionBuilderSynchronizer = new AdWordsSessionBuilderSynchronizer(builder);
+    AdWordsSessionBuilderSynchronizer adWordsSessionBuilderSynchronizer =
+        new AdWordsSessionBuilderSynchronizer(builder, false);
     
     Set<Long> cids = ImmutableSet.of(1L, 2L, 3L, 4L, 5L);
     mockedMultipleClientReportDownloader.downloadReports(adWordsSessionBuilderSynchronizer, null, cids);

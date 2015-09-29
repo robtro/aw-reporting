@@ -16,6 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.csv.AnnotationBasedMappingStrategy;
 import com.google.api.ads.adwords.awreporting.model.csv.CsvReportEntitiesMapping;
+import com.google.api.ads.adwords.awreporting.model.csv.InputReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBase;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
@@ -58,6 +59,8 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
   private ReportDefinitionReportType reportType;
 
   private String csvFileLocation;
+  
+  private boolean fileDownloadedByAPI;
 
   /**
    * C'tor
@@ -65,12 +68,24 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
    * @param reportBeanClass the report bean class to be tested.
    * @param reportType the report type that should mapped.
    * @param csvFileLocation the csv file location to test the mapping
+   * @param fileDownloadedByAPI whether the csv file is downloaded by AWAPI (no header/summary)
+   *                            or provided by user (has header/summary)
    */
   public AbstractReportDefinitionTest(Class<T> reportBeanClass,
-      ReportDefinitionReportType reportType, String csvFileLocation) {
+      ReportDefinitionReportType reportType,
+      String csvFileLocation,
+      boolean fileDownloadedByAPI) {
     this.reportBeanClass = reportBeanClass;
     this.reportType = reportType;
     this.csvFileLocation = csvFileLocation;
+    this.fileDownloadedByAPI = fileDownloadedByAPI;
+  }
+  
+  // Default that csv reports are downloaded by AWAPI
+  public AbstractReportDefinitionTest(Class<T> reportBeanClass,
+      ReportDefinitionReportType reportType,
+      String csvFileLocation) {
+    this(reportBeanClass, reportType, csvFileLocation, true);
   }
 
   /**
@@ -121,9 +136,8 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
   @Test
   public void testCSVMapping() throws UnsupportedEncodingException, FileNotFoundException {
 
-    CSVReader csvReader = new CSVReader(
-        new InputStreamReader(new FileInputStream(this.csvFileLocation), "UTF-8"), ',', '\"');
-
+    CSVReader csvReader = createCsvReader();
+    
     AnnotationBasedMappingStrategy<T> mappingStrategy =
         new AnnotationBasedMappingStrategy<T>(this.reportBeanClass);
 
@@ -151,9 +165,8 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
   @Test
   public void testSQLPersistence() throws UnsupportedEncodingException, FileNotFoundException {
 
-    CSVReader csvReader = new CSVReader(
-        new InputStreamReader(new FileInputStream(this.csvFileLocation), "UTF-8"), ',', '\"');
-
+    CSVReader csvReader = createCsvReader();
+    
     AnnotationBasedMappingStrategy<T> mappingStrategy =
         new AnnotationBasedMappingStrategy<T>(this.reportBeanClass);
 
@@ -254,5 +267,21 @@ public abstract class AbstractReportDefinitionTest<T extends Report> {
    */
   protected CsvReportEntitiesMapping getCsvReportEntitiesMapping() {
     return csvReportEntitiesMapping;
+  }
+  
+  /**
+   * Creates the proper {@link CSVReader} to parse the AW reports.
+   *
+   * @return the {@code CSVReader}
+   * @throws UnsupportedEncodingException should not happen.
+   * @throws FileNotFoundException in case the file has been deleted before the reading.
+   */
+  private CSVReader createCsvReader() throws UnsupportedEncodingException, FileNotFoundException {
+    InputStreamReader reader = new InputStreamReader(new FileInputStream(csvFileLocation), "UTF-8");
+    if (fileDownloadedByAPI) {
+      return new CSVReader(reader, ',', '\"');
+    } else {
+      return new InputReportCsvReader(reader, ',', '\"', 1);
+    }
   }
 }

@@ -175,7 +175,7 @@ import java.util.Set;
 
           LOGGER.info("Starting report processing for dateStart: " + dateStart + " and dateEnd: "
               + dateEnd);
-          onFileProcessor.processLocalFiles(mccAccountId,
+          onFileProcessor.processInputFiles(mccAccountId,
               reportTypeName,
               localFiles,
               dateStart,

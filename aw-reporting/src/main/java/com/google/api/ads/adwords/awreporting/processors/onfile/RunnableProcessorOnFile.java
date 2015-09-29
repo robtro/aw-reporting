@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.MappingStrategy;
 
+import com.google.api.ads.adwords.awreporting.model.csv.InputReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.CsvParserIterator;
@@ -59,6 +60,7 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
   private CountDownLatch latch;
 
   private File file;
+  private boolean fileDownloadedByAPI;
   private ModifiedCsvToBean<R> csvToBean;
   private MappingStrategy<R> mappingStrategy;
   private ReportDefinitionDateRangeType dateRangeType;
@@ -78,6 +80,7 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
    * @param mappingStrategy
    */
   public RunnableProcessorOnFile(File file,
+      boolean fileDownloadedByAPI,
       ModifiedCsvToBean<R> csvToBean,
       MappingStrategy<R> mappingStrategy,
       ReportDefinitionDateRangeType dateRangeType,
@@ -87,6 +90,7 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
       EntityPersister entityPersister,
       Integer reportRowsSetSize) {
     this.file = file;
+    this.fileDownloadedByAPI = fileDownloadedByAPI;
     this.csvToBean = csvToBean;
     this.mappingStrategy = mappingStrategy;
     this.dateRangeType = dateRangeType;
@@ -101,9 +105,9 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
    * Executes the API call to download the report that was given when this {@code Runnable} was
    * created.
    *
-   *  The download blocks this thread until it is finished, and also does the file copying.
+   * The download blocks this thread until it is finished, and also does the file copying.
    *
-   *  There is also a retry logic implemented by this method, where the times retried depends on the
+   * There is also a retry logic implemented by this method, where the times retried depends on the
    * value given in the constructor.
    *
    * @see java.lang.Runnable#run()
@@ -112,7 +116,7 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
   public void run() {
 
     try {
-      CSVReader csvReader = this.createCsvReader(file);
+      CSVReader csvReader = this.createCsvReader();
 
       LOGGER.debug("Starting parse of report rows...");
       CsvParserIterator<R> reportRowsList = csvToBean.lazyParse(mappingStrategy, csvReader);
@@ -164,12 +168,11 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
   /**
    * Creates the proper {@link CSVReader} to parse the AW reports.
    *
-   * @param file the CSV file.
    * @return the {@code CSVReader}
    * @throws UnsupportedEncodingException should not happen.
    * @throws FileNotFoundException in case the file has been deleted before the reading.
    */
-  private CSVReader createCsvReader(File file) throws UnsupportedEncodingException,
+  private CSVReader createCsvReader() throws UnsupportedEncodingException,
       FileNotFoundException {
 
     String fileAbsolutePath = file.getAbsolutePath();
@@ -177,8 +180,13 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
       fileAbsolutePath = fileAbsolutePath + ".gunzip";
     }
     LOGGER.debug("Creating CSVReader for file: " + fileAbsolutePath);
-    return new CSVReader(
-        new InputStreamReader(new FileInputStream(fileAbsolutePath), "UTF-8"), ',', '\"');
+    
+    InputStreamReader reader = new InputStreamReader(new FileInputStream(fileAbsolutePath), "UTF-8");
+    if (fileDownloadedByAPI) {
+      return new CSVReader(reader, ',', '\"');
+    } else {
+      return new InputReportCsvReader(reader, ',', '\"', 1);
+    }
   }
 
   /**

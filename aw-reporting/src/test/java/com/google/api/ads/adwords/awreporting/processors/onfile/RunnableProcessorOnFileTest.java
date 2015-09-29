@@ -75,7 +75,7 @@ public class RunnableProcessorOnFileTest {
     FileUtils.copyFile(file, newFile);
 
     runnableProcessorOnFile = new RunnableProcessorOnFile<ReportAccount>(file,
-        csvToBean, mappingStrategy, ReportDefinitionDateRangeType.CUSTOM_DATE,
+        true, csvToBean, mappingStrategy, ReportDefinitionDateRangeType.CUSTOM_DATE,
         "20140101", "20140131", "123", mockedEntitiesPersister, 5);
 
     MockitoAnnotations.initMocks(this);

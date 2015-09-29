@@ -267,11 +267,7 @@ public class ReportProcessorOnFileTest {
     for (int i = 1; i <= numberOfFiles; i++) {
 
       File newFile = new File("src/test/resources/csv/" + fileName + i);
-      File newFile2 = new File("src/test/resources/csv/" + fileName + i + ".gunzip");
-
       FileUtils.copyFile(new File("src/test/resources/csv/" + fileName), newFile);
-      FileUtils.copyFile(new File("src/test/resources/csv/" + fileName), newFile2);
-
       files.add(newFile);
     }
     return files;

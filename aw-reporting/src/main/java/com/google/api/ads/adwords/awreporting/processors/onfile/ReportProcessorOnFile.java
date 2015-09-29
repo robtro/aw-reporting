@@ -347,7 +347,7 @@ public class ReportProcessorOnFile extends ReportProcessor {
   /**
    * Deletes the local files used as temporary containers.
    *
-   * @param localFiles the list of local files.
+   * @param localFiles the list of local unzipped files.
    * @param reportType the report type.
    */
   private void deleteTemporaryFiles(Collection<File> localFiles,
@@ -356,8 +356,6 @@ public class ReportProcessorOnFile extends ReportProcessor {
     // Delete temporary report files
     LOGGER.info("\n Deleting temporary report files after Parsing...");
     for (File file : localFiles) {
-      File gUnzipFile = new File(file.getAbsolutePath() + ".gunzip");
-      gUnzipFile.delete();
       file.delete();
       LOGGER.trace(".");
     }

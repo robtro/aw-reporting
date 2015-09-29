@@ -175,13 +175,9 @@ public class RunnableProcessorOnFile<R extends Report> implements Runnable {
   private CSVReader createCsvReader() throws UnsupportedEncodingException,
       FileNotFoundException {
 
-    String fileAbsolutePath = file.getAbsolutePath();
-    if (new File(fileAbsolutePath + ".gunzip").exists()) {
-      fileAbsolutePath = fileAbsolutePath + ".gunzip";
-    }
-    LOGGER.debug("Creating CSVReader for file: " + fileAbsolutePath);
+    LOGGER.debug("Creating CSVReader for file: " + file.getAbsolutePath());
     
-    InputStreamReader reader = new InputStreamReader(new FileInputStream(fileAbsolutePath), "UTF-8");
+    InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
     if (fileDownloadedByAPI) {
       return new CSVReader(reader, ',', '\"');
     } else {

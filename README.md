@@ -139,7 +139,7 @@ Note: aw-reporting.jar is in the aw-reporting/aw-reporting/target/ directory.
    -onFileReport
                               Especifies a report type (it has to be know by AwReporting model), and it will look for the data
                               in the file passed in the property "csvReportFile". If you use this property, it's mandatory
-                              to specify a CSV file with "-csvReportFile". The CSV file has to follow the same formatt as the
+                              to specify a CSV file with "-csvReportFile". The CSV file has to follow the same format as the
                               one downloaded from the API: the first line contains the name of the report; second line must
                               contain the column headers; following lines must contain the data.  
 
@@ -241,7 +241,7 @@ $ java -Xmx1G -jar aw-reporting/target/aw-reporting.jar -startDate YYYYMMDD -end
 -onFileReport CAMPAIGN_PERFORMANCE_REPORT -csvReportFile <CSV FILE LOCATION>
 ```
 
-**IMPORTANT NOTE:** The dates specified are very import, because they will be used to populate the database following the same formatt as the data downloaded from the API. Date periods *are not supported*.
+**IMPORTANT NOTE:** The dates specified are very import, because they will be used to populate the database following the same format as the data downloaded from the API. Date periods *are not supported*.
 
 ## **Experimental:** Video Campaign Performance report
 

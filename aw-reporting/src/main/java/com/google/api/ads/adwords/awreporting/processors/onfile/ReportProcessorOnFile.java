@@ -283,6 +283,29 @@ public class ReportProcessorOnFile extends ReportProcessor {
 
     this.deleteTemporaryFiles(localFiles, reportType);
   }
+  
+  /**
+   * Process the local files delegating the call to the concrete implementation.
+   *
+   * @param reportBeanClass the report bean class.
+   * @param localFiles the local files.
+   * @param dateStart the start date.
+   * @param dateEnd the end date.
+   * @param dateRangeType the date range type.
+   */
+  private <R extends Report> void processLocalFiles(String mccAccountId,
+      Class<R> reportBeanClass,
+      Collection<File> localFiles,
+      String dateStart,
+      String dateEnd,
+      ReportDefinitionDateRangeType dateRangeType) {
+    
+    Stopwatch stopwatch = Stopwatch.createStarted();
+    this.processFiles(mccAccountId, reportBeanClass, localFiles, dateRangeType, dateStart, dateEnd);
+    stopwatch.stop();
+    LOGGER.info("\n* DB Process finished in " + (stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000)
+        + " seconds ***");
+  }
 
   /**
    * Process the local files delegating the call to the concrete implementation.
@@ -300,16 +323,10 @@ public class ReportProcessorOnFile extends ReportProcessor {
       String dateEnd,
       ReportDefinitionDateRangeType dateRangeType) {
 
-    Stopwatch stopwatch = Stopwatch.createStarted();
-
     @SuppressWarnings("unchecked")
     Class<R> reportBeanClass =
         (Class<R>) this.csvReportEntitiesMapping.getReportBeanClass(reportType);
-    this.processFiles(mccAccountId, reportBeanClass, localFiles, dateRangeType, dateStart, dateEnd);
-
-    stopwatch.stop();
-    LOGGER.info("\n* DB Process finished in " + (stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000)
-        + " seconds ***");
+    this.processLocalFiles(mccAccountId, reportBeanClass, localFiles, dateStart, dateEnd, dateRangeType);
   }
 
   /**
@@ -329,8 +346,6 @@ public class ReportProcessorOnFile extends ReportProcessor {
       String dateEnd,
       ReportDefinitionDateRangeType dateRangeType) {
 
-    Stopwatch stopwatch = Stopwatch.createStarted();
-
     Class<R> reportBeanClass;
     try {
       ReportDefinitionReportType reportType = ReportDefinitionReportType.valueOf(reportTypeName);
@@ -342,12 +357,8 @@ public class ReportProcessorOnFile extends ReportProcessor {
     if (reportBeanClass == null) {
       throw new IllegalArgumentException("Report type not found: " + reportTypeName);
     }
-
-    this.processFiles(mccAccountId, reportBeanClass, localFiles, dateRangeType, dateStart, dateEnd);
-
-    stopwatch.stop();
-    LOGGER.info("\n* DB Process finished in " + (stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000)
-        + " seconds ***");
+    
+    this.processLocalFiles(mccAccountId, reportBeanClass, localFiles, dateStart, dateEnd, dateRangeType);
   }
 
   /**

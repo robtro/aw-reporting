@@ -70,7 +70,7 @@ public class MultipleClientReportDownloader {
    *
    * @param reportDefinition Report to download.
    * @param cids CIDs to download the report for.
-   * @return Collection of File objects reports have been downloaded to.
+   * @return Collection of File objects of downloaded/unzipped reports.
    * @throws InterruptedException error trying to stop downloader thread.
    * @throws ValidationException 
    */

@@ -80,6 +80,7 @@ public class AdWordsSessionUtil {
           .skipReportHeader(adWordsSession.getReportingConfiguration().isSkipReportHeader())
           .skipColumnHeader(adWordsSession.getReportingConfiguration().isSkipColumnHeader())
           .skipReportSummary(adWordsSession.getReportingConfiguration().isSkipReportSummary())
+          .includeZeroImpressions(adWordsSession.getReportingConfiguration().isIncludeZeroImpressions())
           .build();
       builder = builder.withReportingConfiguration(reportingConfig);
     }

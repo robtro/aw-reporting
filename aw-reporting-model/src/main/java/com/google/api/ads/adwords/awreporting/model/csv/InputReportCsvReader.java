@@ -1,4 +1,4 @@
-// Copyright 2013 Google Inc. All Rights Reserved.
+// Copyright 2015 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,12 +22,13 @@ import java.io.Reader;
 /**
  * Class to redefine the behavior of the basic {@link CSVReader}.
  *
- *  The CSV parsing should stop when the line with the sum of the columns is reached. In order to
- * accomplish such behavior, the {@code readNext} was overriden to change the stop condition.
+ * This is for parsing user input CSV reports (via "csvReportFile" option), which are normally
+ * downloaded from AWFE and contain header/summary lines.
  *
- * @author gustavomoreira@google.com (Gustavo Moreira)
+ * The CSV parsing should stop when the line with the sum of the columns is reached. In order to
+ * accomplish such behavior, the {@code readNext} was overriden to change the stop condition.
  */
-public class AwReportCsvReader extends CSVReader {
+public class InputReportCsvReader extends CSVReader {
 
   /**
    * The 'Total' {@code String} represents the last line of the AW Report CSV file.
@@ -42,7 +43,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param quotechar the character to use for quoted elements.
    * @param strictQuotes sets if characters outside the quotes are ignored.
    */
-  public AwReportCsvReader(Reader reader, char separator, char quotechar, boolean strictQuotes) {
+  public InputReportCsvReader(Reader reader, char separator, char quotechar, boolean strictQuotes) {
     super(reader, separator, quotechar, strictQuotes);
   }
 
@@ -58,7 +59,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param ignoreLeadingWhiteSpace it true, parser should ignore white space before a quote in a
    *        field.
    */
-  public AwReportCsvReader(Reader reader,
+  public InputReportCsvReader(Reader reader,
       char separator,
       char quotechar,
       char escape,
@@ -78,7 +79,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param line the line number to skip for start reading.
    * @param strictQuotes sets if characters outside the quotes are ignored.
    */
-  public AwReportCsvReader(Reader reader,
+  public InputReportCsvReader(Reader reader,
       char separator,
       char quotechar,
       char escape,
@@ -96,7 +97,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param escape the character to use for escaping a separator or quote.
    * @param line the line number to skip for start reading.
    */
-  public AwReportCsvReader(Reader reader, char separator, char quotechar, char escape, int line) {
+  public InputReportCsvReader(Reader reader, char separator, char quotechar, char escape, int line) {
     super(reader, separator, quotechar, escape, line);
   }
 
@@ -108,7 +109,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param quotechar the character to use for quoted elements.
    * @param escape the character to use for escaping a separator or quote.
    */
-  public AwReportCsvReader(Reader reader, char separator, char quotechar, char escape) {
+  public InputReportCsvReader(Reader reader, char separator, char quotechar, char escape) {
     super(reader, separator, quotechar, escape);
   }
 
@@ -120,7 +121,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param quotechar the character to use for quoted elements.
    * @param line the line number to skip for start reading.
    */
-  public AwReportCsvReader(Reader reader, char separator, char quotechar, int line) {
+  public InputReportCsvReader(Reader reader, char separator, char quotechar, int line) {
     super(reader, separator, quotechar, line);
   }
 
@@ -131,7 +132,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param separator the delimiter to use for separating entries.
    * @param quotechar the character to use for quoted elements.
    */
-  public AwReportCsvReader(Reader reader, char separator, char quotechar) {
+  public InputReportCsvReader(Reader reader, char separator, char quotechar) {
     super(reader, separator, quotechar);
   }
 
@@ -141,7 +142,7 @@ public class AwReportCsvReader extends CSVReader {
    * @param reader the reader to an underlying CSV source.
    * @param separator the delimiter to use for separating entries.
    */
-  public AwReportCsvReader(Reader reader, char separator) {
+  public InputReportCsvReader(Reader reader, char separator) {
     super(reader, separator);
   }
 
@@ -150,7 +151,7 @@ public class AwReportCsvReader extends CSVReader {
    *
    * @param reader the reader to be decorated
    */
-  public AwReportCsvReader(Reader reader) {
+  public InputReportCsvReader(Reader reader) {
     super(reader);
   }
 
@@ -170,5 +171,4 @@ public class AwReportCsvReader extends CSVReader {
     }
     return null;
   }
-
 }

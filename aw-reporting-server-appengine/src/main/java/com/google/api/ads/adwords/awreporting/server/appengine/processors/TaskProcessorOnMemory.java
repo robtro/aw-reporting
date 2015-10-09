@@ -18,7 +18,6 @@ import com.google.api.ads.adwords.awreporting.server.appengine.RestServer;
 import com.google.api.ads.adwords.awreporting.server.appengine.util.MccTaskCounter;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.awreporting.model.csv.AnnotationBasedMappingStrategy;
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.CsvParserIterator;
@@ -183,8 +182,8 @@ public class TaskProcessorOnMemory<R extends Report> implements DeferredTask {
    * @throws UnsupportedEncodingException should not happen.
    */
   private CSVReader createCsvReader(InputStream inputStream) throws UnsupportedEncodingException {
-    return new AwReportCsvReader(
-        new InputStreamReader(inputStream, "UTF-8"), ',', '\"', 1);
+    return new CSVReader(
+        new InputStreamReader(inputStream, "UTF-8"), ',', '\"');
   }
 
   /**

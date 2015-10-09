@@ -77,7 +77,7 @@ public class RunnableDownloader implements Runnable {
    * @param cid the costumer ID.
    * @param reportDefinition the report to be downloaded.
    * @param sessionBuilder the builder for the session.
-   * @param results the list of results.
+   * @param results the list of unzipped reports.
    */
   public RunnableDownloader(int retriesCount,
       int backoffInterval,
@@ -211,11 +211,15 @@ public class RunnableDownloader implements Runnable {
     } else {
       File gUnzipFile = new File(reportFile.getAbsolutePath() + ".gunzip");
       try {
-        // gUnzips downloeded file
+        // gUnzips downloaded file
         FileUtil.gUnzip(reportFile, gUnzipFile);
-        this.results.add(reportFile);
+        this.results.add(gUnzipFile);
       } catch (IOException e) {
         LOGGER.info("Ignoring file (Error when UnZipping): " + reportFile.getAbsolutePath());
+        gUnzipFile.delete();
+      } finally {
+        // no longer need this zipped file
+        reportFile.delete();
       }
     }
   }

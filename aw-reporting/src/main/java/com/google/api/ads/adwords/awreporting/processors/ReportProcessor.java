@@ -215,8 +215,7 @@ public abstract class ReportProcessor {
     }
     this.adjustDateRange(reportDefinitionReportType, dateRangeType, dateStart, dateEnd, selector);
 
-    return this.instantiateReportDefinition(reportDefinitionReportType, dateRangeType, selector,
-        properties);
+    return this.instantiateReportDefinition(reportDefinitionReportType, dateRangeType, selector);
   }
 
   /**
@@ -273,19 +272,8 @@ public abstract class ReportProcessor {
    */
   protected ReportDefinition instantiateReportDefinition(
       ReportDefinitionReportType reportDefinitionReportType,
-      ReportDefinitionDateRangeType dateRangeType, Selector selector, Properties properties) {
-
-    // retrieve relevant properties
-    boolean bIncludeZeroImpressions = false; // default to false when property is missing or of
-                                             // invalid value
-    String sIncludeZeroImpressions =
-        properties.getProperty("aw.report.definition.includeZeroImpressions");
-    if (null != sIncludeZeroImpressions) {
-      bIncludeZeroImpressions = sIncludeZeroImpressions.equalsIgnoreCase("true");
-    }
-
-    LOGGER.info("Instantiate report definition for " + reportDefinitionReportType.value()
-        + " with includeZeroImpressions=" + String.valueOf(bIncludeZeroImpressions));
+      ReportDefinitionDateRangeType dateRangeType,
+      Selector selector) {
 
     // Create the Report Definition
     ReportDefinition reportDefinition = new ReportDefinition();
@@ -294,7 +282,6 @@ public abstract class ReportProcessor {
     reportDefinition.setDateRangeType(dateRangeType);
     reportDefinition.setReportType(reportDefinitionReportType);
     reportDefinition.setDownloadFormat(DownloadFormat.GZIPPED_CSV);
-    reportDefinition.setIncludeZeroImpressions(bIncludeZeroImpressions);
     reportDefinition.setSelector(selector);
     return reportDefinition;
   }
@@ -319,6 +306,24 @@ public abstract class ReportProcessor {
       return inclusionsList;
     }
     return Lists.newArrayListWithCapacity(0);
+  }
+  
+  /**
+   * @param properties the input properties file
+   * @return the includeZeroImpressions setting
+   */
+  protected boolean getIncludeZeroImpressions(Properties properties) {
+    // default to false when property is missing or of invalid value
+    boolean bIncludeZeroImpressions = false;
+    
+    String sIncludeZeroImpressions =
+        properties.getProperty("aw.report.definition.includeZeroImpressions");
+    if (null != sIncludeZeroImpressions) {
+      bIncludeZeroImpressions = sIncludeZeroImpressions.equalsIgnoreCase("true");
+    }
+
+    LOGGER.info("Property includeZeroImpressions=" + String.valueOf(bIncludeZeroImpressions));
+    return bIncludeZeroImpressions;
   }
 
   /**

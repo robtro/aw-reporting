@@ -111,7 +111,7 @@ public class ReportProcessorOnMemory extends ReportProcessor {
     }
 
     AdWordsSessionBuilderSynchronizer sessionBuilder = new AdWordsSessionBuilderSynchronizer(
-        authenticator.authenticate(mccAccountId, false));
+        authenticator.authenticate(mccAccountId, false), getIncludeZeroImpressions(properties));
 
     LOGGER.info("*** Generating Reports for " + accountIdsSet.size() + " accounts ***");
 

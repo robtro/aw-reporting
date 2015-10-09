@@ -107,7 +107,7 @@ public class ReportProcessorTest {
 
     doCallRealMethod().when(reportProcessor).instantiateReportDefinition(
         any(ReportDefinitionReportType.class), any(ReportDefinitionDateRangeType.class),
-        any(Selector.class), any(Properties.class));
+        any(Selector.class));
 
     reportProcessor.setCsvReportEntitiesMapping(appCtx.getBean(CsvReportEntitiesMapping.class));
     reportProcessor.setPersister(mockedEntitiesPersister);
@@ -142,7 +142,6 @@ public class ReportProcessorTest {
         ReportProcessor.REPORT_PREFIX + ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT);
     assertEquals(reportDefinition.getDateRangeType(), ReportDefinitionDateRangeType.CUSTOM_DATE);
     assertEquals(reportDefinition.getDownloadFormat(), DownloadFormat.GZIPPED_CSV);
-    assertEquals(reportDefinition.isIncludeZeroImpressions(), false);
   }
 
   @Test

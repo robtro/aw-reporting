@@ -27,8 +27,6 @@ import java.util.logging.Logger;
 
 /**
  * This class creates tasks to download each report 
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportTaskCreator<R extends Report> implements DeferredTask {
 

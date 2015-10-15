@@ -23,9 +23,6 @@ import javax.persistence.Table;
 
 /**
  * Class for MCC Authentication.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

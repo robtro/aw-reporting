@@ -30,9 +30,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportAdGroup
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

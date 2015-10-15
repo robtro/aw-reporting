@@ -16,8 +16,6 @@ package com.google.api.ads.adwords.awreporting.server.authentication;
 
 /**
  * Defines commmon methods for Web Authentication and user management
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public interface WebAuthenticator {
 

@@ -24,8 +24,6 @@ import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 /**
  * Specific Report class for GeoPerformanceReports
- *
- * @author markbowyer@google.com (Mark R. Bowyer)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

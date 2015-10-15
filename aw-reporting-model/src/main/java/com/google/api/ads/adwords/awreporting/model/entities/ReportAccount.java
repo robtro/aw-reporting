@@ -28,8 +28,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportAccount
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

@@ -49,8 +49,6 @@ import javax.persistence.Table;
  * implementation to talk to other data bases easily, but the intention is to specialize this class
  * to communicate in the best way possible to a SQL data base, so don't count in the use of the
  * {@code SessionFactory} when implementing your client class.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Component
 @Qualifier("sqlEntitiesPersister")

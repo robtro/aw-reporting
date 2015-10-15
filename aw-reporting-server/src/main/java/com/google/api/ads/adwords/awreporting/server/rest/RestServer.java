@@ -57,8 +57,6 @@ import java.util.Properties;
 /**
  * RestServer, add the Routing for the REST entry points and
  * initiates the ApplicationContext with the Spring beans
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RestServer extends Application {
 

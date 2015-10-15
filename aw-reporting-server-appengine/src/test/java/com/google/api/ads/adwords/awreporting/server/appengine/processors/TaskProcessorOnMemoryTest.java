@@ -47,8 +47,6 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * Test case for the {@link TaskProcessorOnMemory} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class TaskProcessorOnMemoryTest {
 

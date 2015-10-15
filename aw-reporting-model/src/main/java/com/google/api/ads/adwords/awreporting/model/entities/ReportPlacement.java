@@ -29,8 +29,6 @@ import java.math.BigDecimal;
 
 /**
  * Specific Report class for GeoPerformanceReports
- *
- * @author markbowyer@google.com (Mark R. Bowyer)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

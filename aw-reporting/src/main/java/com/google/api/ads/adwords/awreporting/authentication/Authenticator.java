@@ -22,9 +22,6 @@ import java.io.IOException;
 
 /**
  * Authenticator interface for OAuth.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com (Joel Toby)
  */
 public interface Authenticator {
   

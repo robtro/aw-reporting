@@ -46,9 +46,6 @@ import java.util.concurrent.CountDownLatch;
  *
  * Also the {@link AdWordsSessionBuilderSynchronizer} is kept by the client class, and should handle
  * all the concurrent threads.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableDownloader implements Runnable {
 

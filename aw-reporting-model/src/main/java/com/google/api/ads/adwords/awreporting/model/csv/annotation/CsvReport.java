@@ -28,9 +28,6 @@ import java.lang.annotation.Target;
  * If a class is annotated with {@code CsvReport}, it means that when the CSV file for the mapped
  * report is processed, the values in the CSV columns will be mapped to the annotated properties of
  * the class.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- *
  */
 @Target({TYPE})
 @Retention(RUNTIME)

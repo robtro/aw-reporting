@@ -26,8 +26,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Tests the Placeholder Feed Item report definition.
- * 
- *  * @author markbowyer@google.com (Mark R. Bowyer)
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")

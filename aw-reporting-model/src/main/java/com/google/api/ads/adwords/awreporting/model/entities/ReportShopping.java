@@ -24,8 +24,6 @@ import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
 
 /**
  * Specific Report class for ShoppingPerformanceReports
- *
- * @author zhuoc@google.com (Zhuo Chen)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

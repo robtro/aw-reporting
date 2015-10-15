@@ -28,8 +28,6 @@ import java.util.logging.Logger;
 
 /**
  * Tasks to Refresh the Account List for an MCC.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RefreshAccountsTask implements DeferredTask {
 

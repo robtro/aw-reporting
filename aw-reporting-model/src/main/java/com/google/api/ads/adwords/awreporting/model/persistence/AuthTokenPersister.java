@@ -19,10 +19,8 @@ import com.google.api.ads.adwords.awreporting.model.entities.AuthMcc;
 /**
  * The persister interface for the authorization token.
  *
- *  It is responsibility of the implementation to decide where the authentication will be persisted,
+ * It is responsibility of the implementation to decide where the authentication will be persisted,
  * and how it will be retrieved.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public interface AuthTokenPersister {
 

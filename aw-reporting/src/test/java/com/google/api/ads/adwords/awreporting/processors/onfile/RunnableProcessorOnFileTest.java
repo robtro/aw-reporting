@@ -45,8 +45,6 @@ import java.util.List;
 
 /**
  * Test case for the {@link RunnableProcessorOnFile} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableProcessorOnFileTest {
 

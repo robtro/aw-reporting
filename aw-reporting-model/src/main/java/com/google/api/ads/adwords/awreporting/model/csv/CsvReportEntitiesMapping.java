@@ -43,10 +43,8 @@ import java.util.logging.Logger;
  * Class responsible to hold the mapping between report type and the class that represents the CSV
  * file data.
  *
- *  Note: only one bean per report type is allowed. If a second mapping is found, the first one will
+ * Note: only one bean per report type is allowed. If a second mapping is found, the first one will
  * be overwritten.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class CsvReportEntitiesMapping {
 

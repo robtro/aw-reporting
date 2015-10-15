@@ -8,8 +8,6 @@ import com.google.api.ads.common.lib.exception.ValidationException;
  * Class to synchronize all the access to the {@code AdWordsSession}.
  *
  * It is just a wrapper around the session builder, to make that there just one request per time.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class AdWordsSessionBuilderSynchronizer {
 

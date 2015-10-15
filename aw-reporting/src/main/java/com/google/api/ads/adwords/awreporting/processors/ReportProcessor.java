@@ -45,10 +45,6 @@ import java.util.Set;
 /**
  * Reporting processor, responsible for downloading and saving the files to the file system. The
  * persistence of the parsed beans is delegated to the configured persister.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author joeltoby@google.com (Joel Toby)
  */
 
 public abstract class ReportProcessor {

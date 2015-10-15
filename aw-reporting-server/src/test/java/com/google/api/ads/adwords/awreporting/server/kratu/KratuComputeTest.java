@@ -50,8 +50,6 @@ import java.util.List;
 
 /**
  * Test case for the {@code KratuCompute} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class KratuComputeTest {
 

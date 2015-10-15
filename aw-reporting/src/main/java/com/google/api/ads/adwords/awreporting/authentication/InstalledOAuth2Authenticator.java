@@ -30,10 +30,6 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 
 /**
  * Handles OAuth2 authentication for Installed application instances
- * 
- * @author jtoledo@google.com (jtoledo@google.com)
- * @author joeltoby@google.com (joeltoby@google.com)
- *
  */
 @Component
 public class InstalledOAuth2Authenticator implements Authenticator {

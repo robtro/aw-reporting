@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Handles the date range for the YESTERDAY type.
- * 
- * @author gustavomoreira
  */
 public class YesterdayDateRangeHandler implements DateRangeHandler {
 

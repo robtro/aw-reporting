@@ -56,8 +56,6 @@ import java.util.Set;
 
 /**
  * Test case for the {@link ReportProcessor} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportProcessorTest {
 

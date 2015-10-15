@@ -26,9 +26,6 @@ import java.io.OutputStream;
 
 /**
  * A {@link ReportWriter} that writes reports to the File System.
- *
- * @author joeltoby@google.com (Joel Toby)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class FileSystemReportWriter extends FileWriter implements ReportWriter {
 

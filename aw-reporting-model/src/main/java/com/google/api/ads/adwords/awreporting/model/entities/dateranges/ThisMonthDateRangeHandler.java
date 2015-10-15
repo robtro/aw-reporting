@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Handles the date range for the THIS_MONTH type.
- * 
- * @author gustavomoreira
  */
 public class ThisMonthDateRangeHandler implements DateRangeHandler {
 

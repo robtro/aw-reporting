@@ -29,9 +29,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportKeyword
- * 
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@gmail.com (Joel Toby)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

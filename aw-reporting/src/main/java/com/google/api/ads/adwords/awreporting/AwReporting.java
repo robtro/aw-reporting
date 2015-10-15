@@ -66,9 +66,6 @@ import java.util.Set;
  * -file <file> provided.
  *
  * See README for more info.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
  public class AwReporting{
 

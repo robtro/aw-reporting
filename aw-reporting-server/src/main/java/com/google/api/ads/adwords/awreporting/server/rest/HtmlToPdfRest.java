@@ -31,8 +31,6 @@ import java.io.StringReader;
 /**
  * HtmlToPdfRest this rest entry point receives
  * a HTML post and returns the converted PDF.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class HtmlToPdfRest extends AbstractBaseResource {
 

@@ -25,8 +25,6 @@ import junit.framework.Assert;
 
 /**
  * Tests the Geo Performance report definition.
- * 
- *  * @author markbowyer@google.com (Mark R. Bowyer)
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")

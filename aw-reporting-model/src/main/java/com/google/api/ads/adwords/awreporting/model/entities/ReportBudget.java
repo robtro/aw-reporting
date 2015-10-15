@@ -27,8 +27,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportBudget
- *
- * @author tarjei@google.com (Tarjei Vassbotn)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

@@ -25,8 +25,6 @@ import javax.persistence.Table;
 
 /**
  * Model class used to store Authentication info.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

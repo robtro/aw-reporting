@@ -35,11 +35,6 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.List;
 
-/**
- * StorageHelper
- * 
- * @author jtoledo@google.com (Julian Toledo)
- */
 @Component
 public class StorageHelper {
 

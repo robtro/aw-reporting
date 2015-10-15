@@ -27,8 +27,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportCampaignLocationTarget
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

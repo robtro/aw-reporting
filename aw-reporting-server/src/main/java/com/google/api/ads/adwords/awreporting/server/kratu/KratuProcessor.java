@@ -35,8 +35,6 @@ import java.util.concurrent.Executors;
 
 /**
  * KratuProcessor
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Component
 public class KratuProcessor {

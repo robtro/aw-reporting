@@ -40,8 +40,6 @@ import java.util.Set;
 
 /**
  * Exports DOC reports to Google Drive from an AppEngine instance of AW Reports to DB.
- *
- * @author joeltoby@google.com (Joel Toby)
  */
 @Component
 public class ServerReportExporter extends ReportExporter implements Serializable {

@@ -21,9 +21,6 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * Provides the scope used by AwReports for all OAuth2 authenticated services.
- *  
- * @author joeltoby@google.com (joeltoby)
- *
  */
 public class OAuthScope {
   

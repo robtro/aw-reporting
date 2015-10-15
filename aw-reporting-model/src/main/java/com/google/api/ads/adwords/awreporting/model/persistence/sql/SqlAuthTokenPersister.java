@@ -25,8 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The SQL implementation of the token persister.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Component
 public class SqlAuthTokenPersister implements AuthTokenPersister {

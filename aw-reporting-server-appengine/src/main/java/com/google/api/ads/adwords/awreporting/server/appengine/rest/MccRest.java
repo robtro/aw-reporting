@@ -27,9 +27,6 @@ import java.util.Map;
 
 /**
  * Rest entry point to get MCCs for the User
- * 
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com (Joel Toby)
  */
 public class MccRest extends AbstractBaseResource {
 

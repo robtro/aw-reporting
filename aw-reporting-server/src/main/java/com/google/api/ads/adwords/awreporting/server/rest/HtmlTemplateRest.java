@@ -27,8 +27,6 @@ import java.util.UUID;
 
 /**
  * Rest entry point to get, create or update HTML templates.
- * 
- * @author joeltoby@google.com
  */
 public class HtmlTemplateRest extends AbstractBaseResource {
 

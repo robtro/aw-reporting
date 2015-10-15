@@ -54,8 +54,6 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * Test case for the {@link RunnableProcessorOnMemory} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableProcessorOnMemoryTest {
 

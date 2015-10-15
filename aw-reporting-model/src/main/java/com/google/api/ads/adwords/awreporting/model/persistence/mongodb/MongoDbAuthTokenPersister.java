@@ -26,9 +26,6 @@ import java.util.List;
 
 /**
  * The MongoDb implementation of the token persister.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Component
 public class MongoDbAuthTokenPersister implements AuthTokenPersister {

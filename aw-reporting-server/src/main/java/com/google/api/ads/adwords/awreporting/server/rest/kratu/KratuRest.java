@@ -23,8 +23,6 @@ import java.util.Date;
 
 /**
  * KratuRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class KratuRest extends AbstractBaseResource {
 

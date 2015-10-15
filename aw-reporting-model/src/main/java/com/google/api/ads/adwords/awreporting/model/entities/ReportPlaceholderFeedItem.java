@@ -25,10 +25,7 @@ import javax.persistence.Table;
 
 /**
  * Specific Report class for PlaceholderFeedItem
- *
- * @author markbowyer@google.com (Mark R. Bowyer)
  */
-
 @Entity
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportPlaceholderFeedItem")

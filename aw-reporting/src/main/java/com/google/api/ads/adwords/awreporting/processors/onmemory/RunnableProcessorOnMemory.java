@@ -54,9 +54,6 @@ import com.google.common.collect.Lists;
  * handle all the concurrent threads.
  *
  * Parse the rows in the CSV file for the report type, and persists the beans into the data base.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author jtoledo@google.com (Julian Toledo)
  * 
  * @param <R> type of sub Report.
  */

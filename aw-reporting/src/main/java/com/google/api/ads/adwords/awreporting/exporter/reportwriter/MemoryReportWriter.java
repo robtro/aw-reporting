@@ -23,8 +23,6 @@ import java.io.OutputStreamWriter;
 
 /**
  * A {@link ReportWriter} that writes reports to Memory.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class MemoryReportWriter extends OutputStreamWriter implements ReportWriter {
 

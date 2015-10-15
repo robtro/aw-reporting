@@ -22,8 +22,6 @@ import java.util.List;
 
 /**
  * Rest entry point for Account objects
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class AccountRest extends AbstractBaseResource {
 

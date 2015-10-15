@@ -68,8 +68,6 @@ import com.google.common.collect.Sets;
 
 /**
  * Test case for the {@code ReportProcessorOnMemory} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportProcessorOnMemoryTest {
 

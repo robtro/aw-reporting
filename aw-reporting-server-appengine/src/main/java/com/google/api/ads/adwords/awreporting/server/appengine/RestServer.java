@@ -69,9 +69,6 @@ import java.util.logging.Logger;
 
 /**
  * Main class for the Server, it routes request to the Rest entry points. 
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com (Joel Toby)
  */
 public class RestServer extends com.google.api.ads.adwords.awreporting.server.rest.RestServer {
   

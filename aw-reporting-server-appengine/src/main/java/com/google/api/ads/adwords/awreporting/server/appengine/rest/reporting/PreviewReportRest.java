@@ -33,9 +33,6 @@ import java.util.Properties;
 
 /**
  * Rest entry point to launch Report Export tasks
- * 
- * @author joeltoby@google.com (Joel Toby)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class PreviewReportRest extends AbstractBaseResource {
   

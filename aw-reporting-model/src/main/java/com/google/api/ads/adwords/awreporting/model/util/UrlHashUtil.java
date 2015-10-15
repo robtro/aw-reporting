@@ -22,8 +22,6 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Util class for creating a Sha1 for URLs
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class UrlHashUtil {
 

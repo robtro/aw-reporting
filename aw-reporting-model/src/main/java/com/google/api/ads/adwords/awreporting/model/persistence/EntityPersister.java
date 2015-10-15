@@ -28,14 +28,11 @@ import java.util.Map;
  * The {@code ReportEntitiesPersister} is the base interface to persist the retrieved data from the
  * AWAPI.
  *
- *  The implementations should provide a way to persist the entities, retrieve the entities and
+ * The implementations should provide a way to persist the entities, retrieve the entities and
  * delete a given {@code Collection} of {@code Report} entities.
  *
- *  It is responsibility of the implementation to decide how is the best way to perform all the
+ * It is responsibility of the implementation to decide how is the best way to perform all the
  * operations, i.e. the most performing manner or the least resource demanding.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- *
  */
 public interface EntityPersister {
 

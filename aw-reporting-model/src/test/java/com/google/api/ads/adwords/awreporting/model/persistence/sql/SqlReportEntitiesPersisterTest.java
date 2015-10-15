@@ -39,8 +39,6 @@ import java.util.Map;
 
 /**
  * Test case for the {@code SqlReportEntitiesPersister} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")

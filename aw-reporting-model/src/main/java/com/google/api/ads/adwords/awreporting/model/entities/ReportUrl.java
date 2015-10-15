@@ -15,10 +15,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportKeyword
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author nafis@google.com (Nafis Zebarjadi)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

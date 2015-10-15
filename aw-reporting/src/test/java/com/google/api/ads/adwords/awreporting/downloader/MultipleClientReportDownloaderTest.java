@@ -40,8 +40,6 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Test case for the {@code MultipleClientReportDownloader} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class MultipleClientReportDownloaderTest {
 

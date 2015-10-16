@@ -16,8 +16,6 @@ package com.google.api.ads.adwords.awreporting.util;
 
 /**
  * Enum to describe the processor type
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public enum ProcessorType {
 

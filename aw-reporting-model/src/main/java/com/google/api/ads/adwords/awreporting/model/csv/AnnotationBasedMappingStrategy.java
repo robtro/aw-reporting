@@ -55,9 +55,6 @@ import java.util.Map;
  * The example uses a {@link CSVReader} in order to parse the CSV files from the AdWords
  * report API.
  *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author juliantoledo@google.com (Julian Toledo)
- *
  * @param <T> type of sub Report.
  */
 public class AnnotationBasedMappingStrategy<T extends Report> implements MappingStrategy<T>, Serializable {

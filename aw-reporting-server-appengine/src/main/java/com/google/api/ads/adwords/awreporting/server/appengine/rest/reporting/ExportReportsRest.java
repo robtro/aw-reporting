@@ -37,9 +37,6 @@ import java.util.Set;
 
 /**
  * Rest entry point to launch Report Export tasks
- * 
- * @author joeltoby@google.com (Joel Toby)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ExportReportsRest extends AbstractBaseResource {
   

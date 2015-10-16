@@ -44,9 +44,6 @@
 
   /**
    * Exports reports PDF/HTML reports to either the FileSystem or Google Drive.
-   *
-   * @author joeltoby@google.com (Joel Toby)
-   * @author jtoledo@google.com (Julian Toledo)
    */
   @Component
   public abstract class ReportExporter {

@@ -30,11 +30,8 @@ import javax.persistence.MappedSuperclass;
 /**
  * The base abstract class for all Reports
  *
- *  Fields from http://code.google.com/apis/adwords/docs/appendix/reports.html Fields from
+ * Fields from http://code.google.com/apis/adwords/docs/appendix/reports.html Fields from
  * http://code.google.com/apis/adwords/docs/reportguide.html
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @MappedSuperclass
 public abstract class Report implements MongoEntity {

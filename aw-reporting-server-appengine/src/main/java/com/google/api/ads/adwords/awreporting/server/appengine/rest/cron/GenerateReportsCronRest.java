@@ -32,8 +32,6 @@ import java.util.Set;
 
 /**
  * Rest entry point to launch Generate Reports with the Cron Job
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GenerateReportsCronRest extends AbstractBaseResource {
 

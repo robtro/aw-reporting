@@ -27,8 +27,6 @@ import java.util.Map;
 
 /**
  * Rest entry point for OAuth2
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class OAuthRest extends AbstractBaseResource {
   

@@ -26,8 +26,6 @@ import java.util.logging.Logger;
 
 /**
  * Responsible for creating tasks that write HTML reports to Google Drive. 
- *
- * @author joeltoby@google.com (Joel Toby)
  */
 public class ExportTaskCreator implements DeferredTask, Serializable {
 

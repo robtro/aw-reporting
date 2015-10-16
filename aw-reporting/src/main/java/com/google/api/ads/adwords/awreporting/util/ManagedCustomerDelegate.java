@@ -34,9 +34,6 @@ import java.util.Set;
  * {@code ManagedCustomerDelegate} encapsulates the {@code ManagedCustomerServiceInterface}.
  *
  * This service is used to get all the child accounts for the MCC.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class ManagedCustomerDelegate {
 

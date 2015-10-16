@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Handles the date range for the LAST_WEEK type.
- * 
- * @author gustavomoreira
  */
 public class LastWeekDateRangeHandler implements DateRangeHandler {
 

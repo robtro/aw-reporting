@@ -16,8 +16,6 @@ package com.google.api.ads.adwords.awreporting.util;
 
 /**
  * Enum to describe the database type
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public enum DataBaseType {
 

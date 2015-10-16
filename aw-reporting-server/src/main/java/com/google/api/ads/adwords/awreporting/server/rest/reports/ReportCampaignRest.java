@@ -16,11 +16,6 @@ package com.google.api.ads.adwords.awreporting.server.rest.reports;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 
-/**
- * ReportCampaignRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
- */
 public class ReportCampaignRest extends AbstractReportRest<ReportCampaign> {
   public ReportCampaignRest() {
     super(ReportCampaign.class);

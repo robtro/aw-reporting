@@ -41,8 +41,6 @@ import java.util.Set;
 
 /**
  * Test case for the {@code RunnableKratu} class.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class KratuProcessorTest {
 

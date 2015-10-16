@@ -28,8 +28,6 @@ import javax.persistence.Table;
 
 /**
  * Kratu is a colection of signals from different AdWords Reports
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Entity
 @Table(name = "AW_Kratu")

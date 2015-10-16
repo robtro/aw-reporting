@@ -44,11 +44,8 @@ import javax.persistence.MappedSuperclass;
 /**
  * The base abstract class with base report fields
  *
- *  Fields from http://code.google.com/apis/adwords/docs/appendix/reports.html Fields from
+ * Fields from http://code.google.com/apis/adwords/docs/appendix/reports.html Fields from
  * http://code.google.com/apis/adwords/docs/reportguide.html
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @MappedSuperclass
 public abstract class ReportBase extends Report {

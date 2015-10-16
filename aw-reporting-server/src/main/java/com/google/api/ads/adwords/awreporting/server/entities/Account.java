@@ -31,8 +31,6 @@ import javax.persistence.Table;
 
 /**
  * Account
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

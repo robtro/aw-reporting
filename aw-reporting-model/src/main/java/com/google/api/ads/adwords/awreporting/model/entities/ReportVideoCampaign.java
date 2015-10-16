@@ -19,8 +19,6 @@ import javax.persistence.Table;
 
 /**
  * This is an experimental report for video campaign reports downloaded directly from the interface.
- *
- * @author Gustavo Moreira
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

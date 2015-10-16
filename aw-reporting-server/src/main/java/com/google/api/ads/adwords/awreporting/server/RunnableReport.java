@@ -23,11 +23,6 @@ import org.apache.log4j.Logger;
 import java.util.Date;
 import java.util.Properties;
 
-/**
- * RunnableReport
- * 
- * @author jtoledo@google.com (Julian Toledo)
- */
 public class RunnableReport implements Runnable {
 
   private static final Logger LOGGER = Logger.getLogger(RunnableReport.class);

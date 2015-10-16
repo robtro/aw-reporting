@@ -29,8 +29,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportDestinationUrl
- *
- * @author marcwan@google.com (Marc Wandschneider)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

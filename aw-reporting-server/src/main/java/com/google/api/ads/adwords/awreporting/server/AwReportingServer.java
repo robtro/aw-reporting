@@ -55,8 +55,6 @@ import java.util.Set;
  * -file <file> provided.
  *
  * See README for more info.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class AwReportingServer {
 

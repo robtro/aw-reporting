@@ -28,8 +28,6 @@ import java.util.Properties;
 
 /**
  * Rest entry point to launch Generate Reports data tasks
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GenerateReportsRest extends AbstractBaseResource {
 

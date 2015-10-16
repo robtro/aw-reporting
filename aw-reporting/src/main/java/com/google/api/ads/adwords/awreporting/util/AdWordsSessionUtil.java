@@ -29,8 +29,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Helper class to copy the {@link AdWordsSession}.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class AdWordsSessionUtil {
 

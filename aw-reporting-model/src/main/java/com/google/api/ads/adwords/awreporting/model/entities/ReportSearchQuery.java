@@ -10,8 +10,6 @@ import javax.persistence.Table;
 
 /**
  * Report class for the Search Query Performance report.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

@@ -45,8 +45,6 @@ import java.util.Collection;
 
 /**
  * Test case for the {@code RunnableDownloader} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableDownloaderTest {
 

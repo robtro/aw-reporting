@@ -67,8 +67,6 @@ import com.google.common.collect.Sets;
 
 /**
  * Test case for the {@code ReportProcessorOnFile} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportProcessorOnFileTest {
 

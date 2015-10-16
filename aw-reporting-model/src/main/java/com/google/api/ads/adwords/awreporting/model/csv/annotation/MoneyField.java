@@ -22,8 +22,6 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation to mark as Money value a field in the CSV file to the annotated bean property.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Target({FIELD})
 @Retention(RUNTIME)

@@ -45,8 +45,6 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * Defines commmon methods for all Rest entry points
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public abstract class AbstractBaseResource extends ServerResource {
 

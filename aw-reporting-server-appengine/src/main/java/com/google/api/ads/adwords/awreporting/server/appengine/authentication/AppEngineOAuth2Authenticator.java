@@ -48,9 +48,6 @@ import java.util.logging.Logger;
 
 /**
  * This class will create an OAuth2 credentials for AppEngine
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com  (Joel Toby)
  */
 @Component
 public class AppEngineOAuth2Authenticator implements Authenticator {

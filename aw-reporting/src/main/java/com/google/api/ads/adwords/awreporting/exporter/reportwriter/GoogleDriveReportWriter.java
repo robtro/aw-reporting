@@ -30,9 +30,6 @@ import java.util.Arrays;
 
 /**
  * A {@link ReportWriter} that writes reports to Google Drive.
- *
- * @author joeltoby@google.com (Joel Toby)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GoogleDriveReportWriter implements ReportWriter {
 

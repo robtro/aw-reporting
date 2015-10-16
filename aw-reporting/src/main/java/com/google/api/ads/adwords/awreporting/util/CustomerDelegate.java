@@ -24,8 +24,6 @@ import com.google.api.ads.adwords.lib.client.AdWordsSession;
  * {@code CustomerDelegate} encapsulates the {@code CustomerServiceInterface}.
  *
  * This service is used to get info about a customer
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class CustomerDelegate {
 

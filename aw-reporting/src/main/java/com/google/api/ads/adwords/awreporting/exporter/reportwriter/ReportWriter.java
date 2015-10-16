@@ -21,8 +21,6 @@ import java.io.InputStream;
 /**
  * Writes HTML, PDF or Drive Doc reports. Should be extended by any classes that
  * write report files.
- *
- * @author joeltoby@google.com (Joel Toby)
  */
 public interface ReportWriter {
 

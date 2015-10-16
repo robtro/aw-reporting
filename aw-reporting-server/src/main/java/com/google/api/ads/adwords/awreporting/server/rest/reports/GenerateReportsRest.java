@@ -24,11 +24,6 @@ import org.restlet.service.TaskService;
 
 import java.util.Date;
 
-/**
- * 
- * @author jtoledo
- * 
- */
 public class GenerateReportsRest extends AbstractBaseResource {
 
   static TaskService taskService = new TaskService();

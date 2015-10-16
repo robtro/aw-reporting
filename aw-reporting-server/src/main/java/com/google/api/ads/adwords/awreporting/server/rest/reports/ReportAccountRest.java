@@ -18,8 +18,6 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 
 /**
  * ReportAccountRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportAccountRest extends AbstractReportRest<ReportAccount> {
   public ReportAccountRest() {

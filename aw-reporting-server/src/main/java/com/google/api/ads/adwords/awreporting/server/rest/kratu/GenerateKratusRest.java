@@ -26,8 +26,6 @@ import java.util.Date;
 
 /**
  * GenerateKratusRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GenerateKratusRest extends AbstractBaseResource {
 

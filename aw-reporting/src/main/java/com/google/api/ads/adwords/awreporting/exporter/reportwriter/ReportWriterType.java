@@ -16,8 +16,6 @@ package com.google.api.ads.adwords.awreporting.exporter.reportwriter;
 
 /**
  * Enum to describe the type of {@link ReportWriter} used.
- *
- * @author joeltoby@google.com (Joel Toby)
  */
 public enum ReportWriterType {
 

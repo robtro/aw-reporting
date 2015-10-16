@@ -19,8 +19,6 @@ import com.google.appengine.api.memcache.MemcacheServiceFactory;
 
 /**
  * This class is to monitor Tasks progress for an MCC
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class MccTaskCounter {
 

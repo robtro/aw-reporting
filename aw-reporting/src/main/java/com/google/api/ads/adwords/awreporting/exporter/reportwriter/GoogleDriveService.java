@@ -37,10 +37,6 @@ import com.google.api.services.drive.model.ParentReference;
 
 /**
  * Provides an authenticated Google {@link Drive} service instance configured for AW Reports to DB.
- *   
- * @author joeltoby@google.com (Joel Toby)
- * @author jtoledo@google.com (Julian Toledo)
- *
  */
 public class GoogleDriveService {
 

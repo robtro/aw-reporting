@@ -30,9 +30,6 @@ import java.util.List;
  * Specialized {@code JaxWsProxySelector} for Jax-Ws.
  *
  * Jax-Ws does not load the default java Proxy parameters unless a ProxySelector is provided.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class JaxWsProxySelector extends ProxySelector {
 

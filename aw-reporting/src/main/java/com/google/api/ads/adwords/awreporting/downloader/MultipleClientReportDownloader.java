@@ -38,9 +38,6 @@ import java.util.concurrent.TimeUnit;
  * executor is necessary to call {@code initializeExecutorService}, and to finalize the executor is
  * necessary to call {@code finalizeExecutorService} after all the downloads are done, and the
  * downloader will not be used again.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class MultipleClientReportDownloader {
 

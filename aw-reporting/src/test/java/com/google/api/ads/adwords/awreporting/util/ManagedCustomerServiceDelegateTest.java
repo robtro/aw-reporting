@@ -38,8 +38,6 @@ import java.util.Set;
 
 /**
  * Test case for the {@code ManagedCustomerServiceDelegate} class.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ManagedCustomerServiceDelegateTest {
 

@@ -29,8 +29,6 @@ import java.math.BigDecimal;
 
 /**
  * Specific Report class for DisplayKeywordPerformanceReports
- *
- * @author zhuoc@google.com (Zhuo Chen)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

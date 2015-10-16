@@ -32,7 +32,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 

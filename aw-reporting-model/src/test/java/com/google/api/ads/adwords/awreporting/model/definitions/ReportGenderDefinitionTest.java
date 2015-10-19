@@ -67,7 +67,7 @@ AbstractReportDefinitionTest<ReportGender> {
     Assert.assertEquals("enabled", row.getCampaignStatus());
     
     Assert.assertEquals(0.00, row.getConversionValueBigDecimal().doubleValue());
-    Assert.assertEquals(0.00, row.getCostPerConversionManyPerClick().doubleValue());
+    Assert.assertEquals(0.00, row.getCostPerConversion().doubleValue());
     
     Assert.assertEquals(0.00, row.getMaxCpc().doubleValue());
     Assert.assertEquals("ad group criteria", row.getCpcBidSource());
@@ -113,7 +113,7 @@ AbstractReportDefinitionTest<ReportGender> {
     Assert.assertEquals("enabled", row.getCampaignStatus());
     
     Assert.assertEquals(0.00, row.getConversionValueBigDecimal().doubleValue());
-    Assert.assertEquals(0.00, row.getCostPerConversionManyPerClick().doubleValue());
+    Assert.assertEquals(0.00, row.getCostPerConversion().doubleValue());
     
     Assert.assertEquals(2.50, row.getMaxCpc().doubleValue());
     Assert.assertEquals("ad group criteria", row.getCpcBidSource());
@@ -161,28 +161,51 @@ AbstractReportDefinitionTest<ReportGender> {
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "VideoQuartile25Rate",
+        "VideoQuartile50Rate",
+        "VideoQuartile75Rate",
+        "VideoQuartile100Rate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to Campaign Performance Report
         "ActiveViewCpm",
+        "ActiveViewCtr",
         "ActiveViewImpressions",
+        "ActiveViewMeasurability",
+        "ActiveViewMeasurableCost",
+        "ActiveViewMeasurableImpressions",
+        "ActiveViewViewability",
         "AdGroupId",
         "AdGroupName",
         "AdGroupStatus",

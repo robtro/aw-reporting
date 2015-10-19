@@ -115,6 +115,10 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   @CsvField(value = "Top vs. Other", reportField = "Slot")
   private String slot;
   
+  @Column(name = "GEO_TARGETING_CRITERION_ID")
+  @CsvField(value = "Target location", reportField = "GeoTargetingCriterionId")
+  private Long geoTargetingCriterionId;
+  
   /**
    * Hibernate needs an empty constructor
    */
@@ -346,5 +350,13 @@ public class ReportPlaceholderFeedItem extends ReportBase {
 
   public void setSlot(String slot) {
     this.slot = slot;
+  }
+  
+  public Long getGeoTargetingCriterionId() {
+    return geoTargetingCriterionId;
+  }
+  
+  public void setGeoTargetingCriterionId(Long geoTargetingCriterionId) {
+    this.geoTargetingCriterionId = geoTargetingCriterionId;
   }
 }

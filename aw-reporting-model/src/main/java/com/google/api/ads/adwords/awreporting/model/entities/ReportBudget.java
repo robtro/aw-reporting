@@ -32,9 +32,9 @@ import javax.persistence.Table;
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportBudget")
 @CsvReport(value = ReportDefinitionReportType.BUDGET_PERFORMANCE_REPORT,
-    reportExclusions = {"ExternalCustomerId", "AccountDescriptiveName", "AccountCurrencyCode",
-    "AccountTimeZoneId", "CustomerDescriptiveName", "PrimaryCompanyName",
-    "Date", "DayOfWeek", "Week", "Month", "MonthOfYear", "Quarter", "Year"})
+    reportExclusions = {"AccountCurrencyCode", "AccountTimeZoneId",
+        "CustomerDescriptiveName", "PrimaryCompanyName",
+        "Date", "DayOfWeek", "Week", "Month", "MonthOfYear", "Quarter", "Year"})
 public class ReportBudget extends ReportBase {
 
   @Column(name = "AMOUNT")

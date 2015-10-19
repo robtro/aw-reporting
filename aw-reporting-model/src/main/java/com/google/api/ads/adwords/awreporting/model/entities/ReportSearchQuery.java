@@ -2,7 +2,10 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
+import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,8 +65,8 @@ public class ReportSearchQuery extends ReportBase {
   private String keywordTextMatchingQuery;
 
   @Column(name = "MATCH_TYPE")
-  @CsvField(value = "Match type", reportField = "MatchType")
-  private String matchType;
+  @CsvField(value = "Match type", reportField = "QueryMatchTypeWithVariant")
+  private String queryMatchTypeWithVariant;
 
   @Column(name = "QUERY")
   @CsvField(value = "Search term", reportField = "Query")
@@ -76,6 +79,22 @@ public class ReportSearchQuery extends ReportBase {
   @Column(name = "FINAL_URL", length = 2048)
   @CsvField(value = "Final URL", reportField = "FinalUrl")
   private String finalUrl;
+  
+  @Column(name = "VIDEO_QUARTILE_25_RATE")
+  @CsvField(value = "Video played to 25%", reportField = "VideoQuartile25Rate")
+  private BigDecimal videoQuartile25Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_50_RATE")
+  @CsvField(value = "Video played to 50%", reportField = "VideoQuartile50Rate")
+  private BigDecimal videoQuartile50Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_75_RATE")
+  @CsvField(value = "Video played to 75%", reportField = "VideoQuartile75Rate")
+  private BigDecimal videoQuartile75Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_100_RATE")
+  @CsvField(value = "Video played to 100%", reportField = "VideoQuartile100Rate")
+  private BigDecimal videoQuartile100Rate;
 
   @Override
   public void setId() {
@@ -206,12 +225,12 @@ public class ReportSearchQuery extends ReportBase {
     this.keywordTextMatchingQuery = keywordTextMatchingQuery;
   }
 
-  public String getMatchType() {
-    return matchType;
+  public String getQueryMatchTypeWithVariant() {
+    return queryMatchTypeWithVariant;
   }
 
-  public void setMatchType(String matchType) {
-    this.matchType = matchType;
+  public void setQueryMatchTypeWithVariant(String queryMatchTypeWithVariant) {
+    this.queryMatchTypeWithVariant = queryMatchTypeWithVariant;
   }
 
   public String getQuery() {
@@ -236,5 +255,53 @@ public class ReportSearchQuery extends ReportBase {
   
   public void setFinalUrl(String finalUrl) {
     this.finalUrl = finalUrl;
+  }
+
+  public String getVideoQuartile25Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile25Rate);
+  }
+  
+  public BigDecimal getVideoQuartile25RateBigDecimal() {
+    return videoQuartile25Rate;
+  }
+  
+  public void setVideoQuartile25Rate(String videoQuartile25Rate) {
+    this.videoQuartile25Rate = BigDecimalUtil.parseFromNumberString(videoQuartile25Rate);
+  }
+
+  public String getVideoQuartile50Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile50Rate);
+  }
+  
+  public BigDecimal getVideoQuartile50RateBigDecimal() {
+    return videoQuartile50Rate;
+  }
+  
+  public void setVideoQuartile50Rate(String videoQuartile50Rate) {
+    this.videoQuartile50Rate = BigDecimalUtil.parseFromNumberString(videoQuartile50Rate);
+  }
+
+  public String getVideoQuartile75Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile75Rate);
+  }
+  
+  public BigDecimal getVideoQuartile75RateBigDecimal() {
+    return videoQuartile75Rate;
+  }
+  
+  public void setVideoQuartile75Rate(String videoQuartile75Rate) {
+    this.videoQuartile75Rate = BigDecimalUtil.parseFromNumberString(videoQuartile75Rate);
+  }
+
+  public String getVideoQuartile100Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile100Rate);
+  }
+  
+  public BigDecimal getVideoQuartile100RateBigDecimal() {
+    return videoQuartile100Rate;
+  }
+  
+  public void setVideoQuartile100Rate(String videoQuartile100Rate) {
+    this.videoQuartile100Rate = BigDecimalUtil.parseFromNumberString(videoQuartile100Rate);
   }
 }

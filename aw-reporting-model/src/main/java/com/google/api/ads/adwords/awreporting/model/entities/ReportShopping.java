@@ -28,7 +28,14 @@ import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 @Entity
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportShopping")
-@CsvReport(value = ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT)
+@CsvReport(value = ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT,
+           reportExclusions = {
+               "AccountCurrencyCode", "AccountTimeZoneId", "CustomerDescriptiveName", "PrimaryCompanyName",
+               "AverageCost", "AverageCpm", "AverageCpe", "AverageCpv",
+               "Engagements", "EngagementRate", "Interactions", "InteractionRate",
+               "AllConversions", "AllConversionRate", "AllConversionValue", "CostPerAllConversion", "ValuePerAllConversion",
+               "VideoViews", "VideoViewRate"
+           })
 public class ReportShopping extends ReportBase {
 
   @Column(name = "ADGROUP_ID")
@@ -38,6 +45,10 @@ public class ReportShopping extends ReportBase {
   @Column(name = "ADGROUP_NAME", length = 255)
   @CsvField(value = "Ad group", reportField = "AdGroupName")
   private String adGroupName;
+  
+  @Column(name = "ADGROUP_STATUS")
+  @CsvField(value = "Ad group state", reportField = "AdGroupStatus")
+  private String adGroupStatus;
 
   @Column(name = "AGGREGATOR_ID")
   @CsvField(value = "MCA Id", reportField = "AggregatorId")
@@ -54,6 +65,10 @@ public class ReportShopping extends ReportBase {
   @Column(name = "CAMPAIGN_NAME", length = 255)
   @CsvField(value = "Campaign", reportField = "CampaignName")
   private String campaignName;
+  
+  @Column(name = "CAMPAIGN_STATUS")
+  @CsvField(value = "Campaign state", reportField = "CampaignStatus")
+  private String campaignStatus;
 
   @Column(name = "CATEGORY_L1", length = 255)
   @CsvField(value = "Category (1st level)", reportField = "CategoryL1")
@@ -146,6 +161,10 @@ public class ReportShopping extends ReportBase {
   @Column(name = "CHANNEL_EXCLUSIVITY")
   @CsvField(value = "Channel Exclusivity", reportField = "ChannelExclusivity")
   private String channelExclusivity;
+  
+  @Column(name = "CONVERSION_TRACKER_ID")
+  @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
+  private Long conversionTrackerId;
 
   /**
    * Hibernate needs an empty constructor
@@ -205,6 +224,14 @@ public class ReportShopping extends ReportBase {
     this.adGroupName = adGroupName;
   }
   
+  public String getAdGroupStatus() {
+    return adGroupStatus;
+  }
+  
+  public void setAdGroupStatus(String adGroupStatus) {
+    this.adGroupStatus = adGroupStatus;
+  }
+  
   public Long getAggregatorId() {
     return aggregatorId;
   }
@@ -235,6 +262,14 @@ public class ReportShopping extends ReportBase {
 
   public void setCampaignName(String campaignName) {
     this.campaignName = campaignName;
+  }
+  
+  public String getCampaignStatus() {
+    return campaignStatus;
+  }
+  
+  public void setCampaignStatus(String campaignStatus) {
+    this.campaignStatus = campaignStatus;
   }
 
   public String getCategoryL1() {
@@ -420,5 +455,13 @@ public class ReportShopping extends ReportBase {
   
   public void setChannelExclusivity(String channelExclusivity) {
     this.channelExclusivity = channelExclusivity;
+  }
+  
+  public Long getConversionTrackerId() {
+    return conversionTrackerId;
+  }
+  
+  public void setConversionTrackerId(Long conversionTrackerId) {
+    this.conversionTrackerId = conversionTrackerId;
   }
 }

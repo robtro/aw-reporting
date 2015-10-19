@@ -168,24 +168,39 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("Clicks"));
     Assert.assertTrue(propertiesToSelect.contains("Impressions"));
     Assert.assertTrue(propertiesToSelect.contains("Ctr"));
+    Assert.assertTrue(propertiesToSelect.contains("AverageCost"));
     Assert.assertTrue(propertiesToSelect.contains("AverageCpm"));
     Assert.assertTrue(propertiesToSelect.contains("AverageCpc"));
+    Assert.assertTrue(propertiesToSelect.contains("AverageCpe"));
+    Assert.assertTrue(propertiesToSelect.contains("AverageCpv"));
     Assert.assertTrue(propertiesToSelect.contains("AveragePosition"));
     Assert.assertTrue(propertiesToSelect.contains("Device"));
     Assert.assertTrue(propertiesToSelect.contains("ClickType"));
     Assert.assertTrue(propertiesToSelect.contains("AdNetworkType1"));
     Assert.assertTrue(propertiesToSelect.contains("AdNetworkType2"));
-    Assert.assertTrue(propertiesToSelect.contains("ConversionsManyPerClick"));
-    Assert.assertTrue(propertiesToSelect.contains("ConversionRateManyPerClick"));
-    Assert.assertTrue(propertiesToSelect.contains("CostPerConversionManyPerClick"));
-    Assert.assertTrue(propertiesToSelect.contains("ValuePerConversionManyPerClick"));
+    Assert.assertTrue(propertiesToSelect.contains("Engagements"));
+    Assert.assertTrue(propertiesToSelect.contains("EngagementRate"));
+    Assert.assertTrue(propertiesToSelect.contains("Interactions"));
+    Assert.assertTrue(propertiesToSelect.contains("InteractionRate"));
+    Assert.assertTrue(propertiesToSelect.contains("VideoViews"));
+    Assert.assertTrue(propertiesToSelect.contains("VideoViewRate"));
+    Assert.assertTrue(propertiesToSelect.contains("Conversions"));
+    Assert.assertTrue(propertiesToSelect.contains("ConversionRate"));
+    Assert.assertTrue(propertiesToSelect.contains("ConversionValue"));
+    Assert.assertTrue(propertiesToSelect.contains("CostPerConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("ValuePerConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("AllConversions"));
+    Assert.assertTrue(propertiesToSelect.contains("AllConversionRate"));
+    Assert.assertTrue(propertiesToSelect.contains("AllConversionValue"));
+    Assert.assertTrue(propertiesToSelect.contains("CostPerAllConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("ValuePerAllConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("CrossDeviceConversions"));
     Assert.assertTrue(propertiesToSelect.contains("ConvertedClicks"));
     Assert.assertTrue(propertiesToSelect.contains("ClickConversionRate"));
     Assert.assertTrue(propertiesToSelect.contains("CostPerConvertedClick"));
     Assert.assertTrue(propertiesToSelect.contains("ValuePerConvertedClick"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionCategoryName"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionTypeName"));
-    Assert.assertTrue(propertiesToSelect.contains("ConversionValue"));
     Assert.assertTrue(propertiesToSelect.contains("ViewThroughConversions"));
 
     Assert.assertTrue(propertiesToSelect.contains("SearchImpressionShare"));
@@ -200,11 +215,16 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("IsAutoTaggingEnabled"));
     Assert.assertTrue(propertiesToSelect.contains("IsTestAccount"));
     Assert.assertTrue(propertiesToSelect.contains("ActiveViewCpm"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewCtr"));
     Assert.assertTrue(propertiesToSelect.contains("ActiveViewImpressions"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewMeasurability"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewMeasurableCost"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewMeasurableImpressions"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewViewability"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionTrackerId"));
     Assert.assertTrue(propertiesToSelect.contains("Slot"));
 
-    Assert.assertEquals(51, propertiesToSelect.size());
+    Assert.assertEquals(71, propertiesToSelect.size());
   }
 
   /**

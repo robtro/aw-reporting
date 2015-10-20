@@ -5,7 +5,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.UrlHashUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -88,13 +88,49 @@ public class ReportUrl extends ReportBase {
   @MoneyField
   private BigDecimal activeViewCpm;
   
+  @Column(name = "ACTIVE_VIEW_CTR")
+  @CsvField(value = "Active View viewable CTR", reportField = "ActiveViewCtr")
+  private BigDecimal activeViewCtr;
+  
   @Column(name = "ACTIVE_VIEW_IMPRESSIONS")
-  @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewImpressions")
+  @CsvField(value = "Active View viewable impressions", reportField = "ActiveViewImpressions")
   private Long activeViewImpressions;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABILITY")
+  @CsvField(value = "Active View measurable impr. / impr.", reportField = "ActiveViewMeasurability")
+  private BigDecimal activeViewMeasurability;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABLE_COST")
+  @CsvField(value = "Active View measurable cost", reportField = "ActiveViewMeasurableCost")
+  private Long activeViewMeasurableCost;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABLE_IMPRESSIONS")
+  @CsvField(value = "Active View measurable impr.", reportField = "ActiveViewMeasurableImpressions")
+  private Long activeViewMeasurableImpressions;
+  
+  @Column(name = "ACTIVE_VIEW_VIEWABILITY")
+  @CsvField(value = "Active View viewable impr. / measurable impr.", reportField = "ActiveViewViewability")
+  private BigDecimal activeViewViewability;
   
   @Column(name = "CONVERSION_TRACKER_ID")
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
   private Long conversionTrackerId;
+  
+  @Column(name = "VIDEO_QUARTILE_25_RATE")
+  @CsvField(value = "Video played to 25%", reportField = "VideoQuartile25Rate")
+  private BigDecimal videoQuartile25Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_50_RATE")
+  @CsvField(value = "Video played to 50%", reportField = "VideoQuartile50Rate")
+  private BigDecimal videoQuartile50Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_75_RATE")
+  @CsvField(value = "Video played to 75%", reportField = "VideoQuartile75Rate")
+  private BigDecimal videoQuartile75Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_100_RATE")
+  @CsvField(value = "Video played to 100%", reportField = "VideoQuartile100Rate")
+  private BigDecimal videoQuartile100Rate;
 
   /**
    * Hibernate needs an empty constructor
@@ -272,6 +308,18 @@ public class ReportUrl extends ReportBase {
     this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
   }
   
+  public String getActiveViewCtr() {
+    return BigDecimalUtil.formatAsReadable(activeViewCtr);
+  }
+
+  public BigDecimal getActiveViewCtrBigDecimal() {
+    return activeViewCtr;
+  }
+
+  public void setActiveViewCtr(String activeViewCtr) {
+    this.activeViewCtr = BigDecimalUtil.parseFromNumberString(activeViewCtr);
+  }
+  
   public Long getActiveViewImpressions() {
     return activeViewImpressions;
   }
@@ -280,11 +328,99 @@ public class ReportUrl extends ReportBase {
     this.activeViewImpressions = activeViewImpressions;
   }
   
+  public String getActiveViewMeasurability() {
+    return BigDecimalUtil.formatAsReadable(activeViewMeasurability);
+  }
+  
+  public BigDecimal getActiveViewMeasurabilityBigDecimal() {
+    return activeViewMeasurability;
+  }
+  
+  public void setActiveViewMeasurability(String activeViewMeasurability) {
+    this.activeViewMeasurability = BigDecimalUtil.parseFromNumberString(activeViewMeasurability);
+  }
+  
+  public Long getActiveViewMeasurableCost() {
+    return activeViewMeasurableCost;
+  }
+  
+  public void setActiveViewMeasurableCost(Long activeViewMeasurableCost) {
+    this.activeViewMeasurableCost = activeViewMeasurableCost;
+  }
+  
+  public Long getActiveViewMeasurableImpressions() {
+    return activeViewMeasurableImpressions;
+  }
+  
+  public void setActiveViewMeasurableImpressions(Long activeViewMeasurableImpressions) {
+    this.activeViewMeasurableImpressions = activeViewMeasurableImpressions;
+  }
+  
+  public String getActiveViewViewability() {
+    return BigDecimalUtil.formatAsReadable(activeViewViewability);
+  }
+  
+  public BigDecimal getActiveViewViewabilityBigDecimal() {
+    return activeViewViewability;
+  }
+  
+  public void setActiveViewViewability(String activeViewViewability) {
+    this.activeViewViewability = BigDecimalUtil.parseFromNumberString(activeViewViewability);
+  }
+  
   public Long getConversionTrackerId() {
     return conversionTrackerId;
   }
   
   public void setConversionTrackerId(Long conversionTrackerId) {
     this.conversionTrackerId = conversionTrackerId;
+  }
+
+  public String getVideoQuartile25Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile25Rate);
+  }
+  
+  public BigDecimal getVideoQuartile25RateBigDecimal() {
+    return videoQuartile25Rate;
+  }
+  
+  public void setVideoQuartile25Rate(String videoQuartile25Rate) {
+    this.videoQuartile25Rate = BigDecimalUtil.parseFromNumberString(videoQuartile25Rate);
+  }
+
+  public String getVideoQuartile50Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile50Rate);
+  }
+  
+  public BigDecimal getVideoQuartile50RateBigDecimal() {
+    return videoQuartile50Rate;
+  }
+  
+  public void setVideoQuartile50Rate(String videoQuartile50Rate) {
+    this.videoQuartile50Rate = BigDecimalUtil.parseFromNumberString(videoQuartile50Rate);
+  }
+
+  public String getVideoQuartile75Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile75Rate);
+  }
+  
+  public BigDecimal getVideoQuartile75RateBigDecimal() {
+    return videoQuartile75Rate;
+  }
+  
+  public void setVideoQuartile75Rate(String videoQuartile75Rate) {
+    this.videoQuartile75Rate = BigDecimalUtil.parseFromNumberString(videoQuartile75Rate);
+  }
+
+  public String getVideoQuartile100Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile100Rate);
+  }
+  
+  public BigDecimal getVideoQuartile100RateBigDecimal() {
+    return videoQuartile100Rate;
+  }
+  
+  public void setVideoQuartile100Rate(String videoQuartile100Rate) {
+    this.videoQuartile100Rate = BigDecimalUtil.parseFromNumberString(videoQuartile100Rate);
   }
 }

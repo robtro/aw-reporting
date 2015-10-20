@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -127,20 +127,37 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionManyPerClickSignificance",
-        "ConversionRateManyPerClickSignificance",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "CostPerConversionManyPerClickSignificance",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "VideoQuartile25Rate",
+        "VideoQuartile50Rate",
+        "VideoQuartile75Rate",
+        "VideoQuartile100Rate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
+        "CrossDeviceConversions",
         "ConvertedClicks",
         "ClickConversionRate",
         "ClickConversionRateSignificance",
@@ -150,7 +167,6 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to AdGroup Performance Report
         "CampaignId",
@@ -165,7 +181,12 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "SearchExactMatchImpressionShare",
         "Labels",
         "ActiveViewCpm",
+        "ActiveViewCtr",
         "ActiveViewImpressions",
+        "ActiveViewMeasurability",
+        "ActiveViewMeasurableCost",
+        "ActiveViewMeasurableImpressions",
+        "ActiveViewViewability",
         "ConversionTrackerId",
         "TrackingUrlTemplate",
         "UrlCustomParameters",
@@ -177,7 +198,10 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "GmailForwards",
         "GmailSaves",
         "GmailSecondaryClicks",
-        "Slot"
+        "Slot",
+        "CpvBid",
+        "EnhancedCpcEnabled",
+        "EnhancedCpvEnabled"
     };
   }
 }

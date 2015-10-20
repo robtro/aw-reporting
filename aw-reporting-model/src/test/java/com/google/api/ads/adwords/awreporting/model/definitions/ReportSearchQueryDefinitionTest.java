@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportSearchQuery;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -62,7 +62,7 @@ public class ReportSearchQueryDefinitionTest extends
         first.getDestinationUrl());
     Assert.assertEquals(28062339723L, first.getKeywordId().longValue());
     Assert.assertEquals("venus boutique hotel", first.getKeywordTextMatchingQuery());
-    Assert.assertEquals("exact", first.getMatchType());
+    Assert.assertEquals("exact", first.getQueryMatchTypeWithVariant());
     Assert.assertEquals("venus boutique hotel", first.getQuery());
     Assert.assertEquals("0.00", first.getConversionValue());
     Assert.assertEquals("Google:CHN:PTX", first.getAccountDescriptiveName());
@@ -83,11 +83,11 @@ public class ReportSearchQueryDefinitionTest extends
     Assert.assertEquals("0.00", first.getClickConversionRate());
     Assert.assertEquals(0d, first.getCostPerConvertedClick().doubleValue());
     Assert.assertEquals("0.00", first.getValuePerConvertedClick());
-    Assert.assertEquals(0L, first.getConversionsManyPerClick().longValue());
-    Assert.assertEquals("0.00", first.getConversionRateManyPerClick());
+    Assert.assertEquals("0.00", first.getConversions());
+    Assert.assertEquals("0.00", first.getConversionRate());
 
-    Assert.assertEquals(0d, first.getCostPerConversionManyPerClick().doubleValue());
-    Assert.assertEquals("0.00", first.getValuePerConversionManyPerClick());
+    Assert.assertEquals(0d, first.getCostPerConversion().doubleValue());
+    Assert.assertEquals("0.00", first.getValuePerConversion());
     Assert.assertEquals(0L, first.getViewThroughConversions().longValue());
 
   }
@@ -114,7 +114,7 @@ public class ReportSearchQueryDefinitionTest extends
         last.getDestinationUrl());
     Assert.assertEquals(20178705101L, last.getKeywordId().longValue());
     Assert.assertEquals("titan times hotel xi'an", last.getKeywordTextMatchingQuery());
-    Assert.assertEquals("exact (close variant)", last.getMatchType());
+    Assert.assertEquals("exact (close variant)", last.getQueryMatchTypeWithVariant());
     Assert.assertEquals("titan times hotel xian", last.getQuery());
     Assert.assertEquals("0.00", last.getConversionValue());
     Assert.assertEquals("Google:CHN:PTX", last.getAccountDescriptiveName());
@@ -135,11 +135,11 @@ public class ReportSearchQueryDefinitionTest extends
     Assert.assertEquals("0.00", last.getClickConversionRate());
     Assert.assertEquals(0d, last.getCostPerConvertedClick().doubleValue());
     Assert.assertEquals("0.00", last.getValuePerConvertedClick());
-    Assert.assertEquals(0L, last.getConversionsManyPerClick().longValue());
-    Assert.assertEquals("0.00", last.getConversionRateManyPerClick());
+    Assert.assertEquals("0.00", last.getConversions());
+    Assert.assertEquals("0.00", last.getConversionRate());
 
-    Assert.assertEquals(0d, last.getCostPerConversionManyPerClick().doubleValue());
-    Assert.assertEquals("0.00", last.getValuePerConversionManyPerClick());
+    Assert.assertEquals(0d, last.getCostPerConversion().doubleValue());
+    Assert.assertEquals("0.00", last.getValuePerConversion());
     Assert.assertEquals(0L, last.getViewThroughConversions().longValue());
 
   }
@@ -181,24 +181,42 @@ public class ReportSearchQueryDefinitionTest extends
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "VideoQuartile25Rate",
+        "VideoQuartile50Rate",
+        "VideoQuartile75Rate",
+        "VideoQuartile100Rate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to Search Query Performance Report
         "AdFormat",
@@ -212,7 +230,7 @@ public class ReportSearchQueryDefinitionTest extends
         "DestinationUrl",
         "KeywordId",
         "KeywordTextMatchingQuery",
-        "MatchType",
+        "QueryMatchTypeWithVariant",
         "Query",
         "ConversionTrackerId",
         "FinalUrl"

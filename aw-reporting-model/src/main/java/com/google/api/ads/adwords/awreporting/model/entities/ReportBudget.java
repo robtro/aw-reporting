@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -32,9 +32,9 @@ import javax.persistence.Table;
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportBudget")
 @CsvReport(value = ReportDefinitionReportType.BUDGET_PERFORMANCE_REPORT,
-    reportExclusions = {"ExternalCustomerId", "AccountDescriptiveName", "AccountCurrencyCode",
-    "AccountTimeZoneId", "CustomerDescriptiveName", "PrimaryCompanyName",
-    "Date", "DayOfWeek", "Week", "Month", "MonthOfYear", "Quarter", "Year"})
+    reportExclusions = {"AccountCurrencyCode", "AccountTimeZoneId",
+        "CustomerDescriptiveName", "PrimaryCompanyName",
+        "Date", "DayOfWeek", "Week", "Month", "MonthOfYear", "Quarter", "Year"})
 public class ReportBudget extends ReportBase {
 
   @Column(name = "AMOUNT")

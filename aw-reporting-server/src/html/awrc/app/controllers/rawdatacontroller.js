@@ -83,9 +83,6 @@
       name : 'adNetwork',
       show : false
     }, {
-      name : 'conversionsManyPerClick',
-      show : false
-    }, {
       name : 'viewThroughConversions',
       show : false
     }, {
@@ -140,9 +137,6 @@
       show : false
     }, {
       name : 'avgPosition',
-      show : false
-    }, {
-      name : 'conversionsManyPerClick',
       show : false
     }, {
       name : 'conversions',

@@ -21,7 +21,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBase;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import au.com.bytecode.opencsv.CSVReader;
 

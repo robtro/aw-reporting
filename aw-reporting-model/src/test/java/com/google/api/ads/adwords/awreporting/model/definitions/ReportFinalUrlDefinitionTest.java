@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportFinalUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -60,12 +60,12 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(0L, row.getClicks().longValue());
     Assert.assertEquals("Headline", row.getClickType());
     
-    Assert.assertEquals(0.00, row.getConversionRateManyPerClickBigDecimal().doubleValue());
-    Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
+    Assert.assertEquals(0.00, row.getConversionRateBigDecimal().doubleValue());
+    Assert.assertEquals(0.00, row.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(0.00, row.getConversionValueBigDecimal().doubleValue());
     
     Assert.assertEquals(0.00, row.getCost().doubleValue());
-    Assert.assertEquals(0.00, row.getCostPerConversionManyPerClick().doubleValue());
+    Assert.assertEquals(0.00, row.getCostPerConversion().doubleValue());
     Assert.assertEquals("Content", row.getCriteriaParameters());
     Assert.assertEquals("Broad", row.getCriteriaTypeName());
     
@@ -80,7 +80,7 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals("2015-07-01", row.getQuarter());
     
     Assert.assertEquals("Google Display Network", row.getSlot());
-    Assert.assertEquals(0.00, row.getValuePerConversionManyPerClickBigDecimal().doubleValue());
+    Assert.assertEquals(0.00, row.getValuePerConversionBigDecimal().doubleValue());
     Assert.assertEquals("2015-08-24", row.getWeek());
     Assert.assertEquals(2015L, row.getYear().longValue());
     
@@ -107,12 +107,12 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(1L, row.getClicks().longValue());
     Assert.assertEquals("Headline", row.getClickType());
     
-    Assert.assertEquals(0.00, row.getConversionRateManyPerClickBigDecimal().doubleValue());
-    Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
+    Assert.assertEquals(0.00, row.getConversionRateBigDecimal().doubleValue());
+    Assert.assertEquals(0.00, row.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(0.00, row.getConversionValueBigDecimal().doubleValue());
     
     Assert.assertEquals(0.24, row.getCost().doubleValue());
-    Assert.assertEquals(0.00, row.getCostPerConversionManyPerClick().doubleValue());
+    Assert.assertEquals(0.00, row.getCostPerConversion().doubleValue());
     Assert.assertEquals("Content", row.getCriteriaParameters());
     Assert.assertEquals("Broad", row.getCriteriaTypeName());
     
@@ -127,7 +127,7 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals("2015-07-01", row.getQuarter());
     
     Assert.assertEquals("Google Display Network", row.getSlot());
-    Assert.assertEquals(0.00, row.getValuePerConversionManyPerClickBigDecimal().doubleValue());
+    Assert.assertEquals(0.00, row.getValuePerConversionBigDecimal().doubleValue());
     Assert.assertEquals("2015-08-31", row.getWeek());
     Assert.assertEquals(2015L, row.getYear().longValue());
   }
@@ -160,28 +160,47 @@ public class ReportFinalUrlDefinitionTest extends AbstractReportDefinitionTest<R
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to Final URL Performance Report
         "ActiveViewCpm",
+        "ActiveViewCtr",
         "ActiveViewImpressions",
+        "ActiveViewMeasurability",
+        "ActiveViewMeasurableCost",
+        "ActiveViewMeasurableImpressions",
+        "ActiveViewViewability",
         "AdGroupId",
         "AdGroupName",
         "AdGroupStatus",

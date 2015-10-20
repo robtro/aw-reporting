@@ -17,8 +17,9 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
+import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.UrlHashUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -40,9 +41,29 @@ public class ReportFinalUrl extends ReportBase {
   @MoneyField
   private BigDecimal activeViewCpm;
 
+  @Column(name = "ACTIVE_VIEW_CTR")
+  @CsvField(value = "Active View viewable CTR", reportField = "ActiveViewCtr")
+  private BigDecimal activeViewCtr;
+  
   @Column(name = "ACTIVE_VIEW_IMPRESSIONS")
   @CsvField(value = "Active View viewable impressions", reportField = "ActiveViewImpressions")
   private Long activeViewImpressions;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABILITY")
+  @CsvField(value = "Active View measurable impr. / impr.", reportField = "ActiveViewMeasurability")
+  private BigDecimal activeViewMeasurability;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABLE_COST")
+  @CsvField(value = "Active View measurable cost", reportField = "ActiveViewMeasurableCost")
+  private Long activeViewMeasurableCost;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABLE_IMPRESSIONS")
+  @CsvField(value = "Active View measurable impr.", reportField = "ActiveViewMeasurableImpressions")
+  private Long activeViewMeasurableImpressions;
+  
+  @Column(name = "ACTIVE_VIEW_VIEWABILITY")
+  @CsvField(value = "Active View viewable impr. / measurable impr.", reportField = "ActiveViewViewability")
+  private BigDecimal activeViewViewability;
   
   @Column(name = "AD_GROUP_ID")
   @CsvField(value = "Ad group ID", reportField = "AdGroupId")
@@ -150,12 +171,64 @@ public class ReportFinalUrl extends ReportBase {
     this.activeViewCpm = activeViewCpm;
   }
   
+  public String getActiveViewCtr() {
+    return BigDecimalUtil.formatAsReadable(activeViewCtr);
+  }
+
+  public BigDecimal getActiveViewCtrBigDecimal() {
+    return activeViewCtr;
+  }
+
+  public void setActiveViewCtr(String activeViewCtr) {
+    this.activeViewCtr = BigDecimalUtil.parseFromNumberString(activeViewCtr);
+  }
+  
   public Long getActiveViewImpressions() {
     return activeViewImpressions;
   }
   
   public void setActiveViewImpressions(Long activeViewImpressions) {
     this.activeViewImpressions = activeViewImpressions;
+  }
+  
+  public String getActiveViewMeasurability() {
+    return BigDecimalUtil.formatAsReadable(activeViewMeasurability);
+  }
+  
+  public BigDecimal getActiveViewMeasurabilityBigDecimal() {
+    return activeViewMeasurability;
+  }
+  
+  public void setActiveViewMeasurability(String activeViewMeasurability) {
+    this.activeViewMeasurability = BigDecimalUtil.parseFromNumberString(activeViewMeasurability);
+  }
+  
+  public Long getActiveViewMeasurableCost() {
+    return activeViewMeasurableCost;
+  }
+  
+  public void setActiveViewMeasurableCost(Long activeViewMeasurableCost) {
+    this.activeViewMeasurableCost = activeViewMeasurableCost;
+  }
+  
+  public Long getActiveViewMeasurableImpressions() {
+    return activeViewMeasurableImpressions;
+  }
+  
+  public void setActiveViewMeasurableImpressions(Long activeViewMeasurableImpressions) {
+    this.activeViewMeasurableImpressions = activeViewMeasurableImpressions;
+  }
+  
+  public String getActiveViewViewability() {
+    return BigDecimalUtil.formatAsReadable(activeViewViewability);
+  }
+  
+  public BigDecimal getActiveViewViewabilityBigDecimal() {
+    return activeViewViewability;
+  }
+  
+  public void setActiveViewViewability(String activeViewViewability) {
+    this.activeViewViewability = BigDecimalUtil.parseFromNumberString(activeViewViewability);
   }
   
   public Long getAdGroupId() {

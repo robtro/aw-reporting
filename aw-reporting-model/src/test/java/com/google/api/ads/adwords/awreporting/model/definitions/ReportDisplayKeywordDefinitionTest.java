@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDisplayKeyword;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -131,24 +131,42 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "VideoQuartile25Rate",
+        "VideoQuartile50Rate",
+        "VideoQuartile75Rate",
+        "VideoQuartile100Rate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to Display Keyword Performance Report
         "AdGroupId",
@@ -168,7 +186,12 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
         "CpmBid",
         "TargetingSetting",
         "ActiveViewCpm",
+        "ActiveViewCtr",
         "ActiveViewImpressions",
+        "ActiveViewMeasurability",
+        "ActiveViewMeasurableCost",
+        "ActiveViewMeasurableImpressions",
+        "ActiveViewViewability",
         "ConversionTrackerId",
         "FinalAppUrls",
         "FinalMobileUrls",
@@ -177,7 +200,9 @@ public class ReportDisplayKeywordDefinitionTest extends AbstractReportDefinition
         "UrlCustomParameters",
         "GmailForwards",
         "GmailSaves",
-        "GmailSecondaryClicks"
+        "GmailSecondaryClicks",
+        "CpvBid",
+        "CpvBidSource"
     };
   }
 }

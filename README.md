@@ -13,7 +13,7 @@ Please let us know if you run into issues in the project's issue tracker (https:
 ## Overview
 AwReporting is an open-source Java framework for large scale AdWords API reporting.
 
-* 18 common reports are included in the reference implementation. You can easily follow the code examples to implement more. 
+* 21 common reports are included in the reference implementation. You can easily follow the code examples to implement more.
 
 * Reports are stored in your **relational database**, so you can integrate them with your existing systems.
 
@@ -182,6 +182,10 @@ To run the schema generation, just go to a command line, cd into aw-reporting-mo
 This will create a "schema.sql" in the "target/" folder of the project.
 
 *Important Note*: The schema creates the whole database assuming that none of the tables were created before. To update the database you will need to go through the SQL file and delete the unnecessary code. 
+
+### Upgrade to new AdWords API versions
+
+We will keep migrating aw-reporting to the latest AdWords API version. However please note that besides code changes that you can just pull from github, the database tables’ column names may also be changed (addition / removal / renamning) to reflect the new report field changes (please refer to the [release notes](https://developers.google.com/adwords/api/docs/reference/) for details). Since these changes may be scattered around many tables, you can run this version of AwReporting on a new database schema, then use the schema generation command to generate both database schemas and compare them. You can also create SQL scripts to import data from old database tables to new ones.
 
 ## Details about the code
 

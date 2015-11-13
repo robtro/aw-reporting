@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -30,9 +30,6 @@ import javax.persistence.Table;
 
 /**
  * Specific report class for ReportAd
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity
@@ -85,28 +82,20 @@ public class ReportAd extends ReportBase {
   @Column(name = "CREATIVE_APPROVAL_STATUS", length = 32)
   @CsvField(value = "Ad Approval Status", reportField = "CreativeApprovalStatus")
   private String creativeApprovalStatus;
+  
+  @Column(name = "ADGROUPAD_DISAPPROVAL_REASONS", length=2048)
+  @CsvField(value = "Disapproval reasons", reportField = "AdGroupAdDisapprovalReasons")
+  private String adGroupAdDisapprovalReasons;
+  
+  @Column(name = "ADGROUPAD_TRADEMARK_DISAPPROVED")
+  @CsvField(value = "Trademark Disapproved", reportField = "AdGroupAdTrademarkDisapproved")
+  private boolean adGroupAdTrademarkDisapproved;
 
   @Column(name = "CLICKCONVERSIONRATESIGNIFICANCE")
   @CsvField(
       value = "Click conversion rate ACE indicator",
       reportField = "ClickConversionRateSignificance")
   private BigDecimal clickConversionRateSignificance;
-
-  @Column(name = "CONVERSIONRATEMANYPERCLICKSIGNIFICANCE")
-  @CsvField(
-      value = "Conversion rate ACE indicator",
-      reportField = "ConversionRateManyPerClickSignificance")
-  private BigDecimal conversionRateManyPerClickSignificance;
-
-  @Column(name = "CONVERSIONMANYPERCLICKSIGNIFICANCE")
-  @CsvField(value = "Conversion ACE indicator", reportField = "ConversionManyPerClickSignificance")
-  private BigDecimal conversionManyPerClickSignificance;
-
-  @Column(name = "COSTPERCONVERSIONMANYPERCLICKSIGNIFICANCE")
-  @CsvField(
-      value = "Cost/conversion ACE indicator",
-      reportField = "CostPerConversionManyPerClickSignificance")
-  private BigDecimal costPerConversionManyPerClickSignificance;
 
   @Column(name = "CONVERTEDCLICKSSIGNIFICANCE")
   @CsvField(value = "Converted clicks ACE indicator", reportField = "ConvertedClicksSignificance")
@@ -156,11 +145,31 @@ public class ReportAd extends ReportBase {
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewCpm")
   @MoneyField
   private BigDecimal activeViewCpm;
-
+  
+  @Column(name = "ACTIVE_VIEW_CTR")
+  @CsvField(value = "Active View viewable CTR", reportField = "ActiveViewCtr")
+  private BigDecimal activeViewCtr;
+  
   @Column(name = "ACTIVE_VIEW_IMPRESSIONS")
-  @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewImpressions")
+  @CsvField(value = "Active View viewable impressions", reportField = "ActiveViewImpressions")
   private Long activeViewImpressions;
-
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABILITY")
+  @CsvField(value = "Active View measurable impr. / impr.", reportField = "ActiveViewMeasurability")
+  private BigDecimal activeViewMeasurability;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABLE_COST")
+  @CsvField(value = "Active View measurable cost", reportField = "ActiveViewMeasurableCost")
+  private Long activeViewMeasurableCost;
+  
+  @Column(name = "ACTIVE_VIEW_MEASURABLE_IMPRESSIONS")
+  @CsvField(value = "Active View measurable impr.", reportField = "ActiveViewMeasurableImpressions")
+  private Long activeViewMeasurableImpressions;
+  
+  @Column(name = "ACTIVE_VIEW_VIEWABILITY")
+  @CsvField(value = "Active View viewable impr. / measurable impr.", reportField = "ActiveViewViewability")
+  private BigDecimal activeViewViewability;
+  
   @Column(name = "CONVERSION_TRACKER_ID")
   @CsvField(value = "Conversion Tracker Id", reportField = "ConversionTrackerId")
   private Long conversionTrackerId;
@@ -204,6 +213,26 @@ public class ReportAd extends ReportBase {
   @Column(name = "GMAIL_SECONDARY_CLICKS")
   @CsvField(value = "Gmail clicks to website", reportField = "GmailSecondaryClicks")
   private Long gmailSecondaryClicks;
+  
+  @Column(name = "SLOT")
+  @CsvField(value = "Top vs. Other", reportField = "Slot")
+  private String slot;
+  
+  @Column(name = "VIDEO_QUARTILE_25_RATE")
+  @CsvField(value = "Video played to 25%", reportField = "VideoQuartile25Rate")
+  private BigDecimal videoQuartile25Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_50_RATE")
+  @CsvField(value = "Video played to 50%", reportField = "VideoQuartile50Rate")
+  private BigDecimal videoQuartile50Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_75_RATE")
+  @CsvField(value = "Video played to 75%", reportField = "VideoQuartile75Rate")
+  private BigDecimal videoQuartile75Rate;
+  
+  @Column(name = "VIDEO_QUARTILE_100_RATE")
+  @CsvField(value = "Video played to 100%", reportField = "VideoQuartile100Rate")
+  private BigDecimal videoQuartile100Rate;
 
   /**
    * Hibernate needs an empty constructor
@@ -245,6 +274,9 @@ public class ReportAd extends ReportBase {
     }
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
+    }
+    if (this.getSlot() != null && this.getSlot().length() > 0) {
+      this.id += "-" + this.getSlot();
     }
   }
 
@@ -372,58 +404,45 @@ public class ReportAd extends ReportBase {
   public void setCreativeApprovalStatus(String creativeApprovalStatus) {
     this.creativeApprovalStatus = creativeApprovalStatus;
   }
+  
+  public String getAdGroupAdDisapprovalReasons() {
+    return adGroupAdDisapprovalReasons;
+  }
+  
+  public boolean hasAdGroupAdDisapprovalReason(String adGroupAdDisapprovalReason) {
+    if (adGroupAdDisapprovalReasons != null && adGroupAdDisapprovalReasons.length() > 0) {
+      return Lists.newArrayList(adGroupAdDisapprovalReasons.split(";")).contains(adGroupAdDisapprovalReason);
+    } else {
+      return false;
+    }
+  }
+  
+  public void setAdGroupAdDisapprovalReasons(String adGroupAdDisapprovalReasons) {
+    this.adGroupAdDisapprovalReasons = adGroupAdDisapprovalReasons;
+  }
+  
+  public boolean isAdGroupAdTrademarkDisapproved() {
+    return adGroupAdTrademarkDisapproved;
+  }
 
+  public void setAdGroupAdTrademarkDisapproved(boolean adGroupAdTrademarkDisapproved) {
+    this.adGroupAdTrademarkDisapproved = adGroupAdTrademarkDisapproved;
+  }
+  
+  public void setAdGroupAdTrademarkDisapproved(String adGroupAdTrademarkDisapproved) {
+    this.adGroupAdTrademarkDisapproved = Boolean.parseBoolean(adGroupAdTrademarkDisapproved);
+  }
+  
   public String getClickConversionRateSignificance() {
     return BigDecimalUtil.formatAsReadable(clickConversionRateSignificance);
   }
-
+  
   public BigDecimal getClickConversionRateSignificanceBigDecimal() {
     return clickConversionRateSignificance;
   }
 
   public void setClickConversionRateSignificance(String clickConversionRateSignificance) {
-    this.clickConversionRateSignificance =
-        BigDecimalUtil.parseFromNumberString(clickConversionRateSignificance);
-  }
-
-  public String getConversionRateManyPerClickSignificance() {
-    return BigDecimalUtil.formatAsReadable(conversionRateManyPerClickSignificance);
-  }
-
-  public BigDecimal getConversionRateManyPerClickSignificanceBigDecimal() {
-    return conversionRateManyPerClickSignificance;
-  }
-
-  public void setConversionRateManyPerClickSignificance(
-      String conversionRateManyPerClickSignificance) {
-    this.conversionRateManyPerClickSignificance =
-        BigDecimalUtil.parseFromNumberString(conversionRateManyPerClickSignificance);
-  }
-
-  public String getConversionManyPerClickSignificance() {
-    return BigDecimalUtil.formatAsReadable(conversionManyPerClickSignificance);
-  }
-
-  public BigDecimal getConversionManyPerClickSignificanceBigDecimal() {
-    return conversionManyPerClickSignificance;
-  }
-
-  public void setConversionManyPerClickSignificance(String conversionManyPerClickSignificance) {
-    this.conversionManyPerClickSignificance =
-        BigDecimalUtil.parseFromNumberString(conversionManyPerClickSignificance);
-  }
-
-  public String getCostPerConversionManyPerClickSignificance() {
-    return BigDecimalUtil.formatAsReadable(costPerConversionManyPerClickSignificance);
-  }
-
-  public BigDecimal getCostPerConversionManyPerClickSignificanceBigDecimal() {
-    return costPerConversionManyPerClickSignificance;
-  }
-
-  public void setCostPerConversionManyPerClickSignificance(
-      BigDecimal costPerConversionManyPerClickSignificance) {
-    this.costPerConversionManyPerClickSignificance = costPerConversionManyPerClickSignificance;
+    this.clickConversionRateSignificance = BigDecimalUtil.parseFromNumberString(clickConversionRateSignificance);
   }
 
   public String getConvertedClicksSignificance() {
@@ -527,7 +546,19 @@ public class ReportAd extends ReportBase {
   public void setActiveViewCpm(String activeViewCpm) {
     this.activeViewCpm = BigDecimalUtil.parseFromNumberStringPercentage(activeViewCpm);
   }
+  
+  public String getActiveViewCtr() {
+    return BigDecimalUtil.formatAsReadable(activeViewCtr);
+  }
 
+  public BigDecimal getActiveViewCtrBigDecimal() {
+    return activeViewCtr;
+  }
+
+  public void setActiveViewCtr(String activeViewCtr) {
+    this.activeViewCtr = BigDecimalUtil.parseFromNumberString(activeViewCtr);
+  }
+  
   public Long getActiveViewImpressions() {
     return activeViewImpressions;
   }
@@ -535,7 +566,47 @@ public class ReportAd extends ReportBase {
   public void setActiveViewImpressions(Long activeViewImpressions) {
     this.activeViewImpressions = activeViewImpressions;
   }
-
+  
+  public String getActiveViewMeasurability() {
+    return BigDecimalUtil.formatAsReadable(activeViewMeasurability);
+  }
+  
+  public BigDecimal getActiveViewMeasurabilityBigDecimal() {
+    return activeViewMeasurability;
+  }
+  
+  public void setActiveViewMeasurability(String activeViewMeasurability) {
+    this.activeViewMeasurability = BigDecimalUtil.parseFromNumberString(activeViewMeasurability);
+  }
+  
+  public Long getActiveViewMeasurableCost() {
+    return activeViewMeasurableCost;
+  }
+  
+  public void setActiveViewMeasurableCost(Long activeViewMeasurableCost) {
+    this.activeViewMeasurableCost = activeViewMeasurableCost;
+  }
+  
+  public Long getActiveViewMeasurableImpressions() {
+    return activeViewMeasurableImpressions;
+  }
+  
+  public void setActiveViewMeasurableImpressions(Long activeViewMeasurableImpressions) {
+    this.activeViewMeasurableImpressions = activeViewMeasurableImpressions;
+  }
+  
+  public String getActiveViewViewability() {
+    return BigDecimalUtil.formatAsReadable(activeViewViewability);
+  }
+  
+  public BigDecimal getActiveViewViewabilityBigDecimal() {
+    return activeViewViewability;
+  }
+  
+  public void setActiveViewViewability(String activeViewViewability) {
+    this.activeViewViewability = BigDecimalUtil.parseFromNumberString(activeViewViewability);
+  }
+  
   public Long getConversionTrackerId() {
     return conversionTrackerId;
   }
@@ -655,5 +726,61 @@ public class ReportAd extends ReportBase {
 
   public void setGmailSecondaryClicks(Long gmailSecondaryClicks) {
     this.gmailSecondaryClicks = gmailSecondaryClicks;
+  }
+  
+  public String getSlot() {
+    return slot;
+  }
+
+  public void setSlot(String slot) {
+    this.slot = slot;
+  }
+
+  public String getVideoQuartile25Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile25Rate);
+  }
+  
+  public BigDecimal getVideoQuartile25RateBigDecimal() {
+    return videoQuartile25Rate;
+  }
+  
+  public void setVideoQuartile25Rate(String videoQuartile25Rate) {
+    this.videoQuartile25Rate = BigDecimalUtil.parseFromNumberString(videoQuartile25Rate);
+  }
+
+  public String getVideoQuartile50Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile50Rate);
+  }
+  
+  public BigDecimal getVideoQuartile50RateBigDecimal() {
+    return videoQuartile50Rate;
+  }
+  
+  public void setVideoQuartile50Rate(String videoQuartile50Rate) {
+    this.videoQuartile50Rate = BigDecimalUtil.parseFromNumberString(videoQuartile50Rate);
+  }
+
+  public String getVideoQuartile75Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile75Rate);
+  }
+  
+  public BigDecimal getVideoQuartile75RateBigDecimal() {
+    return videoQuartile75Rate;
+  }
+  
+  public void setVideoQuartile75Rate(String videoQuartile75Rate) {
+    this.videoQuartile75Rate = BigDecimalUtil.parseFromNumberString(videoQuartile75Rate);
+  }
+
+  public String getVideoQuartile100Rate() {
+    return BigDecimalUtil.formatAsReadable(videoQuartile100Rate);
+  }
+  
+  public BigDecimal getVideoQuartile100RateBigDecimal() {
+    return videoQuartile100Rate;
+  }
+  
+  public void setVideoQuartile100Rate(String videoQuartile100Rate) {
+    this.videoQuartile100Rate = BigDecimalUtil.parseFromNumberString(videoQuartile100Rate);
   }
 }

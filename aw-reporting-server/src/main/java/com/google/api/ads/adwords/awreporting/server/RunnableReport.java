@@ -16,18 +16,13 @@ package com.google.api.ads.adwords.awreporting.server;
 
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 
 import org.apache.log4j.Logger;
 
 import java.util.Date;
 import java.util.Properties;
 
-/**
- * RunnableReport
- * 
- * @author jtoledo@google.com (Julian Toledo)
- */
 public class RunnableReport implements Runnable {
 
   private static final Logger LOGGER = Logger.getLogger(RunnableReport.class);

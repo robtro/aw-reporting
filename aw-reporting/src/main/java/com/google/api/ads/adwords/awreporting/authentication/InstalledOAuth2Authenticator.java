@@ -15,8 +15,8 @@ import com.google.api.ads.adwords.awreporting.exporter.reportwriter.ReportWriter
 import com.google.api.ads.adwords.awreporting.model.entities.AuthMcc;
 import com.google.api.ads.adwords.awreporting.model.persistence.AuthTokenPersister;
 import com.google.api.ads.adwords.awreporting.util.CustomerDelegate;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.ads.common.lib.exception.ValidationException;
@@ -30,10 +30,6 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 
 /**
  * Handles OAuth2 authentication for Installed application instances
- * 
- * @author jtoledo@google.com (jtoledo@google.com)
- * @author joeltoby@google.com (joeltoby@google.com)
- *
  */
 @Component
 public class InstalledOAuth2Authenticator implements Authenticator {

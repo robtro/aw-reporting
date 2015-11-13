@@ -28,8 +28,6 @@ import java.util.List;
 
 /**
  * Rest entry point generic for all Report Types
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public abstract class AbstractReportRest<ReportSub extends Report> extends AbstractBaseResource {
 

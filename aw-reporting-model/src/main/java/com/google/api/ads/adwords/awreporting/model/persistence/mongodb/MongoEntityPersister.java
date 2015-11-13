@@ -47,8 +47,6 @@ import java.util.Map;
 
 /**
  * MongoDB implementation of NoSqlStorage
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class MongoEntityPersister implements EntityPersister {
 

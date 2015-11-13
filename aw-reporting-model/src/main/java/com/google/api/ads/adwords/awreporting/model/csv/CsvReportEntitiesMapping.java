@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.awreporting.model.csv;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -43,10 +43,8 @@ import java.util.logging.Logger;
  * Class responsible to hold the mapping between report type and the class that represents the CSV
  * file data.
  *
- *  Note: only one bean per report type is allowed. If a second mapping is found, the first one will
+ * Note: only one bean per report type is allowed. If a second mapping is found, the first one will
  * be overwritten.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class CsvReportEntitiesMapping {
 

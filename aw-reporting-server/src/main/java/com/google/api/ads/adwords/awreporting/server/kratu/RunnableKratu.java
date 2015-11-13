@@ -26,8 +26,6 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * KratuProcessor
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableKratu implements Runnable {
   

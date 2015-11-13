@@ -29,11 +29,11 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
-import com.google.api.ads.adwords.lib.jaxb.v201506.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201509.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.Selector;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
@@ -56,8 +56,6 @@ import java.util.Set;
 
 /**
  * Test case for the {@link ReportProcessor} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportProcessorTest {
 
@@ -107,7 +105,7 @@ public class ReportProcessorTest {
 
     doCallRealMethod().when(reportProcessor).instantiateReportDefinition(
         any(ReportDefinitionReportType.class), any(ReportDefinitionDateRangeType.class),
-        any(Selector.class), any(Properties.class));
+        any(Selector.class));
 
     reportProcessor.setCsvReportEntitiesMapping(appCtx.getBean(CsvReportEntitiesMapping.class));
     reportProcessor.setPersister(mockedEntitiesPersister);
@@ -142,7 +140,6 @@ public class ReportProcessorTest {
         ReportProcessor.REPORT_PREFIX + ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT);
     assertEquals(reportDefinition.getDateRangeType(), ReportDefinitionDateRangeType.CUSTOM_DATE);
     assertEquals(reportDefinition.getDownloadFormat(), DownloadFormat.GZIPPED_CSV);
-    assertEquals(reportDefinition.isIncludeZeroImpressions(), false);
   }
 
   @Test

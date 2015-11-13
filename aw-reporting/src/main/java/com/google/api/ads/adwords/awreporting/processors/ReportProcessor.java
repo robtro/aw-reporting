@@ -19,16 +19,16 @@ import com.google.api.ads.adwords.awreporting.model.csv.CsvReportEntitiesMapping
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.util.CustomerDelegate;
 import com.google.api.ads.adwords.awreporting.util.ManagedCustomerDelegate;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.Customer;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.DateRange;
-import com.google.api.ads.adwords.lib.jaxb.v201506.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201509.DateRange;
+import com.google.api.ads.adwords.lib.jaxb.v201509.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.Selector;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.api.client.util.Sets;
@@ -45,10 +45,6 @@ import java.util.Set;
 /**
  * Reporting processor, responsible for downloading and saving the files to the file system. The
  * persistence of the parsed beans is delegated to the configured persister.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author joeltoby@google.com (Joel Toby)
  */
 
 public abstract class ReportProcessor {
@@ -215,8 +211,7 @@ public abstract class ReportProcessor {
     }
     this.adjustDateRange(reportDefinitionReportType, dateRangeType, dateStart, dateEnd, selector);
 
-    return this.instantiateReportDefinition(reportDefinitionReportType, dateRangeType, selector,
-        properties);
+    return this.instantiateReportDefinition(reportDefinitionReportType, dateRangeType, selector);
   }
 
   /**
@@ -273,19 +268,8 @@ public abstract class ReportProcessor {
    */
   protected ReportDefinition instantiateReportDefinition(
       ReportDefinitionReportType reportDefinitionReportType,
-      ReportDefinitionDateRangeType dateRangeType, Selector selector, Properties properties) {
-
-    // retrieve relevant properties
-    boolean bIncludeZeroImpressions = false; // default to false when property is missing or of
-                                             // invalid value
-    String sIncludeZeroImpressions =
-        properties.getProperty("aw.report.definition.includeZeroImpressions");
-    if (null != sIncludeZeroImpressions) {
-      bIncludeZeroImpressions = sIncludeZeroImpressions.equalsIgnoreCase("true");
-    }
-
-    LOGGER.info("Instantiate report definition for " + reportDefinitionReportType.value()
-        + " with includeZeroImpressions=" + String.valueOf(bIncludeZeroImpressions));
+      ReportDefinitionDateRangeType dateRangeType,
+      Selector selector) {
 
     // Create the Report Definition
     ReportDefinition reportDefinition = new ReportDefinition();
@@ -294,7 +278,6 @@ public abstract class ReportProcessor {
     reportDefinition.setDateRangeType(dateRangeType);
     reportDefinition.setReportType(reportDefinitionReportType);
     reportDefinition.setDownloadFormat(DownloadFormat.GZIPPED_CSV);
-    reportDefinition.setIncludeZeroImpressions(bIncludeZeroImpressions);
     reportDefinition.setSelector(selector);
     return reportDefinition;
   }
@@ -319,6 +302,24 @@ public abstract class ReportProcessor {
       return inclusionsList;
     }
     return Lists.newArrayListWithCapacity(0);
+  }
+  
+  /**
+   * @param properties the input properties file
+   * @return the includeZeroImpressions setting
+   */
+  protected boolean getIncludeZeroImpressions(Properties properties) {
+    // default to false when property is missing or of invalid value
+    boolean bIncludeZeroImpressions = false;
+    
+    String sIncludeZeroImpressions =
+        properties.getProperty("aw.report.definition.includeZeroImpressions");
+    if (null != sIncludeZeroImpressions) {
+      bIncludeZeroImpressions = sIncludeZeroImpressions.equalsIgnoreCase("true");
+    }
+
+    LOGGER.info("Property includeZeroImpressions=" + String.valueOf(bIncludeZeroImpressions));
+    return bIncludeZeroImpressions;
   }
 
   /**

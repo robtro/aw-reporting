@@ -69,9 +69,6 @@ import java.util.logging.Logger;
 
 /**
  * Main class for the Server, it routes request to the Rest entry points. 
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com (Joel Toby)
  */
 public class RestServer extends com.google.api.ads.adwords.awreporting.server.rest.RestServer {
   
@@ -139,6 +136,19 @@ public class RestServer extends com.google.api.ads.adwords.awreporting.server.re
     }
     return webAuthenticator;
   }
+  
+  private static boolean getIncludeZeroImpressions() {
+    // default to false when property is missing or of invalid value
+    boolean bIncludeZeroImpressions = false;
+    String sIncludeZeroImpressions =
+        getProperties().getProperty("aw.report.definition.includeZeroImpressions");
+    if (null != sIncludeZeroImpressions) {
+      bIncludeZeroImpressions = sIncludeZeroImpressions.equalsIgnoreCase("true");
+    }
+
+    LOGGER.info("Property includeZeroImpressions=" + String.valueOf(bIncludeZeroImpressions));
+    return bIncludeZeroImpressions;
+  }
 
   private static final HashMap<AdWordsSessionBuilderSynchronizer, AdWordsSessionBuilderSynchronizer>
     adWordsSessionBuilderSynchronizerMap = Maps.newHashMap();
@@ -148,7 +158,17 @@ public class RestServer extends com.google.api.ads.adwords.awreporting.server.re
     if (adWordsSessionBuilderSynchronizer == null) {
       synchronized (RestServer.class) {
         if (adWordsSessionBuilderSynchronizer == null) {
-          adWordsSessionBuilderSynchronizer = new AdWordsSessionBuilderSynchronizer(getAuthenticator().authenticate(mccAccountId, false));
+          // default to false when property is missing or of invalid value
+          boolean bIncludeZeroImpressions = false;
+          String sIncludeZeroImpressions =
+              getProperties().getProperty("aw.report.definition.includeZeroImpressions");
+          if (null != sIncludeZeroImpressions) {
+            bIncludeZeroImpressions = sIncludeZeroImpressions.equalsIgnoreCase("true");
+          }
+          LOGGER.info("Property includeZeroImpressions=" + String.valueOf(bIncludeZeroImpressions));
+          
+          adWordsSessionBuilderSynchronizer = new AdWordsSessionBuilderSynchronizer(
+              getAuthenticator().authenticate(mccAccountId, false), getIncludeZeroImpressions());
         }
       }
     }

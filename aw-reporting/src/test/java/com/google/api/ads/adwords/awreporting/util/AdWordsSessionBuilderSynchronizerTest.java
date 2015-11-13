@@ -27,9 +27,6 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 
 /**
  * Tests for {@link AdWordsSessionBuilderSynchronizer}.
- * 
- * @author jtoledo@google.com (Julian Toledo)
- * 
  */
 @RunWith(JUnit4.class)
 public class AdWordsSessionBuilderSynchronizerTest {
@@ -46,7 +43,7 @@ public class AdWordsSessionBuilderSynchronizerTest {
     AdWordsSession adWordsSession = builder.build();
 
     AdWordsSessionBuilderSynchronizer adWordsSessionBuilderSynchronizer =
-        new AdWordsSessionBuilderSynchronizer(builder);
+        new AdWordsSessionBuilderSynchronizer(builder, true);
 
     AdWordsSession copiedSession = adWordsSessionBuilderSynchronizer.getAdWordsSessionCopy(777L);
 
@@ -57,5 +54,7 @@ public class AdWordsSessionBuilderSynchronizerTest {
     assertEquals(copiedSession.getUserAgent(), adWordsSession.getUserAgent());
     assertEquals(copiedSession.isPartialFailure(), adWordsSession.isPartialFailure());
     assertEquals(copiedSession.isValidateOnly(), adWordsSession.isValidateOnly());
+    
+    assertEquals(copiedSession.getReportingConfiguration().isIncludeZeroImpressions(), true);
   }
 }

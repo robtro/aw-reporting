@@ -25,8 +25,6 @@ import java.util.Date;
 
 /**
  * Test case for the {@code Kratu} class.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class KratuTest {
 

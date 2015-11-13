@@ -1,14 +1,13 @@
 package com.google.api.ads.adwords.awreporting.util;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
+import com.google.api.ads.adwords.lib.client.reporting.ReportingConfiguration;
 import com.google.api.ads.common.lib.exception.ValidationException;
 
 /**
  * Class to synchronize all the access to the {@code AdWordsSession}.
  *
  * It is just a wrapper around the session builder, to make that there just one request per time.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class AdWordsSessionBuilderSynchronizer {
 
@@ -19,7 +18,17 @@ public class AdWordsSessionBuilderSynchronizer {
    *
    * @param builder the session builder for the API.
    */
-  public AdWordsSessionBuilderSynchronizer(AdWordsSession.Builder builder) {
+  public AdWordsSessionBuilderSynchronizer(
+      AdWordsSession.Builder builder, boolean includeZeroImpressions) {
+    
+    ReportingConfiguration reportingConfig = new ReportingConfiguration.Builder()
+        .skipReportHeader(true)
+        .skipColumnHeader(false)
+        .skipReportSummary(true)
+        .includeZeroImpressions(includeZeroImpressions)
+        .build();
+    builder.withReportingConfiguration(reportingConfig);
+    
     this.builder = builder;
   }
 

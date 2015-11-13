@@ -37,8 +37,6 @@ import java.util.Map;
 
 /**
  * AppEngine (Objectify) implementation of EntityPersister
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Component
 @Qualifier("objectifyEntityPersister")

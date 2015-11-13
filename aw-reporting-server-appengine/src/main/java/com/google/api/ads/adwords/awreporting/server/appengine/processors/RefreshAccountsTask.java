@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.server.appengine.RestServer;
 import com.google.api.ads.adwords.awreporting.server.appengine.exporter.ExportTaskCreator;
 import com.google.api.ads.adwords.awreporting.server.appengine.util.MccTaskCounter;
 import com.google.api.ads.adwords.awreporting.server.entities.Account;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
 import com.google.appengine.api.taskqueue.DeferredTask;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
@@ -28,8 +28,6 @@ import java.util.logging.Logger;
 
 /**
  * Tasks to Refresh the Account List for an MCC.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RefreshAccountsTask implements DeferredTask {
 

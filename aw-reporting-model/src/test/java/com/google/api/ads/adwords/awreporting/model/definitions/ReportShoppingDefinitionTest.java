@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -110,10 +110,6 @@ public class ReportShoppingDefinitionTest extends AbstractReportDefinitionTest<R
         "ExternalCustomerId",
         // ReportBase
         "AccountDescriptiveName",
-        "AccountTimeZoneId",
-        "CustomerDescriptiveName",
-        "PrimaryCompanyName",
-        "AccountCurrencyCode",
         "Date",
         "DayOfWeek",
         "Week",
@@ -125,32 +121,34 @@ public class ReportShoppingDefinitionTest extends AbstractReportDefinitionTest<R
         "Clicks",
         "Impressions",
         "Ctr",
-        "AverageCpm",
         "AverageCpc",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
+        "ConversionTrackerId",
         "ViewThroughConversions",
         // Specific to Shopping Performance Report
         "AdGroupId",
         "AdGroupName",
+        "AdGroupStatus",
         "AggregatorId",
         "Brand",
         "CampaignId",
         "CampaignName",
+        "CampaignStatus",
         "CategoryL1",
         "CategoryL2",
         "CategoryL3",

@@ -29,8 +29,6 @@ import java.util.Set;
 
 /**
  * Class to Export Reports to PDF/HTML to FileSystem or Google Drive
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Component
 public class ReportExporterLocal extends ReportExporter {

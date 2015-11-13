@@ -30,9 +30,6 @@ import javax.persistence.Table;
 
 /**
  * Model class to persist HTML report templates to the datastore.
- * 
- * @author joeltoby
- *
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

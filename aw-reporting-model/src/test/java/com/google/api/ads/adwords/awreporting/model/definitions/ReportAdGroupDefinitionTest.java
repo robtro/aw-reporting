@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -60,7 +60,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals(129807304L, first.getCampaignId().longValue());
     Assert.assertEquals(7253055064L, first.getAdGroupId().longValue());
     Assert.assertEquals("enabled", first.getAdGroupStatus());
-    Assert.assertEquals(0, first.getTargetCpaBigDecimal().intValue());
+    Assert.assertEquals(0.05, first.getTargetCpa().doubleValue());
 
   }
 
@@ -86,7 +86,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals(129807304L, last.getCampaignId().longValue());
     Assert.assertEquals(7253055064L, last.getAdGroupId().longValue());
     Assert.assertEquals("enabled", last.getAdGroupStatus());
-    Assert.assertEquals(0, last.getTargetCpaBigDecimal().intValue());
+    Assert.assertEquals(2.01, last.getTargetCpa().doubleValue());
 
   }
 
@@ -127,20 +127,37 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionManyPerClickSignificance",
-        "ConversionRateManyPerClickSignificance",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "CostPerConversionManyPerClickSignificance",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "VideoQuartile25Rate",
+        "VideoQuartile50Rate",
+        "VideoQuartile75Rate",
+        "VideoQuartile100Rate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
+        "CrossDeviceConversions",
         "ConvertedClicks",
         "ClickConversionRate",
         "ClickConversionRateSignificance",
@@ -150,7 +167,6 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to AdGroup Performance Report
         "CampaignId",
@@ -165,7 +181,12 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "SearchExactMatchImpressionShare",
         "Labels",
         "ActiveViewCpm",
+        "ActiveViewCtr",
         "ActiveViewImpressions",
+        "ActiveViewMeasurability",
+        "ActiveViewMeasurableCost",
+        "ActiveViewMeasurableImpressions",
+        "ActiveViewViewability",
         "ConversionTrackerId",
         "TrackingUrlTemplate",
         "UrlCustomParameters",
@@ -176,7 +197,11 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "PercentNewVisitors",
         "GmailForwards",
         "GmailSaves",
-        "GmailSecondaryClicks"
+        "GmailSecondaryClicks",
+        "Slot",
+        "CpvBid",
+        "EnhancedCpcEnabled",
+        "EnhancedCpvEnabled"
     };
   }
 }

@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Handles the date range for the LAST_14_DAYS type.
- * 
- * @author gustavomoreira
  */
 public class Last14DaysDateRangeHandler implements DateRangeHandler {
 

@@ -38,7 +38,7 @@ import java.net.URL;
  * Replaced element in order to replace elements like
  * <tt>&lt;div class="media" data-src="image.png"/></tt> with the real media content.
  *
- * @author markbowyer borrowed totally from "Alex" on StackOverflow.
+ * (Borrowed totally from "Alex" on StackOverflow)
  */
 public class MediaReplacedElementFactory implements ReplacedElementFactory {
 

@@ -15,7 +15,6 @@
 package com.google.api.ads.adwords.awreporting.model.csv;
 
 import com.google.api.ads.adwords.awreporting.model.csv.AnnotationBasedMappingStrategy;
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 
@@ -50,8 +49,8 @@ public class AnnotationBasedMappingStrategyTest {
 
     Locale.setDefault(Locale.US);
 
-    CSVReader csvReader = new AwReportCsvReader(new InputStreamReader(
-        new FileInputStream("src/test/resources/csv/ad.csv"), "UTF-8"), ',', '\"', 1);
+    CSVReader csvReader = new CSVReader(new InputStreamReader(
+        new FileInputStream("src/test/resources/csv/ad.csv"), "UTF-8"), ',', '\"');
 
     AnnotationBasedMappingStrategy<ReportAd> mappingStrategy =
         new AnnotationBasedMappingStrategy<ReportAd>(ReportAd.class);
@@ -111,8 +110,8 @@ public class AnnotationBasedMappingStrategyTest {
 
     Locale.setDefault(Locale.US);
 
-    CSVReader csvReader = new AwReportCsvReader(new InputStreamReader(
-        new FileInputStream("src/test/resources/csv/ad.csv"), "UTF-8"), ',', '\"', 1);
+    CSVReader csvReader = new CSVReader(new InputStreamReader(
+        new FileInputStream("src/test/resources/csv/ad.csv"), "UTF-8"), ',', '\"');
 
     AnnotationBasedMappingStrategy<ReportAd> mappingStrategy =
         new AnnotationBasedMappingStrategy<ReportAd>(ReportAd.class);

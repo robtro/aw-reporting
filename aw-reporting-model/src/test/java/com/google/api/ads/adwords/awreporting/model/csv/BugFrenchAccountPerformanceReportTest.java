@@ -15,7 +15,6 @@
 package com.google.api.ads.adwords.awreporting.model.csv;
 
 import com.google.api.ads.adwords.awreporting.model.csv.AnnotationBasedMappingStrategy;
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 
@@ -41,9 +40,8 @@ public class BugFrenchAccountPerformanceReportTest {
 
     Locale.setDefault(Locale.US);
 
-    CSVReader csvReader = new AwReportCsvReader(new InputStreamReader(
-        new FileInputStream("src/test/resources/csv/bug-account-france.csv"), "UTF-8"), ',', '\"',
-        1);
+    CSVReader csvReader = new CSVReader(new InputStreamReader(
+        new FileInputStream("src/test/resources/csv/bug-account-france.csv"), "UTF-8"), ',', '\"');
 
     AnnotationBasedMappingStrategy<ReportAccount> mappingStrategy =
         new AnnotationBasedMappingStrategy<ReportAccount>(ReportAccount.class);

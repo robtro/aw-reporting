@@ -21,11 +21,6 @@ import org.restlet.representation.Representation;
 
 import java.util.List;
 
-/**
- * MccRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
- */
 public class AuthMccRest extends AbstractBaseResource {
 
   public Representation getHandler() {

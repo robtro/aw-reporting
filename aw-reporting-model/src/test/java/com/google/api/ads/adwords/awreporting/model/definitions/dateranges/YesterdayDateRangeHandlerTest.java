@@ -21,9 +21,6 @@ import junit.framework.Assert;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-/**
- * @author gustavomoreira
- */
 public class YesterdayDateRangeHandlerTest {
 
   @Test

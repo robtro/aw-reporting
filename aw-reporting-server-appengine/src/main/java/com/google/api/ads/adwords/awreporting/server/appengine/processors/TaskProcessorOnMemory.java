@@ -18,14 +18,13 @@ import com.google.api.ads.adwords.awreporting.server.appengine.RestServer;
 import com.google.api.ads.adwords.awreporting.server.appengine.util.MccTaskCounter;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.awreporting.model.csv.AnnotationBasedMappingStrategy;
-import com.google.api.ads.adwords.awreporting.model.csv.AwReportCsvReader;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.CsvParserIterator;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.utils.v201506.ReportDownloader;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.utils.v201509.ReportDownloader;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponse;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
@@ -57,9 +56,6 @@ import java.util.zip.GZIPInputStream;
  * handle all the concurrent threads.
  *
  * Parse the rows in the CSV file for the report type, and persists the beans into the data base.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author jtoledo@google.com (Julian Toledo)
  * 
  * @param <R> type of sub Report.
  */
@@ -183,8 +179,8 @@ public class TaskProcessorOnMemory<R extends Report> implements DeferredTask {
    * @throws UnsupportedEncodingException should not happen.
    */
   private CSVReader createCsvReader(InputStream inputStream) throws UnsupportedEncodingException {
-    return new AwReportCsvReader(
-        new InputStreamReader(inputStream, "UTF-8"), ',', '\"', 1);
+    return new CSVReader(
+        new InputStreamReader(inputStream, "UTF-8"), ',', '\"');
   }
 
   /**

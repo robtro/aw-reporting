@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Interface to handle the different types of date range.
- * 
- * @author gustavomoreira
  */
 public interface DateRangeHandler {
 

@@ -25,8 +25,6 @@ import java.util.List;
 
 /**
  * Util class for Gson Builder.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GsonUtil {
 

@@ -4,7 +4,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import com.googlecode.objectify.annotation.Index;
 
@@ -19,8 +19,6 @@ import javax.persistence.Table;
 
 /**
  * This is an experimental report for video campaign reports downloaded directly from the interface.
- *
- * @author Gustavo Moreira
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

@@ -19,8 +19,6 @@ import org.springframework.core.io.Resource;
 
 /**
  * This class is used to inject dynamic resource files into the Spring application context
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class DynamicPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 

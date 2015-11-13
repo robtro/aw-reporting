@@ -32,9 +32,6 @@ import java.util.logging.Logger;
 
 /**
  * Tasks to Export Reports.
- * 
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com (Joel Toby)
  */
 public class ExportTask implements DeferredTask {
 

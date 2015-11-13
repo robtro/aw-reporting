@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import javax.persistence.Column;
@@ -25,10 +25,7 @@ import javax.persistence.Table;
 
 /**
  * Specific Report class for PlaceholderFeedItem
- *
- * @author markbowyer@google.com (Mark R. Bowyer)
  */
-
 @Entity
 @com.googlecode.objectify.annotation.Entity
 @Table(name = "AW_ReportPlaceholderFeedItem")
@@ -51,7 +48,7 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   private String campaignStatus;
 
   @Column(name = "STATUS", length = 32)
-  @CsvField(value = "Feed item status", reportField = "Status")
+  @CsvField(value = "Item state", reportField = "Status")
   private String status;
 
   @Column(name = "ADGROUP_ID")
@@ -75,7 +72,7 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   private Long feedId;
 
   @Column(name = "FEED_ITEM_ID")
-  @CsvField(value = "Feed item ID", reportField = "FeedItemId")
+  @CsvField(value = "Item ID", reportField = "FeedItemId")
   private Long feedItemId;
 
   @Column(name = "FEED_PLACEHOLDER_TYPE")
@@ -114,6 +111,14 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   @CsvField(value = "Custom parameter", reportField = "UrlCustomParameters")
   private String urlCustomParameters;
   
+  @Column(name = "SLOT")
+  @CsvField(value = "Top vs. Other", reportField = "Slot")
+  private String slot;
+  
+  @Column(name = "GEO_TARGETING_CRITERION_ID")
+  @CsvField(value = "Target location", reportField = "GeoTargetingCriterionId")
+  private Long geoTargetingCriterionId;
+  
   /**
    * Hibernate needs an empty constructor
    */
@@ -130,33 +135,21 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     // Generating unique id after having date and accountId
     if (this.getAccountId() != null) {
       this.id = this.getAccountId().toString();
-    } else {
-      this.id = "null";
     }
     if (this.getCampaignId() != null) {
       this.id += "-" + this.getCampaignId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getAdGroupId() != null) {
       this.id += "-" + this.getAdGroupId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getAdId() != null) {
       this.id += "-" + this.getAdId().toString();
-    } else {
-      this.id += "null";
-    }
-    if (this.getFeedItemId() != null) {
-      this.id += "-" + this.getFeedItemId().toString();
-    } else {
-      this.id += "null";
     }
     if (this.getFeedId() != null) {
       this.id += "-" + this.getFeedId().toString();
-    } else {
-      this.id += "null";
+    }
+    if (this.getFeedItemId() != null) {
+      this.id += "-" + this.getFeedItemId().toString();
     }
 
     this.id += setIdDates();
@@ -174,11 +167,8 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
     }
-    this.id += "-" + String.valueOf(this.getFeedPlaceholderType());
-    if (this.getIsSelfAction() != null) {
-      this.id += this.getIsSelfAction();
-    } else {
-        this.id += "null";
+    if (this.getSlot() != null && this.getSlot().length() > 0) {
+      this.id += "-" + this.getSlot();
     }
   }
 
@@ -352,5 +342,21 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   
   public void setUrlCustomParameters(String urlCustomParameters) {
     this.urlCustomParameters = urlCustomParameters;
+  }
+  
+  public String getSlot() {
+    return slot;
+  }
+
+  public void setSlot(String slot) {
+    this.slot = slot;
+  }
+  
+  public Long getGeoTargetingCriterionId() {
+    return geoTargetingCriterionId;
+  }
+  
+  public void setGeoTargetingCriterionId(Long geoTargetingCriterionId) {
+    this.geoTargetingCriterionId = geoTargetingCriterionId;
   }
 }

@@ -30,8 +30,6 @@ import java.util.List;
  * 
  * CampaignNegativeKeyword do not use Segments: Date, Month, etc.
  * That is why is an specific case and does not use the AbstractReportRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportCampaignNegativeKeywordsRest extends AbstractBaseResource {
 

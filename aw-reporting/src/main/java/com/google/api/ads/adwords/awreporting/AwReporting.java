@@ -22,7 +22,7 @@ import com.google.api.ads.adwords.awreporting.util.DataBaseType;
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.awreporting.util.ProcessorType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Lists;
 import com.google.api.client.util.Sets;
 
@@ -66,9 +66,6 @@ import java.util.Set;
  * -file <file> provided.
  *
  * See README for more info.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
  public class AwReporting{
 
@@ -175,7 +172,7 @@ import java.util.Set;
 
           LOGGER.info("Starting report processing for dateStart: " + dateStart + " and dateEnd: "
               + dateEnd);
-          onFileProcessor.processLocalFiles(mccAccountId,
+          onFileProcessor.processInputFiles(mccAccountId,
               reportTypeName,
               localFiles,
               dateStart,
@@ -374,8 +371,7 @@ import java.util.Set;
     HelpFormatter formatter = new HelpFormatter();
     formatter.setWidth(120);
     formatter.printHelp(" java -Xmx1G -jar aw-reporting.jar -startDate YYYYMMDD -endDate YYYYMMDD "
-        + "-file <file>\n java -Xmx1G -jar aw-reporting.jar "
-        + "-startDate YYYYMMDD -endDate YYYYMMDD -file <file>", "\nArguments:", options, "");
+        + "-file <file>\n", "Arguments:", options, "");
     System.out.println();
   }
 

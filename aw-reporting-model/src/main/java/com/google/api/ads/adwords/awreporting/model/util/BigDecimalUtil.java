@@ -24,8 +24,6 @@ import java.text.ParseException;
 /**
  * {@code BigDecimalUtil} is a utility class that helps the parsing and handling the different types
  * of number formats in the reports.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 public class BigDecimalUtil {
 

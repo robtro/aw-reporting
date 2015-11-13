@@ -19,17 +19,20 @@ import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAd;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportAgeRange;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportBudget;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignNegativeKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDisplayKeyword;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportFinalUrl;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportGender;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -69,6 +72,9 @@ public class CsvReportEntitiesMappingTest {
 
     this.assertBeanClassIsCorrectForType(ReportAd.class,
         ReportDefinitionReportType.AD_PERFORMANCE_REPORT);
+    
+    this.assertBeanClassIsCorrectForType(ReportAgeRange.class,
+        ReportDefinitionReportType.AGE_RANGE_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportKeywords.class,
         ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT);
@@ -84,6 +90,12 @@ public class CsvReportEntitiesMappingTest {
 
     this.assertBeanClassIsCorrectForType(ReportDestinationUrl.class,
         ReportDefinitionReportType.DESTINATION_URL_REPORT);
+    
+    this.assertBeanClassIsCorrectForType(ReportFinalUrl.class,
+        ReportDefinitionReportType.FINAL_URL_REPORT);
+    
+    this.assertBeanClassIsCorrectForType(ReportGender.class,
+        ReportDefinitionReportType.GENDER_PERFORMANCE_REPORT);
 
     this.assertBeanClassIsCorrectForType(ReportPlaceholderFeedItem.class,
         ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT);
@@ -110,12 +122,15 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.CAMPAIGN_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.ADGROUP_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.AD_PERFORMANCE_REPORT));
+    Assert.assertTrue(reports.contains(ReportDefinitionReportType.AGE_RANGE_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT));
     Assert.assertTrue(
         reports.contains(ReportDefinitionReportType.CAMPAIGN_NEGATIVE_KEYWORDS_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.BUDGET_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.CRITERIA_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.DESTINATION_URL_REPORT));
+    Assert.assertTrue(reports.contains(ReportDefinitionReportType.FINAL_URL_REPORT));
+    Assert.assertTrue(reports.contains(ReportDefinitionReportType.GENDER_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.URL_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.DISPLAY_KEYWORD_PERFORMANCE_REPORT));
@@ -153,24 +168,39 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("Clicks"));
     Assert.assertTrue(propertiesToSelect.contains("Impressions"));
     Assert.assertTrue(propertiesToSelect.contains("Ctr"));
+    Assert.assertTrue(propertiesToSelect.contains("AverageCost"));
     Assert.assertTrue(propertiesToSelect.contains("AverageCpm"));
     Assert.assertTrue(propertiesToSelect.contains("AverageCpc"));
+    Assert.assertTrue(propertiesToSelect.contains("AverageCpe"));
+    Assert.assertTrue(propertiesToSelect.contains("AverageCpv"));
     Assert.assertTrue(propertiesToSelect.contains("AveragePosition"));
     Assert.assertTrue(propertiesToSelect.contains("Device"));
     Assert.assertTrue(propertiesToSelect.contains("ClickType"));
     Assert.assertTrue(propertiesToSelect.contains("AdNetworkType1"));
     Assert.assertTrue(propertiesToSelect.contains("AdNetworkType2"));
-    Assert.assertTrue(propertiesToSelect.contains("ConversionsManyPerClick"));
-    Assert.assertTrue(propertiesToSelect.contains("ConversionRateManyPerClick"));
-    Assert.assertTrue(propertiesToSelect.contains("CostPerConversionManyPerClick"));
-    Assert.assertTrue(propertiesToSelect.contains("ValuePerConversionManyPerClick"));
+    Assert.assertTrue(propertiesToSelect.contains("Engagements"));
+    Assert.assertTrue(propertiesToSelect.contains("EngagementRate"));
+    Assert.assertTrue(propertiesToSelect.contains("Interactions"));
+    Assert.assertTrue(propertiesToSelect.contains("InteractionRate"));
+    Assert.assertTrue(propertiesToSelect.contains("VideoViews"));
+    Assert.assertTrue(propertiesToSelect.contains("VideoViewRate"));
+    Assert.assertTrue(propertiesToSelect.contains("Conversions"));
+    Assert.assertTrue(propertiesToSelect.contains("ConversionRate"));
+    Assert.assertTrue(propertiesToSelect.contains("ConversionValue"));
+    Assert.assertTrue(propertiesToSelect.contains("CostPerConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("ValuePerConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("AllConversions"));
+    Assert.assertTrue(propertiesToSelect.contains("AllConversionRate"));
+    Assert.assertTrue(propertiesToSelect.contains("AllConversionValue"));
+    Assert.assertTrue(propertiesToSelect.contains("CostPerAllConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("ValuePerAllConversion"));
+    Assert.assertTrue(propertiesToSelect.contains("CrossDeviceConversions"));
     Assert.assertTrue(propertiesToSelect.contains("ConvertedClicks"));
     Assert.assertTrue(propertiesToSelect.contains("ClickConversionRate"));
     Assert.assertTrue(propertiesToSelect.contains("CostPerConvertedClick"));
     Assert.assertTrue(propertiesToSelect.contains("ValuePerConvertedClick"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionCategoryName"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionTypeName"));
-    Assert.assertTrue(propertiesToSelect.contains("ConversionValue"));
     Assert.assertTrue(propertiesToSelect.contains("ViewThroughConversions"));
 
     Assert.assertTrue(propertiesToSelect.contains("SearchImpressionShare"));
@@ -185,10 +215,16 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("IsAutoTaggingEnabled"));
     Assert.assertTrue(propertiesToSelect.contains("IsTestAccount"));
     Assert.assertTrue(propertiesToSelect.contains("ActiveViewCpm"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewCtr"));
     Assert.assertTrue(propertiesToSelect.contains("ActiveViewImpressions"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewMeasurability"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewMeasurableCost"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewMeasurableImpressions"));
+    Assert.assertTrue(propertiesToSelect.contains("ActiveViewViewability"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionTrackerId"));
+    Assert.assertTrue(propertiesToSelect.contains("Slot"));
 
-    Assert.assertEquals(50, propertiesToSelect.size());
+    Assert.assertEquals(71, propertiesToSelect.size());
   }
 
   /**

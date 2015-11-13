@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Handles the date range for the LAST_MONTH type.
- * 
- * @author gustavomoreira
  */
 public class LastMonthDateRangeHandler implements DateRangeHandler {
 

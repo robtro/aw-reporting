@@ -19,7 +19,7 @@
   import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
   import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
   import com.google.api.ads.adwords.awreporting.util.TemplateStringsUtil;
-  import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+  import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
   import com.google.api.ads.common.lib.exception.OAuthException;
   import com.google.api.client.auth.oauth2.Credential;
   import com.google.api.client.util.Maps;
@@ -44,9 +44,6 @@
 
   /**
    * Exports reports PDF/HTML reports to either the FileSystem or Google Drive.
-   *
-   * @author joeltoby@google.com (Joel Toby)
-   * @author jtoledo@google.com (Julian Toledo)
    */
   @Component
   public abstract class ReportExporter {

@@ -20,9 +20,9 @@ import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.common.base.Stopwatch;
 
 import org.apache.log4j.Logger;
@@ -44,9 +44,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Main reporting processor responsible for downloading and saving the files to the file system. The
  * persistence of the parsed beans is delegated to the configured persister.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Component
 @Qualifier("reportProcessorOnMemory")
@@ -111,7 +108,7 @@ public class ReportProcessorOnMemory extends ReportProcessor {
     }
 
     AdWordsSessionBuilderSynchronizer sessionBuilder = new AdWordsSessionBuilderSynchronizer(
-        authenticator.authenticate(mccAccountId, false));
+        authenticator.authenticate(mccAccountId, false), getIncludeZeroImpressions(properties));
 
     LOGGER.info("*** Generating Reports for " + accountIdsSet.size() + " accounts ***");
 

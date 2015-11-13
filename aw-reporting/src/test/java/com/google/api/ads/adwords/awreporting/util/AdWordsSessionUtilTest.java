@@ -27,9 +27,6 @@ import org.junit.runners.JUnit4;
 
 /**
  * Tests for {@link AdWordsSessionUtil}.
- * 
- * @author jtoledo@google.com (Julian Toledo)
- * 
  */
 @RunWith(JUnit4.class)
 public class AdWordsSessionUtilTest {

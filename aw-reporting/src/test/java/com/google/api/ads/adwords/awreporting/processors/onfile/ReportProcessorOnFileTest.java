@@ -57,9 +57,9 @@ import com.google.api.ads.adwords.awreporting.processors.onfile.ReportProcessorO
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.collect.Lists;
@@ -67,8 +67,6 @@ import com.google.common.collect.Sets;
 
 /**
  * Test case for the {@code ReportProcessorOnFile} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportProcessorOnFileTest {
 
@@ -267,11 +265,7 @@ public class ReportProcessorOnFileTest {
     for (int i = 1; i <= numberOfFiles; i++) {
 
       File newFile = new File("src/test/resources/csv/" + fileName + i);
-      File newFile2 = new File("src/test/resources/csv/" + fileName + i + ".gunzip");
-
       FileUtils.copyFile(new File("src/test/resources/csv/" + fileName), newFile);
-      FileUtils.copyFile(new File("src/test/resources/csv/" + fileName), newFile2);
-
       files.add(newFile);
     }
     return files;

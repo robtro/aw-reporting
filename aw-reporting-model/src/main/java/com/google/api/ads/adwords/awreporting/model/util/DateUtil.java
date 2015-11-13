@@ -28,9 +28,6 @@ import java.util.List;
  * Utility class for Dates.
  *
  * This class handles the basic formats that the AdWords API provide.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira (Gustavo Moreira)
  */
 public final class DateUtil {
 

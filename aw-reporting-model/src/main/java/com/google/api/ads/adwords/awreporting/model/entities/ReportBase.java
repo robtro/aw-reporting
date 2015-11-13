@@ -27,7 +27,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.dateranges.TodayDat
 import com.google.api.ads.adwords.awreporting.model.entities.dateranges.YesterdayDateRangeHandler;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
 
 import com.googlecode.objectify.annotation.Index;
@@ -44,11 +44,8 @@ import javax.persistence.MappedSuperclass;
 /**
  * The base abstract class with base report fields
  *
- *  Fields from http://code.google.com/apis/adwords/docs/appendix/reports.html Fields from
+ * Fields from http://code.google.com/apis/adwords/docs/appendix/reports.html Fields from
  * http://code.google.com/apis/adwords/docs/reportguide.html
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @MappedSuperclass
 public abstract class ReportBase extends Report {
@@ -138,6 +135,19 @@ public abstract class ReportBase extends Report {
   @CsvField(value = "Avg. CPC", reportField = "AverageCpc")
   @MoneyField
   protected BigDecimal avgCpc;
+  
+  @Column(name = "AVERAGE_COST")
+  @CsvField(value = "Avg. Cost", reportField = "AverageCost")
+  @MoneyField
+  protected BigDecimal avgCost;
+  
+  @Column(name = "AVERAGE_CPE")
+  @CsvField(value = "Avg. CPE", reportField = "AverageCpe")
+  protected BigDecimal avgCpe;
+  
+  @Column(name = "AVERAGE_CPV")
+  @CsvField(value = "Avg. CPV", reportField = "AverageCpv")
+  protected BigDecimal avgCpv;
 
   @Column(name = "AVERAGE_POSITION")
   @CsvField(value = "Avg. position", reportField = "AveragePosition")
@@ -161,24 +171,6 @@ public abstract class ReportBase extends Report {
   protected String adNetworkPartners;
 
   // Conversion Columns
-  // Many Per Click
-  @Column(name = "CONVERSIONSMANYPERCLICK")
-  @CsvField(value = "Conversions", reportField = "ConversionsManyPerClick")
-  protected Long conversionsManyPerClick = 0L;
-
-  @Column(name = "CONVERSIONRATEMANYPERCLICK")
-  @CsvField(value = "Conv. rate", reportField = "ConversionRateManyPerClick")
-  protected BigDecimal conversionRateManyPerClick;
-
-  @Column(name = "COSTPERCONVERSIONMANYPERCLICK")
-  @CsvField(value = "Cost / conv.", reportField = "CostPerConversionManyPerClick")
-  @MoneyField
-  protected BigDecimal costPerConversionManyPerClick;
-
-  @Column(name = "VALUEPERCONVERSIONMANYPERCLICK")
-  @CsvField(value = "Value / conv.", reportField = "ValuePerConversionManyPerClick")
-  protected BigDecimal valuePerConversionManyPerClick;
-
   // One Per Click
   @Column(name = "CONVERTEDCLICKS")
   @CsvField(value = "Converted clicks", reportField = "ConvertedClicks")
@@ -198,6 +190,48 @@ public abstract class ReportBase extends Report {
   protected BigDecimal valuePerConvertedClick;
 
   // General
+  @Column(name = "CONVERSIONS")
+  @CsvField(value = "Conversions", reportField = "Conversions")
+  protected BigDecimal conversions;
+  
+  @Column(name = "CONVERSION_RATE")
+  @CsvField(value = "Conv. rate", reportField = "ConversionRate")
+  protected BigDecimal conversionRate;
+  
+  @Column(name = "CONVERSION_VALUE")
+  @CsvField(value = "Total conv. value", reportField = "ConversionValue")
+  protected BigDecimal conversionValue;
+  
+  @Column(name = "COST_PER_CONVERSION")
+  @CsvField(value = "Cost / conv.", reportField = "CostPerConversion")
+  @MoneyField
+  protected BigDecimal costPerConversion;
+  
+  @Column(name = "VALUE_PER_CONVERSION")
+  @CsvField(value = "Value / conv.", reportField = "ValuePerConversion")
+  protected BigDecimal valuePerConversion;
+  
+  @Column(name = "ALL_CONVERSIONS")
+  @CsvField(value = "All conv.", reportField = "AllConversions")
+  protected BigDecimal allConversions;
+  
+  @Column(name = "ALL_CONVERSION_RATE")
+  @CsvField(value = "All conv. rate", reportField = "AllConversionRate")
+  protected BigDecimal allConversionRate;
+  
+  @Column(name = "ALL_CONVERSION_VALUE")
+  @CsvField(value = "All conv. value", reportField = "AllConversionValue")
+  protected BigDecimal allConversionValue;
+  
+  @Column(name = "COST_PER_ALL_CONVERSION")
+  @CsvField(value = "Cost / all conv.", reportField = "CostPerAllConversion")
+  @MoneyField
+  protected BigDecimal costPerAllConversion;
+  
+  @Column(name = "VALUE_PER_ALL_CONVERSION")
+  @CsvField(value = "Value / all conv.", reportField = "ValuePerAllConversion")
+  protected BigDecimal valuePerAllConversion;
+  
   @Column(name = "CONVERSIONCATEGORYNAME")
   @CsvField(value = "Conversion category", reportField = "ConversionCategoryName")
   protected String conversionCategoryName;
@@ -206,13 +240,33 @@ public abstract class ReportBase extends Report {
   @CsvField(value = "Conversion name", reportField = "ConversionTypeName")
   protected String conversionTypeName;
 
-  @Column(name = "CONVERSIONVALUE")
-  @CsvField(value = "Total conv. value", reportField = "ConversionValue")
-  protected BigDecimal conversionValue;
-
   @Column(name = "VIEWTHROUGHCONVERSIONS")
   @CsvField(value = "View-through conv.", reportField = "ViewThroughConversions")
   protected Long viewThroughConversions = 0L;
+  
+  @Column(name = "ENGAGEMENTS")
+  @CsvField(value = "Engagements", reportField = "Engagements")
+  protected Long engagements;
+  
+  @Column(name = "ENGAGEMENT_RATE")
+  @CsvField(value = "Engagement rate", reportField = "EngagementRate")
+  protected BigDecimal engagementRate;
+  
+  @Column(name = "INTERACTIONS")
+  @CsvField(value = "Interactions", reportField = "Interactions")
+  protected Long interactions;
+  
+  @Column(name = "INTERACTION_RATE")
+  @CsvField(value = "Interaction Rate", reportField = "InteractionRate")
+  protected BigDecimal interactionRate;
+  
+  @Column(name = "VIDEO_VIEWS")
+  @CsvField(value = "Views", reportField = "VideoViews")
+  protected Long videoViews;
+  
+  @Column(name = "VIDEO_VIEW_RATE")
+  @CsvField(value = "View rate", reportField = "VideoViewRate")
+  protected BigDecimal videoViewRate;
 
   private static final Map<String, DateRangeHandler> dateRangeHandlers = Maps.newHashMap();
 
@@ -383,14 +437,6 @@ public abstract class ReportBase extends Report {
     this.ctr = ctr;
   }
 
-  public void setAvgCpm(BigDecimal avgCpm) {
-    this.avgCpm = avgCpm;
-  }
-
-  public void setAvgCpc(BigDecimal avgCpc) {
-    this.avgCpc = avgCpc;
-  }
-
   public void setAvgPosition(BigDecimal avgPosition) {
     this.avgPosition = avgPosition;
   }
@@ -470,9 +516,49 @@ public abstract class ReportBase extends Report {
   public BigDecimal getAvgCpm() {
     return avgCpm;
   }
+  
+  public void setAvgCpm(BigDecimal avgCpm) {
+    this.avgCpm = avgCpm;
+  }
 
   public BigDecimal getAvgCpc() {
     return avgCpc;
+  }
+  
+  public void setAvgCpc(BigDecimal avgCpc) {
+    this.avgCpc = avgCpc;
+  }
+  
+  public BigDecimal getAvgCost() {
+    return avgCost;
+  }
+  
+  public void setAvgCost(BigDecimal avgCost) {
+    this.avgCost = avgCost;
+  }
+  
+  public String getAvgCpe() {
+    return BigDecimalUtil.formatAsReadable(avgCpe);
+  }
+  
+  public BigDecimal getAvgCpeBigDecimal() {
+    return avgCpe;
+  }
+  
+  public void setAvgCpe(String avgCpe) {
+    this.avgCpe = BigDecimalUtil.parseFromNumberString(avgCpe);
+  }
+  
+  public String getAvgCpv() {
+    return BigDecimalUtil.formatAsReadable(avgCpv);
+  }
+  
+  public BigDecimal getAvgCpvBigDecimal() {
+    return avgCpv;
+  }
+  
+  public void setAvgCpv(String avgCpv) {
+    this.avgCpv = BigDecimalUtil.parseFromNumberString(avgCpv);
   }
 
   public String getAvgPosition() {
@@ -536,48 +622,6 @@ public abstract class ReportBase extends Report {
     this.convertedClicks = convertedClicks;
   }
 
-  public Long getConversionsManyPerClick() {
-    return conversionsManyPerClick;
-  }
-
-  public void setConversionsManyPerClick(Long conversionsManyPerClick) {
-    this.conversionsManyPerClick = conversionsManyPerClick;
-  }
-
-  public String getConversionRateManyPerClick() {
-    return BigDecimalUtil.formatAsReadable(conversionRateManyPerClick);
-  }
-
-  public BigDecimal getConversionRateManyPerClickBigDecimal() {
-    return conversionRateManyPerClick;
-  }
-
-  public void setConversionRateManyPerClick(String conversionRateManyPerClick) {
-    this.conversionRateManyPerClick =
-        BigDecimalUtil.parseFromNumberString(conversionRateManyPerClick);
-  }
-
-  public BigDecimal getCostPerConversionManyPerClick() {
-    return costPerConversionManyPerClick;
-  }
-
-  public void setCostPerConversionManyPerClick(BigDecimal costPerConversionManyPerClick) {
-    this.costPerConversionManyPerClick = costPerConversionManyPerClick;
-  }
-
-  public String getValuePerConversionManyPerClick() {
-    return BigDecimalUtil.formatAsReadable(valuePerConversionManyPerClick);
-  }
-
-  public BigDecimal getValuePerConversionManyPerClickBigDecimal() {
-    return valuePerConversionManyPerClick;
-  }
-
-  public void setValuePerConversionManyPerClick(String valuePerConversionManyPerClick) {
-    this.valuePerConversionManyPerClick =
-        BigDecimalUtil.parseFromNumberString(valuePerConversionManyPerClick);
-  }
-
   public String getClickConversionRate() {
     return BigDecimalUtil.formatAsReadable(clickConversionRate);
   }
@@ -609,6 +653,118 @@ public abstract class ReportBase extends Report {
   public void setValuePerConvertedClick(String valuePerConvertedClick) {
     this.valuePerConvertedClick = BigDecimalUtil.parseFromNumberString(valuePerConvertedClick);
   }
+  
+  public String getConversions() {
+    return BigDecimalUtil.formatAsReadable(conversions);
+  }
+  
+  public BigDecimal getConversionsBigDecimal() {
+    return conversions;
+  }
+  
+  public void setConversions(String conversions) {
+    this.conversions = BigDecimalUtil.parseFromNumberString(conversions);
+  }
+  
+  public String getConversionRate() {
+    return BigDecimalUtil.formatAsReadable(conversionRate);
+  }
+  
+  public BigDecimal getConversionRateBigDecimal() {
+    return conversionRate;
+  }
+  
+  public void setConversionRate(String conversionRate) {
+    this.conversionRate = BigDecimalUtil.parseFromNumberString(conversionRate);
+  }
+  
+  public String getConversionValue() {
+    return BigDecimalUtil.formatAsReadable(conversionValue);
+  }
+  
+  public BigDecimal getConversionValueBigDecimal() {
+    return conversionValue;
+  }
+  
+  public void setConversionValue(String conversionValue) {
+    this.conversionValue = BigDecimalUtil.parseFromNumberString(conversionValue);
+  }
+  
+  public BigDecimal getCostPerConversion() {
+    return costPerConversion;
+  }
+  
+  public void setCostPerConversion(BigDecimal costPerConversion) {
+    this.costPerConversion = costPerConversion;
+  }
+  
+  public String getValuePerConversion() {
+    return BigDecimalUtil.formatAsReadable(valuePerConversion);
+  }
+  
+  public BigDecimal getValuePerConversionBigDecimal() {
+    return valuePerConversion;
+  }
+  
+  public void setValuePerConversion(String valuePerConversion) {
+    this.valuePerConversion = BigDecimalUtil.parseFromNumberString(valuePerConversion);
+  }
+  
+  public String getAllConversions() {
+    return BigDecimalUtil.formatAsReadable(allConversions);
+  }
+  
+  public BigDecimal getAllConversionsBigDecimal() {
+    return allConversions;
+  }
+  
+  public void setAllConversions(String allConversions) {
+    this.allConversions = BigDecimalUtil.parseFromNumberString(allConversions);
+  }
+  
+  public String getAllConversionRate() {
+    return BigDecimalUtil.formatAsReadable(allConversionRate);
+  }
+  
+  public BigDecimal getAllConversionRateBigDecimal() {
+    return allConversionRate;
+  }
+  
+  public void setAllConversionRate(String allConversionRate) {
+    this.allConversionRate = BigDecimalUtil.parseFromNumberString(allConversionRate);
+  }
+  
+  public String getAllConversionValue() {
+    return BigDecimalUtil.formatAsReadable(allConversionValue);
+  }
+  
+  public BigDecimal getAllConversionValueBigDecimal() {
+    return allConversionValue;
+  }
+  
+  public void setAllConversionValue(String allConversionValue) {
+    this.allConversionValue = BigDecimalUtil.parseFromNumberString(allConversionValue);
+  }
+  
+  public BigDecimal getCostPerAllConversion() {
+    return costPerAllConversion;
+  }
+  
+  public void setCostPerAllConversion(BigDecimal costPerAllConversion) {
+    this.costPerAllConversion = costPerAllConversion;
+  }
+  
+  public String getValuePerAllConversion() {
+    return BigDecimalUtil.formatAsReadable(valuePerAllConversion);
+  }
+  
+  public BigDecimal getValuePerAllConversionBigDecimal() {
+    return valuePerAllConversion;
+  }
+  
+  public void setValuePerAllConversion(String valuePerAllConversion) {
+    this.valuePerAllConversion = BigDecimalUtil.parseFromNumberString(valuePerAllConversion);
+  }
 
   public String getConversionCategoryName() {
     return conversionCategoryName;
@@ -626,18 +782,6 @@ public abstract class ReportBase extends Report {
     this.conversionTypeName = conversionTypeName;
   }
 
-  public String getConversionValue() {
-    return BigDecimalUtil.formatAsReadable(conversionValue);
-  }
-
-  public BigDecimal getConversionValueBigDecimal() {
-    return conversionValue;
-  }
-
-  public void setConversionValue(String conversionValue) {
-    this.conversionValue = BigDecimalUtil.parseFromNumberString(conversionValue);
-  }
-
   public Long getViewThroughConversions() {
     return viewThroughConversions;
   }
@@ -645,7 +789,69 @@ public abstract class ReportBase extends Report {
   public void setViewThroughConversions(Long viewThroughConversions) {
     this.viewThroughConversions = viewThroughConversions;
   }
-
+  
+  public Long getEngagements() {
+    return engagements;
+  }
+  
+  public void setEngagements(Long engagements) {
+    this.engagements = engagements;
+  }
+  
+  public String getEngagementRate()
+  {
+    return BigDecimalUtil.formatAsReadable(engagementRate);
+  }
+  
+  public BigDecimal getEngagementRateBigDecimal()
+  {
+    return engagementRate;
+  }
+  
+  public void setEnagementRate(String engagementRate) {
+    this.engagementRate = BigDecimalUtil.parseFromNumberString(engagementRate);
+  }
+  
+  public Long getInteractions() {
+    return interactions;
+  }
+  
+  public void setInteractions(Long interactions) {
+    this.interactions = interactions;
+  }
+  
+  public String getInteractionRate() {
+    return BigDecimalUtil.formatAsReadable(interactionRate);
+  }
+  
+  public BigDecimal getInteractionRateBigDecimal() {
+    return interactionRate;
+  }
+  
+  public void setInteractionRate(String interactionRate) {
+    this.interactionRate = BigDecimalUtil.parseFromNumberString(interactionRate);
+  }
+  
+  public Long getVideoViews() {
+    return videoViews;
+  }
+  
+  public void setVideoViews(Long videoViews) {
+    this.videoViews = videoViews;
+  }
+  
+  public String getVideoViewRate() {
+    return BigDecimalUtil.formatAsReadable(videoViewRate);
+  }
+  
+  public BigDecimal getVideoViewRateBigDecimal() {
+    return videoViewRate;
+  }
+  
+  public void setVideoViewRate(String videoViewRate) {
+    this.videoViewRate = BigDecimalUtil.parseFromNumberString(videoViewRate);
+  }
+  
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -657,23 +863,19 @@ public abstract class ReportBase extends Report {
     result = prime * result + ((adNetworkPartners == null) ? 0 : adNetworkPartners.hashCode());
     result = prime * result + ((avgCpc == null) ? 0 : avgCpc.hashCode());
     result = prime * result + ((avgCpm == null) ? 0 : avgCpm.hashCode());
+    result = prime * result + ((avgCost == null) ? 0 : avgCost.hashCode());
+    result = prime * result + ((avgCpe == null) ? 0 : avgCpe.hashCode());
+    result = prime * result + ((avgCpv == null) ? 0 : avgCpv.hashCode());
     result = prime * result + ((avgPosition == null) ? 0 : avgPosition.hashCode());
     result = prime * result + ((clickType == null) ? 0 : clickType.hashCode());
     result = prime * result + ((clicks == null) ? 0 : clicks.hashCode());
     result = prime * result
         + ((conversionCategoryName == null) ? 0 : conversionCategoryName.hashCode());
     result = prime * result + ((clickConversionRate == null) ? 0 : clickConversionRate.hashCode());
-    result = prime * result
-        + ((conversionRateManyPerClick == null) ? 0 : conversionRateManyPerClick.hashCode());
     result = prime * result + ((conversionTypeName == null) ? 0 : conversionTypeName.hashCode());
-    result = prime * result + ((conversionValue == null) ? 0 : conversionValue.hashCode());
     result = prime * result + ((convertedClicks == null) ? 0 : convertedClicks.hashCode());
-    result = prime * result
-        + ((conversionsManyPerClick == null) ? 0 : conversionsManyPerClick.hashCode());
     result = prime * result + ((cost == null) ? 0 : cost.hashCode());
     result = prime * result + ((costPerConvertedClick == null) ? 0 : costPerConvertedClick.hashCode());
-    result = prime * result
-        + ((costPerConversionManyPerClick == null) ? 0 : costPerConversionManyPerClick.hashCode());
     result = prime * result + ((ctr == null) ? 0 : ctr.hashCode());
     result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
     result = prime * result
@@ -687,13 +889,26 @@ public abstract class ReportBase extends Report {
     result = prime * result + ((primaryCompanyName == null) ? 0 : primaryCompanyName.hashCode());
     result = prime * result + ((quarter == null) ? 0 : quarter.hashCode());
     result = prime * result + ((valuePerConvertedClick == null) ? 0 : valuePerConvertedClick.hashCode());
-    result = prime
-        * result
-        + ((valuePerConversionManyPerClick == null) ? 0 : valuePerConversionManyPerClick.hashCode());
     result = prime * result
         + ((viewThroughConversions == null) ? 0 : viewThroughConversions.hashCode());
     result = prime * result + ((week == null) ? 0 : week.hashCode());
     result = prime * result + ((year == null) ? 0 : year.hashCode());
+    result = prime * result + ((engagements == null) ? 0 : engagements.hashCode());
+    result = prime * result + ((engagementRate == null) ? 0 : engagementRate.hashCode());
+    result = prime * result + ((interactions == null) ? 0 : interactions.hashCode());
+    result = prime * result + ((interactionRate == null) ? 0 : interactionRate.hashCode());
+    result = prime * result + ((videoViews == null) ? 0 : videoViews.hashCode());
+    result = prime * result + ((videoViewRate == null) ? 0 : videoViewRate.hashCode());
+    result = prime * result + ((conversions == null) ? 0 : conversions.hashCode());
+    result = prime * result + ((conversionRate == null) ? 0 : conversionRate.hashCode());
+    result = prime * result + ((conversionValue == null) ? 0 : conversionValue.hashCode());
+    result = prime * result + ((costPerConversion == null) ? 0 : costPerConversion.hashCode());
+    result = prime * result + ((valuePerConversion == null) ? 0 : valuePerConversion.hashCode());
+    result = prime * result + ((allConversions == null) ? 0 : allConversions.hashCode());
+    result = prime * result + ((allConversionRate == null) ? 0 : allConversionRate.hashCode());
+    result = prime * result + ((allConversionValue == null) ? 0 : allConversionValue.hashCode());
+    result = prime * result + ((costPerAllConversion == null) ? 0 : costPerAllConversion.hashCode());
+    result = prime * result + ((valuePerAllConversion == null) ? 0 : valuePerAllConversion.hashCode());
     return result;
   }
 
@@ -736,6 +951,21 @@ public abstract class ReportBase extends Report {
         return false;
     } else if (!avgCpm.equals(other.avgCpm))
       return false;
+    if (avgCost == null) {
+      if (other.avgCost != null)
+        return false;
+    } else if (!avgCost.equals(other.avgCost))
+      return false;
+    if (avgCpe == null) {
+      if (other.avgCpe != null)
+        return false;
+    } else if (!avgCpe.equals(other.avgCpe))
+      return false;
+    if (avgCpv == null) {
+      if (other.avgCpv != null)
+        return false;
+    } else if (!avgCpv.equals(other.avgCpv))
+      return false;
     if (avgPosition == null) {
       if (other.avgPosition != null)
         return false;
@@ -761,30 +991,15 @@ public abstract class ReportBase extends Report {
         return false;
     } else if (!clickConversionRate.equals(other.clickConversionRate))
       return false;
-    if (conversionRateManyPerClick == null) {
-      if (other.conversionRateManyPerClick != null)
-        return false;
-    } else if (!conversionRateManyPerClick.equals(other.conversionRateManyPerClick))
-      return false;
     if (conversionTypeName == null) {
       if (other.conversionTypeName != null)
         return false;
     } else if (!conversionTypeName.equals(other.conversionTypeName))
       return false;
-    if (conversionValue == null) {
-      if (other.conversionValue != null)
-        return false;
-    } else if (!conversionValue.equals(other.conversionValue))
-      return false;
     if (convertedClicks == null) {
       if (other.convertedClicks != null)
         return false;
     } else if (!convertedClicks.equals(other.convertedClicks))
-      return false;
-    if (conversionsManyPerClick == null) {
-      if (other.conversionsManyPerClick != null)
-        return false;
-    } else if (!conversionsManyPerClick.equals(other.conversionsManyPerClick))
       return false;
     if (cost == null) {
       if (other.cost != null)
@@ -795,11 +1010,6 @@ public abstract class ReportBase extends Report {
       if (other.costPerConvertedClick != null)
         return false;
     } else if (!costPerConvertedClick.equals(other.costPerConvertedClick))
-      return false;
-    if (costPerConversionManyPerClick == null) {
-      if (other.costPerConversionManyPerClick != null)
-        return false;
-    } else if (!costPerConversionManyPerClick.equals(other.costPerConversionManyPerClick))
       return false;
     if (ctr == null) {
       if (other.ctr != null)
@@ -861,11 +1071,6 @@ public abstract class ReportBase extends Report {
         return false;
     } else if (!valuePerConvertedClick.equals(other.valuePerConvertedClick))
       return false;
-    if (valuePerConversionManyPerClick == null) {
-      if (other.valuePerConversionManyPerClick != null)
-        return false;
-    } else if (!valuePerConversionManyPerClick.equals(other.valuePerConversionManyPerClick))
-      return false;
     if (viewThroughConversions == null) {
       if (other.viewThroughConversions != null)
         return false;
@@ -880,6 +1085,86 @@ public abstract class ReportBase extends Report {
       if (other.year != null)
         return false;
     } else if (!year.equals(other.year))
+      return false;
+    if (engagements == null) {
+      if (other.engagements != null)
+        return false;
+    } else if (!engagements.equals(other.engagements))
+      return false;
+    if (engagementRate == null) {
+      if (other.engagementRate != null)
+        return false;
+    } else if (!engagementRate.equals(other.engagementRate))
+      return false;
+    if (interactions == null) {
+      if (other.interactions != null)
+        return false;
+    } else if (!interactions.equals(other.interactions))
+      return false;
+    if (interactionRate == null) {
+      if (other.interactionRate != null)
+        return false;
+    } else if (!interactionRate.equals(other.interactionRate))
+      return false;
+    if (videoViews == null) {
+      if (other.videoViews != null)
+        return false;
+    } else if (!videoViews.equals(other.videoViews))
+      return false;
+    if (videoViewRate == null) {
+      if (other.videoViewRate != null)
+        return false;
+    } else if (!videoViewRate.equals(other.videoViewRate))
+      return false;
+    if (conversions == null) {
+      if (other.conversions != null)
+        return false;
+    } else if (!conversions.equals(other.conversions))
+      return false;
+    if (conversionRate == null) {
+      if (other.conversionRate != null)
+        return false;
+    } else if (!conversionRate.equals(other.conversionRate))
+      return false;
+    if (conversionValue == null) {
+      if (other.conversionValue != null)
+        return false;
+    } else if (!conversionValue.equals(other.conversionValue))
+      return false;
+    if (costPerConversion == null) {
+      if (other.costPerConversion != null)
+        return false;
+    } else if (!costPerConversion.equals(other.costPerConversion))
+      return false;
+    if (valuePerConversion == null) {
+      if (other.valuePerConversion != null)
+        return false;
+    } else if (!valuePerConversion.equals(other.valuePerConversion))
+      return false;
+    if (allConversions == null) {
+      if (other.allConversions != null)
+        return false;
+    } else if (!allConversions.equals(other.allConversions))
+      return false;
+    if (allConversionRate == null) {
+      if (other.allConversionRate != null)
+        return false;
+    } else if (!allConversionRate.equals(other.allConversionRate))
+      return false;
+    if (allConversionValue == null) {
+      if (other.allConversionValue != null)
+        return false;
+    } else if (!allConversionValue.equals(other.allConversionValue))
+      return false;
+    if (costPerAllConversion == null) {
+      if (other.costPerAllConversion != null)
+        return false;
+    } else if (!costPerAllConversion.equals(other.costPerAllConversion))
+      return false;
+    if (valuePerAllConversion == null) {
+      if (other.valuePerAllConversion != null)
+        return false;
+    } else if (!valuePerAllConversion.equals(other.valuePerAllConversion))
       return false;
     return true;
   }

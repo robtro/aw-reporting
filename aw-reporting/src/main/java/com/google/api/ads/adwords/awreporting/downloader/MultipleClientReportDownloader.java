@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.downloader;
 
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.base.Stopwatch;
 
@@ -38,9 +38,6 @@ import java.util.concurrent.TimeUnit;
  * executor is necessary to call {@code initializeExecutorService}, and to finalize the executor is
  * necessary to call {@code finalizeExecutorService} after all the downloads are done, and the
  * downloader will not be used again.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class MultipleClientReportDownloader {
 
@@ -70,7 +67,7 @@ public class MultipleClientReportDownloader {
    *
    * @param reportDefinition Report to download.
    * @param cids CIDs to download the report for.
-   * @return Collection of File objects reports have been downloaded to.
+   * @return Collection of File objects of downloaded/unzipped reports.
    * @throws InterruptedException error trying to stop downloader thread.
    * @throws ValidationException 
    */

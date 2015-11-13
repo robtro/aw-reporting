@@ -28,8 +28,6 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Test case for Html2PdfOverNet.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class TaskHtml2PdfOverNet {
   

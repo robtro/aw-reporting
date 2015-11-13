@@ -4,7 +4,6 @@ avgCpc: 0.15
 avgCpm: 0.83
 clicks: 784
 conversions: 0
-conversionsManyPerClick: 0
 cost: 121.38
 ctr: 0.53
 impressions: 146558

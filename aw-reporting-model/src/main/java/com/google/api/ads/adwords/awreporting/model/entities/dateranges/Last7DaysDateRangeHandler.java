@@ -18,8 +18,6 @@ import org.joda.time.DateTime;
 
 /**
  * Handles the date range for the LAST_7_DAYS type.
- * 
- * @author gustavomoreira
  */
 public class Last7DaysDateRangeHandler implements DateRangeHandler {
 

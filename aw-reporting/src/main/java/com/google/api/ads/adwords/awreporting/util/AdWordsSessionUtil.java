@@ -29,8 +29,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Helper class to copy the {@link AdWordsSession}.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class AdWordsSessionUtil {
 
@@ -80,6 +78,7 @@ public class AdWordsSessionUtil {
           .skipReportHeader(adWordsSession.getReportingConfiguration().isSkipReportHeader())
           .skipColumnHeader(adWordsSession.getReportingConfiguration().isSkipColumnHeader())
           .skipReportSummary(adWordsSession.getReportingConfiguration().isSkipReportSummary())
+          .includeZeroImpressions(adWordsSession.getReportingConfiguration().isIncludeZeroImpressions())
           .build();
       builder = builder.withReportingConfiguration(reportingConfig);
     }

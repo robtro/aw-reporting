@@ -38,8 +38,6 @@ import java.util.Map;
 
 /**
  * KratuCompute
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class KratuCompute {
 

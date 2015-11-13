@@ -39,10 +39,6 @@ import com.samskivert.mustache.Mustache;
 
 /**
  * Class to export reports to HTML using JMoustache, and convert HTML to PDF using Flying Saucer
- *
- * @author markbowyer@google.com (Mark R. Bowyer)
- * @author joeltoby@google.com (Joel Toby)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class HTMLExporter {
 

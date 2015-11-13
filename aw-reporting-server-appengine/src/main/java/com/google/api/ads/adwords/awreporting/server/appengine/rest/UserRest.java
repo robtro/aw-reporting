@@ -23,8 +23,6 @@ import org.restlet.representation.Representation;
 
 /**
  * Rest entry point for User info
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class UserRest extends AbstractBaseResource {
 

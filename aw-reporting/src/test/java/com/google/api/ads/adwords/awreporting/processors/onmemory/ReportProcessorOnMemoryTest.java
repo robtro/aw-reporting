@@ -58,8 +58,8 @@ import com.google.api.ads.adwords.awreporting.processors.onmemory.RunnableProces
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
 import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.util.Lists;
@@ -68,8 +68,6 @@ import com.google.common.collect.Sets;
 
 /**
  * Test case for the {@code ReportProcessorOnMemory} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportProcessorOnMemoryTest {
 

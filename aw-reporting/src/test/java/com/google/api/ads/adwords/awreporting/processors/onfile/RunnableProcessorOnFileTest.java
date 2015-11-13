@@ -25,7 +25,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.awreporting.processors.onfile.RunnableProcessorOnFile;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
@@ -45,8 +45,6 @@ import java.util.List;
 
 /**
  * Test case for the {@link RunnableProcessorOnFile} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableProcessorOnFileTest {
 
@@ -75,7 +73,7 @@ public class RunnableProcessorOnFileTest {
     FileUtils.copyFile(file, newFile);
 
     runnableProcessorOnFile = new RunnableProcessorOnFile<ReportAccount>(file,
-        csvToBean, mappingStrategy, ReportDefinitionDateRangeType.CUSTOM_DATE,
+        true, csvToBean, mappingStrategy, ReportDefinitionDateRangeType.CUSTOM_DATE,
         "20140101", "20140131", "123", mockedEntitiesPersister, 5);
 
     MockitoAnnotations.initMocks(this);

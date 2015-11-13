@@ -21,14 +21,14 @@ import static org.mockito.Mockito.verify;
 
 import com.google.api.ads.adwords.awreporting.downloader.RunnableDownloader;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201509.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.Selector;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201506.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201509.DetailedReportDownloadResponseException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.common.collect.Lists;
@@ -45,8 +45,6 @@ import java.util.Collection;
 
 /**
  * Test case for the {@code RunnableDownloader} class.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableDownloaderTest {
 

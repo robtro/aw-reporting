@@ -17,12 +17,12 @@ package com.google.api.ads.adwords.awreporting.downloader;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponse;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201506.DetailedReportDownloadResponseException;
-import com.google.api.ads.adwords.lib.utils.v201506.ReportDownloader;
+import com.google.api.ads.adwords.lib.utils.v201509.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201509.ReportDownloader;
 import com.google.api.ads.common.lib.exception.ValidationException;
 
 import org.apache.log4j.Logger;
@@ -46,9 +46,6 @@ import java.util.concurrent.CountDownLatch;
  *
  * Also the {@link AdWordsSessionBuilderSynchronizer} is kept by the client class, and should handle
  * all the concurrent threads.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableDownloader implements Runnable {
 
@@ -77,7 +74,7 @@ public class RunnableDownloader implements Runnable {
    * @param cid the costumer ID.
    * @param reportDefinition the report to be downloaded.
    * @param sessionBuilder the builder for the session.
-   * @param results the list of results.
+   * @param results the list of unzipped reports.
    */
   public RunnableDownloader(int retriesCount,
       int backoffInterval,
@@ -211,11 +208,15 @@ public class RunnableDownloader implements Runnable {
     } else {
       File gUnzipFile = new File(reportFile.getAbsolutePath() + ".gunzip");
       try {
-        // gUnzips downloeded file
+        // gUnzips downloaded file
         FileUtil.gUnzip(reportFile, gUnzipFile);
-        this.results.add(reportFile);
+        this.results.add(gUnzipFile);
       } catch (IOException e) {
         LOGGER.info("Ignoring file (Error when UnZipping): " + reportFile.getAbsolutePath());
+        gUnzipFile.delete();
+      } finally {
+        // no longer need this zipped file
+        reportFile.delete();
       }
     }
   }

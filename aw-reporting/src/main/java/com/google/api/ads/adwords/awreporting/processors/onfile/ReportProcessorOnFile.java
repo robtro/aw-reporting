@@ -20,9 +20,9 @@ import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
@@ -53,9 +53,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Main reporting processor responsible for downloading and saving the files to the file system. The
  * persistence of the parsed beans is delegated to the configured persister.
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author gustavomoreira@google.com (Gustavo Moreira)
  */
 @Component
 @Qualifier("reportProcessorOnFile")
@@ -85,10 +82,15 @@ public class ReportProcessorOnFile extends ReportProcessor {
       this.numberOfReportProcessors = numberOfReportProcessors;
     }
   }
-
+  
+  /**
+   * @param filesDownloadedByAPI whether the report files are downloaded by AWAPI (no header/summary)
+   *                             or provided by user (via csvReportFile option).
+   */
   private <R extends Report> void processFiles(String mccAccountId,
       Class<R> reportBeanClass,
       Collection<File> localFiles,
+      boolean filesDownloadedByAPI,
       ReportDefinitionDateRangeType dateRangeType,
       String dateStart,
       String dateEnd) {
@@ -111,6 +113,7 @@ public class ReportProcessorOnFile extends ReportProcessor {
 
         LOGGER.debug("Parsing file: " + file.getAbsolutePath());
         RunnableProcessorOnFile<R> runnableProcesor = new RunnableProcessorOnFile<R>(file,
+            filesDownloadedByAPI,
             csvToBean,
             mappingStrategy,
             dateRangeType,
@@ -197,7 +200,7 @@ public class ReportProcessorOnFile extends ReportProcessor {
     }
 
     AdWordsSessionBuilderSynchronizer sessionBuilder = new AdWordsSessionBuilderSynchronizer(
-        authenticator.authenticate(mccAccountId, false));
+        authenticator.authenticate(mccAccountId, false), getIncludeZeroImpressions(properties));
 
     LOGGER.info("*** Generating Reports for " + accountIdsSet.size() + " accounts ***");
 
@@ -300,20 +303,14 @@ public class ReportProcessorOnFile extends ReportProcessor {
       String dateEnd,
       ReportDefinitionDateRangeType dateRangeType) {
 
-    Stopwatch stopwatch = Stopwatch.createStarted();
-
     @SuppressWarnings("unchecked")
     Class<R> reportBeanClass =
         (Class<R>) this.csvReportEntitiesMapping.getReportBeanClass(reportType);
-    this.processFiles(mccAccountId, reportBeanClass, localFiles, dateRangeType, dateStart, dateEnd);
-
-    stopwatch.stop();
-    LOGGER.info("\n* DB Process finished in " + (stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000)
-        + " seconds ***");
+    this.processFiles(mccAccountId, reportBeanClass, localFiles, true, dateRangeType, dateStart, dateEnd);
   }
 
   /**
-   * Process the local files delegating the call to the concrete implementation.
+   * Process the input files delegating the call to the concrete implementation.
    *
    * @param reportTypeName the report type name as String.
    * @param localFiles the local files.
@@ -322,14 +319,12 @@ public class ReportProcessorOnFile extends ReportProcessor {
    * @param dateRangeType the date range type.
    */
   @SuppressWarnings("unchecked")
-  public <R extends Report> void processLocalFiles(String mccAccountId,
+  public <R extends Report> void processInputFiles(String mccAccountId,
       String reportTypeName,
       Collection<File> localFiles,
       String dateStart,
       String dateEnd,
       ReportDefinitionDateRangeType dateRangeType) {
-
-    Stopwatch stopwatch = Stopwatch.createStarted();
 
     Class<R> reportBeanClass;
     try {
@@ -342,18 +337,14 @@ public class ReportProcessorOnFile extends ReportProcessor {
     if (reportBeanClass == null) {
       throw new IllegalArgumentException("Report type not found: " + reportTypeName);
     }
-
-    this.processFiles(mccAccountId, reportBeanClass, localFiles, dateRangeType, dateStart, dateEnd);
-
-    stopwatch.stop();
-    LOGGER.info("\n* DB Process finished in " + (stopwatch.elapsed(TimeUnit.MILLISECONDS) / 1000)
-        + " seconds ***");
+    
+    this.processFiles(mccAccountId, reportBeanClass, localFiles, false, dateRangeType, dateStart, dateEnd);
   }
 
   /**
    * Deletes the local files used as temporary containers.
    *
-   * @param localFiles the list of local files.
+   * @param localFiles the list of local unzipped files.
    * @param reportType the report type.
    */
   private void deleteTemporaryFiles(Collection<File> localFiles,
@@ -362,8 +353,6 @@ public class ReportProcessorOnFile extends ReportProcessor {
     // Delete temporary report files
     LOGGER.info("\n Deleting temporary report files after Parsing...");
     for (File file : localFiles) {
-      File gUnzipFile = new File(file.getAbsolutePath() + ".gunzip");
-      gUnzipFile.delete();
       file.delete();
       LOGGER.trace(".");
     }

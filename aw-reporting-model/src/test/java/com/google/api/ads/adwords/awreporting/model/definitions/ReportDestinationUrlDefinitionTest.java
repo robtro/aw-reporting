@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportDestinationUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -55,12 +55,11 @@ extends AbstractReportDefinitionTest<ReportDestinationUrl> {
     Assert.assertEquals("CAMPAGNE", row.getCampaignName());
     Assert.assertEquals("active", row.getCampaignStatus());
     
-    //Assert.assertEquals("0.00", row.getConversionRate());
-    //Assert.assertEquals("0.00", row.getConversionRateManyPerClick());
-    Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
-    //Assert.assertEquals(null, row.getConversionValue());
-    //Assert.assertEquals("0.00", row.getCostPerConversion());
-    //Assert.assertEquals("0.00", row.getCostPerConversionManyPerClick());
+    Assert.assertEquals("0.00", row.getConversionRate());
+    Assert.assertEquals("0.00", row.getConversions());
+    Assert.assertEquals("0.00", row.getConversionValue());
+    Assert.assertEquals(0d, row.getCostPerConversion().doubleValue());
+    Assert.assertEquals("0.00", row.getValuePerConversion());
     
     Assert.assertEquals("" , row.getCriteriaDestinationUrl());
     Assert.assertEquals("+immo +benodet", row.getCriteriaParameters());
@@ -90,13 +89,12 @@ extends AbstractReportDefinitionTest<ReportDestinationUrl> {
     Assert.assertEquals(118203540L , row.getCampaignId().longValue());
     Assert.assertEquals("DISPLAY", row.getCampaignName());
     Assert.assertEquals("active", row.getCampaignStatus());
-    
-    //Assert.assertEquals("0.00", row.getConversionRate());
-    //Assert.assertEquals("0.00", row.getConversionRateManyPerClick());
-    //Assert.assertEquals(0L, row.getConversionsManyPerClick().longValue());
-    //Assert.assertEquals(null, row.getConversionValue());
-    //Assert.assertEquals("0.00", row.getCostPerConversion());
-    //Assert.assertEquals("0.00", row.getCostPerConversionManyPerClick());
+
+    Assert.assertEquals("0.00", row.getConversionRate());
+    Assert.assertEquals("0.00", row.getConversions());
+    Assert.assertEquals("0.00", row.getConversionValue());
+    Assert.assertEquals(0d, row.getCostPerConversion().doubleValue());
+    Assert.assertEquals("0.00", row.getValuePerConversion());
     
     Assert.assertEquals("" , row.getCriteriaDestinationUrl());
     Assert.assertEquals("Content", row.getCriteriaParameters());
@@ -150,24 +148,42 @@ extends AbstractReportDefinitionTest<ReportDestinationUrl> {
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "VideoQuartile25Rate",
+        "VideoQuartile50Rate",
+        "VideoQuartile75Rate",
+        "VideoQuartile100Rate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to Destination URL Performance Report
         "AdGroupId",
@@ -183,11 +199,17 @@ extends AbstractReportDefinitionTest<ReportDestinationUrl> {
         "EffectiveDestinationUrl",
         "IsNegative",
         "ActiveViewCpm",
+        "ActiveViewCtr",
         "ActiveViewImpressions",
+        "ActiveViewMeasurability",
+        "ActiveViewMeasurableCost",
+        "ActiveViewMeasurableImpressions",
+        "ActiveViewViewability",
         "ConversionTrackerId",
         "GmailForwards",
         "GmailSaves",
-        "GmailSecondaryClicks"
+        "GmailSecondaryClicks",
+        "Slot"
     };
   }
 }

@@ -18,8 +18,6 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
 
 /**
  * ReportAdGroupRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class ReportAdGroupRest extends AbstractReportRest<ReportAdGroup> {
   public ReportAdGroupRest() {

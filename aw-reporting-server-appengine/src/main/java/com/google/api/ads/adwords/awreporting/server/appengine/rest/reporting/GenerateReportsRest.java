@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.server.appengine.RestServer;
 import com.google.api.ads.adwords.awreporting.server.appengine.processors.ReportProcessorAppEngine;
 import com.google.api.ads.adwords.awreporting.server.rest.AbstractBaseResource;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 
 import org.restlet.representation.Representation;
 
@@ -28,8 +28,6 @@ import java.util.Properties;
 
 /**
  * Rest entry point to launch Generate Reports data tasks
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GenerateReportsRest extends AbstractBaseResource {
 

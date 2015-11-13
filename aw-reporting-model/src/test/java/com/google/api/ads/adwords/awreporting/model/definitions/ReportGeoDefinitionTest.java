@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportGeo;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,8 +25,6 @@ import junit.framework.Assert;
 
 /**
  * Tests the Geo Performance report definition.
- * 
- *  * @author markbowyer@google.com (Mark R. Bowyer)
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aw-report-model-test-beans.xml")
@@ -63,7 +61,7 @@ AbstractReportDefinitionTest<ReportGeo>{
     Assert.assertEquals(0d, first.getAvgCpm().doubleValue());
     Assert.assertEquals(0d, first.getAvgCpc().doubleValue());
     Assert.assertEquals("1.00", first.getAvgPosition());
-    Assert.assertEquals("0.00", first.getConversionRateManyPerClick());
+    Assert.assertEquals("0.00", first.getConversionRate());
     Assert.assertEquals("0.00", first.getClickConversionRate());
     Assert.assertEquals(6671111111L, first.getAccountId().longValue());
   }
@@ -87,7 +85,7 @@ AbstractReportDefinitionTest<ReportGeo>{
     Assert.assertEquals(0d, last.getAvgCpm().doubleValue());
     Assert.assertEquals(0d, last.getAvgCpc().doubleValue());
     Assert.assertEquals("1.00", last.getAvgPosition());
-    Assert.assertEquals("0.00", last.getConversionRateManyPerClick());
+    Assert.assertEquals("0.00", last.getConversionRate());
     Assert.assertEquals("0.00", last.getClickConversionRate());
     Assert.assertEquals(6671111111L, last.getAccountId().longValue());
   }
@@ -119,24 +117,38 @@ AbstractReportDefinitionTest<ReportGeo>{
         "Clicks",
         "Impressions",
         "Ctr",
+        "AverageCost",
         "AverageCpm",
         "AverageCpc",
+        "AverageCpe",
+        "AverageCpv",
         "AveragePosition",
         "Device",
         "ClickType",
         "AdNetworkType1",
         "AdNetworkType2",
-        "ConversionsManyPerClick",
-        "ConversionRateManyPerClick",
-        "CostPerConversionManyPerClick",
-        "ValuePerConversionManyPerClick",
+        "Engagements",
+        "EngagementRate",
+        "Interactions",
+        "InteractionRate",
+        "VideoViews",
+        "VideoViewRate",
+        "Conversions",
+        "ConversionRate",
+        "ConversionValue",
+        "CostPerConversion",
+        "ValuePerConversion",
+        "AllConversions",
+        "AllConversionRate",
+        "AllConversionValue",
+        "CostPerAllConversion",
+        "ValuePerAllConversion",
         "ConvertedClicks",
         "ClickConversionRate",
         "CostPerConvertedClick",
         "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
-        "ConversionValue",
         "ViewThroughConversions",
         // Specific to Geo Performance Report
         "AdFormat",

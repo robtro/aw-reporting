@@ -23,8 +23,6 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * Utility class for generating or formatting values for presentation within exported reports 
  * such as currencies, dates and other numeric values.
- *
- * @author joeltoby
  */
 public final class TemplateStringsUtil {
 

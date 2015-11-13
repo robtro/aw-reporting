@@ -13,7 +13,7 @@ Please let us know if you run into issues in the project's issue tracker (https:
 ## Overview
 AwReporting is an open-source Java framework for large scale AdWords API reporting.
 
-* 18 common reports are included in the reference implementation. You can easily follow the code examples to implement more. 
+* 21 common reports are included in the reference implementation. You can easily follow the code examples to implement more.
 
 * Reports are stored in your **relational database**, so you can integrate them with your existing systems.
 
@@ -89,13 +89,13 @@ Be sure to specify the properties file you edited above on the command line.
 
 It's possible to run the project using either Eclipse or the command line. If using Eclipse, open and run:
 
-> aw-reporting/src/main/java/com/google/api/ads/adwords/jaxws/extensions/AwReporting.java
+> aw-reporting/src/main/java/com/google/api/ads/adwords/awreporting/AwReporting.java
 
 As it's running, the project will provide status messages about the reports it's downloading on the command line. 
 
 Check your database when the run finishes to be sure it's been populated with the reporting data, e.g.:
 
-> SELECT * FROM AWReports.AW_ReportAd limit 1;
+> SELECT * FROM AWReports.AW_ReportAccount limit 1;
 
 ### Command line options 
 
@@ -139,7 +139,7 @@ Note: aw-reporting.jar is in the aw-reporting/aw-reporting/target/ directory.
    -onFileReport
                               Especifies a report type (it has to be know by AwReporting model), and it will look for the data
                               in the file passed in the property "csvReportFile". If you use this property, it's mandatory
-                              to specify a CSV file with "-csvReportFile". The CSV file has to follow the same formatt as the
+                              to specify a CSV file with "-csvReportFile". The CSV file has to follow the same format as the
                               one downloaded from the API: the first line contains the name of the report; second line must
                               contain the column headers; following lines must contain the data.  
 
@@ -183,11 +183,14 @@ This will create a "schema.sql" in the "target/" folder of the project.
 
 *Important Note*: The schema creates the whole database assuming that none of the tables were created before. To update the database you will need to go through the SQL file and delete the unnecessary code. 
 
+### Upgrade to new AdWords API versions
+
+We will keep migrating aw-reporting to the latest AdWords API version. However please note that besides code changes that you can just pull from github, the database tables’ column names may also be changed (addition / removal / renamning) to reflect the new report field changes (please refer to the [release notes](https://developers.google.com/adwords/api/docs/reference/) for details). Since these changes may be scattered around many tables, you can run this version of AwReporting on a new database schema, then use the schema generation command to generate both database schemas and compare them. You can also create SQL scripts to import data from old database tables to new ones.
+
 ## Details about the code
 
 For better organization and encapsulation, the project groups the reporting workflow into two parts:
-**Aw-Report-Model** for the logic (API services, downloader and processors) and **Aw-Reporting** for persistence, entities and the CSV mapping to AdWords information.
-
+**Aw-Report-Model** for persistence, entities and the CSV mapping to AdWords information and **Aw-Reporting** for the logic (API services, downloader and processors).
 
 ### Aw-Report-Model
 Provides all the necessary classes to persist data and the entities’ mapping to AdWords report data.
@@ -242,7 +245,7 @@ $ java -Xmx1G -jar aw-reporting/target/aw-reporting.jar -startDate YYYYMMDD -end
 -onFileReport CAMPAIGN_PERFORMANCE_REPORT -csvReportFile <CSV FILE LOCATION>
 ```
 
-**IMPORTANT NOTE:** The dates specified are very import, because they will be used to populate the database following the same formatt as the data downloaded from the API. Date periods *are not supported*.
+**IMPORTANT NOTE:** The dates specified are very import, because they will be used to populate the database following the same format as the data downloaded from the API. Date periods *are not supported*.
 
 ## **Experimental:** Video Campaign Performance report
 

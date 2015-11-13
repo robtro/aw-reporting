@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.awreporting.model.csv.annotation;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -28,9 +28,6 @@ import java.lang.annotation.Target;
  * If a class is annotated with {@code CsvReport}, it means that when the CSV file for the mapped
  * report is processed, the values in the CSV columns will be mapped to the annotated properties of
  * the class.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- *
  */
 @Target({TYPE})
 @Retention(RUNTIME)

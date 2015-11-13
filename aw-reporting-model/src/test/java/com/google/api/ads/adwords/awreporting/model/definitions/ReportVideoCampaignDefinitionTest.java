@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportVideoCampaign;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -38,7 +38,7 @@ public class ReportVideoCampaignDefinitionTest extends
   public ReportVideoCampaignDefinitionTest() {
 
     super(ReportVideoCampaign.class, ReportDefinitionReportType.UNKNOWN,
-        "src/test/resources/csv/video-campaign.csv");
+        "src/test/resources/csv/video-campaign.csv", false);
   }
 
   /**

@@ -15,17 +15,15 @@
 package com.google.api.ads.adwords.awreporting.util;
 
 import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.Customer;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.CustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.CustomerServiceInterface;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 
 /**
  * {@code CustomerDelegate} encapsulates the {@code CustomerServiceInterface}.
  *
  * This service is used to get info about a customer
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class CustomerDelegate {
 

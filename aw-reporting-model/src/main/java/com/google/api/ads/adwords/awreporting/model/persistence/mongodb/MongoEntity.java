@@ -16,8 +16,6 @@ package com.google.api.ads.adwords.awreporting.model.persistence.mongodb;
 
 /**
  * An Interface to set the proper MongoDB "_id" for entities that need MongoDB Storage.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public interface MongoEntity {
 

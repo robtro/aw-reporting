@@ -20,12 +20,10 @@ import javax.persistence.Table;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 /**
  * Specific Report class for GeoPerformanceReports
- *
- * @author markbowyer@google.com (Mark R. Bowyer)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

@@ -21,7 +21,7 @@ import com.google.api.ads.adwords.awreporting.server.appengine.model.UserToken;
 import com.google.api.ads.adwords.awreporting.server.appengine.processors.RefreshAccountsTask;
 import com.google.api.ads.adwords.awreporting.server.appengine.processors.ReportProcessorAppEngine;
 import com.google.api.ads.adwords.awreporting.server.rest.AbstractBaseResource;
-import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.common.collect.Sets;
 
 import org.restlet.representation.Representation;
@@ -32,8 +32,6 @@ import java.util.Set;
 
 /**
  * Rest entry point to launch Generate Reports with the Cron Job
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class GenerateReportsCronRest extends AbstractBaseResource {
 

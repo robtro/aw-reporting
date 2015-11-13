@@ -26,10 +26,11 @@ public class KeywordsSignalsCalculator {
     int[] keywordScoresCount = new int[11];
     double accumulatedQs = 0.0;
     for (ReportKeywords reportKeywords : keywordData) {
-      Integer qs = reportKeywords.getQualityScore();
+      String qs = reportKeywords.getQualityScore();
       if (qs != null) {
-        keywordScoresCount[qs]++;
-        accumulatedQs += qs;
+        int qualityScore = (int) Double.parseDouble(qs);
+        keywordScoresCount[qualityScore]++;
+        accumulatedQs += qualityScore;
       }
 
       BigDecimal maxCpc = reportKeywords.getMaxCpc();

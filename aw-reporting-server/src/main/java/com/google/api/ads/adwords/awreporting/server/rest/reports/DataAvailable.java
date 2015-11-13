@@ -33,8 +33,6 @@ import java.util.Map;
 
 /**
  * Rest entry point generic for all Report Types
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class DataAvailable extends AbstractBaseResource {
 

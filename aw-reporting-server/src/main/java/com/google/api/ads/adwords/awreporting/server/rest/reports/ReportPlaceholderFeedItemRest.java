@@ -16,11 +16,6 @@ package com.google.api.ads.adwords.awreporting.server.rest.reports;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 
-/**
- * ReportPlaceholderFeedItemRest
- * 
- * @author jtoledo@google.com (Julian Toledo)
- */
 public class ReportPlaceholderFeedItemRest extends AbstractReportRest<ReportPlaceholderFeedItem> {
   public ReportPlaceholderFeedItemRest() {
     super(ReportPlaceholderFeedItem.class);

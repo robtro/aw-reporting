@@ -30,8 +30,6 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * Util class for File objects.
- *
- * @author jtoledo@google.com (Julian Toledo)
  */
 public final class FileUtil {
 

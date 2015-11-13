@@ -15,8 +15,8 @@
 package com.google.api.ads.adwords.awreporting.server.entities;
 
 import com.google.api.ads.adwords.awreporting.model.persistence.mongodb.MongoEntity;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.Customer;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
 import com.google.common.collect.Lists;
 
 import com.googlecode.objectify.annotation.Index;
@@ -31,8 +31,6 @@ import javax.persistence.Table;
 
 /**
  * Account
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 @Entity
 @com.googlecode.objectify.annotation.Entity

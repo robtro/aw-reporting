@@ -25,8 +25,6 @@ import org.junit.Test;
 
 /**
  * Test case for the {@link TemplateStringsUtil} class.
- * 
- * @author joeltoby
  */
 public class TemplateStringsUtilTest {
 

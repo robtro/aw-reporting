@@ -42,8 +42,6 @@ import java.util.Date;
 
 /**
  * Test case for the {@code RunnableKratu} class.
- * 
- * @author jtoledo@google.com (Julian Toledo)
  */
 public class RunnableKratuTest {
 

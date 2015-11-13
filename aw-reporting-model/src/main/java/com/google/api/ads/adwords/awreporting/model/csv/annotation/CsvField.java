@@ -23,11 +23,8 @@ import java.lang.annotation.Target;
 /**
  * Annotation to map a field in the CSV file to the annotated bean property.
  *
- *  The CSV is constructed based on the mapping between the report property selected and the file
+ * The CSV is constructed based on the mapping between the report property selected and the file
  * created.
- *
- * @author gustavomoreira@google.com (Gustavo Moreira)
- *
  */
 @Target({FIELD})
 @Retention(RUNTIME)

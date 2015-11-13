@@ -29,72 +29,72 @@ public class KeywordsSignalsCalculatorTest {
     List<ReportKeywords> keywordData = new ArrayList<>();
 
     ReportKeywords row = new ReportKeywords();
-    row.setQualityScore(1);
+    row.setQualityScore("1");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(2);
+    row.setQualityScore("2");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(3);
+    row.setQualityScore("3");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(4);
+    row.setQualityScore("4");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(5);
+    row.setQualityScore("5");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(6);
+    row.setQualityScore("6");
     row.setMaxCpc(new BigDecimal(5.4));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(7);
+    row.setQualityScore("7");
     row.setMaxCpc(new BigDecimal(4.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(8);
+    row.setQualityScore("8");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(9);
+    row.setQualityScore("9");
     row.setMaxCpc(new BigDecimal(5.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(10);
+    row.setQualityScore("10");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(0);
+    row.setQualityScore("0");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(7);
+    row.setQualityScore("7");
     row.setMaxCpc(new BigDecimal(2.5));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(6);
+    row.setQualityScore("6");
     row.setMaxCpc(new BigDecimal(3.0));
     keywordData.add(row);
 
     row = new ReportKeywords();
-    row.setQualityScore(6);
+    row.setQualityScore("6");
     row.setMaxCpc(new BigDecimal(3.5));
     keywordData.add(row);
 

@@ -21,8 +21,8 @@ import com.google.api.ads.adwords.awreporting.server.appengine.RestServer;
 import com.google.api.ads.adwords.awreporting.server.appengine.model.UserToken;
 import com.google.api.ads.adwords.awreporting.server.appengine.processors.RefreshAccountsTask;
 import com.google.api.ads.adwords.awreporting.util.CustomerDelegate;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201506.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.ads.common.lib.exception.ValidationException;
@@ -48,9 +48,6 @@ import java.util.logging.Logger;
 
 /**
  * This class will create an OAuth2 credentials for AppEngine
- *
- * @author jtoledo@google.com (Julian Toledo)
- * @author joeltoby@google.com  (Joel Toby)
  */
 @Component
 public class AppEngineOAuth2Authenticator implements Authenticator {

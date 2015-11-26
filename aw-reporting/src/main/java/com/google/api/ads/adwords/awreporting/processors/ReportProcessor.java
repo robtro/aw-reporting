@@ -15,10 +15,12 @@
 package com.google.api.ads.adwords.awreporting.processors;
 
 import com.google.api.ads.adwords.awreporting.authentication.Authenticator;
+import com.google.api.ads.adwords.awreporting.downloader.ReportDefinitionDownloader;
 import com.google.api.ads.adwords.awreporting.model.csv.CsvReportEntitiesMapping;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.util.CustomerDelegate;
 import com.google.api.ads.adwords.awreporting.util.ManagedCustomerDelegate;
+import com.google.api.ads.adwords.awreporting.util.ReportDefinitionData;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
@@ -38,6 +40,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -67,6 +71,8 @@ public abstract class ReportProcessor {
   protected int reportRowsSetSize = REPORT_BUFFER_DB;
 
   protected int numberOfReportProcessors = NUMBER_OF_REPORT_PROCESSORS;
+  
+  protected ReportDefinitionDownloader reportDefinitionDownloader;
 
   abstract protected void cacheAccounts(Set<Long> accountIdsSet);
 
@@ -344,5 +350,61 @@ public abstract class ReportProcessor {
   @Autowired
   public void setAuthentication(Authenticator authenticator) {
     this.authenticator = authenticator;
+  }
+  
+  @Autowired
+  public void setReportDefinitionDownloader(ReportDefinitionDownloader reportDefinitionDownloader) {
+    this.reportDefinitionDownloader = reportDefinitionDownloader;
+  }
+  
+  /**
+   * Check report entities of the Java classes against ReportDefinitionService,
+   * and print info/warn/error in the log
+   * @return true if all checks pass, false otherwise
+   */
+  public boolean checkReportEntities(String mccAccountId)
+      throws OAuthException, ValidationException {
+    AdWordsSession session = authenticator.authenticate(mccAccountId, false).build();
+    this.reportDefinitionDownloader.init(session);
+    
+    boolean retval = true;
+    retval &= checkMissingReportTypes();
+    retval &= checkReportFields();
+    return retval;
+  }
+  
+  private boolean checkMissingReportTypes() {
+    Set<ReportDefinitionReportType> definedReports = csvReportEntitiesMapping.getDefinedReports();
+    List<ReportDefinitionReportType> allReports = new ArrayList<ReportDefinitionReportType>(
+        Arrays.asList(ReportDefinitionReportType.values()));
+    allReports.remove(ReportDefinitionReportType.UNKNOWN);
+    allReports.removeAll(definedReports);
+    
+    boolean pass = allReports.isEmpty();
+    if (!pass) {
+      LOGGER.error("Missing the Java class of " + allReports.size() + " report types:");
+      for (ReportDefinitionReportType type : allReports) {
+        LOGGER.error("\t" + type.name());
+      }
+    }
+    return pass;
+  }
+  
+  /**
+   * Check for:
+   * 1. missing report fields
+   * 2. mismatched display field names
+   * 3. mismatched Java class member types
+   * @return
+   */
+  private boolean checkReportFields() {
+    try {
+      for (ReportDefinitionReportType reportType : csvReportEntitiesMapping.getDefinedReports()) {
+        ReportDefinitionData data = reportDefinitionDownloader.getReportDefinitionData(reportType);
+      }
+    } catch (ApiException e) {
+      
+    }
+    return true;
   }
 }

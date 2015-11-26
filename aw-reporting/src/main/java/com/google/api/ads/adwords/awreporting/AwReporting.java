@@ -147,11 +147,12 @@ import java.util.Set;
       LOGGER.debug("... success.");
 
       String mccAccountId = properties.getProperty("mccAccountId").replaceAll("-", "");
-
-     
-       if (cmdLine.hasOption("startDate") && cmdLine.hasOption("endDate")) {
+      
+      if (cmdLine.hasOption("checkEntities")) {
+        errors = !processor.checkReportEntities(mccAccountId);
+      }
+      else if (cmdLine.hasOption("startDate") && cmdLine.hasOption("endDate")) {
         // Generate Reports
-
         String dateStart = cmdLine.getOptionValue("startDate");
         String dateEnd = cmdLine.getOptionValue("endDate");
 
@@ -355,6 +356,14 @@ import java.util.Set;
         + "import data directly into AwReporting.");
     OptionBuilder.isRequired(false);
     options.addOption(OptionBuilder.create("csvReportFile"));
+    
+    OptionBuilder.withArgName("checkEntities");
+    OptionBuilder.hasArg(false);
+    OptionBuilder.withDescription("Will check the report entities of Java classes "
+        + "against ReportDefinitionService. Note this option skips report downloading.");
+    OptionBuilder.isRequired(false);
+    options.addOption(OptionBuilder.create("checkEntities"));
+    
 
     return options;
   }

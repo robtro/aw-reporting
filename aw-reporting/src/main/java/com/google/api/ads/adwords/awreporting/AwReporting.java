@@ -148,8 +148,8 @@ import java.util.Set;
 
       String mccAccountId = properties.getProperty("mccAccountId").replaceAll("-", "");
       
-      if (cmdLine.hasOption("checkEntities")) {
-        errors = !processor.checkReportEntities(mccAccountId);
+      if (cmdLine.hasOption("checkEntityClasses")) {
+        processor.checkReportEntityClasses(mccAccountId);
       }
       else if (cmdLine.hasOption("startDate") && cmdLine.hasOption("endDate")) {
         // Generate Reports
@@ -357,12 +357,12 @@ import java.util.Set;
     OptionBuilder.isRequired(false);
     options.addOption(OptionBuilder.create("csvReportFile"));
     
-    OptionBuilder.withArgName("checkEntities");
+    OptionBuilder.withArgName("checkEntityClasses");
     OptionBuilder.hasArg(false);
-    OptionBuilder.withDescription("Will check the report entities of Java classes "
+    OptionBuilder.withDescription("Will check the reports' Java entity classees "
         + "against ReportDefinitionService. Note this option skips report downloading.");
     OptionBuilder.isRequired(false);
-    options.addOption(OptionBuilder.create("checkEntities"));
+    options.addOption(OptionBuilder.create("checkEntityClasses"));
     
 
     return options;

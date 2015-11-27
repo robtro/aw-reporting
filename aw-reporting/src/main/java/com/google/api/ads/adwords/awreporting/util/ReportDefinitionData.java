@@ -12,23 +12,22 @@ public class ReportDefinitionData {
   private static final String MONEY_FILED_NAME = "Money";
   
   // raw data
-  private List<ReportDefinitionField> reportDefintionFields;
+  private Map<String, ReportDefinitionField> reportDefinitionFieldMap;
   
   // derived data
-  // field name -> display name mapping
-  private Map<String, String> fieldName2DisplayNameMap;
   // display name -> field name mapping
   private Map<String, String> displayName2FieldNameMap;
   // all fields of type Money
   private Set<String> moneyFields;
   
   public ReportDefinitionData(List<ReportDefinitionField> reportDefinitionFields) {
-    this.reportDefintionFields = reportDefinitionFields;
-    displayName2FieldNameMap = new HashMap<String, String>(reportDefinitionFields.size());
+    final int size = reportDefinitionFields.size();
+    reportDefinitionFieldMap = new HashMap<String, ReportDefinitionField>(size);
+    displayName2FieldNameMap = new HashMap<String, String>(size);
     moneyFields = new HashSet<String>();
     
     for (ReportDefinitionField field : reportDefinitionFields) {
-      fieldName2DisplayNameMap.put(field.getFieldName(), field.getDisplayFieldName());
+      reportDefinitionFieldMap.put(field.getFieldName(), field);
       displayName2FieldNameMap.put(field.getDisplayFieldName(), field.getFieldName());
       
       if (field.getFieldType().equals(MONEY_FILED_NAME)) {
@@ -37,11 +36,31 @@ public class ReportDefinitionData {
     }
   }
   
+  // Get all field names of this report type
   public Set<String> getFieldNames() {
-    return fieldName2DisplayNameMap.keySet();
+    return reportDefinitionFieldMap.keySet();
   }
   
+  // Look up the display name from the field name
   public String getDisplayName(String fieldName) {
-    return fieldName2DisplayNameMap.get(fieldName);
+    if (!reportDefinitionFieldMap.containsKey(fieldName)) {
+      return null;
+    }
+    
+    return reportDefinitionFieldMap.get(fieldName).getDisplayFieldName();
+  }
+  
+  // Look up the field name from the display name
+  public String getFieldName(String displayName) {
+    return displayName2FieldNameMap.get(displayName);
+  }
+  
+  // Look up the field type from the field name
+  public String getFieldType(String fieldName) {
+    if (!reportDefinitionFieldMap.containsKey(fieldName)) {
+      return null;
+    }
+    
+    return reportDefinitionFieldMap.get(fieldName).getFieldType();
   }
 }

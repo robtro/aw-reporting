@@ -17,9 +17,11 @@ package com.google.api.ads.adwords.awreporting.processors;
 import com.google.api.ads.adwords.awreporting.authentication.Authenticator;
 import com.google.api.ads.adwords.awreporting.downloader.ReportDefinitionDownloader;
 import com.google.api.ads.adwords.awreporting.model.csv.CsvReportEntitiesMapping;
+import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.util.CustomerDelegate;
 import com.google.api.ads.adwords.awreporting.util.ManagedCustomerDelegate;
+import com.google.api.ads.adwords.awreporting.util.ReportClassFieldData;
 import com.google.api.ads.adwords.awreporting.util.ReportDefinitionData;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
@@ -36,13 +38,18 @@ import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.api.client.util.Sets;
 import com.google.common.collect.Lists;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -358,53 +365,161 @@ public abstract class ReportProcessor {
   }
   
   /**
-   * Check report entities of the Java classes against ReportDefinitionService,
-   * and print info/warn/error in the log
-   * @return true if all checks pass, false otherwise
+   * Check reports' Java entity classes against ReportDefinitionService,
+   * and print info/warn/error in the log.
    */
-  public boolean checkReportEntities(String mccAccountId)
-      throws OAuthException, ValidationException {
+  public void checkReportEntityClasses(String mccAccountId)
+      throws OAuthException, ValidationException
+  {
     AdWordsSession session = authenticator.authenticate(mccAccountId, false).build();
     this.reportDefinitionDownloader.init(session);
     
-    boolean retval = true;
-    retval &= checkMissingReportTypes();
-    retval &= checkReportFields();
-    return retval;
+    checkMissingReportTypes();
+    checkReportFields();
   }
   
-  private boolean checkMissingReportTypes() {
+  /**
+   * Check for report types that don't have Jave entity classes
+   */
+  private void checkMissingReportTypes() {
     Set<ReportDefinitionReportType> definedReports = csvReportEntitiesMapping.getDefinedReports();
     List<ReportDefinitionReportType> allReports = new ArrayList<ReportDefinitionReportType>(
         Arrays.asList(ReportDefinitionReportType.values()));
     allReports.remove(ReportDefinitionReportType.UNKNOWN);
     allReports.removeAll(definedReports);
     
-    boolean pass = allReports.isEmpty();
-    if (!pass) {
-      LOGGER.error("Missing the Java class of " + allReports.size() + " report types:");
-      for (ReportDefinitionReportType type : allReports) {
-        LOGGER.error("\t" + type.name());
-      }
+    if (allReports.isEmpty()) {
+      LOGGER.info("Pass! Every report type has a corresponding entity class!");
+    } else {
+      LOGGER.error("Missing Java entity classes of " + allReports.size() + " report types: "
+          + StringUtils.join(allReports, ", "));
     }
-    return pass;
   }
   
   /**
    * Check for:
-   * 1. missing report fields
-   * 2. mismatched display field names
-   * 3. mismatched Java class member types
-   * @return
+   * 1. missing/extra report fields
+   * 2. wrong display field names
+   * 3. wrong Java class member types
    */
-  private boolean checkReportFields() {
-    try {
-      for (ReportDefinitionReportType reportType : csvReportEntitiesMapping.getDefinedReports()) {
-        ReportDefinitionData data = reportDefinitionDownloader.getReportDefinitionData(reportType);
-      }
-    } catch (ApiException e) {
+  private void checkReportFields() {
+    for (ReportDefinitionReportType reportType : csvReportEntitiesMapping.getDefinedReports()) {
+      final String reportTypeName = reportType.name();
       
+      ReportDefinitionData reportDefinitionData = null;
+      try {
+        reportDefinitionData = reportDefinitionDownloader.getReportDefinitionData(reportType);
+      } catch (ApiException e) {
+      }
+      if (reportDefinitionData == null) {
+        LOGGER.error("Cannot get definition of report " + reportTypeName);
+        continue;
+      }
+      
+      Map<String, ReportClassFieldData> reportClassFieldDataMap
+          = getReportClassFieldDataMap(reportType, reportDefinitionData);
+      if (reportClassFieldDataMap == null) {
+        LOGGER.error("Cannot find entity class of report " + reportTypeName);
+        continue;
+      }
+      
+      Set<String> reportDefinedFieldNames = reportDefinitionData.getFieldNames();
+      Set<String> reportDeclaredFieldNames = reportClassFieldDataMap.keySet();
+      
+      // Find missing/extra report fields
+      Set<String> missingFields = new HashSet<String>(reportDefinedFieldNames);
+      missingFields.removeAll(reportDeclaredFieldNames);
+      if (missingFields.isEmpty()) {
+        LOGGER.info("No missing fields found for report " + reportTypeName);
+      } else {
+        LOGGER.error("Found missing fields for report " + reportTypeName + ": "
+            + StringUtils.join(missingFields, ", "));
+      }
+      
+      Set<String> extraFields = new HashSet<String>(reportDeclaredFieldNames);
+      extraFields.removeAll(reportDefinedFieldNames);
+      if (extraFields.isEmpty()) {
+        LOGGER.info("No extra fields found for report " + reportTypeName);
+      } else {
+        LOGGER.error("Found extra fields for report " + reportTypeName + ": "
+            + StringUtils.join(extraFields, ", "));
+      }
+      
+      // Check wrong display field names and field types
+      List<ReportClassFieldData> wrongDisplayNameFieldsData = new ArrayList<ReportClassFieldData>();
+      List<ReportClassFieldData> wrongTypeFieldsData = new ArrayList<ReportClassFieldData>();
+      
+      Set<String> fieldNames = new HashSet<String>(reportDeclaredFieldNames);
+      fieldNames.retainAll(reportDefinedFieldNames);
+      for (String fieldName : fieldNames) {
+        ReportClassFieldData fieldData = reportClassFieldDataMap.get(fieldName);
+        
+        // Check for wrong display names
+        String declaredDisplayName = fieldData.getDeclaredDisplayName();
+        String definedDisplayName = fieldData.getDefinedDisplayName();
+        if (declaredDisplayName != null && !declaredDisplayName.equals(definedDisplayName)) {
+          wrongDisplayNameFieldsData.add(fieldData);
+        }
+        
+        // Check for wrong types
+        if (!fieldData.checkFieldType()) {
+          wrongTypeFieldsData.add(fieldData);
+        }
+      }
+      
+      if (wrongDisplayNameFieldsData.isEmpty()) {
+        LOGGER.info("All fields' display names are correct for report " + reportTypeName);
+      } else {
+        LOGGER.error("The following fields' display names are wrong for report " + reportTypeName + ":");
+        for (ReportClassFieldData fieldData : wrongDisplayNameFieldsData) {
+          LOGGER.error("  " + fieldData.getFieldName() + ": " + fieldData.getDeclaredDisplayName()
+              + " => " + fieldData.getDefinedDisplayName());
+        }
+      }
+      
+      if (wrongTypeFieldsData.isEmpty()) {
+        LOGGER.info("All fields' types are correct for report " + reportTypeName);
+      } else {
+        LOGGER.error("The following fields' types are wrong for report " + reportTypeName + ":");
+        for (ReportClassFieldData fieldData : wrongTypeFieldsData) {
+          LOGGER.error("  " + fieldData.getFieldName() + ": " + fieldData.getDeclaredType().getSimpleName()
+              + " => " + fieldData.getDefinedTypeName());
+        }
+      }
     }
-    return true;
+  }
+  
+  /*
+   * Get the field name -> ReportFieldData mapping from declared fields in Java entity class
+   */
+  private Map<String, ReportClassFieldData> getReportClassFieldDataMap(
+      ReportDefinitionReportType reportType, ReportDefinitionData definitionData) {
+    
+    Class<?> reportClass = csvReportEntitiesMapping.getReportBeanClass(reportType);
+    if (reportClass == null) {
+      reportClass = csvReportEntitiesMapping.getExperimentalReportBeanClass(reportType.name());
+    }
+    if (reportClass == null) {
+      return null;
+    }
+    
+    Class<?> curReportClass = reportClass;
+    Map<String, ReportClassFieldData> reportClassFieldsDataMap = new HashMap<String, ReportClassFieldData>();
+    while (curReportClass != Object.class) {
+      for (Field field : curReportClass.getDeclaredFields()) {
+        if (field.isAnnotationPresent(CsvField.class)) {
+          CsvField annotation = field.getAnnotation(CsvField.class);
+          String fieldName = annotation.reportField();
+          ReportClassFieldData reportClassFieldData = new ReportClassFieldData(
+              fieldName, field.getName(), annotation.value(), field.getType(),
+              definitionData.getDisplayName(fieldName), definitionData.getFieldType(fieldName));
+          
+          reportClassFieldsDataMap.put(fieldName, reportClassFieldData);
+        }
+      }
+      curReportClass = curReportClass.getSuperclass();
+    }
+    
+    return reportClassFieldsDataMap;
   }
 }

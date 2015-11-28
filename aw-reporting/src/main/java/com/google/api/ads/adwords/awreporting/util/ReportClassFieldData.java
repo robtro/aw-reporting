@@ -12,12 +12,13 @@ import org.apache.log4j.Logger;
 
 public class ReportClassFieldData {
   
-  // TODO: add for completeness
   public enum ReportFieldType {
-    String,
     Money,
+    Integer,
+    Long,
     Double,
     Date,
+    String  // default to string for undefined types
   }
   
   private static final Logger LOGGER = Logger.getLogger(ReportClassFieldData.class);
@@ -25,10 +26,12 @@ public class ReportClassFieldData {
   private static final Map<ReportFieldType, List<Class<?>>> reportFieldTypesMap
       = new HashMap<ReportFieldType, List<Class<?>>>();
   static {
-    reportFieldTypesMap.put(ReportFieldType.String, Arrays.<Class<?>>asList(String.class));
-    reportFieldTypesMap.put(ReportFieldType.Money,  Arrays.<Class<?>>asList(BigDecimal.class, Long.class, String.class));
-    reportFieldTypesMap.put(ReportFieldType.Double, Arrays.<Class<?>>asList(BigDecimal.class, Double.class));
-    reportFieldTypesMap.put(ReportFieldType.Date,   Arrays.<Class<?>>asList(Date.class));
+    reportFieldTypesMap.put(ReportFieldType.Money,   Arrays.<Class<?>>asList(BigDecimal.class, Long.class, String.class));
+    reportFieldTypesMap.put(ReportFieldType.Integer, Arrays.<Class<?>>asList(Integer.class, Long.class));
+    reportFieldTypesMap.put(ReportFieldType.Long,    Arrays.<Class<?>>asList(Long.class));
+    reportFieldTypesMap.put(ReportFieldType.Double,  Arrays.<Class<?>>asList(BigDecimal.class, Double.class));
+    reportFieldTypesMap.put(ReportFieldType.Date,    Arrays.<Class<?>>asList(Date.class));
+    reportFieldTypesMap.put(ReportFieldType.String,  Arrays.<Class<?>>asList(String.class));
   }
   
   
@@ -89,8 +92,8 @@ public class ReportClassFieldData {
     try {
       fieldType = ReportFieldType.valueOf(definedTypeName);
     } catch (IllegalArgumentException e) {
-      LOGGER.warn("Unknown field mapping for type \"" + definedTypeName + "\".");
-      return true;
+      LOGGER.debug("No field type mapping for \"" + definedTypeName + "\", fall back to String");
+      fieldType = ReportFieldType.String;
     }
     
     return reportFieldTypesMap.get(fieldType).contains(declaredType);

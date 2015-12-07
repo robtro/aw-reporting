@@ -409,7 +409,7 @@ public abstract class ReportProcessor {
       
       ReportDefinitionFieldsMap reportDefinitionData = null;
       try {
-        reportDefinitionData = reportDefinitionDownloader.getReportDefinitionData(reportType);
+        reportDefinitionData = reportDefinitionDownloader.getReportDefinitionFieldsMap(reportType);
       } catch (ApiException e) {}
       if (reportDefinitionData == null) {
         LOGGER.error("Cannot get report definition data for " + reportTypeName);

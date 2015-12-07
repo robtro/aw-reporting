@@ -47,7 +47,7 @@ public class ReportDefinitionDownloader {
   
   private ReportDefinitionServiceInterface reportDefinitionService;
   
-  private static final Map<ReportDefinitionReportType, ReportDefinitionFieldsMap> reportDefinitionDataMap
+  private final Map<ReportDefinitionReportType, ReportDefinitionFieldsMap> typedRdfMap
       = new HashMap<ReportDefinitionReportType, ReportDefinitionFieldsMap>();
   
   public void init(AdWordsSession session) {
@@ -56,19 +56,19 @@ public class ReportDefinitionDownloader {
   }
   
   /**
-   * Get report definition data for the specified report type.
+   * Get report definition fields map for the specified report type.
    * 
    * @param reportType the specified report type
    */
-  public ReportDefinitionFieldsMap getReportDefinitionData(ReportDefinitionReportType reportType)
-      throws ApiException {
-    ReportDefinitionFieldsMap reportDefinitionData = reportDefinitionDataMap.get(reportType);
-    if (reportDefinitionData == null) {
-      reportDefinitionData = downloadReportDefinitionData(reportType);
-      reportDefinitionDataMap.put(reportType, reportDefinitionData);
+  public ReportDefinitionFieldsMap getReportDefinitionFieldsMap(
+      ReportDefinitionReportType reportType) throws ApiException {
+    ReportDefinitionFieldsMap rdfMap = typedRdfMap.get(reportType);
+    if (rdfMap == null) {
+      rdfMap = generateReportDefinitionData(reportType);
+      typedRdfMap.put(reportType, rdfMap);
     }
     
-    return reportDefinitionData;
+    return rdfMap;
   }
 
   /**
@@ -76,18 +76,17 @@ public class ReportDefinitionDownloader {
    * 
    * @param reportType the specified report type
    */
-  private ReportDefinitionFieldsMap downloadReportDefinitionData(ReportDefinitionReportType reportType)
-      throws ApiException {
+  private ReportDefinitionFieldsMap generateReportDefinitionData(
+      ReportDefinitionReportType reportType) throws ApiException {
     
     List<ReportDefinitionField> reportDefinitionFields = null;
     for (int i = 1; i <= this.retriesCount; ++i) {
       try {
-        reportDefinitionFields = reportDefinitionService.getReportFields(
-            convertReportType(reportType));
+        reportDefinitionFields = downloadReportDefinitionFields(reportType);
         break;
       } catch (ApiException_Exception e) {
-        String errorMsg = "(Error getting report definition: " + e.getMessage() + " " + e.getCause()
-            + " Retry# " + i + "/" + retriesCount + ")";
+        String errorMsg = "(Error getting report definition: " + e.getMessage() + " "
+            + e.getCause() + " Retry# " + i + "/" + retriesCount + ")";
         LOGGER.error(errorMsg);
         
         if (this.retriesCount == i) {
@@ -113,7 +112,12 @@ public class ReportDefinitionDownloader {
     return new ReportDefinitionFieldsMap(reportDefinitionFields);
   }
   
-  // TODO:
+  protected List<ReportDefinitionField> downloadReportDefinitionFields(
+      ReportDefinitionReportType reportType) throws ApiException_Exception {
+    return reportDefinitionService.getReportFields(convertReportType(reportType));
+  }
+  
+  // TODO: cz
   // check if we should use com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionReportType
   // everywhere in this project?
   private com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionReportType

@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.api.ads.adwords.awreporting.util.ReportDefinitionData;
+import com.google.api.ads.adwords.awreporting.util.ReportDefinitionFieldsMap;
 import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
 import com.google.api.ads.adwords.jaxws.v201509.cm.ApiException_Exception;
 import com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionField;
@@ -47,8 +47,8 @@ public class ReportDefinitionDownloader {
   
   private ReportDefinitionServiceInterface reportDefinitionService;
   
-  private static final Map<ReportDefinitionReportType, ReportDefinitionData> reportDefinitionDataMap
-      = new HashMap<ReportDefinitionReportType, ReportDefinitionData>();
+  private static final Map<ReportDefinitionReportType, ReportDefinitionFieldsMap> reportDefinitionDataMap
+      = new HashMap<ReportDefinitionReportType, ReportDefinitionFieldsMap>();
   
   public void init(AdWordsSession session) {
     this.reportDefinitionService
@@ -60,9 +60,9 @@ public class ReportDefinitionDownloader {
    * 
    * @param reportType the specified report type
    */
-  public ReportDefinitionData getReportDefinitionData(ReportDefinitionReportType reportType)
+  public ReportDefinitionFieldsMap getReportDefinitionData(ReportDefinitionReportType reportType)
       throws ApiException {
-    ReportDefinitionData reportDefinitionData = reportDefinitionDataMap.get(reportType);
+    ReportDefinitionFieldsMap reportDefinitionData = reportDefinitionDataMap.get(reportType);
     if (reportDefinitionData == null) {
       reportDefinitionData = downloadReportDefinitionData(reportType);
       reportDefinitionDataMap.put(reportType, reportDefinitionData);
@@ -76,7 +76,7 @@ public class ReportDefinitionDownloader {
    * 
    * @param reportType the specified report type
    */
-  private ReportDefinitionData downloadReportDefinitionData(ReportDefinitionReportType reportType)
+  private ReportDefinitionFieldsMap downloadReportDefinitionData(ReportDefinitionReportType reportType)
       throws ApiException {
     
     List<ReportDefinitionField> reportDefinitionFields = null;
@@ -110,7 +110,7 @@ public class ReportDefinitionDownloader {
     
     // Generate the report definition data
     LOGGER.info("Successfully downloaded report definition for " + reportType.value() + ".");
-    return new ReportDefinitionData(reportDefinitionFields);
+    return new ReportDefinitionFieldsMap(reportDefinitionFields);
   }
   
   // TODO:

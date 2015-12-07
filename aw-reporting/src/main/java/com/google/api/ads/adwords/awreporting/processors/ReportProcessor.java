@@ -22,7 +22,7 @@ import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.util.CustomerDelegate;
 import com.google.api.ads.adwords.awreporting.util.ManagedCustomerDelegate;
 import com.google.api.ads.adwords.awreporting.util.ReportClassFieldData;
-import com.google.api.ads.adwords.awreporting.util.ReportDefinitionData;
+import com.google.api.ads.adwords.awreporting.util.ReportDefinitionFieldsMap;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.Customer;
 import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
@@ -400,33 +400,33 @@ public abstract class ReportProcessor {
    * Check for:
    * 1. missing/extra report fields
    * 2. wrong display field names
-   * 3. wrong Java class member types
+   * 3. wrong @MoneyField annotation
+   * 4. wrong Java class member types
    */
   private void checkReportFields() {
     for (ReportDefinitionReportType reportType : csvReportEntitiesMapping.getDefinedReports()) {
       final String reportTypeName = reportType.name();
       
-      ReportDefinitionData reportDefinitionData = null;
+      ReportDefinitionFieldsMap reportDefinitionData = null;
       try {
         reportDefinitionData = reportDefinitionDownloader.getReportDefinitionData(reportType);
-      } catch (ApiException e) {
-      }
+      } catch (ApiException e) {}
       if (reportDefinitionData == null) {
-        LOGGER.error("Cannot get definition of report " + reportTypeName);
+        LOGGER.error("Cannot get report definition data for " + reportTypeName);
         continue;
       }
       
-      Map<String, ReportClassFieldData> reportClassFieldDataMap
-          = getReportClassFieldDataMap(reportType, reportDefinitionData);
-      if (reportClassFieldDataMap == null) {
+      Map<String, ReportClassFieldData> reportClassFieldsMap
+          = getReportClassFieldsMap(reportType, reportDefinitionData);
+      if (reportClassFieldsMap == null) {
         LOGGER.error("Cannot find entity class of report " + reportTypeName);
         continue;
       }
       
       Set<String> reportDefinedFieldNames = reportDefinitionData.getFieldNames();
-      Set<String> reportDeclaredFieldNames = reportClassFieldDataMap.keySet();
+      Set<String> reportDeclaredFieldNames = reportClassFieldsMap.keySet();
       
-      // Find missing/extra report fields
+      // Check missing/extra report fields
       Set<String> missingFields = new HashSet<String>(reportDefinedFieldNames);
       missingFields.removeAll(reportDeclaredFieldNames);
       if (missingFields.isEmpty()) {
@@ -445,55 +445,77 @@ public abstract class ReportProcessor {
             + StringUtils.join(extraFields, ", "));
       }
       
-      // Check wrong display field names and field types
-      List<ReportClassFieldData> wrongDisplayNameFieldsData = new ArrayList<ReportClassFieldData>();
-      List<ReportClassFieldData> wrongTypeFieldsData = new ArrayList<ReportClassFieldData>();
+      // Check wrong display field names, MoneyField annotations and field types
+      List<ReportClassFieldData> wrongDisplayNameFields = new ArrayList<ReportClassFieldData>();
+      List<ReportClassFieldData> wrongMoneyFields = new ArrayList<ReportClassFieldData>();
+      List<ReportClassFieldData> wrongTypeFields = new ArrayList<ReportClassFieldData>();
       
+      // Use intersection of field names to conduct check
       Set<String> fieldNames = new HashSet<String>(reportDeclaredFieldNames);
       fieldNames.retainAll(reportDefinedFieldNames);
+      
       for (String fieldName : fieldNames) {
-        ReportClassFieldData fieldData = reportClassFieldDataMap.get(fieldName);
+        ReportClassFieldData fieldData = reportClassFieldsMap.get(fieldName);
         
         // Check for wrong display names
-        String declaredDisplayName = fieldData.getDeclaredDisplayName();
-        String definedDisplayName = fieldData.getDefinedDisplayName();
-        if (declaredDisplayName != null && !declaredDisplayName.equals(definedDisplayName)) {
-          wrongDisplayNameFieldsData.add(fieldData);
+        if (!fieldData.checkMatchedDisplayName()) {
+          wrongDisplayNameFields.add(fieldData);
         }
+        
+        // Check for wrong MoneyField annotations
+        if (!fieldData.checkMatchedMoneyType()) {
+          wrongMoneyFields.add(fieldData);
+        }        
         
         // Check for wrong types
         if (!fieldData.checkFieldType()) {
-          wrongTypeFieldsData.add(fieldData);
+          wrongTypeFields.add(fieldData);
         }
       }
       
-      if (wrongDisplayNameFieldsData.isEmpty()) {
+      if (wrongDisplayNameFields.isEmpty()) {
         LOGGER.info("All fields' display names are correct for report " + reportTypeName);
       } else {
-        LOGGER.error("The following fields' display names are wrong for report " + reportTypeName + ":");
-        for (ReportClassFieldData fieldData : wrongDisplayNameFieldsData) {
-          LOGGER.error("  " + fieldData.getFieldName() + ": " + fieldData.getDeclaredDisplayName()
-              + " => " + fieldData.getDefinedDisplayName());
+        LOGGER.error("The following fields' display names are wrong for report "
+            + reportTypeName + ":");
+        for (ReportClassFieldData fieldData : wrongDisplayNameFields) {
+          LOGGER.error("  " + fieldData.getFieldName() + ": (actual) "
+              + fieldData.getDeclaredDisplayName() + ", (expected) "
+              + fieldData.getDefinedDisplayName());
         }
       }
       
-      if (wrongTypeFieldsData.isEmpty()) {
+      if (wrongMoneyFields.isEmpty()) {
+        LOGGER.info("All @MoneyField annotations are correct for report " + reportTypeName);
+      } else {
+        LOGGER.error("The following fields' @MoneyField annotations are wrong for report "
+            + reportTypeName + ":");
+        for (ReportClassFieldData fieldData : wrongDisplayNameFields) {
+          LOGGER.error("  " + fieldData.getFieldName() + ": (actual) "
+              + fieldData.getDeclaredMoneyField() + ", (expected) "
+              + fieldData.getDefinedMoneyField());
+        }
+      }
+      
+      if (wrongTypeFields.isEmpty()) {
         LOGGER.info("All fields' types are correct for report " + reportTypeName);
       } else {
-        LOGGER.error("The following fields' types are wrong for report " + reportTypeName + ":");
-        for (ReportClassFieldData fieldData : wrongTypeFieldsData) {
-          LOGGER.error("  " + fieldData.getFieldName() + ": " + fieldData.getDeclaredType().getSimpleName()
-              + " => " + fieldData.getDefinedTypeName());
+        LOGGER.error("The following fields' types are wrong for report "
+            + reportTypeName + ":");
+        for (ReportClassFieldData fieldData : wrongTypeFields) {
+          LOGGER.error("  " + fieldData.getFieldName() + ": (actual) "
+              + fieldData.getDeclaredTypeName() + ", (expected) "
+              + fieldData.getDefinedTypeName());
         }
       }
     }
   }
   
   /*
-   * Get the field name -> ReportFieldData mapping from declared fields in Java entity class
+   * Get the field name -> ReportClassFieldData mapping from declared fields in Java entity class
    */
-  private Map<String, ReportClassFieldData> getReportClassFieldDataMap(
-      ReportDefinitionReportType reportType, ReportDefinitionData definitionData) {
+  private Map<String, ReportClassFieldData> getReportClassFieldsMap(
+      ReportDefinitionReportType reportType, ReportDefinitionFieldsMap rdfMap) {
     
     Class<?> reportClass = csvReportEntitiesMapping.getReportBeanClass(reportType);
     if (reportClass == null) {
@@ -503,23 +525,23 @@ public abstract class ReportProcessor {
       return null;
     }
     
+    Map<String, ReportClassFieldData> rcfMap = new HashMap<String, ReportClassFieldData>();
+    
     Class<?> curReportClass = reportClass;
-    Map<String, ReportClassFieldData> reportClassFieldsDataMap = new HashMap<String, ReportClassFieldData>();
     while (curReportClass != Object.class) {
-      for (Field field : curReportClass.getDeclaredFields()) {
+      for (Field field : curReportClass.getDeclaredFields()) {            
         if (field.isAnnotationPresent(CsvField.class)) {
           CsvField annotation = field.getAnnotation(CsvField.class);
           String fieldName = annotation.reportField();
-          ReportClassFieldData reportClassFieldData = new ReportClassFieldData(
-              fieldName, field.getName(), annotation.value(), field.getType(),
-              definitionData.getDisplayName(fieldName), definitionData.getFieldType(fieldName));
+          ReportClassFieldData reportClassFieldData
+              = new ReportClassFieldData(field, annotation, rdfMap.get(fieldName));
           
-          reportClassFieldsDataMap.put(fieldName, reportClassFieldData);
+          rcfMap.put(fieldName, reportClassFieldData);
         }
       }
       curReportClass = curReportClass.getSuperclass();
     }
     
-    return reportClassFieldsDataMap;
+    return rcfMap;
   }
 }

@@ -808,7 +808,7 @@ public abstract class ReportBase extends Report {
     return engagementRate;
   }
   
-  public void setEnagementRate(String engagementRate) {
+  public void setEngagementRate(String engagementRate) {
     this.engagementRate = BigDecimalUtil.parseFromNumberString(engagementRate);
   }
   

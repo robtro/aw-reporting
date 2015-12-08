@@ -89,9 +89,6 @@ public class ReportVideo extends ReportBase {
     this.id += this.setIdDates();
 
     // Adding extra fields for unique ID
-//    if (this.getAdNetwork() != null && this.getAdNetwork().length() > 0) {
-//      this.id += "-" + this.getAdNetwork();
-//    }
     if (this.getAdNetworkPartners() != null && this.getAdNetworkPartners().length() > 0) {
       this.id += "-" + this.getAdNetworkPartners();
     }

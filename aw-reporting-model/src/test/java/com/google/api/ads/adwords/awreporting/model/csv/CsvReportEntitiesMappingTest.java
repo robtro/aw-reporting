@@ -31,6 +31,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportGender;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
+import com.google.api.ads.adwords.awreporting.model.entities.ReportVideo;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
@@ -108,6 +109,9 @@ public class CsvReportEntitiesMappingTest {
     
     this.assertBeanClassIsCorrectForType(ReportShopping.class,
         ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT);
+    
+    this.assertBeanClassIsCorrectForType(ReportVideo.class,
+        ReportDefinitionReportType.VIDEO_PERFORMANCE_REPORT);
   }
 
   /**
@@ -135,6 +139,7 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.URL_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.DISPLAY_KEYWORD_PERFORMANCE_REPORT));
     Assert.assertTrue(reports.contains(ReportDefinitionReportType.SHOPPING_PERFORMANCE_REPORT));
+    Assert.assertTrue(reports.contains(ReportDefinitionReportType.VIDEO_PERFORMANCE_REPORT));
   }
 
   /**

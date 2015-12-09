@@ -26,12 +26,12 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.awreporting.processors.onmemory.RunnableProcessorOnMemory;
-import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
 import com.google.api.ads.common.lib.exception.ValidationException;
+import com.google.api.ads.common.lib.utils.Streams;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 
 import org.junit.Before;
@@ -97,12 +97,11 @@ public class RunnableProcessorOnMemoryTest {
     FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
     ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
     GZIPOutputStream gzipOut = new GZIPOutputStream(baos);
-    FileUtil.copy(fis, gzipOut);
-    gzipOut.flush();
-    gzipOut.close();
+    Streams.copy(fis, gzipOut);
     ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-    baos.flush();
+    gzipOut.close();
     baos.close();
+    fis.close();
     doReturn(bais).when(
         runnableProcessorOnMemory).getReportInputStream();
   }

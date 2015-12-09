@@ -25,6 +25,7 @@ import com.google.api.ads.adwords.awreporting.util.ProcessorType;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Lists;
 import com.google.api.client.util.Sets;
+import com.google.common.io.Files;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -47,13 +48,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ProxySelector;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -244,10 +244,9 @@ import java.util.Set;
    *
    * @param accountIdsSet the set to add the accounts
    * @param accountsFileName the file to be read
-   * @throws FileNotFoundException file not found
    */
   protected static void addAccountsFromFile(Set<Long> accountIdsSet, String accountsFileName)
-      throws FileNotFoundException {
+      throws IOException {
 
     LOGGER.info("Using accounts file: " + accountsFileName);
 
@@ -381,22 +380,15 @@ import java.util.Set;
   private static void printSamplePropertiesFile() {
 
     System.out.println("\n  File: aw-report-sample.properties example");
-
     ClassPathResource sampleFile = new ClassPathResource("aw-report-sample.properties");
-    Scanner fileScanner = null;
     try {
-      fileScanner = new Scanner(sampleFile.getInputStream());
-      while (fileScanner.hasNext()) {
-        System.out.println(fileScanner.nextLine());
+      List<String> lines
+          = Files.asCharSource(sampleFile.getFile(), Charset.defaultCharset()).readLines();
+      for (String line : lines) {
+        System.out.println(line);
       }
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
-    } finally {
-      if (fileScanner != null) {
-        fileScanner.close();
-      }
     }
   }
 

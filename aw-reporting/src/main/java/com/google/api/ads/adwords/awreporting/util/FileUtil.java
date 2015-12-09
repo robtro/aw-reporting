@@ -14,17 +14,16 @@
 
 package com.google.api.ads.adwords.awreporting.util;
 
-import com.google.api.client.util.Lists;
+import com.google.api.ads.common.lib.utils.Streams;
+import com.google.common.io.Files;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.List;
-import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -56,7 +55,7 @@ public final class FileUtil {
       fis = new FileInputStream(srcFile);
       zIn = new GZIPInputStream(fis);
 
-      copy(zIn, fos);
+      Streams.copy(zIn, fos);
 
     } finally {
       if (fis != null) {
@@ -89,7 +88,7 @@ public final class FileUtil {
       fis = new FileInputStream(srcFile);
       zos = new GZIPOutputStream(fos);
 
-      copy(fis, zos);
+      Streams.copy(fis, zos);
 
     } finally {
       if (fis != null) {
@@ -109,35 +108,9 @@ public final class FileUtil {
    *
    * @param file the file
    * @return the list of String with the lines
-   * @throws FileNotFoundException the file was not found
    */
-  public static List<String> readFileLinesAsStrings(File file) throws FileNotFoundException {
+  public static List<String> readFileLinesAsStrings(File file) throws IOException {
 
-    List<String> lines = Lists.newArrayList();
-    Scanner fileScanner = new Scanner(file);
-
-    while (fileScanner.hasNext()) {
-      lines.add(fileScanner.nextLine());
-    }
-    
-    fileScanner.close();
-    return lines;
-  }
-
-  /**
-   * Copies from the {@code InputStream} into the {@code OutputStream}.
-   *
-   * @param inputStream the {@code GZIPInputStream}.
-   * @param outputStream the {@code OutputStream}.
-   * @throws IOException error handling files.
-   */
-  public static void copy(InputStream inputStream, OutputStream outputStream) throws IOException {
-
-    byte[] buffer = new byte[8 * 1024];
-    int count = 0;
-    do {
-      outputStream.write(buffer, 0, count);
-      count = inputStream.read(buffer, 0, buffer.length);
-    } while (count != -1);
+    return Files.asCharSource(file, Charset.defaultCharset()).readLines();
   }
 }

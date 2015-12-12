@@ -197,16 +197,20 @@ Provides all the necessary classes to persist data and the entities’ mapping t
 
 * **Entities:** these POJOs define all the available fields for each report kind as java fields, by using annotations. The Entities contain the information to link the java fields to the report fields definition, the csv display name header fields and the datastore fields.
 
-* **CSV:** The CSV classes use the OpenCSV library to convert CSV files into Java beans using annotations. The package also contains two new annotations to define the Report Definition Type and the mapping between java field, report’s Column Name and Display Name headers. For example:
+* **CSV:** The CSV classes use the OpenCSV library to convert CSV files into Java beans using annotations. The package also contains three new annotations:
 
-  + Annotation **@CsvReport** at the Report class level, for example for ReportAccount:
+  + Annotation **@CsvReport** at the Report class level, to define the Report Definition Type. For example for ReportAccount:
 <code>@CsvReport(value=
   ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT)
 public class ReportAccount extends Report {...</code>
 
-  + Annotation **@CsvField** at the java field level, for example for avgCpm:
+  + Annotation **@CsvField** at the java field level, to define the mapping between java field, report's Field Name and Display Name. For example for avgCpm:
 <code>@CsvField (value = "Avg. CPM", reportField = "AverageCpm")
 public BigDecimal avgCpm;</code>
+
+  + Annotation **@MoneyField** at the java field level, to convert the field's values from micro amount to normal currency. For example for cost:
+<code>@MoneyField
+public BigDecimal cost;</code>
 
 + **Persistence:** The persistence layer uses Spring for bean management, injection and in class annotations, this helps to clearly demarcate the application layers.
 AuthTokenPersister: is the interface for the authorization token storage, we have implemented it for Mysql and a MongoDB.

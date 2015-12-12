@@ -359,7 +359,7 @@ import java.util.Set;
     
     OptionBuilder.withArgName("checkEntityClasses");
     OptionBuilder.hasArg(false);
-    OptionBuilder.withDescription("Check all fields of every Java entity classe against "
+    OptionBuilder.withDescription("Check all fields of every Java entity class against "
         + "ReportDefinitionService. Note: this option skips report downloading.");
     OptionBuilder.isRequired(false);
     options.addOption(OptionBuilder.create("checkEntityClasses"));

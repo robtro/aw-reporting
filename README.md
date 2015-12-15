@@ -115,6 +115,10 @@ Note: aw-reporting.jar is in the aw-reporting/aw-reporting/target/ directory.
                               instead of getting the accounts from the API. The list can contain all the accounts,
                               or just a specific set of accounts
 
+   -checkEntityClasses
+                              Check all fields of every Java entity class against ReportDefinitionService.
+                              Note: this option skips report downloading.
+
    -csvReportFile
                               Specifies the CSV data file to be used when importing data from a local file. In order to use
                               this feature, you must pass the report type in the "-onFileReport" property.
@@ -250,22 +254,6 @@ $ java -Xmx1G -jar aw-reporting/target/aw-reporting.jar -startDate YYYYMMDD -end
 ```
 
 **IMPORTANT NOTE:** The dates specified are very import, because they will be used to populate the database following the same format as the data downloaded from the API. Date periods *are not supported*.
-
-## **Experimental:** Video Campaign Performance report
-
-With the offline data import feature available, we added the Video Campaign Performance Report to AwReporting model. This means that it's now possible to download the Video Performance reports from the interface, import it into AwReporting and make the data available in the database.
-
-This report still an experiment, and we want to hear more feedback from users in order to further improve this, and make sure that this is in fact a necessity.
-
-To import video campaign performance reports in AwReport, just run the following command:
-
-```
-$ java -Xmx1G -jar aw-reporting/target/aw-reporting.jar -startDate YYYYMMDD -endDate YYYYMMDD \
--file aw-reporting/src/main/resources/aw-report-sample.properties \
--onFileReport VIDEO_CAMPAIGN_REPORT -csvReportFile <CSV FILE LOCATION>
-```
-
-**IMPORTANT NOTE:** The API *does not support* video campaign reports. This is a work around to import video campaign reports into the database, facilitating the usage of the data in your applications.
 
 ### Fine print
 Pull requests are very much appreciated. Please sign the [Google Individual Contributor License Agreement](http://code.google.com/legal/individual-cla-v1.0.html) (There is a convenient online form) before submitting.

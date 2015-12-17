@@ -29,7 +29,9 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This class describes the mapping strategy to convert CSV files into Java beans using annotations.
@@ -65,7 +67,7 @@ public class AnnotationBasedMappingStrategy<T extends Report> implements Mapping
 
   private final Map<Integer, String> csvIndexToReportNames = new HashMap<Integer, String>();
   
-  private final Map<String, Boolean> fieldsWithMoneyValues = new HashMap<String, Boolean>();
+  private final Set<String> fieldsWithMoneyValues = new HashSet<String>();
 
   /**
    * C'tor
@@ -164,7 +166,7 @@ public class AnnotationBasedMappingStrategy<T extends Report> implements Mapping
    */
   private void addMoneyMappingIfAnnotationPresent(Field field) {
     if (field.isAnnotationPresent(MoneyField.class)) {
-      fieldsWithMoneyValues.put(field.getName(), true);
+      fieldsWithMoneyValues.add(field.getName());
     }
   }
 
@@ -220,10 +222,6 @@ public class AnnotationBasedMappingStrategy<T extends Report> implements Mapping
    * this value will be used when parsing CSV to use BigDecimal and divide by 1M.
    */
   public boolean isMoneyField(String field) {
-    if (fieldsWithMoneyValues.containsKey(field)) {
-      return fieldsWithMoneyValues.get(field);
-    } else {
-      return false;
-    }
+    return fieldsWithMoneyValues.contains(field);
   }
 }

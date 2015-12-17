@@ -459,15 +459,19 @@ import java.util.Set;
     // Selecting the XMLs to choose the Spring Beans to load.
     List<String> listOfClassPathXml = Lists.newArrayList();
 
-    // Choose the DB type to use based properties file
+    // Choose the DB type to use based properties file, default to MYSQL
     String dbType = (String) properties.get(AW_REPORT_MODEL_DB_TYPE);
-    if (dbType != null && dbType.equals(DataBaseType.MONGODB.name())) {
+    if (DataBaseType.MONGODB.name().equals(dbType)) {
       LOGGER.info("Using MONGO DB configuration properties.");
       listOfClassPathXml.add("classpath:aw-report-mongodb-beans.xml");
-    } else {
-      LOGGER.info("Using SQL DB configuration properties.");
+    } else if (DataBaseType.MSSQL.name().equals(dbType)) {
+      LOGGER.info("Using MSSQL DB configuration properties.");
       LOGGER.warn("Updating database schema, this could take a few minutes ...");
-      listOfClassPathXml.add("classpath:aw-report-sql-beans.xml");
+      listOfClassPathXml.add("classpath:aw-report-mssql-beans.xml");
+    } else {
+      LOGGER.info("Using MYSQL DB configuration properties.");
+      LOGGER.warn("Updating database schema, this could take a few minutes ...");
+      listOfClassPathXml.add("classpath:aw-report-mysql-beans.xml");
       LOGGER.warn("Done.");
     }
 

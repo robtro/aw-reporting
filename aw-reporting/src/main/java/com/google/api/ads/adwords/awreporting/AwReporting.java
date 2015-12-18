@@ -40,7 +40,6 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
@@ -84,7 +83,7 @@ import java.util.Set;
   /**
    * The Spring application context used to get all the beans.
    */
-  private static ApplicationContext appCtx;
+  private static ClassPathXmlApplicationContext appCtx;
 
   /**
    * Main method.
@@ -461,34 +460,42 @@ import java.util.Set;
 
     // Choose the DB type to use based properties file, default to MYSQL
     String dbType = (String) properties.get(AW_REPORT_MODEL_DB_TYPE);
+    DataBaseType sqldbType = null;
     if (DataBaseType.MONGODB.name().equals(dbType)) {
       LOGGER.info("Using MONGO DB configuration properties.");
       listOfClassPathXml.add("classpath:aw-report-mongodb-beans.xml");
-    } else if (DataBaseType.MSSQL.name().equals(dbType)) {
-      LOGGER.info("Using MSSQL DB configuration properties.");
-      LOGGER.warn("Updating database schema, this could take a few minutes ...");
-      listOfClassPathXml.add("classpath:aw-report-mssql-beans.xml");
     } else {
-      LOGGER.info("Using MYSQL DB configuration properties.");
+      if (DataBaseType.MSSQL.name().equals(dbType)) {
+        sqldbType = DataBaseType.MSSQL;
+        LOGGER.info("Using MSSQL DB configuration properties.");
+      } else {
+        // default to MYSQL
+        sqldbType = DataBaseType.MYSQL;
+        LOGGER.info("Using MYSQL DB configuration properties.");
+      }
       LOGGER.warn("Updating database schema, this could take a few minutes ...");
-      listOfClassPathXml.add("classpath:aw-report-mysql-beans.xml");
+      listOfClassPathXml.add("classpath:aw-report-sql-beans.xml");
       LOGGER.warn("Done.");
     }
 
     // Choose the Processor type to use based properties file
     String processorType = (String) properties.get(AW_REPORT_PROCESSOR_TYPE);
-    if (processorType != null && processorType.equals(ProcessorType.ONMEMORY.name())
-        && !forceOnFileProcessor) {
+    if (!forceOnFileProcessor && ProcessorType.ONMEMORY.name().equals(processorType)) {
       LOGGER.info("Using ONMEMORY Processor.");
       listOfClassPathXml.add("classpath:aw-report-processor-beans-onmemory.xml");
     } else {
       LOGGER.info("Using ONFILE Processor.");
       listOfClassPathXml.add("classpath:aw-report-processor-beans-onfile.xml");
     }
-
-    appCtx = new ClassPathXmlApplicationContext(
-        listOfClassPathXml.toArray(new String[listOfClassPathXml.size()]));
-
+    
+    appCtx = new ClassPathXmlApplicationContext();
+    if (sqldbType != null) {
+      appCtx.getEnvironment().setActiveProfiles(sqldbType.name());
+    }
+    
+    appCtx.setConfigLocations(listOfClassPathXml.toArray(new String[listOfClassPathXml.size()]));
+    appCtx.refresh();
+    
     return properties;
   }
 }

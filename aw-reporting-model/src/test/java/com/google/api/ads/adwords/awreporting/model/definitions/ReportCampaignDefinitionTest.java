@@ -18,6 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,7 +28,8 @@ import junit.framework.Assert;
  * Tests the Campaign Performance report definition.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:aw-report-model-test-beans.xml")
+@ContextConfiguration("classpath:aw-report-sql-beans.xml")
+@ActiveProfiles("TEST")
 public class ReportCampaignDefinitionTest extends AbstractReportDefinitionTest<ReportCampaign> {
 
   /**

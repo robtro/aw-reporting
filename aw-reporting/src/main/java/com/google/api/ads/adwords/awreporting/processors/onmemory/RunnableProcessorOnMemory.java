@@ -155,6 +155,7 @@ public class RunnableProcessorOnMemory<R extends Report> implements Runnable {
       }
       LOGGER.debug("... success.");
       csvReader.close();
+      gZIPInputStream.close();
     } catch (Exception e) {
       error = new Exception("Error processing report for account: " + this.accountId, e);
       LOGGER.error("Error processing report for account: " + this.accountId + " " + e.getMessage());

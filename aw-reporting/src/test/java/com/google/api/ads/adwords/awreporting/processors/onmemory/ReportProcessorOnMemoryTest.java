@@ -24,6 +24,7 @@ import static org.mockito.Mockito.verify;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -56,11 +57,11 @@ import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.processors.onmemory.ReportProcessorOnMemory;
 import com.google.api.ads.adwords.awreporting.processors.onmemory.RunnableProcessorOnMemory;
 import com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer;
-import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.OAuthException;
+import com.google.api.ads.common.lib.utils.Streams;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.util.Lists;
 import com.google.api.client.util.Maps;
@@ -192,7 +193,7 @@ public class ReportProcessorOnMemoryTest {
     }
   }
 
-  private String getReportDataFileName(ReportDefinitionReportType reportType) throws Exception {
+  private String getReportDataFileName(ReportDefinitionReportType reportType) throws FileNotFoundException {
     // returns the appropriate file depending on the report type
     if (reportType.equals(ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT)) {
       return "src/test/resources/csv/reportDownload-ACCOUNT_PERFORMANCE_REPORT-2602198216-1370030134500.report";
@@ -238,22 +239,22 @@ public class ReportProcessorOnMemoryTest {
       return "src/test/resources/csv/reportDownload-SHOPPING_PERFORMANCE_REPORT-4159595773-1835647307310030649.report";
     }
     // Undefined report type on this test
-    throw (new Exception("Undefined report type on Tests: " + reportType.value()));
+    throw (new FileNotFoundException("No test file for report type: " + reportType.value()));
   }
 
-  private byte[] getReporDatafromCsv(ReportDefinitionReportType reportType) throws Exception {
+  private byte[] getReporDatafromCsv(ReportDefinitionReportType reportType) throws IOException {
     byte[] reportData = reportDataMap.get(reportType);
     if (reportData == null) {
       FileInputStream fis = new FileInputStream(getReportDataFileName(reportType));
       ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
       GZIPOutputStream gzipOut = new GZIPOutputStream(baos);
-      FileUtil.copy(fis, gzipOut);
-      gzipOut.flush();
-      gzipOut.close();
+      Streams.copy(fis, gzipOut);
       reportData = baos.toByteArray();
       reportDataMap.put(reportType, reportData);
-      baos.flush();
+      
+      gzipOut.close();
       baos.close();
+      fis.close();
     }
     return reportData;
   }

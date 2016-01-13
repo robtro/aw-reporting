@@ -19,6 +19,9 @@ package com.google.api.ads.adwords.awreporting.util;
  */
 public enum DataBaseType {
 
-  SQL, MONGODB
+  SQL,  // alias of MYSQL
+  MYSQL,
+  MSSQL,
+  MONGODB
 
 }

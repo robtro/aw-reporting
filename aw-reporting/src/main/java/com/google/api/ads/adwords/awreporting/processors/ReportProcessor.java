@@ -490,7 +490,7 @@ public abstract class ReportProcessor {
       } else {
         LOGGER.error("The following fields' @MoneyField annotations are wrong for report "
             + reportTypeName + ":");
-        for (ReportClassFieldData fieldData : wrongDisplayNameFields) {
+        for (ReportClassFieldData fieldData : wrongMoneyFields) {
           LOGGER.error("  " + fieldData.getFieldName() + ": (actual) "
               + fieldData.getDeclaredMoneyField() + ", (expected) "
               + fieldData.getDefinedMoneyField());

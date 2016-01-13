@@ -7,7 +7,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -19,7 +19,7 @@ public class AwReportingTest {
    * Test the file reading feature, and that the account IDs are properly added to the given set
    */
   @Test
-  public void testAddAccountFromFile() throws FileNotFoundException {
+  public void testAddAccountFromFile() throws IOException {
 
     Set<Long> accountIdsSet = Sets.newHashSet();
 

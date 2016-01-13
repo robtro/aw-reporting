@@ -7,7 +7,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public class FileUtilTest {
    * Tests the file reading feature
    */
   @Test
-  public void testLineListing() throws FileNotFoundException {
+  public void testLineListing() throws IOException {
 
     List<String> linesAsStrings =
         FileUtil.readFileLinesAsStrings(new File("src/test/resources/util/account-for-test.txt"));

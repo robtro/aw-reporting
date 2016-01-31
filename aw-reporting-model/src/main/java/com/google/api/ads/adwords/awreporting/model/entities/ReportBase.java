@@ -506,11 +506,7 @@ public abstract class ReportBase extends Report {
   }
 
   public void setCtr(String ctr) {
-    // removing percentage symbol from the string
-    if (ctr != null) {
-      String replace = ctr.replace("%", "");
-      this.ctr = BigDecimalUtil.parseFromNumberString(replace);
-    }
+    this.ctr = BigDecimalUtil.parseFromNumberString(ctr);
   }
 
   public BigDecimal getAvgCpm() {

@@ -24,12 +24,12 @@ import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.server.appengine.processors.TaskProcessorOnMemory;
-import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionDateRangeType;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.ads.common.lib.exception.ValidationException;
+import com.google.api.ads.common.lib.utils.Streams;
 
 import org.junit.Before;
 import org.mockito.ArgumentCaptor;
@@ -76,7 +76,7 @@ public class TaskProcessorOnMemoryTest {
     FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
     ByteArrayOutputStream baos = new ByteArrayOutputStream(2048);
     GZIPOutputStream gzipOut = new GZIPOutputStream(baos);
-    FileUtil.copy(fis, gzipOut);
+    Streams.copy(fis, gzipOut);
     gzipOut.flush();
     gzipOut.close();
     doReturn(new ByteArrayInputStream(baos.toByteArray())).when(taskProcessorOnMemory).getReportInputStream();

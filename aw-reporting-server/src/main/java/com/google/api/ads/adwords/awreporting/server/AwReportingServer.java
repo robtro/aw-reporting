@@ -301,7 +301,7 @@ public class AwReportingServer {
    * @throws FileNotFoundException file not found
    */
   protected static void addAccountsFromFile(Set<Long> accountIdsSet, String accountsFileName)
-      throws FileNotFoundException {
+      throws IOException {
 
     logger.info("Using accounts file: " + accountsFileName);
 

@@ -170,12 +170,17 @@ AbstractReportDefinitionTest<ReportVideo> {
         "ViewThroughConversions",
         // Specific to Video Performance Report
         "AdGroupId",
+        "AdGroupName",
+        "AdGroupStatus",
         "CampaignId",
+        "CampaignName",
+        "CampaignStatus",
         "CreativeId",
         "VideoChannelId",
         "VideoDuration",
         "VideoId",
-        "VideoTitle"
+        "VideoTitle",
+        "CreativeStatus"
     };
   }
 }

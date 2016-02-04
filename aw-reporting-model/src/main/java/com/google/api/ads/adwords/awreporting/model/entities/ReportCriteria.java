@@ -116,6 +116,23 @@ public class ReportCriteria extends ReportBase {
   @CsvField(value = "First page CPC", reportField = "FirstPageCpc")
   private String firstPageCpc;
 
+  @Column(name = "TOP_OF_PAGE_CPC")
+  @CsvField(value = "Top of page CPC", reportField = "TopOfPageCpc")
+  private String topOfPageCpc;
+  
+  @Column(name = "FIRST_POSITION_CPC")
+  @CsvField(value = "First position CPC", reportField = "FirstPositionCpc")
+  private String firstPositionCpc;
+
+  @Column(name = "ESTIMATED_ADD_CLICKS_AT_FIRST_POSITION_CPC")
+  @CsvField(value = "Est. add. clicks/wk (first position bid)", reportField = "EstimatedAddClicksAtFirstPositionCpc")
+  private Long estimatedAddClicksAtFirstPositionCpc;
+
+  @Column(name = "ESTIMATED_ADD_COST_AT_FIRST_POSITION_CPC")
+  @CsvField(value = "Est. add. clicks/wk (first position bid)", reportField = "EstimatedAddClicksAtFirstPositionCpc")
+  @MoneyField
+  private BigDecimal estimatedAddCostAtFirstPositionCpc;
+
   @Column(name = "KEYWORD_ID")
   @CsvField(value = "Keyword ID", reportField = "Id")
   private String keywordId;
@@ -154,6 +171,18 @@ public class ReportCriteria extends ReportBase {
   @CsvField(value = "Quality score", reportField = "QualityScore")
   private Long qualityScore;
 
+  @Column(name = "CREATIVE_QUALITY_SCORE", length = 32)
+  @CsvField(value = "Ad relevance", reportField = "CreativeQualityScore")
+  private String creativeQualityScore;
+
+  @Column(name = "POST_CLICK_QUALITY_SCORE", length = 32)
+  @CsvField(value = "Landing page experience", reportField = "PostClickQualityScore")
+  private String postClickQualityScore;
+
+  @Column(name = "SEARCH_PREDICATED_CTR", length = 32)
+  @CsvField(value = "Expected clickthrough rate", reportField = "SearchPredictedCtr")
+  private String searchPredictedCtr;
+
   @Column(name = "SLOT")
   @CsvField(value = "Top vs. side", reportField = "Slot")
   private String slot;
@@ -161,10 +190,6 @@ public class ReportCriteria extends ReportBase {
   @Column(name = "STATUS")
   @CsvField(value = "Keyword/Placement state", reportField = "Status")
   private String status;
-
-  @Column(name = "TOP_OF_PAGE_CPC")
-  @CsvField(value = "Top of page CPC", reportField = "TopOfPageCpc")
-  private String topOfPageCpc;
 
   @Column(name = "VIEW_THROUGH_CONVERSIONS_SIGNIFICANCE")
   @CsvField(value = "View-through conv. ACE indicator",
@@ -473,6 +498,38 @@ public class ReportCriteria extends ReportBase {
     this.firstPageCpc = firstPageCpc;
   }
 
+  public String getTopOfPageCpc() {
+    return topOfPageCpc;
+  }
+
+  public void setTopOfPageCpc(String topOfPageCpc) {
+    this.topOfPageCpc = topOfPageCpc;
+  }
+  
+  public String getFirstPositionCpc() {
+    return firstPositionCpc;
+  }
+  
+  public void setFirstPositionCpc(String firstPositionCpc) {
+    this.firstPositionCpc = firstPositionCpc;
+  }
+  
+  public Long getEstimatedAddClicksAtFirstPositionCpc() {
+    return estimatedAddClicksAtFirstPositionCpc;
+  }
+  
+  public void setEstimatedAddClicksAtFirstPositionCpc(Long estimatedAddClicksAtFirstPositionCpc) {
+    this.estimatedAddClicksAtFirstPositionCpc = estimatedAddClicksAtFirstPositionCpc;
+  }
+  
+  public BigDecimal getEstimatedAddCostAtFirstPositionCpc() {
+    return estimatedAddCostAtFirstPositionCpc;
+  }
+
+  public void setEstimatedAddCostAtFirstPositionCpc(BigDecimal estimatedAddCostAtFirstPositionCpc) {
+    this.estimatedAddCostAtFirstPositionCpc = estimatedAddCostAtFirstPositionCpc;
+  }
+
   public String getKeywordId() {
     return keywordId;
   }
@@ -544,6 +601,30 @@ public class ReportCriteria extends ReportBase {
   public void setQualityScore(Long qualityScore) {
     this.qualityScore = qualityScore;
   }
+  
+  public String getCreativeQualityScore() {
+    return creativeQualityScore;
+  }
+  
+  public void setCreativeQualityScore(String creativeQualityScore) {
+    this.creativeQualityScore = creativeQualityScore;
+  }
+  
+  public String getPostClickQualityScore() {
+    return postClickQualityScore;
+  }
+  
+  public void setPostClickQualityScore(String postClickQualityScore) {
+    this.postClickQualityScore = postClickQualityScore;
+  }
+  
+  public String getSearchPredictedCtr() {
+    return searchPredictedCtr;
+  }
+  
+  public void setSearchPredictedCtr(String searchPredictedCtr) {
+    this.searchPredictedCtr = searchPredictedCtr;
+  }
 
   public String getSlot() {
     return slot;
@@ -559,14 +640,6 @@ public class ReportCriteria extends ReportBase {
 
   public void setStatus(String status) {
     this.status = status;
-  }
-
-  public String getTopOfPageCpc() {
-    return topOfPageCpc;
-  }
-
-  public void setTopOfPageCpc(String topOfPageCpc) {
-    this.topOfPageCpc = topOfPageCpc;
   }
 
   public String getViewThroughConversionsSignificance() {

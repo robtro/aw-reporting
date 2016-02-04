@@ -20,7 +20,7 @@
 
 	<properties>
 		<aw-reporting.version>1.9.0-SNAPSHOT</aw-reporting.version>
-		<com.google.api-ads.version>2.5.0</com.google.api-ads.version>
+		<com.google.api-ads.version>2.9.0</com.google.api-ads.version>
 		<appengine.app.version>1</appengine.app.version>
 		<appengine.target.version>1.9.21</appengine.target.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

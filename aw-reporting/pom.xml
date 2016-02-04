@@ -86,10 +86,10 @@
 
     <!-- Ads client library dependencies -->
     <dependency>
-	  <groupId>com.google.api-ads</groupId>
-	  <artifactId>ads-lib</artifactId>
-	  <version>${com.google.api-ads.version}</version>
-	</dependency>
+      <groupId>com.google.api-ads</groupId>
+      <artifactId>ads-lib</artifactId>
+      <version>${com.google.api-ads.version}</version>
+    </dependency>
     <dependency>
       <groupId>com.google.api-ads</groupId>
       <artifactId>adwords-appengine</artifactId>

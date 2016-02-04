@@ -20,12 +20,12 @@ import java.util.Map;
 
 import com.google.api.ads.adwords.awreporting.util.ReportDefinitionFieldsMap;
 import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
-import com.google.api.ads.adwords.jaxws.v201509.cm.ApiException_Exception;
-import com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionField;
-import com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionServiceInterface;
-import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201601.cm.ApiException_Exception;
+import com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionField;
+import com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201601.mcm.ApiException;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 
 import org.apache.log4j.Logger;
 
@@ -92,7 +92,7 @@ public class ReportDefinitionDownloader {
         if (this.retriesCount == i) {
           // failed the last retry, just rethrow
           throw new ApiException(
-              errorMsg, new com.google.api.ads.adwords.jaxws.v201509.cm.ApiException());
+              errorMsg, new com.google.api.ads.adwords.jaxws.v201601.cm.ApiException());
         }
       }
       
@@ -118,11 +118,11 @@ public class ReportDefinitionDownloader {
   }
   
   // TODO: cz
-  // check if we should use com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionReportType
+  // check if we should use com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionReportType
   // everywhere in this project?
-  private com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionReportType
+  private com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionReportType
   convertReportType(ReportDefinitionReportType reportType) {
-    return com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionReportType.valueOf(
+    return com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionReportType.valueOf(
         reportType.name());
   }
 

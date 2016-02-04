@@ -17,12 +17,12 @@ package com.google.api.ads.adwords.awreporting.downloader;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.awreporting.util.FileUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinition;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponse;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201509.DetailedReportDownloadResponseException;
-import com.google.api.ads.adwords.lib.utils.v201509.ReportDownloader;
+import com.google.api.ads.adwords.lib.utils.v201601.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201601.ReportDownloader;
 import com.google.api.ads.common.lib.exception.ValidationException;
 
 import org.apache.log4j.Logger;

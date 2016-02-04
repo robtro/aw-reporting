@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
-import com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionField;
+import com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionField;
 
 public class ReportClassFieldData {
   

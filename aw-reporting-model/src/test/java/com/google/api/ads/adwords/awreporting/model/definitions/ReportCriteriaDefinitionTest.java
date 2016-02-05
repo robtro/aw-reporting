@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
@@ -160,6 +160,10 @@ AbstractReportDefinitionTest<ReportCriteria> {
         "CtrSignificance",
         "DisplayName",
         "FirstPageCpc",
+        "TopOfPageCpc",
+        "FirstPositionCpc",
+        "EstimatedAddClicksAtFirstPositionCpc",
+        "EstimatedAddClicksAtFirstPositionCpc",
         "Id",
         "ImpressionSignificance",
         "IsNegative",
@@ -169,9 +173,11 @@ AbstractReportDefinitionTest<ReportCriteria> {
         "PercentCpa",
         "PositionSignificance",
         "QualityScore",
+        "CreativeQualityScore",
+        "PostClickQualityScore",
+        "SearchPredictedCtr",
         "Slot",
         "Status",
-        "TopOfPageCpc",
         "ViewThroughConversionsSignificance",
         "ActiveViewCpm",
         "ActiveViewCtr",

@@ -316,25 +316,25 @@ public class KratuCompute {
 
       // Process ReportKeyword Info
       List<ReportKeywords> reportKeywordList = storageHelper.getReportByAccountId(ReportKeywords.class, accountId, dayStart.getTime(), dayEnd.getTime());
-      Long sumImpressions = 0l;
+      Long sumImpressions = 0L;
       BigDecimal totalPositions = BigDecimal.ZERO;
-      BigDecimal totalWeight = BigDecimal.ZERO;
+      Long totalWeight = 0L;
       for (ReportKeywords reportKeyword : reportKeywordList) {
         if (reportKeyword.getStatus().equals(ENABLED)) {
           if (!reportKeyword.isNegative()) {
             kratu.addNumberOfPositiveActiveKeywords(BigDecimal.ONE);
 
             // numberOfActiveGoodQualityScoreKeywords: QS > 7
-            if (reportKeyword.getQualityScoreAsBigDecimal().compareTo(BigDecimal.valueOf(7)) == 1) {
+            if (reportKeyword.getQualityScore().compareTo(Long.valueOf(7)) == 1) {
               kratu.addNumberOfActiveGoodQualityScoreKeywords(BigDecimal.ONE);
             }
             // numberOfActiveAverageQualityScoreKeywords: QS>4 && <=7
-            if (reportKeyword.getQualityScoreAsBigDecimal().compareTo(BigDecimal.valueOf(4)) == 1
-                && reportKeyword.getQualityScoreAsBigDecimal().compareTo(BigDecimal.valueOf(7)) < 1) {
+            if (reportKeyword.getQualityScore().compareTo(Long.valueOf(4)) == 1
+                && reportKeyword.getQualityScore().compareTo(Long.valueOf(7)) < 1) {
               kratu.addNumberOfActiveAverageQualityScoreKeywords(BigDecimal.ONE);
             }
             // numberOfActivePoorQualityScoreKeywords: QS <= 4
-            if (reportKeyword.getQualityScoreAsBigDecimal().compareTo(BigDecimal.valueOf(4)) < 1) {
+            if (reportKeyword.getQualityScore().compareTo(Long.valueOf(4)) < 1) {
               kratu.addNumberOfActivePoorQualityScoreKeywords(BigDecimal.ONE);
             }
 
@@ -351,8 +351,7 @@ public class KratuCompute {
             sumImpressions += reportKeyword.getImpressions();
             totalPositions = totalPositions.add(reportKeyword.getAvgPositionBigDecimal().multiply(
                 BigDecimal.valueOf(reportKeyword.getImpressions())));
-            totalWeight = totalWeight.add(reportKeyword.getQualityScoreAsBigDecimal().multiply(
-                BigDecimal.valueOf(reportKeyword.getImpressions())));
+            totalWeight += (reportKeyword.getQualityScore() * reportKeyword.getImpressions());
 
           } else {
             kratu.addNumberOfNegativeActiveKeywords(BigDecimal.ONE);
@@ -362,7 +361,7 @@ public class KratuCompute {
       }
       if (sumImpressions > 0) {
         kratu.setWeightedAverageKeywordPosition(totalPositions.divide(BigDecimal.valueOf(sumImpressions), SCALE, ROUNDING));
-        kratu.setWeightedAverageQualityScore(totalWeight.divide(BigDecimal.valueOf(sumImpressions), SCALE, ROUNDING));
+        kratu.setWeightedAverageQualityScore(BigDecimal.valueOf(totalWeight).divide(BigDecimal.valueOf(sumImpressions), SCALE, ROUNDING));
       }
 
 

@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -43,7 +43,19 @@ public class ReportKeywords extends ReportBase {
 
   @Column(name = "QUALITY_SCORE")
   @CsvField(value = "Quality score", reportField = "QualityScore")
-  private BigDecimal qualityScore;
+  private Long qualityScore;
+
+  @Column(name = "CREATIVE_QUALITY_SCORE", length = 32)
+  @CsvField(value = "Ad relevance", reportField = "CreativeQualityScore")
+  private String creativeQualityScore;
+
+  @Column(name = "POST_CLICK_QUALITY_SCORE", length = 32)
+  @CsvField(value = "Landing page experience", reportField = "PostClickQualityScore")
+  private String postClickQualityScore;
+
+  @Column(name = "SEARCH_PREDICATED_CTR", length = 32)
+  @CsvField(value = "Expected clickthrough rate", reportField = "SearchPredictedCtr")
+  private String searchPredictedCtr;
 
   @Column(name = "KEYWORD_MATCH_TYPE", length = 32)
   @CsvField(value = "Match type", reportField = "KeywordMatchType")
@@ -144,6 +156,19 @@ public class ReportKeywords extends ReportBase {
   @Column(name = "TOP_OF_PAGE_CPC")
   @CsvField(value = "Top of page CPC", reportField = "TopOfPageCpc")
   private String topOfPageCpc;
+  
+  @Column(name = "FIRST_POSITION_CPC")
+  @CsvField(value = "First position CPC", reportField = "FirstPositionCpc")
+  private String firstPositionCpc;
+
+  @Column(name = "ESTIMATED_ADD_CLICKS_AT_FIRST_POSITION_CPC")
+  @CsvField(value = "Est. add. clicks/wk (first position bid)", reportField = "EstimatedAddClicksAtFirstPositionCpc")
+  private Long estimatedAddClicksAtFirstPositionCpc;
+
+  @Column(name = "ESTIMATED_ADD_COST_AT_FIRST_POSITION_CPC")
+  @CsvField(value = "Est. add. clicks/wk (first position bid)", reportField = "EstimatedAddClicksAtFirstPositionCpc")
+  @MoneyField
+  private BigDecimal estimatedAddCostAtFirstPositionCpc;
   
   @Column(name = "ACTIVE_VIEW_CPM")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewCpm")
@@ -285,20 +310,36 @@ public class ReportKeywords extends ReportBase {
   }
 
   // qualityScore
-  public BigDecimal getQualityScoreAsBigDecimal() {
+  public Long getQualityScore() {
     return qualityScore;
   }
 
-  public String getQualityScore() {
-    return BigDecimalUtil.formatAsReadable(qualityScore);
-  }
-
-  public void setQualityScore(BigDecimal qualityScore) {
+  public void setQualityScore(Long qualityScore) {
     this.qualityScore = qualityScore;
   }
-
-  public void setQualityScore(String qualityScore) {
-    this.qualityScore = BigDecimalUtil.parseFromNumberString(qualityScore);
+  
+  public String getCreativeQualityScore() {
+    return creativeQualityScore;
+  }
+  
+  public void setCreativeQualityScore(String creativeQualityScore) {
+    this.creativeQualityScore = creativeQualityScore;
+  }
+  
+  public String getPostClickQualityScore() {
+    return postClickQualityScore;
+  }
+  
+  public void setPostClickQualityScore(String postClickQualityScore) {
+    this.postClickQualityScore = postClickQualityScore;
+  }
+  
+  public String getSearchPredictedCtr() {
+    return searchPredictedCtr;
+  }
+  
+  public void setSearchPredictedCtr(String searchPredictedCtr) {
+    this.searchPredictedCtr = searchPredictedCtr;
   }
 
   // keywordMatchType
@@ -552,6 +593,30 @@ public class ReportKeywords extends ReportBase {
 
   public void setTopOfPageCpc(String topOfPageCpc) {
     this.topOfPageCpc = topOfPageCpc;
+  }
+  
+  public String getFirstPositionCpc() {
+    return firstPositionCpc;
+  }
+  
+  public void setFirstPositionCpc(String firstPositionCpc) {
+    this.firstPositionCpc = firstPositionCpc;
+  }
+  
+  public Long getEstimatedAddClicksAtFirstPositionCpc() {
+    return estimatedAddClicksAtFirstPositionCpc;
+  }
+  
+  public void setEstimatedAddClicksAtFirstPositionCpc(Long estimatedAddClicksAtFirstPositionCpc) {
+    this.estimatedAddClicksAtFirstPositionCpc = estimatedAddClicksAtFirstPositionCpc;
+  }
+  
+  public BigDecimal getEstimatedAddCostAtFirstPositionCpc() {
+    return estimatedAddCostAtFirstPositionCpc;
+  }
+
+  public void setEstimatedAddCostAtFirstPositionCpc(BigDecimal estimatedAddCostAtFirstPositionCpc) {
+    this.estimatedAddCostAtFirstPositionCpc = estimatedAddCostAtFirstPositionCpc;
   }
   
   public String getActiveViewCpm() {

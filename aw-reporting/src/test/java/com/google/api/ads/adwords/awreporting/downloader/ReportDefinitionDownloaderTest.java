@@ -19,11 +19,11 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.google.api.ads.adwords.jaxws.v201509.cm.ApiException_Exception;
-import com.google.api.ads.adwords.jaxws.v201509.cm.ReportDefinitionField;
-import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201601.cm.ApiException_Exception;
+import com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionField;
+import com.google.api.ads.adwords.jaxws.v201601.mcm.ApiException;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 
@@ -76,7 +76,7 @@ public class ReportDefinitionDownloaderTest {
   public void testGetFieldsMapping_retries() throws ApiException_Exception, ApiException {
 
     ApiException_Exception ex = new ApiException_Exception("ApiException",
-        new com.google.api.ads.adwords.jaxws.v201509.cm.ApiException());
+        new com.google.api.ads.adwords.jaxws.v201601.cm.ApiException());
     doThrow(ex).when(mockedReportDefinitionDownloader)
         .downloadReportDefinitionFields(Mockito.<ReportDefinitionReportType>anyObject());
 

@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportGender;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 

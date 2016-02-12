@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -38,29 +38,49 @@ public class ReportVideo extends ReportBase {
   @CsvField(value = "Ad group ID", reportField = "AdGroupId")
   private Long adGroupId;
   
+  @Column(name = "ADGROUP_NAME", length = 255)
+  @CsvField(value = "Ad group", reportField = "AdGroupName")
+  private String adGroupName;
+
+  @Column(name = "ADGROUP_STATUS", length = 32)
+  @CsvField(value = "Ad group state", reportField = "AdGroupStatus")
+  private String adGroupStatus;
+  
   @Column(name = "CAMPAIGN_ID")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
   private Long campaignId;
+
+  @Column(name = "CAMPAIGN_NAME", length = 255)
+  @CsvField(value = "Campaign", reportField = "CampaignName")
+  private String campaignName;
+
+  @Column(name = "CAMPAIGN_STATUS", length = 32)
+  @CsvField(value = "Campaign state", reportField = "CampaignStatus")
+  private String campaignStatus;
   
   @Column(name = "CREATIVE_ID")
   @CsvField(value = "Ad ID", reportField = "CreativeId")
-  private Long creativeId; 
+  private Long creativeId;
   
   @Column(name = "VIDEO_CHANNEL_ID")
   @CsvField(value = "Video Channel Id", reportField = "VideoChannelId")
-  private String videoChannelId;  
+  private String videoChannelId;
   
   @Column(name = "VIDEO_DURATION")
   @CsvField(value = "Video Duration", reportField = "VideoDuration")
-  private Long videoDuration;  
+  private Long videoDuration;
   
   @Column(name = "VIDEO_ID")
   @CsvField(value = "Video Id", reportField = "VideoId")
-  private String videoId;  
+  private String videoId;
   
   @Column(name = "VIDEO_TITLE")
   @CsvField(value = "Video Title", reportField = "VideoTitle")
-  private String videoTitle;  
+  private String videoTitle;
+
+  @Column(name = "CREATIVE_STATUS", length = 32)
+  @CsvField(value = "Ad state", reportField = "CreativeStatus")
+  private String creativeStatus;
   
   @Column(name = "VIDEO_QUARTILE_25_RATE")
   @CsvField(value = "Video played to 25%", reportField = "VideoQuartile25Rate")
@@ -109,6 +129,22 @@ public class ReportVideo extends ReportBase {
     this.adGroupId = adGroupId;
   }
   
+  public String getAdGroupName() {
+    return adGroupName;
+  }
+  
+  public void setAdGroupName(String adGroupName) {
+    this.adGroupName = adGroupName;
+  }
+  
+  public String getAdGroupStatus() {
+    return adGroupStatus;
+  }
+
+  public void setAdGroupStatus(String adGroupStatus) {
+    this.adGroupStatus = adGroupStatus;
+  }
+  
   // campaignId
   public Long getCampaignId() {
     return campaignId;
@@ -116,6 +152,22 @@ public class ReportVideo extends ReportBase {
 
   public void setCampaignId(Long campaignId) {
     this.campaignId = campaignId;
+  }
+
+  public String getCampaignName() {
+    return campaignName;
+  }
+
+  public void setCampaignName(String campaignName) {
+    this.campaignName = campaignName;
+  }
+
+  public String getCampaignStatus() {
+    return campaignStatus;
+  }
+
+  public void setCampaignStatus(String campaignStatus) {
+    this.campaignStatus = campaignStatus;
   }
 
   public Long getCreativeId() {
@@ -156,6 +208,14 @@ public class ReportVideo extends ReportBase {
 
   public void setVideoTitle(String videoTitle) {
     this.videoTitle = videoTitle;
+  }
+  
+  public String getCreativeStatus() {
+    return creativeStatus;
+  }
+  
+  public void setCreativeStatus(String creativeStatus) {
+    this.creativeStatus = creativeStatus;
   }
 
   public String getVideoQuartile25Rate() {

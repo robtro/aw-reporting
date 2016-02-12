@@ -20,11 +20,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.api.ads.adwords.awreporting.util.ManagedCustomerDelegate;
-import com.google.api.ads.adwords.jaxws.v201509.cm.Selector;
-import com.google.api.ads.adwords.jaxws.v201509.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomer;
-import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomerPage;
-import com.google.api.ads.adwords.jaxws.v201509.mcm.ManagedCustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201601.cm.Selector;
+import com.google.api.ads.adwords.jaxws.v201601.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201601.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201601.mcm.ManagedCustomerPage;
+import com.google.api.ads.adwords.jaxws.v201601.mcm.ManagedCustomerServiceInterface;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportVideo;
-import com.google.api.ads.adwords.lib.jaxb.v201509.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -170,12 +170,17 @@ AbstractReportDefinitionTest<ReportVideo> {
         "ViewThroughConversions",
         // Specific to Video Performance Report
         "AdGroupId",
+        "AdGroupName",
+        "AdGroupStatus",
         "CampaignId",
+        "CampaignName",
+        "CampaignStatus",
         "CreativeId",
         "VideoChannelId",
         "VideoDuration",
         "VideoId",
-        "VideoTitle"
+        "VideoTitle",
+        "CreativeStatus"
     };
   }
 }

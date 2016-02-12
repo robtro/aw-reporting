@@ -92,7 +92,7 @@ public class ReportCriteria extends ReportBase {
   @CsvField(value = "CPM ACE indicator", reportField = "CpmSignificance")
   private String cpmSignificance;
 
-  @Column(name = "CRITERIA")
+  @Column(name = "CRITERIA", length = 2048)
   @CsvField(value = "Keyword / Placement", reportField = "Criteria")
   private String criteria;
 

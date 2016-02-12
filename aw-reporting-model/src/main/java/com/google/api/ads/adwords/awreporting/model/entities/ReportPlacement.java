@@ -72,7 +72,7 @@ public class ReportPlacement extends ReportBase {
   @CsvField(value = "Max CPM source", reportField = "CpmBidSource")
   private String cpmBidSource;
 
-  @Column(name = "CRITERIA_DESTINATION_URL")
+  @Column(name = "CRITERIA_DESTINATION_URL", length = 2048)
   @CsvField(value = "Destination URL", reportField = "CriteriaDestinationUrl")
   private String criteriaDestinationUrl;
 
@@ -102,7 +102,7 @@ public class ReportPlacement extends ReportBase {
   @MoneyField
   private BigDecimal maxCpm;  
 
-  @Column(name = "CRITERIA")
+  @Column(name = "CRITERIA", length = 2048)
   @CsvField(value = "Placement", reportField = "Criteria")
   private String criteria; 
 

@@ -32,7 +32,7 @@ public class ReportSearchQuery extends ReportBase {
   @CsvField(value = "Ad group", reportField = "AdGroupName")
   private String adGroupName;
 
-  @Column(name = "ADGROUPT_STATUS")
+  @Column(name = "ADGROUP_STATUS")
   @CsvField(value = "Ad group state", reportField = "AdGroupStatus")
   private String adGroupStatus;
 

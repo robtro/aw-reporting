@@ -30,7 +30,7 @@ public class FileUtilTest {
     Assert.assertTrue(linesAsStrings.contains("349-287-1722"));
     Assert.assertTrue(linesAsStrings.contains("573-198-5421"));
     Assert.assertTrue(linesAsStrings.contains("382-107-1791"));
-    Assert.assertTrue(linesAsStrings.contains("547-192-8097"));
+    Assert.assertTrue(linesAsStrings.contains("#547-192-8097"));
 
   }
 }

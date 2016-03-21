@@ -25,13 +25,13 @@ public class AwReportingTest {
 
     AwReporting.addAccountsFromFile(accountIdsSet, "src/test/resources/util/account-for-test.txt");
 
-    Assert.assertEquals(5, accountIdsSet.size());
+    Assert.assertEquals(4, accountIdsSet.size());
 
     Assert.assertTrue(accountIdsSet.contains(1235431234L));
     Assert.assertTrue(accountIdsSet.contains(3492871722L));
     Assert.assertTrue(accountIdsSet.contains(5731985421L));
     Assert.assertTrue(accountIdsSet.contains(3821071791L));
-    Assert.assertTrue(accountIdsSet.contains(5471928097L));
+    Assert.assertFalse(accountIdsSet.contains(5471928097L));
 
   }
 

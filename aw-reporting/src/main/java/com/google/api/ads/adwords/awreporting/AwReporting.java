@@ -255,11 +255,13 @@ import java.util.Set;
     LOGGER.debug("Acount IDs to be queried:");
     for (String line : linesAsStrings) {
 
-      String accountIdAsString = line.replaceAll("-", "");
-      long accountId = Long.parseLong(accountIdAsString);
-      accountIdsSet.add(accountId);
-
-      LOGGER.debug("Acount ID: " + accountId);
+      if (!line.startsWith("#")) {
+        String accountIdAsString = line.replaceAll("-", "");
+        long accountId = Long.parseLong(accountIdAsString);
+        accountIdsSet.add(accountId);
+  
+        LOGGER.debug("Acount ID: " + accountId);
+      }
     }
   }
 

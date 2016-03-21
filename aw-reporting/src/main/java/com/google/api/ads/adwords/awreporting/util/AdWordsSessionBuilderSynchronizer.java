@@ -40,9 +40,6 @@ public class AdWordsSessionBuilderSynchronizer {
    * @throws ValidationException error validating the CID.
    */
   public synchronized AdWordsSession getAdWordsSessionCopy(Long cid) throws ValidationException {
-
-    AdWordsSession adWordsSession = AdWordsSessionUtil.copy(this.builder.build());
-    adWordsSession.setClientCustomerId(String.valueOf(cid));
-    return adWordsSession;
+    return builder.withClientCustomerId(String.valueOf(cid)).buildImmutable();
   }
 }

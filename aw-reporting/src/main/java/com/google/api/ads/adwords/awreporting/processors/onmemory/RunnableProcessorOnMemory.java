@@ -99,7 +99,6 @@ public class RunnableProcessorOnMemory<R extends Report> implements Runnable {
       Integer reportRowsSetSize) {
     this.accountId = accountId;
     this.adWordsSession = adWordsSession;
-    this.adWordsSession.setClientCustomerId(String.valueOf(accountId));
     this.reportDefinition = reportDefinition;
     this.csvToBean = csvToBean;
     this.mappingStrategy = mappingStrategy;

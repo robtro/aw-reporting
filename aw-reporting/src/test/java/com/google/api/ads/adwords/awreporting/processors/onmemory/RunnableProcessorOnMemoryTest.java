@@ -80,7 +80,7 @@ public class RunnableProcessorOnMemoryTest {
     AdWordsSession adWordsSession =
         new AdWordsSession.Builder().withEndpoint("http://www.google.com")
             .withDeveloperToken("DeveloperToken")
-            .withClientCustomerId("123")
+            .withClientCustomerId("1232198123")
             .withUserAgent("UserAgent")
             .withOAuth2Credential( new GoogleCredential.Builder().build())
             .build();

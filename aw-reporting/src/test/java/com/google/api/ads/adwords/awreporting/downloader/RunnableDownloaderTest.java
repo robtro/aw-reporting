@@ -73,7 +73,7 @@ public class RunnableDownloaderTest {
     Collection<File> results = Lists.newArrayList();
 
     mockedRunnableDownloader =
-        new RunnableDownloader(5, 0, 10, 1L, reportDefinition, adWordsSession, results);
+        new RunnableDownloader(5, 0, 10, 123L, reportDefinition, adWordsSession, results);
 
     MockitoAnnotations.initMocks(this);
   }

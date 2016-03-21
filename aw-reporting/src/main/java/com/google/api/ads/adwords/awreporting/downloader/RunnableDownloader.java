@@ -90,7 +90,6 @@ public class RunnableDownloader implements Runnable {
     this.cid = cid;
     this.reportDefinition = reportDefinition;
     this.adWordsSession = adWordsSession;
-    this.adWordsSession.setClientCustomerId(String.valueOf(cid));
     this.results = results;
   }
 

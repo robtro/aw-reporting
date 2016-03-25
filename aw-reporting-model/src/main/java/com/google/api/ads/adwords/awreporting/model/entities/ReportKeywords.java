@@ -53,7 +53,7 @@ public class ReportKeywords extends ReportBase {
   @CsvField(value = "Landing page experience", reportField = "PostClickQualityScore")
   private String postClickQualityScore;
 
-  @Column(name = "SEARCH_PREDICATED_CTR", length = 32)
+  @Column(name = "SEARCH_PREDICTED_CTR", length = 32)
   @CsvField(value = "Expected clickthrough rate", reportField = "SearchPredictedCtr")
   private String searchPredictedCtr;
 

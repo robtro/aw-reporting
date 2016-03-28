@@ -21,14 +21,15 @@ import static org.mockito.Mockito.verify;
 
 import com.google.api.ads.adwords.awreporting.downloader.RunnableDownloader;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201601.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201601.Selector;
+import com.google.api.ads.adwords.lib.client.reporting.ReportingConfiguration;
+import com.google.api.ads.adwords.lib.jaxb.v201603.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201603.Selector;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201601.DetailedReportDownloadResponseException;
+import com.google.api.ads.adwords.lib.utils.v201603.DetailedReportDownloadResponseException;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.common.collect.Lists;
@@ -54,12 +55,20 @@ public class RunnableDownloaderTest {
   @Before
   public void setUp() throws ValidationException {
 
+    ReportingConfiguration reportingConfig = new ReportingConfiguration.Builder()
+        .skipReportHeader(true)
+        .skipColumnHeader(false)
+        .skipReportSummary(true)
+        .includeZeroImpressions(false)
+        .build();
+    
     AdWordsSession adWordsSession =
         new AdWordsSession.Builder().withEndpoint("http://www.google.com")
             .withDeveloperToken("DeveloperToken")
             .withClientCustomerId("123")
             .withUserAgent("UserAgent")
-            .withOAuth2Credential( new GoogleCredential.Builder().build())
+            .withOAuth2Credential(new GoogleCredential.Builder().build())
+            .withReportingConfiguration(reportingConfig)
             .build();
 
     ReportDefinition reportDefinition = new ReportDefinition();
@@ -67,7 +76,6 @@ public class RunnableDownloaderTest {
     reportDefinition.setDateRangeType(ReportDefinitionDateRangeType.CUSTOM_DATE);
     reportDefinition.setReportType(ReportDefinitionReportType.ACCOUNT_PERFORMANCE_REPORT);
     reportDefinition.setDownloadFormat(DownloadFormat.GZIPPED_CSV);
-    reportDefinition.setIncludeZeroImpressions(false);
     reportDefinition.setSelector(new Selector());
 
     Collection<File> results = Lists.newArrayList();

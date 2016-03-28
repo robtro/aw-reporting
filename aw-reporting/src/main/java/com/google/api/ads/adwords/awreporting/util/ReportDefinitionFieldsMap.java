@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.api.ads.adwords.jaxws.v201601.cm.ReportDefinitionField;
+import com.google.api.ads.adwords.jaxws.v201603.cm.ReportDefinitionField;
 
 public class ReportDefinitionFieldsMap {
   private Map<String, ReportDefinitionField> reportDefinitionFieldMap;

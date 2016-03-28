@@ -33,7 +33,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFe
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportVideo;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 

@@ -115,10 +115,6 @@ Note: aw-reporting.jar is in the aw-reporting/aw-reporting/target/ directory.
                               instead of getting the accounts from the API. The list can contain all the accounts,
                               or just a specific set of accounts
 
-   -checkEntityClasses
-                              Check all fields of every Java entity class against ReportDefinitionService.
-                              Note: this option skips report downloading.
-
    -csvReportFile
                               Specifies the CSV data file to be used when importing data from a local file. In order to use
                               this feature, you must pass the report type in the "-onFileReport" property.

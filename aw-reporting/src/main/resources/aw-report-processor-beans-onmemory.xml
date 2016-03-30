@@ -24,12 +24,6 @@
     class="com.google.api.ads.adwords.awreporting.util.DynamicPropertyPlaceholderConfigurer">
   </bean>
   
-  <bean id="reportDefinitionDownloader"
-    class="com.google.api.ads.adwords.awreporting.downloader.ReportDefinitionDownloader">
-    <property name="retriesCount" value="${aw.report.downloader.retries.count}" />
-    <property name="backoffInterval" value="${aw.report.downloader.backoff.interval}" />
-  </bean>
-
   <bean init-method="initializeExecutorService"
     class="com.google.api.ads.adwords.awreporting.downloader.MultipleClientReportDownloader"
     id="multipleClientReportDownloader">

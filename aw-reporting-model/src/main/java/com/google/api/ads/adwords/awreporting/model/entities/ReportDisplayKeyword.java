@@ -237,6 +237,9 @@ public class ReportDisplayKeyword extends ReportBase {
     if (this.getClickType() != null && this.getClickType().length() > 0) {
       this.id += "-" + this.getClickType();
     }
+    if (this.getConversionTrackerId() != null) {
+      this.id += "-" + this.getConversionTrackerId();
+    }
   }
 
   public Long getAdGroupId() {

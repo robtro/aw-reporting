@@ -134,7 +134,9 @@ public class ReportSearchQuery extends ReportBase {
     if (this.getQuery() != null && this.getQuery().length() > 0) {
       this.id += "-" + this.getQuery();
     }
-
+    if (this.getConversionTrackerId() != null) {
+      this.id += "-" + this.getConversionTrackerId();
+    }
   }
 
   public String getAdFormat() {

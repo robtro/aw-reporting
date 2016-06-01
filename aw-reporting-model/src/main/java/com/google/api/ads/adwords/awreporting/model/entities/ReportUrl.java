@@ -174,6 +174,9 @@ public class ReportUrl extends ReportBase {
     if (this.getAdNetworkPartners() != null && this.getAdNetworkPartners().length() > 0) {
       this.id += "-" + this.getAdNetworkPartners();
     }
+    if (this.getConversionTrackerId() != null) {
+      this.id += "-" + this.getConversionTrackerId();
+    }
   }
 
   public String getAdFormat() {

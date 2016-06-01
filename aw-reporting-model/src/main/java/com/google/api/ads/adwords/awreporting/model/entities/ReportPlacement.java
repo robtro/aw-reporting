@@ -239,6 +239,9 @@ public class ReportPlacement extends ReportBase {
     if (this.getCriteria() != null && this.getCriteria().length() > 0) {
       this.id += "-" + this.getCriteria();
     }
+    if (this.getConversionTrackerId() != null) {
+      this.id += "-" + this.getConversionTrackerId();
+    }
   }
 
   public Long getAdGroupId() {

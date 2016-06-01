@@ -154,11 +154,11 @@ public class ReportAccount extends ReportBase {
     if (this.getHourOfDay() != null) {
       this.id += "-" + this.getHourOfDay();
     }
-    if (this.getConversionTypeName() != null) {
-      this.id += "-" + this.getConversionTypeName();
-    }
     if (this.getSlot() != null && this.getSlot().length() > 0) {
       this.id += "-" + this.getSlot();
+    }
+    if (this.getConversionTrackerId() != null) {
+      this.id += "-" + this.getConversionTrackerId();
     }
   }
 

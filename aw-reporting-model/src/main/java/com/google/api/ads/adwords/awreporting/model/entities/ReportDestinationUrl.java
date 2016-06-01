@@ -200,6 +200,9 @@ public class ReportDestinationUrl extends ReportBase {
     if (this.getSlot() != null && this.getSlot().length() > 0) {
       this.id += "-" + this.getSlot();
     }
+    if (this.getConversionTrackerId() != null) {
+      this.id += "-" + this.getConversionTrackerId();
+    }
   }
 
   public Long getAdGroupId() {

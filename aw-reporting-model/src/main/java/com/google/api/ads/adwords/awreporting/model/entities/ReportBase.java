@@ -310,23 +310,26 @@ public abstract class ReportBase extends Report {
     if (this.getDay() != null) {
       return "-" + this.getDay();
     }
-    if (this.getMonth() != null) {
-      return "-" + DateUtil.formatYearMonth(this.getMonthDateTime());
-    }
     if (this.getDayOfWeek() != null) {
       return "-" + this.getDayOfWeek();
     }
+    
+    // Week may partially overlap with Month / Quarter / Year.
+    String id = "";
     if (this.getWeek() != null) {
-      return "-" + this.getWeek();
-    }
-    if (this.getQuarter() != null) {
-      return "-" + this.getQuarter();
+      id += "-" + this.getWeek();
     }
     if (this.getMonthOfYear() != null) {
-      return "-" + this.getMonthOfYear();
+      id += "-" + this.getMonthOfYear();
+    } else if (this.getMonth() != null) {
+      id += "-" + DateUtil.formatYearMonth(this.getMonthDateTime());
+    } else if (this.getQuarter() != null) {
+      id += "-" + this.getQuarter();
+    } else if (this.getYear() != null) {
+      id += "-" + this.getYear();
     }
-    if (this.getYear() != null) {
-      return "-" + this.getYear();
+    if (!id.isEmpty()) {
+      return id;
     }
 
     if (this.getDateRangeType() != null) {

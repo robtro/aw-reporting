@@ -111,7 +111,7 @@ public class KratuComputeTest {
     kratu1.setAverageCpmSearch(new BigDecimal(4L));
     kratu1.setAveragePositionDisplay(new BigDecimal(5L));
     kratu1.setAveragePositionSearch(new BigDecimal(6L));
-    kratu1.setConversions(7L);
+    kratu1.setConversions(new BigDecimal(7L));
     kratu1.setCtrDisplay(new BigDecimal(8L));
     kratu1.setCtrSearch(new BigDecimal(9L));
     kratu1.setElegibleImpressionsDisplay(new BigDecimal(10L));
@@ -156,7 +156,7 @@ public class KratuComputeTest {
     kratu2.setAverageCpmSearch(new BigDecimal(399.99));    
     kratu2.setAveragePositionDisplay(new BigDecimal(99.99));
     kratu2.setAveragePositionSearch(new BigDecimal(99.99));
-    kratu2.setConversions(33L);
+    kratu2.setConversions(new BigDecimal(33L));
     kratu2.setCtrDisplay(new BigDecimal(99.99));
     kratu2.setCtrSearch(new BigDecimal(99.99));
     kratu2.setElegibleImpressionsDisplay(new BigDecimal(99.99));
@@ -205,7 +205,7 @@ public class KratuComputeTest {
         if (invocation.getArguments()[0].equals(ReportAccount.class)) {
           ReportAccount reportAccount =  new ReportAccount();
           reportAccount.setCost(new BigDecimal(9.99));
-          reportAccount.setConvertedClicks(100L);
+          reportAccount.setConversions("100");
           return ImmutableList.of(reportAccount);
         } else {
           return Lists.newArrayList();
@@ -236,7 +236,7 @@ public class KratuComputeTest {
     // General
     assertEquals(kratuSummarized.getSpend(), kratu1.getSpend().add(kratu2.getSpend()).setScale(SCALE, ROUNDING));
     assertEquals(kratuSummarized.getSumBudget(), kratu1.getSumBudget().add(kratu2.getSumBudget()));
-    assertEquals(kratuSummarized.getConversions(), new Long(kratu1.getConversions() + kratu2.getConversions()));
+    assertEquals(kratuSummarized.getConversions(), kratu1.getConversions().add(kratu2.getConversions()));
     assertEquals(kratuSummarized.getAccountActive(), "Yes");
 
     // Search Info

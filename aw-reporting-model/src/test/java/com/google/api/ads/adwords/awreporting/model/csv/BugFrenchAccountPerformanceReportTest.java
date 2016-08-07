@@ -59,11 +59,11 @@ public class BugFrenchAccountPerformanceReportTest {
     Assert.assertEquals(6.7, reportAccount.getCost().doubleValue());
     Assert.assertEquals(4L, reportAccount.getClicks().longValue());
     Assert.assertEquals(87L, reportAccount.getImpressions().longValue());
-    Assert.assertEquals(0L, reportAccount.getConvertedClicks().longValue());
-    Assert.assertEquals("4.60", reportAccount.getCtr());
+    Assert.assertEquals(0.00, reportAccount.getConversionsBigDecimal().doubleValue());
+    Assert.assertEquals(4.60, reportAccount.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(77.01, reportAccount.getAvgCpm().doubleValue());
     Assert.assertEquals(1.68, reportAccount.getAvgCpc().doubleValue());
-    Assert.assertEquals("1.40", reportAccount.getAvgPosition());
+    Assert.assertEquals(1.40, reportAccount.getAvgPositionBigDecimal().doubleValue());
     Assert.assertEquals("EUR", reportAccount.getCurrencyCode());
 
     reportAccount = parsedBeans.get(27);

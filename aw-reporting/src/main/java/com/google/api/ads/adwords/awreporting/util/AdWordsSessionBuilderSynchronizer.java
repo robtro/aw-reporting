@@ -26,6 +26,7 @@ public class AdWordsSessionBuilderSynchronizer {
         .skipColumnHeader(false)
         .skipReportSummary(true)
         .includeZeroImpressions(includeZeroImpressions)
+        .useRawEnumValues(false)
         .build();
     builder.withReportingConfiguration(reportingConfig);
     

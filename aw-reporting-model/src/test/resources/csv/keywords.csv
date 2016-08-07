@@ -1,4 +1,4 @@
-Customer ID,Day,Cost,Clicks,Impressions,Conv. (1-per-click),CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Keyword ID,Keyword state,Quality score,Match type,Keyword,Destination URL,Is negative
+Customer ID,Day,Cost,Clicks,Impressions,Conversions,CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Keyword ID,Keyword state,Quality score,Match type,Keyword,Destination URL,Is negative
 8661954824,2013-05-01,0.00,0,20,0,0.00%,0.00,0.00,4.5,EUR,86352677,3398915357,41933620,enabled,10,Broad,achat forêt,,false
 8661954824,2013-05-02,0.00,0,26,0,0.00%,0.00,0.00,4.54,EUR,86352677,3398915357,41933620,enabled,10,Broad,achat forêt,,false
 8661954824,2013-05-03,0.11,2,32,0,6.25%,3.44,0.06,3.88,EUR,86352677,3398915357,41933620,enabled,10,Broad,achat forêt,,false

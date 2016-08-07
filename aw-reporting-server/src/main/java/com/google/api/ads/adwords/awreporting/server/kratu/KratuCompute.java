@@ -201,7 +201,7 @@ public class KratuCompute {
       for (ReportAccount reportAccount : reportAccountList) {
 
         kratu.addSpend(reportAccount.getCost());
-        kratu.addConversions(reportAccount.getConvertedClicks());
+        kratu.addConversions(reportAccount.getConversionsBigDecimal());
 
         // SEARCH_NETWORK Info
         if (reportAccount.getAdNetwork() != null

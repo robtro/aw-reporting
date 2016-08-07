@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportSearchQuery;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201605.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -74,22 +74,22 @@ public class ReportSearchQueryDefinitionTest extends
     Assert.assertEquals(0d, first.getCost().doubleValue());
     Assert.assertEquals(0L, first.getClicks().longValue());
     Assert.assertEquals(1L, first.getImpressions().longValue());
-    Assert.assertEquals("0.00", first.getCtr());
+    Assert.assertEquals(0d, first.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(0d, first.getAvgCpm().doubleValue());
     Assert.assertEquals(0d, first.getAvgCpc().doubleValue());
-    Assert.assertEquals("7.00", first.getAvgPosition());
+    Assert.assertEquals(7d, first.getAvgPositionBigDecimal().doubleValue());
     Assert.assertEquals("Tablets with full browsers", first.getDevice());
     Assert.assertEquals("Search Network", first.getAdNetwork());
 
-    Assert.assertEquals(0L, first.getConvertedClicks().longValue());
-    Assert.assertEquals("0.00", first.getClickConversionRate());
-    Assert.assertEquals(0d, first.getCostPerConvertedClick().doubleValue());
-    Assert.assertEquals("0.00", first.getValuePerConvertedClick());
-    Assert.assertEquals("0.00", first.getConversions());
-    Assert.assertEquals("0.00", first.getConversionRate());
+    Assert.assertEquals(0d, first.getConversionsBigDecimal().doubleValue());
+    Assert.assertEquals(0d, first.getConversionRateBigDecimal().doubleValue());
+    Assert.assertEquals(0d, first.getCostPerConversion().doubleValue());
+    Assert.assertEquals(0d, first.getValuePerConversionBigDecimal().doubleValue());
+    Assert.assertEquals(0d, first.getConversionsBigDecimal().doubleValue());
+    Assert.assertEquals(0d, first.getConversionRateBigDecimal().doubleValue());
 
     Assert.assertEquals(0d, first.getCostPerConversion().doubleValue());
-    Assert.assertEquals("0.00", first.getValuePerConversion());
+    Assert.assertEquals(0d, first.getValuePerConversionBigDecimal().doubleValue());
     Assert.assertEquals(0L, first.getViewThroughConversions().longValue());
 
   }
@@ -126,22 +126,22 @@ public class ReportSearchQueryDefinitionTest extends
     Assert.assertEquals(0d, last.getCost().doubleValue());
     Assert.assertEquals(0L, last.getClicks().longValue());
     Assert.assertEquals(2L, last.getImpressions().longValue());
-    Assert.assertEquals("0.00", last.getCtr());
+    Assert.assertEquals(0d, last.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(0d, last.getAvgCpm().doubleValue());
     Assert.assertEquals(0d, last.getAvgCpc().doubleValue());
-    Assert.assertEquals("1.00", last.getAvgPosition());
+    Assert.assertEquals(1d, last.getAvgPositionBigDecimal().doubleValue());
     Assert.assertEquals("Computers", last.getDevice());
     Assert.assertEquals("Search Network", last.getAdNetwork());
 
-    Assert.assertEquals(0L, last.getConvertedClicks().longValue());
-    Assert.assertEquals("0.00", last.getClickConversionRate());
-    Assert.assertEquals(0d, last.getCostPerConvertedClick().doubleValue());
-    Assert.assertEquals("0.00", last.getValuePerConvertedClick());
-    Assert.assertEquals("0.00", last.getConversions());
-    Assert.assertEquals("0.00", last.getConversionRate());
+    Assert.assertEquals(0d, last.getConversionsBigDecimal().doubleValue());
+    Assert.assertEquals(0d, last.getConversionRateBigDecimal().doubleValue());
+    Assert.assertEquals(0d, last.getCostPerConversion().doubleValue());
+    Assert.assertEquals(0d, last.getValuePerConversionBigDecimal().doubleValue());
+    Assert.assertEquals(0d, last.getConversionsBigDecimal().doubleValue());
+    Assert.assertEquals(0d, last.getConversionRateBigDecimal().doubleValue());
 
     Assert.assertEquals(0d, last.getCostPerConversion().doubleValue());
-    Assert.assertEquals("0.00", last.getValuePerConversion());
+    Assert.assertEquals(0d, last.getValuePerConversionBigDecimal().doubleValue());
     Assert.assertEquals(0L, last.getViewThroughConversions().longValue());
 
   }
@@ -213,10 +213,6 @@ public class ReportSearchQueryDefinitionTest extends
         "AllConversionValue",
         "CostPerAllConversion",
         "ValuePerAllConversion",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "CostPerConvertedClick",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

@@ -15,9 +15,9 @@
 package com.google.api.ads.adwords.awreporting.server.appengine.processors;
 
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201605.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201605.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201605.ReportDefinitionReportType;
 import com.google.appengine.api.taskqueue.DeferredTask;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;

@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportAdGroup;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201605.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -53,7 +53,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals(2.72, first.getCost().doubleValue());
     Assert.assertEquals(6L, first.getClicks().longValue());
     Assert.assertEquals(16L, first.getImpressions().longValue());
-    Assert.assertEquals(0L, first.getConvertedClicks().longValue());
+    Assert.assertEquals(0.00, first.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(37.50, first.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(170.00, first.getAvgCpm().doubleValue());
     Assert.assertEquals(0.45, first.getAvgCpc().doubleValue());
@@ -79,7 +79,7 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
     Assert.assertEquals(0.60, last.getCost().doubleValue());
     Assert.assertEquals(1L, last.getClicks().longValue());
     Assert.assertEquals(72L, last.getImpressions().longValue());
-    Assert.assertEquals(0L, last.getConvertedClicks().longValue());
+    Assert.assertEquals(0.00, last.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(1.39, last.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(8.33, last.getAvgCpm().doubleValue());
     Assert.assertEquals(0.60, last.getAvgCpc().doubleValue());
@@ -160,13 +160,6 @@ public class ReportAdGroupDefinitionTest extends AbstractReportDefinitionTest<Re
         "CostPerAllConversion",
         "ValuePerAllConversion",
         "CrossDeviceConversions",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "ClickConversionRateSignificance",
-        "ConvertedClicksSignificance",
-        "CostPerConvertedClick",
-        "CostPerConvertedClickSignificance",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

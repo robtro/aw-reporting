@@ -1,4 +1,4 @@
-Customer ID,Day,Cost,Clicks,Impressions,Conv. (1-per-click),CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Ad ID,Ad state,Ad Approval Status,Image Ad URL
+Customer ID,Day,Cost,Clicks,Impressions,Conversions,CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Ad ID,Ad state,Ad Approval Status,Image Ad URL
 1001270004,2013-05-01,9390000,32,1258,0,2.54%,7460000,290000,2.12,EUR,132958027,6113972227,20549800987,enabled,approved,CICAgICQ_qa2YBDIARjIASgBMggjtZBfNj2xLw
 1001270004,2013-05-02,6990000,30,1270,0,2.36%,5500000,230000,1.93,EUR,132958027,6113972227,20549800987,enabled,approved,CICAgICQ_qa2YBDIARjIASgBMggjtZBfNj2xLw
 1001270004,2013-05-03,8300000,45,1430,0,3.15%,5800000,180000,2.11,EUR,132958027,6113972227,20549800987,enabled,approved,CICAgICQ_qa2YBDIARjIASgBMggjtZBfNj2xLw

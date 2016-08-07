@@ -102,7 +102,7 @@ public class Kratu implements MongoEntity {
   private BigDecimal spend = BigDecimal.ZERO;
 
   @Column(name = "CONVERSIONS")
-  private Long conversions = 0l;
+  private BigDecimal conversions = BigDecimal.ZERO;
 
   @Column(name = "ELEGIBLE_IMPRESSION_SEARCH")
   private BigDecimal elegibleImpressionsSearch = BigDecimal.ZERO;
@@ -382,11 +382,11 @@ public class Kratu implements MongoEntity {
     this.spend = spend;
   }
 
-  public Long getConversions() {
+  public BigDecimal getConversions() {
     return conversions;
   }
 
-  public void setConversions(Long conversions) {
+  public void setConversions(BigDecimal conversions) {
     this.conversions = conversions;
   }
 
@@ -684,8 +684,8 @@ public class Kratu implements MongoEntity {
     spend = spend.add(bigDecimal);
   }
   
-  public void addConversions(Long conversions) {
-    this.conversions += conversions;
+  public void addConversions(BigDecimal bigDecimal) {
+    conversions = conversions.add(bigDecimal);
   }
 
   public void addElegibleImpressionsSearch(BigDecimal bigDecimal) {

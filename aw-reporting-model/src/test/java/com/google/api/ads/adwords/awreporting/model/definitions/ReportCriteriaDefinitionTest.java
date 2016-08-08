@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
-import com.google.api.ads.adwords.lib.jaxb.v201605.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;

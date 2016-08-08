@@ -15,9 +15,9 @@
 package com.google.api.ads.adwords.awreporting.util;
 
 import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
-import com.google.api.ads.adwords.jaxws.v201605.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201605.mcm.Customer;
-import com.google.api.ads.adwords.jaxws.v201605.mcm.CustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201607.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201607.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201607.mcm.CustomerServiceInterface;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 
 /**
@@ -55,6 +55,7 @@ public class CustomerDelegate {
    * @throws ApiException error retrieving the accounts page
    */
   public Customer getCustomer() throws ApiException {
-      return customerService.get();
+    // The AdWordsSession contains the querying clientCustomerId
+    return customerService.getCustomers().get(0);
   }
 }

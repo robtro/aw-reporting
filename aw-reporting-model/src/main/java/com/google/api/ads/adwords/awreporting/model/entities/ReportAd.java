@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -67,6 +67,38 @@ public class ReportAd extends ReportBase {
   @Column(name = "LINE2", length = 128)
   @CsvField(value = "Description line 2", reportField = "Description2")
   private String line2;
+  
+  @Column(name = "HEADLINE_PART1", length = 255)
+  @CsvField(value = "Headline 1", reportField = "HeadlinePart1")
+  private String headlinePart1;
+  
+  @Column(name = "HEADLINE_PART2", length = 255)
+  @CsvField(value = "Headline 2", reportField = "HeadlinePart2")
+  private String headlinePart2;
+
+  @Column(name = "DESCRIPTION", length = 255)
+  @CsvField(value = "Description", reportField = "Description")
+  private String description;
+
+  @Column(name = "PATH1", length = 128)
+  @CsvField(value = "Path 1", reportField = "Path1")
+  private String path1;
+
+  @Column(name = "PATH2", length = 128)
+  @CsvField(value = "Path 2", reportField = "Path2")
+  private String path2;
+
+  @Column(name = "BUSINESS_NAME", length = 255)
+  @CsvField(value = "Business name", reportField = "BusinessName")
+  private String businessName;
+
+  @Column(name = "LONG_HEADLINE", length = 255)
+  @CsvField(value = "Long headline", reportField = "LongHeadline")
+  private String longHeadline;
+
+  @Column(name = "SHORT_HEADLINE", length = 255)
+  @CsvField(value = "Short headline", reportField = "ShortHeadline")
+  private String shortHeadline;
 
   @Column(name = "ADGROUP_ID")
   @CsvField(value = "Ad group ID", reportField = "AdGroupId")
@@ -91,19 +123,7 @@ public class ReportAd extends ReportBase {
   @Column(name = "ADGROUPAD_TRADEMARK_DISAPPROVED")
   @CsvField(value = "Trademark Disapproved", reportField = "AdGroupAdTrademarkDisapproved")
   private boolean adGroupAdTrademarkDisapproved;
-
-  @Column(name = "CLICKCONVERSIONRATESIGNIFICANCE")
-  @CsvField(value = "Click conversion rate ACE indicator", reportField = "ClickConversionRateSignificance")
-  private BigDecimal clickConversionRateSignificance;
   
-  @Column(name = "CONVERTEDCLICKSSIGNIFICANCE")
-  @CsvField(value = "Converted clicks ACE indicator", reportField = "ConvertedClicksSignificance")
-  private BigDecimal convertedClicksSignificance;
-
-  @Column(name = "COSTPERCONVERTEDCLICKSIGNIFICANCE")
-  @CsvField(value = "Cost/converted click ACE indicator", reportField = "CostPerConvertedClickSignificance")
-  private BigDecimal costPerConvertedClickSignificance;
-
   @Column(name = "AVERAGE_PAGEVIEWS")
   @CsvField(value = "Pages / visit", reportField = "AveragePageviews")
   private BigDecimal averagePageviews;
@@ -191,9 +211,9 @@ public class ReportAd extends ReportBase {
   @CsvField(value="Custom parameter", reportField = "CreativeUrlCustomParameters")
   private String creativeUrlCustomParameters;
   
-  @Column(name = "KEYWORD_ID")
-  @CsvField(value="Keyword ID", reportField = "KeywordId")
-  private Long keywordId;
+  @Column(name = "CRITERION_ID")
+  @CsvField(value="Keyword ID", reportField = "CriterionId")
+  private Long criterionId;
   
   @Column(name = "TRADEMARKS", length=2048)
   @CsvField(value="Trademarks", reportField = "Trademarks")
@@ -388,6 +408,70 @@ public class ReportAd extends ReportBase {
   public void setLine2(String line2) {
     this.line2 = line2;
   }
+  
+  public String getHeadlinePart1() {
+    return headlinePart1;
+  }
+  
+  public void setHeadlinePart1(String headlinePart1) {
+    this.headlinePart1 = headlinePart1;
+  }
+  
+  public String getHeadlinePart2() {
+    return headlinePart2;
+  }
+  
+  public void setHeadlinePart2(String headlinePart2) {
+    this.headlinePart2 = headlinePart2;
+  }
+  
+  public String getDescription() {
+    return description;
+  }
+  
+  public void setDescription(String description) {
+    this.description = description;
+  }
+  
+  public String getPath1() {
+    return path1;
+  }
+  
+  public void setPath1(String path1) {
+    this.path1 = path1;
+  }
+  
+  public String getPath2() {
+    return path2;
+  }
+  
+  public void setPath2(String path2) {
+    this.path2 = path2;
+  }
+  
+  public String getBusinessName() {
+    return businessName;
+  }
+  
+  public void setBusinessName(String businessName) {
+    this.businessName = businessName;
+  }
+  
+  public String getLongHeadline() {
+    return longHeadline;
+  }
+  
+  public void setLongHeadline(String longHeadline) {
+    this.longHeadline = longHeadline;
+  }
+  
+  public String getShortHeadline() {
+    return shortHeadline;
+  }
+  
+  public void setShortHeadline(String shortHeadline) {
+    this.shortHeadline = shortHeadline;
+  }
 
   // creativeApprovalStatus
   public String getCreativeApprovalStatus() {
@@ -426,42 +510,6 @@ public class ReportAd extends ReportBase {
     this.adGroupAdTrademarkDisapproved = Boolean.parseBoolean(adGroupAdTrademarkDisapproved);
   }
   
-  public String getClickConversionRateSignificance() {
-    return BigDecimalUtil.formatAsReadable(clickConversionRateSignificance);
-  }
-  
-  public BigDecimal getClickConversionRateSignificanceBigDecimal() {
-    return clickConversionRateSignificance;
-  }
-
-  public void setClickConversionRateSignificance(String clickConversionRateSignificance) {
-    this.clickConversionRateSignificance = BigDecimalUtil.parseFromNumberString(clickConversionRateSignificance);
-  }
-
-  public String getConvertedClicksSignificance() {
-    return BigDecimalUtil.formatAsReadable(convertedClicksSignificance);
-  }
-  
-  public BigDecimal getConvertedClicksSignificanceBigDecimal() {
-    return convertedClicksSignificance;
-  }
-
-  public void setConvertedClicksSignificance(String convertedClicksSignificance) {
-    this.convertedClicksSignificance = BigDecimalUtil.parseFromNumberString(convertedClicksSignificance);
-  }
-  
-  public String getCostPerConvertedClickSignificance() {
-    return BigDecimalUtil.formatAsReadable(costPerConvertedClickSignificance);
-  }
-  
-  public BigDecimal getCostPerConvertedClickSignificanceBigDecimal() {
-    return costPerConvertedClickSignificance;
-  }
-
-  public void setCostPerConvertedClickSignificance(String costPerConvertedClickSignificance) {
-    this.costPerConvertedClickSignificance = BigDecimalUtil.parseFromNumberString(costPerConvertedClickSignificance);
-  }
-
   public String getAveragePageviews() {
     return BigDecimalUtil.formatAsReadable(averagePageviews);
   }
@@ -670,12 +718,12 @@ public class ReportAd extends ReportBase {
     this.creativeUrlCustomParameters = creativeUrlCustomParameters;
   }
   
-  public Long getKeywordId() {
-    return keywordId;
+  public Long getCriterionId() {
+    return criterionId;
   }
   
-  public void setKeywordId(Long keywordId) {
-    this.keywordId = keywordId;
+  public void setCriterionId(Long criterionId) {
+    this.criterionId = criterionId;
   }
   
   public String getTrademarks() {

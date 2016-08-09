@@ -25,7 +25,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportAccount;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.awreporting.processors.onfile.RunnableProcessorOnFile;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionDateRangeType;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;

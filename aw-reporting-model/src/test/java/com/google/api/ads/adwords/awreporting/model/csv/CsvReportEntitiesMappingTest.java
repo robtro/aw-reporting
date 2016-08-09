@@ -33,7 +33,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFe
 import com.google.api.ads.adwords.awreporting.model.entities.ReportShopping;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportVideo;
 import com.google.api.ads.adwords.awreporting.model.entities.ReportUrl;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -202,10 +202,6 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("CostPerAllConversion"));
     Assert.assertTrue(propertiesToSelect.contains("ValuePerAllConversion"));
     Assert.assertTrue(propertiesToSelect.contains("CrossDeviceConversions"));
-    Assert.assertTrue(propertiesToSelect.contains("ConvertedClicks"));
-    Assert.assertTrue(propertiesToSelect.contains("ClickConversionRate"));
-    Assert.assertTrue(propertiesToSelect.contains("CostPerConvertedClick"));
-    Assert.assertTrue(propertiesToSelect.contains("ValuePerConvertedClick"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionCategoryName"));
     Assert.assertTrue(propertiesToSelect.contains("ConversionTypeName"));
     Assert.assertTrue(propertiesToSelect.contains("ViewThroughConversions"));
@@ -231,7 +227,7 @@ public class CsvReportEntitiesMappingTest {
     Assert.assertTrue(propertiesToSelect.contains("ConversionTrackerId"));
     Assert.assertTrue(propertiesToSelect.contains("Slot"));
 
-    Assert.assertEquals(71, propertiesToSelect.size());
+    Assert.assertEquals(67, propertiesToSelect.size());
   }
 
   /**

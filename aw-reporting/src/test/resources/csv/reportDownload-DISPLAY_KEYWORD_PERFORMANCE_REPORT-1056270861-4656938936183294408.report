@@ -1,4 +1,4 @@
-Ad group ID,Ad group,Campaign ID,Campaign,Destination URL,Keyword ID,Is negative,Keyword,Day,Cost,Clicks,Impressions,CTR,Avg. CPM,Avg. CPC,Converted clicks,Customer ID
+Ad group ID,Ad group,Campaign ID,Campaign,Destination URL,Keyword ID,Is negative,Keyword,Day,Cost,Clicks,Impressions,CTR,Avg. CPM,Avg. CPC,Conversions,Customer ID
 11390393906,Gen,208108586,Search IP,,10024300,false,restaurant,2014-06-09,0.00,0,59,0.00%,0.00,0.00,0,1056270861
 11390393906,Gen,208108586,Search IP,,21441370,false,brasserie,2014-06-09,0.00,0,1,0.00%,0.00,0.00,0,1056270861
 11390393906,Gen,208108586,Search IP,,49548673,false,restaurant italien,2014-06-09,0.00,0,7,0.00%,0.00,0.00,0,1056270861

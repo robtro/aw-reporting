@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -61,19 +61,7 @@ public class ReportCampaign extends ReportBase {
   @Column(name = "BUDGET_ID")
   @CsvField(value = "Budget ID", reportField = "BudgetId")
   private Long budgetId;
-
-  @Column(name = "CLICKCONVERSIONRATESIGNIFICANCE")
-  @CsvField(value = "Click conversion rate ACE indicator", reportField = "ClickConversionRateSignificance")
-  protected BigDecimal clickConversionRateSignificance;
   
-  @Column(name = "CONVERTEDCLICKSSIGNIFICANCE")
-  @CsvField(value = "Converted clicks ACE indicator", reportField = "ConvertedClicksSignificance")
-  private BigDecimal convertedClicksSignificance;
-
-  @Column(name = "COSTPERCONVERTEDCLICKSIGNIFICANCE")
-  @CsvField(value = "Cost/converted click ACE indicator", reportField = "CostPerConvertedClickSignificance")
-  private BigDecimal costPerConvertedClickSignificance;
-
   @Column(name = "AVERAGE_FREQUENCY")
   @CsvField(value = "Avg. impr. freq. per cookie", reportField = "AverageFrequency")
   private BigDecimal averageFrequency;
@@ -317,42 +305,6 @@ public class ReportCampaign extends ReportBase {
 
   public void setBudgetId(Long budgetId) {
     this.budgetId = budgetId;
-  }
-
-  public String getClickConversionRateSignificance() {
-    return BigDecimalUtil.formatAsReadable(clickConversionRateSignificance);
-  }
-  
-  public BigDecimal getClickConversionRateSignificanceBigDecimal() {
-    return clickConversionRateSignificance;
-  }
-
-  public void setClickConversionRateSignificance(String clickConversionRateSignificance) {
-    this.clickConversionRateSignificance = BigDecimalUtil.parseFromNumberString(clickConversionRateSignificance);
-  }
-
-  public String getConvertedClicksSignificance() {
-    return BigDecimalUtil.formatAsReadable(convertedClicksSignificance);
-  }
-  
-  public BigDecimal getConvertedClicksSignificanceBigDecimal() {
-    return convertedClicksSignificance;
-  }
-
-  public void setConvertedClicksSignificance(String convertedClicksSignificance) {
-    this.convertedClicksSignificance = BigDecimalUtil.parseFromNumberString(convertedClicksSignificance);
-  }
-  
-  public String getCostPerConvertedClickSignificance() {
-    return BigDecimalUtil.formatAsReadable(costPerConvertedClickSignificance);
-  }
-  
-  public BigDecimal getCostPerConvertedClickSignificanceBigDecimal() {
-    return costPerConvertedClickSignificance;
-  }
-
-  public void setCostPerConvertedClickSignificance(String costPerConvertedClickSignificance) {
-    this.costPerConvertedClickSignificance = BigDecimalUtil.parseFromNumberString(costPerConvertedClickSignificance);
   }
   
   public String getAverageFrequency() {

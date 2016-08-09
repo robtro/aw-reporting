@@ -24,7 +24,7 @@ import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.server.entities.Account;
 import com.google.api.ads.adwords.awreporting.server.util.StorageHelper;
-import com.google.api.ads.adwords.jaxws.v201603.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201607.mcm.Customer;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 

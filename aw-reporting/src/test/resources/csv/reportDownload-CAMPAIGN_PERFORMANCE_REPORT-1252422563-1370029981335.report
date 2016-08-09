@@ -1,4 +1,4 @@
-Customer ID,Day,Cost,Clicks,Impressions,Conv. (1-per-click),CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Campaign state,Budget
+Customer ID,Day,Cost,Clicks,Impressions,Conversions,CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Campaign state,Budget
 1232422123,2013-05-01,1.11,5,927,0,0.54%,1.20,0.22,3.59,EUR,132449648,active,1.00
 1232422123,2013-05-02,0.81,5,707,0,0.71%,1.15,0.16,3.4,EUR,132449648,active,1.00
 1232422123,2013-05-03,1.15,6,704,0,0.85%,1.63,0.19,3.72,EUR,132449648,active,1.00

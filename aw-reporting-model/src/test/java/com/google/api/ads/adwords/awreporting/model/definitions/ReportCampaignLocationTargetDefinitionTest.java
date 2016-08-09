@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaignLocationTarget;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -63,8 +63,8 @@ public class ReportCampaignLocationTargetDefinitionTest extends
     Assert.assertEquals(4.00, first.getAvgCpm().doubleValue());
     Assert.assertEquals(5.00, first.getAvgCpc().doubleValue());
     Assert.assertEquals("6.00", first.getAvgPosition());
-    Assert.assertEquals(2L, first.getConvertedClicks().longValue());
-    Assert.assertEquals("10.00", first.getClickConversionRate());
+    Assert.assertEquals("2.00", first.getConversions());
+    Assert.assertEquals("10.00", first.getConversionRate());
 
   }
 
@@ -88,8 +88,8 @@ public class ReportCampaignLocationTargetDefinitionTest extends
     Assert.assertEquals(8.00, last.getAvgCpm().doubleValue());
     Assert.assertEquals(10.00, last.getAvgCpc().doubleValue());
     Assert.assertEquals("12.00", last.getAvgPosition());
-    Assert.assertEquals(4L, last.getConvertedClicks().longValue());
-    Assert.assertEquals("20.00", last.getClickConversionRate());
+    Assert.assertEquals("4.00", last.getConversions());
+    Assert.assertEquals("20.00", last.getConversionRate());
 
   }
 
@@ -155,10 +155,6 @@ public class ReportCampaignLocationTargetDefinitionTest extends
         "AllConversionValue",
         "CostPerAllConversion",
         "ValuePerAllConversion",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "CostPerConvertedClick",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

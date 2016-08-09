@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportVideo;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -161,10 +161,6 @@ AbstractReportDefinitionTest<ReportVideo> {
         "AllConversionValue",
         "CostPerAllConversion",
         "ValuePerAllConversion",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "CostPerConvertedClick",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

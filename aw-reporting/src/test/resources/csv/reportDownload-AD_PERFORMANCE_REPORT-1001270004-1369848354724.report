@@ -1,4 +1,4 @@
-Customer ID,Day,Cost,Clicks,Impressions,Conv. (1-per-click),CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Ad ID,Ad state,Ad Approval Status
+Customer ID,Day,Cost,Clicks,Impressions,Conversions,CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Ad ID,Ad state,Ad Approval Status
 1231270123,2013-05-01,9.39,32,1258,0,2.54%,7.46,0.29,2.12,EUR,132958027,6113972227,20549800987,enabled,approved
 1231270123,2013-05-02,6.99,30,1270,0,2.36%,5.50,0.23,1.93,EUR,132958027,6113972227,20549800987,enabled,approved
 1231270123,2013-05-03,8.30,45,1430,0,3.15%,5.80,0.18,2.11,EUR,132958027,6113972227,20549800987,enabled,approved

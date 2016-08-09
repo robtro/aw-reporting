@@ -1,4 +1,4 @@
-Customer ID,Day,Cost,Clicks,Impressions,Conv. (1-per-click),CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Ad group state,Max. CPA (converted clicks)
+Customer ID,Day,Cost,Clicks,Impressions,Conversions,CTR,Avg. CPM,Avg. CPC,Avg. position,Currency,Campaign ID,Ad group ID,Ad group state,Target CPA
 1230945123,2013-05-07,2720000,6,16,0,37.50%,170000000,450000,2.69,EUR,129807304,7253055064,enabled,50000
 1230945123,2013-05-08,2010000,5,18,0,27.78%,111670000,400000,2.89,EUR,129807304,7253055064,enabled,1000000
 1230945123,2013-05-09,1620000,3,14,0,21.43%,115710000,540000,3.29,EUR,129807304,7253055064,enabled,1000000

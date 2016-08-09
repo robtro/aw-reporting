@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import javax.persistence.Column;
@@ -83,13 +83,13 @@ public class ReportPlaceholderFeedItem extends ReportBase {
   @CsvField(value = "This extension vs. Other", reportField = "IsSelfAction")
   private String isSelfAction;
   
-  @Column(name = "KEYWORD_ID")
-  @CsvField(value="Keyword ID", reportField = "KeywordId")
-  private Long keywordId;
+  @Column(name = "KEYWORD_TARGETING_ID")
+  @CsvField(value="Keyword ID", reportField = "KeywordTargetingId")
+  private Long keywordTargetingId;
   
-  @Column(name = "KEYWORD_MATCH_TYPE", length=32)
-  @CsvField(value = "Target keyword match type", reportField = "KeywordMatchType")
-  private String keywordMatchType;
+  @Column(name = "KEYWORD_TARGETING_MATCH_TYPE", length=32)
+  @CsvField(value = "Target keyword match type", reportField = "KeywordTargetingMatchType")
+  private String keywordTargetingMatchType;
   
   @Column(name = "CRITERIA", length=255)
   @CsvField(value = "Target keyword text", reportField = "Criteria")
@@ -275,20 +275,20 @@ public class ReportPlaceholderFeedItem extends ReportBase {
     this.isSelfAction = isSelfAction;
   }
   
-  public Long getKeywordId() {
-    return keywordId;
+  public Long getKeywordTargetingId() {
+    return keywordTargetingId;
   }
   
-  public void setKeywordId(Long keywordId) {
-    this.keywordId = keywordId;
+  public void setKeywordTargetingId(Long keywordTargetingId) {
+    this.keywordTargetingId = keywordTargetingId;
   }
   
-  public String getKeywordMatchType() {
-    return keywordMatchType;
+  public String getKeywordTargetingMatchType() {
+    return keywordTargetingMatchType;
   }
   
-  public void setKeywordMatchType(String keywordMatchType) {
-    this.keywordMatchType = keywordMatchType;
+  public void setKeywordTargetingMatchType(String keywordTargetingMatchType) {
+    this.keywordTargetingMatchType = keywordTargetingMatchType;
   }
   
   public String getCriteria() {

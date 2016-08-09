@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportKeywords;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 
@@ -54,7 +54,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(0.00, first.getCost().doubleValue());
     Assert.assertEquals(0L, first.getClicks().longValue());
     Assert.assertEquals(20L, first.getImpressions().longValue());
-    Assert.assertEquals(0L, first.getConvertedClicks().longValue());
+    Assert.assertEquals(0,00, first.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(0.00, first.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(0.00, first.getAvgCpm().doubleValue());
     Assert.assertEquals(0.00, first.getAvgCpc().doubleValue());
@@ -86,7 +86,7 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(0.00, last.getCost().doubleValue());
     Assert.assertEquals(0L, last.getClicks().longValue());
     Assert.assertEquals(1L, last.getImpressions().longValue());
-    Assert.assertEquals(0L, last.getConvertedClicks().longValue());
+    Assert.assertEquals(0.00, last.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(0.00, last.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(0.00, last.getAvgCpm().doubleValue());
     Assert.assertEquals(0.00, last.getAvgCpc().doubleValue());
@@ -172,13 +172,6 @@ public class ReportKeywordsDefinitionTest extends AbstractReportDefinitionTest<R
         "AllConversionValue",
         "CostPerAllConversion",
         "ValuePerAllConversion",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "ClickConversionRateSignificance",
-        "ConvertedClicksSignificance",
-        "CostPerConvertedClick",
-        "CostPerConvertedClickSignificance",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

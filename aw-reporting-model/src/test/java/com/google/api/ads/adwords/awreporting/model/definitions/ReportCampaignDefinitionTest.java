@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCampaign;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
@@ -54,7 +54,7 @@ public class ReportCampaignDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(1.11, first.getCost().doubleValue());
     Assert.assertEquals(5L, first.getClicks().longValue());
     Assert.assertEquals(927L, first.getImpressions().longValue());
-    Assert.assertEquals(0L, first.getConvertedClicks().longValue());
+    Assert.assertEquals(0.00, first.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(0.54, first.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(1.20, first.getAvgCpm().doubleValue());
     Assert.assertEquals(0.22, first.getAvgCpc().doubleValue());
@@ -81,7 +81,7 @@ public class ReportCampaignDefinitionTest extends AbstractReportDefinitionTest<R
     Assert.assertEquals(0.88, last.getCost().doubleValue());
     Assert.assertEquals(6L, last.getClicks().longValue());
     Assert.assertEquals(757L, last.getImpressions().longValue());
-    Assert.assertEquals(0L, last.getConvertedClicks().longValue());
+    Assert.assertEquals(0.00, last.getConversionsBigDecimal().doubleValue());
     Assert.assertEquals(0.79, last.getCtrBigDecimal().doubleValue());
     Assert.assertEquals(1.16, last.getAvgCpm().doubleValue());
     Assert.assertEquals(0.15, last.getAvgCpc().doubleValue());
@@ -165,13 +165,6 @@ public class ReportCampaignDefinitionTest extends AbstractReportDefinitionTest<R
         "CostPerAllConversion",
         "ValuePerAllConversion",
         "CrossDeviceConversions",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "ClickConversionRateSignificance",
-        "ConvertedClicksSignificance",
-        "CostPerConvertedClick",
-        "CostPerConvertedClickSignificance",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

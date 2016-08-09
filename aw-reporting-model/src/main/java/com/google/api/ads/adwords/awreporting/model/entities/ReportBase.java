@@ -27,7 +27,7 @@ import com.google.api.ads.adwords.awreporting.model.entities.dateranges.TodayDat
 import com.google.api.ads.adwords.awreporting.model.entities.dateranges.YesterdayDateRangeHandler;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.DateUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionDateRangeType;
 import com.google.api.client.util.Maps;
 
 import com.googlecode.objectify.annotation.Index;
@@ -171,25 +171,6 @@ public abstract class ReportBase extends Report {
   protected String adNetworkPartners;
 
   // Conversion Columns
-  // One Per Click
-  @Column(name = "CONVERTEDCLICKS")
-  @CsvField(value = "Converted clicks", reportField = "ConvertedClicks")
-  protected Long convertedClicks = 0L;
-
-  @Column(name = "CLICKCONVERSIONRATE")
-  @CsvField(value = "Click conversion rate", reportField = "ClickConversionRate")
-  protected BigDecimal clickConversionRate;
-
-  @Column(name = "COSTPERCONVERTEDCLICK")
-  @CsvField(value = "Cost / converted click", reportField = "CostPerConvertedClick")
-  @MoneyField
-  protected BigDecimal costPerConvertedClick;
-
-  @Column(name = "VALUEPERCONVERTEDCLICK")
-  @CsvField(value = "Value / converted click", reportField = "ValuePerConvertedClick")
-  protected BigDecimal valuePerConvertedClick;
-
-  // General
   @Column(name = "CONVERSIONS")
   @CsvField(value = "Conversions", reportField = "Conversions")
   protected BigDecimal conversions;
@@ -613,46 +594,6 @@ public abstract class ReportBase extends Report {
   }
 
   // Conversion Columns
-  public Long getConvertedClicks() {
-    return convertedClicks;
-  }
-
-  public void setConvertedClicks(Long convertedClicks) {
-    this.convertedClicks = convertedClicks;
-  }
-
-  public String getClickConversionRate() {
-    return BigDecimalUtil.formatAsReadable(clickConversionRate);
-  }
-
-  public BigDecimal getClickConversionRateBigDecimal() {
-    return clickConversionRate;
-  }
-
-  public void setClickConversionRate(String clickConversionRate) {
-    this.clickConversionRate = BigDecimalUtil.parseFromNumberString(clickConversionRate);
-  }
-
-  public BigDecimal getCostPerConvertedClick() {
-    return costPerConvertedClick;
-  }
-
-  public void setCostPerConvertedClick(BigDecimal costPerConvertedClick) {
-    this.costPerConvertedClick = costPerConvertedClick;
-  }
-
-  public String getValuePerConvertedClick() {
-    return BigDecimalUtil.formatAsReadable(valuePerConvertedClick);
-  }
-
-  public BigDecimal getValuePerConvertedClickBigDecimal() {
-    return valuePerConvertedClick;
-  }
-
-  public void setValuePerConvertedClick(String valuePerConvertedClick) {
-    this.valuePerConvertedClick = BigDecimalUtil.parseFromNumberString(valuePerConvertedClick);
-  }
-  
   public String getConversions() {
     return BigDecimalUtil.formatAsReadable(conversions);
   }
@@ -870,11 +811,8 @@ public abstract class ReportBase extends Report {
     result = prime * result + ((clicks == null) ? 0 : clicks.hashCode());
     result = prime * result
         + ((conversionCategoryName == null) ? 0 : conversionCategoryName.hashCode());
-    result = prime * result + ((clickConversionRate == null) ? 0 : clickConversionRate.hashCode());
     result = prime * result + ((conversionTypeName == null) ? 0 : conversionTypeName.hashCode());
-    result = prime * result + ((convertedClicks == null) ? 0 : convertedClicks.hashCode());
     result = prime * result + ((cost == null) ? 0 : cost.hashCode());
-    result = prime * result + ((costPerConvertedClick == null) ? 0 : costPerConvertedClick.hashCode());
     result = prime * result + ((ctr == null) ? 0 : ctr.hashCode());
     result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
     result = prime * result
@@ -887,7 +825,6 @@ public abstract class ReportBase extends Report {
     result = prime * result + ((monthOfYear == null) ? 0 : monthOfYear.hashCode());
     result = prime * result + ((primaryCompanyName == null) ? 0 : primaryCompanyName.hashCode());
     result = prime * result + ((quarter == null) ? 0 : quarter.hashCode());
-    result = prime * result + ((valuePerConvertedClick == null) ? 0 : valuePerConvertedClick.hashCode());
     result = prime * result
         + ((viewThroughConversions == null) ? 0 : viewThroughConversions.hashCode());
     result = prime * result + ((week == null) ? 0 : week.hashCode());
@@ -985,30 +922,15 @@ public abstract class ReportBase extends Report {
         return false;
     } else if (!conversionCategoryName.equals(other.conversionCategoryName))
       return false;
-    if (clickConversionRate == null) {
-      if (other.clickConversionRate != null)
-        return false;
-    } else if (!clickConversionRate.equals(other.clickConversionRate))
-      return false;
     if (conversionTypeName == null) {
       if (other.conversionTypeName != null)
         return false;
     } else if (!conversionTypeName.equals(other.conversionTypeName))
       return false;
-    if (convertedClicks == null) {
-      if (other.convertedClicks != null)
-        return false;
-    } else if (!convertedClicks.equals(other.convertedClicks))
-      return false;
     if (cost == null) {
       if (other.cost != null)
         return false;
     } else if (!cost.equals(other.cost))
-      return false;
-    if (costPerConvertedClick == null) {
-      if (other.costPerConvertedClick != null)
-        return false;
-    } else if (!costPerConvertedClick.equals(other.costPerConvertedClick))
       return false;
     if (ctr == null) {
       if (other.ctr != null)
@@ -1064,11 +986,6 @@ public abstract class ReportBase extends Report {
       if (other.quarter != null)
         return false;
     } else if (!quarter.equals(other.quarter))
-      return false;
-    if (valuePerConvertedClick == null) {
-      if (other.valuePerConvertedClick != null)
-        return false;
-    } else if (!valuePerConvertedClick.equals(other.valuePerConvertedClick))
       return false;
     if (viewThroughConversions == null) {
       if (other.viewThroughConversions != null)

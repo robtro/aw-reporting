@@ -15,7 +15,7 @@
 package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportCriteria;
-import com.google.api.ads.adwords.lib.jaxb.v201603.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
@@ -129,13 +129,6 @@ AbstractReportDefinitionTest<ReportCriteria> {
         "AllConversionValue",
         "CostPerAllConversion",
         "ValuePerAllConversion",
-        "ConvertedClicks",
-        "ClickConversionRate",
-        "ClickConversionRateSignificance",
-        "ConvertedClicksSignificance",
-        "CostPerConvertedClick",
-        "CostPerConvertedClickSignificance",
-        "ValuePerConvertedClick",
         "ConversionCategoryName",
         "ConversionTypeName",
         "ViewThroughConversions",

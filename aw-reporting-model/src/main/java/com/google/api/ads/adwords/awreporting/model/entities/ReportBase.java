@@ -291,12 +291,13 @@ public abstract class ReportBase extends Report {
     if (this.getDay() != null) {
       return "-" + this.getDay();
     }
-    if (this.getDayOfWeek() != null) {
-      return "-" + this.getDayOfWeek();
-    }
     
-    // Week may partially overlap with Month / Quarter / Year.
     String id = "";
+    // DayOfWeek may overlap with Week / Month / Quarter / Year
+    if (this.getDayOfWeek() != null) {
+      id += "-" + this.getDayOfWeek();
+    }
+    // Week may partially overlap with Month / Quarter / Year.
     if (this.getWeek() != null) {
       id += "-" + this.getWeek();
     }

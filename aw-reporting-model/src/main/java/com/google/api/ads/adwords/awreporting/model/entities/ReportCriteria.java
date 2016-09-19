@@ -169,7 +169,7 @@ public class ReportCriteria extends ReportBase {
 
   @Column(name = "QUALITY_SCORE")
   @CsvField(value = "Quality score", reportField = "QualityScore")
-  private Long qualityScore;
+  private String qualityScore;
 
   @Column(name = "CREATIVE_QUALITY_SCORE", length = 32)
   @CsvField(value = "Ad relevance", reportField = "CreativeQualityScore")
@@ -585,11 +585,11 @@ public class ReportCriteria extends ReportBase {
     this.positionSignificance = positionSignificance;
   }
 
-  public Long getQualityScore() {
+  public String getQualityScore() {
     return qualityScore;
   }
 
-  public void setQualityScore(Long qualityScore) {
+  public void setQualityScore(String qualityScore) {
     this.qualityScore = qualityScore;
   }
   

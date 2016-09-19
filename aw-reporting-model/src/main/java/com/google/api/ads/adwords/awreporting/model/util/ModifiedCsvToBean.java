@@ -93,23 +93,25 @@ public class ModifiedCsvToBean<T> extends CsvToBean<T> implements Serializable{
       InvocationTargetException, InstantiationException, IntrospectionException {
 
     T bean = mapper.createBean();
-    int col;
-    for (col = 0; col < line.length; col++) {
+    for (int col = 0; col < line.length; col++) {
       try {
         PropertyDescriptor prop = mapper.findDescriptor(col);
         if (null != prop) {
           String value = this.trimIfPossible(line[col], prop);
           if (Number.class.isAssignableFrom(prop.getPropertyType())) {
             value = value.replaceAll("-", "");
+            // Use 0 as empty value for number types.
+            if (value == null || value.isEmpty()) {
+              value = "0";
+            }
           }
           Object obj = this.convertValue(value, prop);
 
-          // Convert Money values to regular Decimals by dividing by a Million
+          // Convert Money values to regular Decimals by dividing by a Million.
           if (mapper instanceof AnnotationBasedMappingStrategy && 
               ((AnnotationBasedMappingStrategy) mapper).isMoneyField(prop.getName())) {
-
             String cleanedString = ((String) obj).replaceAll("[^\\d.]", "");
-            if (cleanedString == null || cleanedString.length() == 0) {
+            if (cleanedString == null || cleanedString.isEmpty()) {
               cleanedString = "0";
             }
             BigDecimal bigDecimal = new BigDecimal(cleanedString);
@@ -117,7 +119,6 @@ public class ModifiedCsvToBean<T> extends CsvToBean<T> implements Serializable{
           }
 
           prop.getWriteMethod().invoke(bean, obj);
-
         }
       } catch (Exception e) {
         System.err.println("Error Parsing column # " + col + " with contents: " + line[col]);

@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.definitions;
 
 import com.google.api.ads.adwords.awreporting.model.entities.ReportPlaceholderFeedItem;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201609.ReportDefinitionReportType;
 
 import junit.framework.Assert;
 

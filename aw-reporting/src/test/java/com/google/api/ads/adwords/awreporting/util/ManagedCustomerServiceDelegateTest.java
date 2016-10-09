@@ -20,11 +20,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.api.ads.adwords.awreporting.util.ManagedCustomerDelegate;
-import com.google.api.ads.adwords.jaxws.v201607.cm.Selector;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.ManagedCustomer;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.ManagedCustomerPage;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.ManagedCustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201609.cm.Selector;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.ManagedCustomerPage;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.ManagedCustomerServiceInterface;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -76,11 +76,10 @@ public class ManagedCustomerServiceDelegateTest {
 
     ArgumentCaptor<Selector> argument = ArgumentCaptor.forClass(Selector.class);
     verify(managedCustomerServiceInterfaceMock).get(argument.capture());
-    assertEquals(argument.getValue().getFields().size(), 6);
+    assertEquals(argument.getValue().getFields().size(), 5);
     assertTrue(argument.getValue().getFields().contains("CustomerId"));
     assertTrue(argument.getValue().getFields().contains("CanManageClients"));
     assertTrue(argument.getValue().getFields().contains("Name"));
-    assertTrue(argument.getValue().getFields().contains("CompanyName"));
     assertTrue(argument.getValue().getFields().contains("CurrencyCode"));
     assertTrue(argument.getValue().getFields().contains("DateTimeZone"));
   }
@@ -99,11 +98,10 @@ public class ManagedCustomerServiceDelegateTest {
 
     ArgumentCaptor<Selector> argument = ArgumentCaptor.forClass(Selector.class);
     verify(managedCustomerServiceInterfaceMock).get(argument.capture());
-    assertEquals(argument.getValue().getFields().size(), 6);
+    assertEquals(argument.getValue().getFields().size(), 5);
     assertTrue(argument.getValue().getFields().contains("CustomerId"));
     assertTrue(argument.getValue().getFields().contains("CanManageClients"));
     assertTrue(argument.getValue().getFields().contains("Name"));
-    assertTrue(argument.getValue().getFields().contains("CompanyName"));
     assertTrue(argument.getValue().getFields().contains("CurrencyCode"));
     assertTrue(argument.getValue().getFields().contains("DateTimeZone"));
   }

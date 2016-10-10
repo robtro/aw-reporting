@@ -15,9 +15,9 @@
 package com.google.api.ads.adwords.awreporting.util;
 
 import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.Customer;
-import com.google.api.ads.adwords.jaxws.v201607.mcm.CustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201609.mcm.CustomerServiceInterface;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 
 /**

@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201609.ReportDefinitionReportType;
 import com.google.common.collect.Lists;
 
 import java.math.BigDecimal;
@@ -48,10 +48,6 @@ public class ReportCriteria extends ReportBase {
   @CsvField(value = "Ad group state", reportField = "AdGroupStatus")
   private String adGroupStatus;
 
-  @Column(name = "ADVERTISER_EXPERIMENT_SEGMENTATION_BIN")
-  @CsvField(value = "ACE split", reportField = "AdvertiserExperimentSegmentationBin")
-  private String advertiserExperimentSegmentationBin;
-
   @Column(name = "APPROVAL_STATUS")
   @CsvField(value = "Approval Status", reportField = "ApprovalStatus")
   private String approvalStatus;
@@ -71,26 +67,9 @@ public class ReportCriteria extends ReportBase {
   @Column(name = "CAMPAIGN_STATUS")
   @CsvField(value = "Campaign state", reportField = "CampaignStatus")
   private String campaignStatus;
-
-  @Column(name = "CLICK_SIGNIFICANCE")
-  @CsvField(value = "Clicks ACE indicator", reportField = "ClickSignificance")
-  private String clickSignificance;
-
-  @Column(name = "COST_SIGNIFICANCE")
-  @CsvField(value = "Cost ACE indicator", reportField = "CostSignificance")
-  private String costSignificance;
-
   @Column(name = "CPC_BID_SOURCE")
   @CsvField(value = "Max CPC source", reportField = "CpcBidSource")
   private String cpcBidSource;
-
-  @Column(name = "CPC_SIGNIFICANCE")
-  @CsvField(value = "CPC ACE indicator", reportField = "CpcSignificance")
-  private String cpcSignificance;
-
-  @Column(name = "CPM_SIGNIFICANCE")
-  @CsvField(value = "CPM ACE indicator", reportField = "CpmSignificance")
-  private String cpmSignificance;
 
   @Column(name = "CRITERIA", length = 2048)
   @CsvField(value = "Keyword / Placement", reportField = "Criteria")
@@ -103,10 +82,6 @@ public class ReportCriteria extends ReportBase {
   @Column(name = "CRITERIA_TYPE")
   @CsvField(value = "Criteria Type", reportField = "CriteriaType")
   private String criteriaType;
-
-  @Column(name = "CTR_SIGNIFICANCE")
-  @CsvField(value = "CTR ACE indicator", reportField = "CtrSignificance")
-  private String ctrSignificance;
 
   @Column(name = "DISPLAY_NAME")
   @CsvField(value = "Criteria Display Name", reportField = "DisplayName")
@@ -136,11 +111,7 @@ public class ReportCriteria extends ReportBase {
   @Column(name = "KEYWORD_ID")
   @CsvField(value = "Keyword ID", reportField = "Id")
   private String keywordId;
-
-  @Column(name = "IMPRESSION_SIGNIFICANCE")
-  @CsvField(value = "Impressions ACE indicator", reportField = "ImpressionSignificance")
-  private String impressionSignificance;
-
+  
   @Column(name = "IS_NEGATIVE")
   @CsvField(value = "Is negative", reportField = "IsNegative")
   private String isNegative;
@@ -162,10 +133,6 @@ public class ReportCriteria extends ReportBase {
   @Column(name = "PERCENT_CPA")
   @CsvField(value = "Max. CPA%", reportField = "PercentCpa")
   private String percentCpa;
-
-  @Column(name = "POSITION_SIGNIFICANCE")
-  @CsvField(value = "Position ACE indicator", reportField = "PositionSignificance")
-  private String positionSignificance;
 
   @Column(name = "QUALITY_SCORE")
   @CsvField(value = "Quality score", reportField = "QualityScore")
@@ -190,11 +157,6 @@ public class ReportCriteria extends ReportBase {
   @Column(name = "STATUS")
   @CsvField(value = "Keyword/Placement state", reportField = "Status")
   private String status;
-
-  @Column(name = "VIEW_THROUGH_CONVERSIONS_SIGNIFICANCE")
-  @CsvField(value = "View-through conv. ACE indicator",
-  reportField = "ViewThroughConversionsSignificance")
-  private String viewThroughConversionsSignificance;
   
   @Column(name = "ACTIVE_VIEW_CPM")
   @CsvField(value = "Active View avg. CPM", reportField = "ActiveViewCpm")
@@ -360,15 +322,6 @@ public class ReportCriteria extends ReportBase {
     this.adGroupStatus = adGroupStatus;
   }
 
-  public String getAdvertiserExperimentSegmentationBin() {
-    return advertiserExperimentSegmentationBin;
-  }
-
-  public void setAdvertiserExperimentSegmentationBin(
-      String advertiserExperimentSegmentationBin) {
-    this.advertiserExperimentSegmentationBin = advertiserExperimentSegmentationBin;
-  }
-
   public String getApprovalStatus() {
     return approvalStatus;
   }
@@ -409,36 +362,12 @@ public class ReportCriteria extends ReportBase {
     this.campaignStatus = campaignStatus;
   }
 
-  public String getClickSignificance() {
-    return clickSignificance;
-  }
-
-  public void setClickSignificance(String clickSignificance) {
-    this.clickSignificance = clickSignificance;
-  }
-
   public String getCpcBidSource() {
     return cpcBidSource;
   }
 
   public void setCpcBidSource(String cpcBidSource) {
     this.cpcBidSource = cpcBidSource;
-  }
-
-  public String getCpcSignificance() {
-    return cpcSignificance;
-  }
-
-  public void setCpcSignificance(String cpcSignificance) {
-    this.cpcSignificance = cpcSignificance;
-  }
-
-  public String getCpmSignificance() {
-    return cpmSignificance;
-  }
-
-  public void setCpmSignificance(String cpmSignificance) {
-    this.cpmSignificance = cpmSignificance;
   }
 
   public String getCriteria() {
@@ -463,14 +392,6 @@ public class ReportCriteria extends ReportBase {
 
   public void setCriteriaType(String criteriaType) {
     this.criteriaType = criteriaType;
-  }
-
-  public String getCtrSignificance() {
-    return ctrSignificance;
-  }
-
-  public void setCtrSignificance(String ctrSignificance) {
-    this.ctrSignificance = ctrSignificance;
   }
 
   public String getDisplayName() {
@@ -529,14 +450,6 @@ public class ReportCriteria extends ReportBase {
     this.keywordId = keywordId;
   }
 
-  public String getImpressionSignificance() {
-    return impressionSignificance;
-  }
-
-  public void setImpressionSignificance(String impressionSignificance) {
-    this.impressionSignificance = impressionSignificance;
-  }
-
   public String getIsNegative() {
     return isNegative;
   }
@@ -575,14 +488,6 @@ public class ReportCriteria extends ReportBase {
 
   public void setPercentCpa(String percentCpa) {
     this.percentCpa = percentCpa;
-  }
-
-  public String getPositionSignificance() {
-    return positionSignificance;
-  }
-
-  public void setPositionSignificance(String positionSignificance) {
-    this.positionSignificance = positionSignificance;
   }
 
   public Long getQualityScore() {
@@ -631,15 +536,6 @@ public class ReportCriteria extends ReportBase {
 
   public void setStatus(String status) {
     this.status = status;
-  }
-
-  public String getViewThroughConversionsSignificance() {
-    return viewThroughConversionsSignificance;
-  }
-
-  public void setViewThroughConversionsSignificance(
-      String viewThroughConversionsSignificance) {
-    this.viewThroughConversionsSignificance = viewThroughConversionsSignificance;
   }
   
   public String getActiveViewCpm() {

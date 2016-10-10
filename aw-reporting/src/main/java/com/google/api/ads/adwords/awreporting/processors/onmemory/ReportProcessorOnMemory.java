@@ -20,9 +20,9 @@ import com.google.api.ads.adwords.awreporting.model.util.ModifiedCsvToBean;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionBuilderSynchronizer;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201609.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201609.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201609.ReportDefinitionReportType;
 import com.google.common.base.Stopwatch;
 
 import org.apache.log4j.Logger;

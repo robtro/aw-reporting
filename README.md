@@ -1,3 +1,7 @@
+**Attention**: please check out this
+[blog post](http://googleadsdeveloper.blogspot.com/2017/01/upcoming-changes-to-awreporting.html)
+regarding the upcoming changes of AwReporting project.
+
 # AwReporting (Beta)
 
 ## Special Note

@@ -1,4 +1,4 @@
-# AwReporting 2.0 (Beta)
+# AwReporting 2.0
 
 ## Special Note
 

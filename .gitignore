@@ -1,0 +1,16 @@
+*.log
+
+.project
+.settings
+
+aw-reporting-model/target/*
+aw-reporting-model/.classpath
+aw-reporting-model/.project
+aw-reporting-model/.settings/
+
+aw-reporting/target/*
+aw-reporting/.classpath
+aw-reporting/.project
+aw-reporting/.settings/
+
+*.DS_Store

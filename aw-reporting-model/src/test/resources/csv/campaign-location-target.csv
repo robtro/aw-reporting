@@ -1,4 +1,0 @@
-Location,Bid adj.,Campaign ID,Campaign,Campaign state,Is negative,Day,Clicks,Impressions,CTR,Avg. CPM,Avg. CPC,Avg. position,Conversions,Conv. rate
-10,2,20,campaign,enabled,true,2013-10-10,100,500,1.00%,4000000,5000000,6,2,10.00%
-11,2,21,campaign,enabled,true,2013-10-10,100,500,1.00%,4000000,5000000,6,2,10.00%
-20,4,40,campaign,enabled,true,2013-10-11,200,1000,2.00%,8000000,10000000,12,4,20.00%

@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -316,10 +316,6 @@ public class AgeRangePerformanceReport extends DateReport {
   @Column(name = "IsRestrict")
   @CsvField(value = "Is restricting", reportField = "IsRestrict")
   private String isRestrict;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "Status")
   @CsvField(value = "Age Range state", reportField = "Status")
@@ -979,14 +975,6 @@ public class AgeRangePerformanceReport extends DateReport {
     this.isRestrict = isRestrict;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getStatus() {
     return status;
   }
@@ -1229,7 +1217,6 @@ public class AgeRangePerformanceReport extends DateReport {
       .append(interactionTypes, other.interactionTypes)
       .append(isNegative, other.isNegative)
       .append(isRestrict, other.isRestrict)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(status, other.status)
       .append(trackingUrlTemplate, other.trackingUrlTemplate)
       .append(urlCustomParameters, other.urlCustomParameters)
@@ -1316,7 +1303,6 @@ public class AgeRangePerformanceReport extends DateReport {
       .append(interactionTypes)
       .append(isNegative)
       .append(isRestrict)
-      .append(primaryCompanyName)
       .append(status)
       .append(trackingUrlTemplate)
       .append(urlCustomParameters)

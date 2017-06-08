@@ -19,8 +19,8 @@ import static org.junit.Assert.assertEquals;
 import com.google.api.ads.adwords.awreporting.ReportProcessingException;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.adwords.lib.client.AdWordsSession.ImmutableAdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.common.collect.ImmutableSet;
 import java.io.File;
@@ -49,13 +49,12 @@ public class MultipleClientReportDownloaderTest {
     reportDefinition = new ReportDefinition();
     reportDefinition.setReportType(ReportDefinitionReportType.PLACEHOLDER_REPORT);
     
-    DownloadSetting setting = new DownloadSetting(20, 5, 5000);
     multipleClientReportDownloader =
-        new MultipleClientReportDownloader(setting) {
+        new MultipleClientReportDownloader(20) {
           @Override
           protected CallableReportDownloader genCallableReportDownloader(
               ImmutableAdWordsSession session, ReportDefinition reportDefinition) {
-            return new CallableReportDownloader(5, 0, session, reportDefinition) {
+            return new CallableReportDownloader(session, reportDefinition) {
               @Override
               public File call() {
                 return null;

@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -326,6 +326,14 @@ public class AdgroupPerformanceReport extends DateReport {
   @CsvField(value = "Device", reportField = "Device")
   private String device;
 
+  @Column(name = "EffectiveTargetRoas")
+  @CsvField(value = "Target ROAS", reportField = "EffectiveTargetRoas")
+  private BigDecimal effectiveTargetRoas;
+
+  @Column(name = "EffectiveTargetRoasSource")
+  @CsvField(value = "Target ROAS Source", reportField = "EffectiveTargetRoasSource")
+  private String effectiveTargetRoasSource;
+
   @Column(name = "EngagementRate")
   @CsvField(value = "Engagement rate", reportField = "EngagementRate")
   private BigDecimal engagementRate;
@@ -409,10 +417,6 @@ public class AdgroupPerformanceReport extends DateReport {
   @Column(name = "PercentNewVisitors")
   @CsvField(value = "% new sessions", reportField = "PercentNewVisitors")
   private BigDecimal percentNewVisitors;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "RelativeCtr")
   @CsvField(value = "Relative CTR", reportField = "RelativeCtr")
@@ -1157,6 +1161,26 @@ public class AdgroupPerformanceReport extends DateReport {
     this.device = device;
   }
 
+  public String getEffectiveTargetRoas() {
+    return BigDecimalUtil.formatAsReadable(effectiveTargetRoas);
+  }
+
+  public BigDecimal getEffectiveTargetRoasBigDecimal() {
+    return effectiveTargetRoas;
+  }
+
+  public void setEffectiveTargetRoas(String effectiveTargetRoas) {
+    this.effectiveTargetRoas = BigDecimalUtil.parseFromNumberString(effectiveTargetRoas);
+  }
+
+  public String getEffectiveTargetRoasSource() {
+    return effectiveTargetRoasSource;
+  }
+
+  public void setEffectiveTargetRoasSource(String effectiveTargetRoasSource) {
+    this.effectiveTargetRoasSource = effectiveTargetRoasSource;
+  }
+
   public String getEngagementRate() {
     return BigDecimalUtil.formatAsReadable(engagementRate);
   }
@@ -1347,14 +1371,6 @@ public class AdgroupPerformanceReport extends DateReport {
 
   public void setPercentNewVisitors(String percentNewVisitors) {
     this.percentNewVisitors = BigDecimalUtil.parseFromNumberString(percentNewVisitors);
-  }
-
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
   }
 
   public String getRelativeCtr() {
@@ -1669,6 +1685,8 @@ public class AdgroupPerformanceReport extends DateReport {
       .append(currentModelAttributedConversionValue, other.currentModelAttributedConversionValue)
       .append(customerDescriptiveName, other.customerDescriptiveName)
       .append(device, other.device)
+      .append(effectiveTargetRoas, other.effectiveTargetRoas)
+      .append(effectiveTargetRoasSource, other.effectiveTargetRoasSource)
       .append(engagementRate, other.engagementRate)
       .append(engagements, other.engagements)
       .append(enhancedCpcEnabled, other.enhancedCpcEnabled)
@@ -1690,7 +1708,6 @@ public class AdgroupPerformanceReport extends DateReport {
       .append(numOfflineInteractions, other.numOfflineInteractions)
       .append(offlineInteractionRate, other.offlineInteractionRate)
       .append(percentNewVisitors, other.percentNewVisitors)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(relativeCtr, other.relativeCtr)
       .append(searchExactMatchImpressionShare, other.searchExactMatchImpressionShare)
       .append(searchImpressionShare, other.searchImpressionShare)
@@ -1785,6 +1802,8 @@ public class AdgroupPerformanceReport extends DateReport {
       .append(currentModelAttributedConversionValue)
       .append(customerDescriptiveName)
       .append(device)
+      .append(effectiveTargetRoas)
+      .append(effectiveTargetRoasSource)
       .append(engagementRate)
       .append(engagements)
       .append(enhancedCpcEnabled)
@@ -1806,7 +1825,6 @@ public class AdgroupPerformanceReport extends DateReport {
       .append(numOfflineInteractions)
       .append(offlineInteractionRate)
       .append(percentNewVisitors)
-      .append(primaryCompanyName)
       .append(relativeCtr)
       .append(searchExactMatchImpressionShare)
       .append(searchImpressionShare)

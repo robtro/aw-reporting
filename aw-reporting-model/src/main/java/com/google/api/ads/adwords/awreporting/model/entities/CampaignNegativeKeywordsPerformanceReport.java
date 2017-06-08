@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -83,10 +83,6 @@ public class CampaignNegativeKeywordsPerformanceReport extends Report {
   @Column(name = "KeywordMatchType")
   @CsvField(value = "Match type", reportField = "KeywordMatchType")
   private String keywordMatchType;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   /**
    * Hibernate needs an empty constructor
@@ -194,14 +190,6 @@ public class CampaignNegativeKeywordsPerformanceReport extends Report {
     this.keywordMatchType = keywordMatchType;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   @Override
   public void setRowId() {
     // General fields for generating unique id.
@@ -240,7 +228,6 @@ public class CampaignNegativeKeywordsPerformanceReport extends Report {
       .append(id, other.id)
       .append(isNegative, other.isNegative)
       .append(keywordMatchType, other.keywordMatchType)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .isEquals();
   }
 
@@ -260,7 +247,6 @@ public class CampaignNegativeKeywordsPerformanceReport extends Report {
       .append(id)
       .append(isNegative)
       .append(keywordMatchType)
-      .append(primaryCompanyName)
       .toHashCode();
   }
 

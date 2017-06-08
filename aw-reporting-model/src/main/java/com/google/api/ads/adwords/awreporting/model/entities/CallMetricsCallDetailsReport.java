@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -106,10 +106,6 @@ public class CallMetricsCallDetailsReport extends DateReport {
   @Column(name = "CustomerDescriptiveName")
   @CsvField(value = "Client name", reportField = "CustomerDescriptiveName")
   private String customerDescriptiveName;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   /**
    * Hibernate needs an empty constructor
@@ -265,14 +261,6 @@ public class CallMetricsCallDetailsReport extends DateReport {
     this.customerDescriptiveName = customerDescriptiveName;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   @Override
   public void setRowId() {
     // General fields for generating unique id.
@@ -321,7 +309,6 @@ public class CallMetricsCallDetailsReport extends DateReport {
       .append(campaignName, other.campaignName)
       .append(campaignStatus, other.campaignStatus)
       .append(customerDescriptiveName, other.customerDescriptiveName)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .isEquals();
   }
 
@@ -347,7 +334,6 @@ public class CallMetricsCallDetailsReport extends DateReport {
       .append(campaignName)
       .append(campaignStatus)
       .append(customerDescriptiveName)
-      .append(primaryCompanyName)
       .toHashCode();
   }
 

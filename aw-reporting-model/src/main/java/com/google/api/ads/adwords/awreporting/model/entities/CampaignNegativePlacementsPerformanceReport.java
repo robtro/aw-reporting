@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -88,9 +88,9 @@ public class CampaignNegativePlacementsPerformanceReport extends Report {
   @CsvField(value = "Match type", reportField = "KeywordMatchType")
   private String keywordMatchType;
 
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
+  @Column(name = "VerticalId")
+  @CsvField(value = "Vertical ID", reportField = "VerticalId")
+  private Long verticalId;
 
   /**
    * Hibernate needs an empty constructor
@@ -206,12 +206,12 @@ public class CampaignNegativePlacementsPerformanceReport extends Report {
     this.keywordMatchType = keywordMatchType;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
+  public Long getVerticalId() {
+    return verticalId;
   }
 
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
+  public void setVerticalId(Long verticalId) {
+    this.verticalId = verticalId;
   }
 
   @Override
@@ -253,7 +253,7 @@ public class CampaignNegativePlacementsPerformanceReport extends Report {
       .append(id, other.id)
       .append(isNegative, other.isNegative)
       .append(keywordMatchType, other.keywordMatchType)
-      .append(primaryCompanyName, other.primaryCompanyName)
+      .append(verticalId, other.verticalId)
       .isEquals();
   }
 
@@ -274,7 +274,7 @@ public class CampaignNegativePlacementsPerformanceReport extends Report {
       .append(id)
       .append(isNegative)
       .append(keywordMatchType)
-      .append(primaryCompanyName)
+      .append(verticalId)
       .toHashCode();
   }
 

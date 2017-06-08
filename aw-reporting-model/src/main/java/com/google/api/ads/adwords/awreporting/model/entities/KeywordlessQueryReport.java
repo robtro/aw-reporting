@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -175,10 +175,6 @@ public class KeywordlessQueryReport extends DateReport {
   @Column(name = "Line1")
   @CsvField(value = "Dynamically generated Headline", reportField = "Line1")
   private String line1;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "Query")
   @CsvField(value = "Search term", reportField = "Query")
@@ -506,14 +502,6 @@ public class KeywordlessQueryReport extends DateReport {
     this.line1 = line1;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getQuery() {
     return query;
   }
@@ -634,7 +622,6 @@ public class KeywordlessQueryReport extends DateReport {
       .append(externalConversionSource, other.externalConversionSource)
       .append(impressions, other.impressions)
       .append(line1, other.line1)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(query, other.query)
       .append(title, other.title)
       .append(url, other.url)
@@ -680,7 +667,6 @@ public class KeywordlessQueryReport extends DateReport {
       .append(externalConversionSource)
       .append(impressions)
       .append(line1)
-      .append(primaryCompanyName)
       .append(query)
       .append(title)
       .append(url)

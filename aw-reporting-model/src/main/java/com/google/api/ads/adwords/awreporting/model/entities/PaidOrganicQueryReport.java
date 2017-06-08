@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -143,10 +143,6 @@ public class PaidOrganicQueryReport extends DateReport {
   @Column(name = "OrganicQueries")
   @CsvField(value = "Organic Queries", reportField = "OrganicQueries")
   private Long organicQueries;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "QueryMatchType")
   @CsvField(value = "Match type", reportField = "QueryMatchType")
@@ -402,14 +398,6 @@ public class PaidOrganicQueryReport extends DateReport {
     this.organicQueries = organicQueries;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getQueryMatchType() {
     return queryMatchType;
   }
@@ -493,7 +481,6 @@ public class PaidOrganicQueryReport extends DateReport {
       .append(organicImpressions, other.organicImpressions)
       .append(organicImpressionsPerQuery, other.organicImpressionsPerQuery)
       .append(organicQueries, other.organicQueries)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(queryMatchType, other.queryMatchType)
       .append(searchQuery, other.searchQuery)
       .append(serpType, other.serpType)
@@ -530,7 +517,6 @@ public class PaidOrganicQueryReport extends DateReport {
       .append(organicImpressions)
       .append(organicImpressionsPerQuery)
       .append(organicQueries)
-      .append(primaryCompanyName)
       .append(queryMatchType)
       .append(searchQuery)
       .append(serpType)

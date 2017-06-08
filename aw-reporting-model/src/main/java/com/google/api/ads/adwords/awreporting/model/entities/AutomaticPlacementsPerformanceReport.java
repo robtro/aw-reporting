@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -258,10 +258,6 @@ public class AutomaticPlacementsPerformanceReport extends DateReport {
   @Column(name = "IsAutoOptimized")
   @CsvField(value = "Targeting Mode", reportField = "IsAutoOptimized")
   private String isAutoOptimized;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "ValuePerAllConversion")
   @CsvField(value = "Value / all conv.", reportField = "ValuePerAllConversion")
@@ -777,14 +773,6 @@ public class AutomaticPlacementsPerformanceReport extends DateReport {
     this.isAutoOptimized = isAutoOptimized;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getValuePerAllConversion() {
     return BigDecimalUtil.formatAsReadable(valuePerAllConversion);
   }
@@ -944,7 +932,6 @@ public class AutomaticPlacementsPerformanceReport extends DateReport {
       .append(interactions, other.interactions)
       .append(interactionTypes, other.interactionTypes)
       .append(isAutoOptimized, other.isAutoOptimized)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
       .append(videoViewRate, other.videoViewRate)
@@ -1010,7 +997,6 @@ public class AutomaticPlacementsPerformanceReport extends DateReport {
       .append(interactions)
       .append(interactionTypes)
       .append(isAutoOptimized)
-      .append(primaryCompanyName)
       .append(valuePerAllConversion)
       .append(valuePerConversion)
       .append(videoViewRate)

@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -163,10 +163,6 @@ public class UserAdDistanceReport extends DateReport {
   @Column(name = "Impressions")
   @CsvField(value = "Impressions", reportField = "Impressions")
   private Long impressions;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "ValuePerAllConversion")
   @CsvField(value = "Value / all conv.", reportField = "ValuePerAllConversion")
@@ -466,14 +462,6 @@ public class UserAdDistanceReport extends DateReport {
     this.impressions = impressions;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getValuePerAllConversion() {
     return BigDecimalUtil.formatAsReadable(valuePerAllConversion);
   }
@@ -578,7 +566,6 @@ public class UserAdDistanceReport extends DateReport {
       .append(distanceBucket, other.distanceBucket)
       .append(externalConversionSource, other.externalConversionSource)
       .append(impressions, other.impressions)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
       .append(viewThroughConversions, other.viewThroughConversions)
@@ -619,7 +606,6 @@ public class UserAdDistanceReport extends DateReport {
       .append(distanceBucket)
       .append(externalConversionSource)
       .append(impressions)
-      .append(primaryCompanyName)
       .append(valuePerAllConversion)
       .append(valuePerConversion)
       .append(viewThroughConversions)

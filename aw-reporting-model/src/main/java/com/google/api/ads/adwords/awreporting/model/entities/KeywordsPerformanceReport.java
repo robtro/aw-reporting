@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -370,6 +370,22 @@ public class KeywordsPerformanceReport extends DateReport {
   @CsvField(value = "Has Quality Score", reportField = "HasQualityScore")
   private String hasQualityScore;
 
+  @Column(name = "HistoricalCreativeQualityScore")
+  @CsvField(value = "Ad relevance (hist.)", reportField = "HistoricalCreativeQualityScore")
+  private String historicalCreativeQualityScore;
+
+  @Column(name = "HistoricalLandingPageQualityScore")
+  @CsvField(value = "Landing page experience (hist.)", reportField = "HistoricalLandingPageQualityScore")
+  private String historicalLandingPageQualityScore;
+
+  @Column(name = "HistoricalQualityScore")
+  @CsvField(value = "Qual. score (hist.)", reportField = "HistoricalQualityScore")
+  private Integer historicalQualityScore;
+
+  @Column(name = "HistoricalSearchPredictedCtr")
+  @CsvField(value = "Expected clickthrough rate (hist.)", reportField = "HistoricalSearchPredictedCtr")
+  private String historicalSearchPredictedCtr;
+
   @Column(name = "Id")
   @CsvField(value = "Keyword ID", reportField = "Id")
   private Long id;
@@ -426,10 +442,6 @@ public class KeywordsPerformanceReport extends DateReport {
   @CsvField(value = "Landing page experience", reportField = "PostClickQualityScore")
   private String postClickQualityScore;
 
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
-
   @Column(name = "QualityScore")
   @CsvField(value = "Quality score", reportField = "QualityScore")
   private Integer qualityScore;
@@ -485,6 +497,10 @@ public class KeywordsPerformanceReport extends DateReport {
   @Column(name = "ValuePerCurrentModelAttributedConversion")
   @CsvField(value = "Value / conv. (current model)", reportField = "ValuePerCurrentModelAttributedConversion")
   private BigDecimal valuePerCurrentModelAttributedConversion;
+
+  @Column(name = "VerticalId")
+  @CsvField(value = "Vertical ID", reportField = "VerticalId")
+  private Long verticalId;
 
   @Column(name = "VideoQuartile100Rate")
   @CsvField(value = "Video played to 100%", reportField = "VideoQuartile100Rate")
@@ -1256,6 +1272,38 @@ public class KeywordsPerformanceReport extends DateReport {
     this.hasQualityScore = hasQualityScore;
   }
 
+  public String getHistoricalCreativeQualityScore() {
+    return historicalCreativeQualityScore;
+  }
+
+  public void setHistoricalCreativeQualityScore(String historicalCreativeQualityScore) {
+    this.historicalCreativeQualityScore = historicalCreativeQualityScore;
+  }
+
+  public String getHistoricalLandingPageQualityScore() {
+    return historicalLandingPageQualityScore;
+  }
+
+  public void setHistoricalLandingPageQualityScore(String historicalLandingPageQualityScore) {
+    this.historicalLandingPageQualityScore = historicalLandingPageQualityScore;
+  }
+
+  public Integer getHistoricalQualityScore() {
+    return historicalQualityScore;
+  }
+
+  public void setHistoricalQualityScore(Integer historicalQualityScore) {
+    this.historicalQualityScore = historicalQualityScore;
+  }
+
+  public String getHistoricalSearchPredictedCtr() {
+    return historicalSearchPredictedCtr;
+  }
+
+  public void setHistoricalSearchPredictedCtr(String historicalSearchPredictedCtr) {
+    this.historicalSearchPredictedCtr = historicalSearchPredictedCtr;
+  }
+
   public Long getId() {
     return id;
   }
@@ -1382,14 +1430,6 @@ public class KeywordsPerformanceReport extends DateReport {
 
   public void setPostClickQualityScore(String postClickQualityScore) {
     this.postClickQualityScore = postClickQualityScore;
-  }
-
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
   }
 
   public Integer getQualityScore() {
@@ -1526,6 +1566,14 @@ public class KeywordsPerformanceReport extends DateReport {
 
   public void setValuePerCurrentModelAttributedConversion(String valuePerCurrentModelAttributedConversion) {
     this.valuePerCurrentModelAttributedConversion = BigDecimalUtil.parseFromNumberString(valuePerCurrentModelAttributedConversion);
+  }
+
+  public Long getVerticalId() {
+    return verticalId;
+  }
+
+  public void setVerticalId(Long verticalId) {
+    this.verticalId = verticalId;
   }
 
   public String getVideoQuartile100Rate() {
@@ -1738,6 +1786,10 @@ public class KeywordsPerformanceReport extends DateReport {
       .append(gmailSaves, other.gmailSaves)
       .append(gmailSecondaryClicks, other.gmailSecondaryClicks)
       .append(hasQualityScore, other.hasQualityScore)
+      .append(historicalCreativeQualityScore, other.historicalCreativeQualityScore)
+      .append(historicalLandingPageQualityScore, other.historicalLandingPageQualityScore)
+      .append(historicalQualityScore, other.historicalQualityScore)
+      .append(historicalSearchPredictedCtr, other.historicalSearchPredictedCtr)
       .append(id, other.id)
       .append(impressionAssistedConversions, other.impressionAssistedConversions)
       .append(impressionAssistedConversionsOverLastClickConversions, other.impressionAssistedConversionsOverLastClickConversions)
@@ -1752,7 +1804,6 @@ public class KeywordsPerformanceReport extends DateReport {
       .append(labels, other.labels)
       .append(percentNewVisitors, other.percentNewVisitors)
       .append(postClickQualityScore, other.postClickQualityScore)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(qualityScore, other.qualityScore)
       .append(searchExactMatchImpressionShare, other.searchExactMatchImpressionShare)
       .append(searchImpressionShare, other.searchImpressionShare)
@@ -1767,6 +1818,7 @@ public class KeywordsPerformanceReport extends DateReport {
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
       .append(valuePerCurrentModelAttributedConversion, other.valuePerCurrentModelAttributedConversion)
+      .append(verticalId, other.verticalId)
       .append(videoQuartile100Rate, other.videoQuartile100Rate)
       .append(videoQuartile25Rate, other.videoQuartile25Rate)
       .append(videoQuartile50Rate, other.videoQuartile50Rate)
@@ -1861,6 +1913,10 @@ public class KeywordsPerformanceReport extends DateReport {
       .append(gmailSaves)
       .append(gmailSecondaryClicks)
       .append(hasQualityScore)
+      .append(historicalCreativeQualityScore)
+      .append(historicalLandingPageQualityScore)
+      .append(historicalQualityScore)
+      .append(historicalSearchPredictedCtr)
       .append(id)
       .append(impressionAssistedConversions)
       .append(impressionAssistedConversionsOverLastClickConversions)
@@ -1875,7 +1931,6 @@ public class KeywordsPerformanceReport extends DateReport {
       .append(labels)
       .append(percentNewVisitors)
       .append(postClickQualityScore)
-      .append(primaryCompanyName)
       .append(qualityScore)
       .append(searchExactMatchImpressionShare)
       .append(searchImpressionShare)
@@ -1890,6 +1945,7 @@ public class KeywordsPerformanceReport extends DateReport {
       .append(valuePerAllConversion)
       .append(valuePerConversion)
       .append(valuePerCurrentModelAttributedConversion)
+      .append(verticalId)
       .append(videoQuartile100Rate)
       .append(videoQuartile25Rate)
       .append(videoQuartile50Rate)

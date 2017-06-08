@@ -24,8 +24,8 @@ import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession.ImmutableAdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
@@ -144,8 +144,6 @@ public class StreamingReportProcessor extends ReportProcessor {
         StreamingRunnableProcessor<R> runnableProcessor =
             new StreamingRunnableProcessor<R>(
                 topCustomerId,
-                downloadSetting.getNumAttempts(),
-                downloadSetting.getBackoffInterval(),
                 accountSession,
                 reportDefinition,
                 dateRangeAndType,
@@ -177,5 +175,6 @@ public class StreamingReportProcessor extends ReportProcessor {
   @Autowired
   public void setDownloaderSetting(DownloadSetting downloadSetting) {
     this.downloadSetting = downloadSetting;
+    this.downloadSetting.applyToRateLimiter();
   }
 }

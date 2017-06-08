@@ -16,10 +16,10 @@ package com.google.api.ads.adwords.awreporting.authentication;
 
 import com.google.api.ads.adwords.awreporting.model.entities.AuthToken;
 import com.google.api.ads.adwords.awreporting.model.persistence.AuthTokenPersister;
-import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.Customer;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.CustomerServiceInterface;
+import com.google.api.ads.adwords.awreporting.util.AdWordsServicesUtil;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.Customer;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.CustomerServiceInterface;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.common.lib.exception.OAuthException;
 import com.google.api.ads.common.lib.exception.ValidationException;
@@ -156,7 +156,7 @@ public class InstalledOAuth2Authenticator implements Authenticator {
           try {
             AdWordsSession adWordsSession = authenticate(credential).buildImmutable();
             CustomerServiceInterface customerService =
-                new AdWordsServices().get(adWordsSession, CustomerServiceInterface.class);
+                AdWordsServicesUtil.getService(adWordsSession, CustomerServiceInterface.class);
 
             // The AdWords session has clientCustomerId specified, so only details of that customer
             // will be returned by CustomerService.getCustomers().

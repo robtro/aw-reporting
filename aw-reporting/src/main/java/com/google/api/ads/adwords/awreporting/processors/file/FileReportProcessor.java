@@ -24,8 +24,8 @@ import com.google.api.ads.adwords.awreporting.model.csv.ReportEntityMappingStrat
 import com.google.api.ads.adwords.awreporting.model.entities.DateRangeAndType;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.processors.ReportProcessor;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import java.io.File;
@@ -100,7 +100,7 @@ public class FileReportProcessor extends ReportProcessor {
     ReportDefinition reportDefinition =
         getReportDefinition(reportType, dateRangeAndType, reportDefinitionKey, properties);
     MultipleClientReportDownloader multipleClientReportDownloader =
-        new MultipleClientReportDownloader(downloadSetting);
+        new MultipleClientReportDownloader(downloadSetting.getNumThreads());
     localFiles =
         multipleClientReportDownloader.downloadReports(
             sessionBuilder, reportDefinition, accountIdList);
@@ -239,5 +239,6 @@ public class FileReportProcessor extends ReportProcessor {
   @Autowired
   public void setDownloaderSetting(DownloadSetting downloadSetting) {
     this.downloadSetting = downloadSetting;
+    this.downloadSetting.applyToRateLimiter();
   }
 }

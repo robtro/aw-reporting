@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -395,10 +395,6 @@ public class CriteriaPerformanceReport extends DateReport {
   @CsvField(value = "Landing page experience", reportField = "PostClickQualityScore")
   private String postClickQualityScore;
 
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
-
   @Column(name = "QualityScore")
   @CsvField(value = "Quality score", reportField = "QualityScore")
   private Integer qualityScore;
@@ -442,6 +438,10 @@ public class CriteriaPerformanceReport extends DateReport {
   @Column(name = "ValuePerCurrentModelAttributedConversion")
   @CsvField(value = "Value / conv. (current model)", reportField = "ValuePerCurrentModelAttributedConversion")
   private BigDecimal valuePerCurrentModelAttributedConversion;
+
+  @Column(name = "VerticalId")
+  @CsvField(value = "Vertical ID", reportField = "VerticalId")
+  private Long verticalId;
 
   @Column(name = "VideoQuartile100Rate")
   @CsvField(value = "Video played to 100%", reportField = "VideoQuartile100Rate")
@@ -1249,14 +1249,6 @@ public class CriteriaPerformanceReport extends DateReport {
     this.postClickQualityScore = postClickQualityScore;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public Integer getQualityScore() {
     return qualityScore;
   }
@@ -1355,6 +1347,14 @@ public class CriteriaPerformanceReport extends DateReport {
 
   public void setValuePerCurrentModelAttributedConversion(String valuePerCurrentModelAttributedConversion) {
     this.valuePerCurrentModelAttributedConversion = BigDecimalUtil.parseFromNumberString(valuePerCurrentModelAttributedConversion);
+  }
+
+  public Long getVerticalId() {
+    return verticalId;
+  }
+
+  public void setVerticalId(Long verticalId) {
+    this.verticalId = verticalId;
   }
 
   public String getVideoQuartile100Rate() {
@@ -1573,7 +1573,6 @@ public class CriteriaPerformanceReport extends DateReport {
       .append(labelIds, other.labelIds)
       .append(labels, other.labels)
       .append(postClickQualityScore, other.postClickQualityScore)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(qualityScore, other.qualityScore)
       .append(searchPredictedCtr, other.searchPredictedCtr)
       .append(slot, other.slot)
@@ -1585,6 +1584,7 @@ public class CriteriaPerformanceReport extends DateReport {
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
       .append(valuePerCurrentModelAttributedConversion, other.valuePerCurrentModelAttributedConversion)
+      .append(verticalId, other.verticalId)
       .append(videoQuartile100Rate, other.videoQuartile100Rate)
       .append(videoQuartile25Rate, other.videoQuartile25Rate)
       .append(videoQuartile50Rate, other.videoQuartile50Rate)
@@ -1685,7 +1685,6 @@ public class CriteriaPerformanceReport extends DateReport {
       .append(labelIds)
       .append(labels)
       .append(postClickQualityScore)
-      .append(primaryCompanyName)
       .append(qualityScore)
       .append(searchPredictedCtr)
       .append(slot)
@@ -1697,6 +1696,7 @@ public class CriteriaPerformanceReport extends DateReport {
       .append(valuePerAllConversion)
       .append(valuePerConversion)
       .append(valuePerCurrentModelAttributedConversion)
+      .append(verticalId)
       .append(videoQuartile100Rate)
       .append(videoQuartile25Rate)
       .append(videoQuartile50Rate)

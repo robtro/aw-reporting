@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -317,10 +317,6 @@ public class DisplayTopicsPerformanceReport extends DateReport {
   @CsvField(value = "Is restricting", reportField = "IsRestrict")
   private String isRestrict;
 
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
-
   @Column(name = "Status")
   @CsvField(value = "Topic state", reportField = "Status")
   private String status;
@@ -340,6 +336,10 @@ public class DisplayTopicsPerformanceReport extends DateReport {
   @Column(name = "ValuePerConversion")
   @CsvField(value = "Value / conv.", reportField = "ValuePerConversion")
   private BigDecimal valuePerConversion;
+
+  @Column(name = "VerticalId")
+  @CsvField(value = "Vertical ID", reportField = "VerticalId")
+  private Long verticalId;
 
   @Column(name = "VideoQuartile100Rate")
   @CsvField(value = "Video played to 100%", reportField = "VideoQuartile100Rate")
@@ -979,14 +979,6 @@ public class DisplayTopicsPerformanceReport extends DateReport {
     this.isRestrict = isRestrict;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getStatus() {
     return status;
   }
@@ -1033,6 +1025,14 @@ public class DisplayTopicsPerformanceReport extends DateReport {
 
   public void setValuePerConversion(String valuePerConversion) {
     this.valuePerConversion = BigDecimalUtil.parseFromNumberString(valuePerConversion);
+  }
+
+  public Long getVerticalId() {
+    return verticalId;
+  }
+
+  public void setVerticalId(Long verticalId) {
+    this.verticalId = verticalId;
   }
 
   public String getVideoQuartile100Rate() {
@@ -1229,12 +1229,12 @@ public class DisplayTopicsPerformanceReport extends DateReport {
       .append(interactionTypes, other.interactionTypes)
       .append(isNegative, other.isNegative)
       .append(isRestrict, other.isRestrict)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(status, other.status)
       .append(trackingUrlTemplate, other.trackingUrlTemplate)
       .append(urlCustomParameters, other.urlCustomParameters)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
+      .append(verticalId, other.verticalId)
       .append(videoQuartile100Rate, other.videoQuartile100Rate)
       .append(videoQuartile25Rate, other.videoQuartile25Rate)
       .append(videoQuartile50Rate, other.videoQuartile50Rate)
@@ -1316,12 +1316,12 @@ public class DisplayTopicsPerformanceReport extends DateReport {
       .append(interactionTypes)
       .append(isNegative)
       .append(isRestrict)
-      .append(primaryCompanyName)
       .append(status)
       .append(trackingUrlTemplate)
       .append(urlCustomParameters)
       .append(valuePerAllConversion)
       .append(valuePerConversion)
+      .append(verticalId)
       .append(videoQuartile100Rate)
       .append(videoQuartile25Rate)
       .append(videoQuartile50Rate)

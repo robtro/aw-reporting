@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.entities.DateReport;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 import com.google.api.client.util.Maps;
 import com.google.common.collect.Sets;
 import java.io.IOException;
@@ -263,10 +263,8 @@ public class CsvReportEntitiesMapping {
       MetadataReader metadataReader = metadataReaderFactory.getMetadataReader(resource);
       
       if (isAnnotationPresentAndReportSubclass(metadataReader)) {
-        @SuppressWarnings("unchecked")
-        Class<? extends Report> candidate =
-            (Class<? extends Report>)
-                Class.forName(metadataReader.getClassMetadata().getClassName());
+        String reportClassName = metadataReader.getClassMetadata().getClassName();
+        Class<? extends Report> candidate = Class.forName(reportClassName).asSubclass(Report.class);
         candidates.add(candidate);
       }
     }

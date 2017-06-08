@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.ReportProcessingException;
 import com.google.api.ads.adwords.awreporting.util.AdWordsSessionUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.adwords.lib.client.AdWordsSession.ImmutableAdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinition;
 import com.google.api.ads.common.lib.exception.ValidationException;
 import com.google.common.base.Joiner;
 import com.google.common.base.Stopwatch;
@@ -49,10 +49,10 @@ public class MultipleClientReportDownloader {
       LoggerFactory.getLogger(MultipleClientReportDownloader.class);
   private static final String SEPARATOR = System.getProperty("line.separator");
 
-  private final DownloadSetting setting;
+  private final int numThreads;
 
-  public MultipleClientReportDownloader(DownloadSetting setting) {
-    this.setting = setting;
+  public MultipleClientReportDownloader(int numThreads) {
+    this.numThreads = numThreads;
   }
 
   /**
@@ -68,7 +68,7 @@ public class MultipleClientReportDownloader {
       ReportDefinition reportDefinition,
       Set<Long> clientCustomerIds)
       throws ReportProcessingException {
-    ExecutorService executorService = Executors.newFixedThreadPool(setting.getNumThreads());
+    ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
     Stopwatch stopwatch = Stopwatch.createStarted();
     logger.info("Downloading {" + reportDefinition.getReportType() + "} reports...");
 
@@ -133,7 +133,6 @@ public class MultipleClientReportDownloader {
    */
   protected CallableReportDownloader genCallableReportDownloader(
       ImmutableAdWordsSession session, ReportDefinition reportDefinition) {
-    return new CallableReportDownloader(
-        setting.getNumAttempts(), setting.getBackoffInterval(), session, reportDefinition);
+    return new CallableReportDownloader(session, reportDefinition);
   }
 }

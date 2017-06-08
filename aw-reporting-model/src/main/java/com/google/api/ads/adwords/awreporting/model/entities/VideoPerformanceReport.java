@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -168,10 +168,6 @@ public class VideoPerformanceReport extends DateReport {
   @Column(name = "Impressions")
   @CsvField(value = "Impressions", reportField = "Impressions")
   private Long impressions;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "VideoDuration")
   @CsvField(value = "Video Duration", reportField = "VideoDuration")
@@ -507,14 +503,6 @@ public class VideoPerformanceReport extends DateReport {
     this.impressions = impressions;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public Long getVideoDuration() {
     return videoDuration;
   }
@@ -698,7 +686,6 @@ public class VideoPerformanceReport extends DateReport {
       .append(engagements, other.engagements)
       .append(externalConversionSource, other.externalConversionSource)
       .append(impressions, other.impressions)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(videoDuration, other.videoDuration)
       .append(videoId, other.videoId)
       .append(videoQuartile100Rate, other.videoQuartile100Rate)
@@ -748,7 +735,6 @@ public class VideoPerformanceReport extends DateReport {
       .append(engagements)
       .append(externalConversionSource)
       .append(impressions)
-      .append(primaryCompanyName)
       .append(videoDuration)
       .append(videoId)
       .append(videoQuartile100Rate)

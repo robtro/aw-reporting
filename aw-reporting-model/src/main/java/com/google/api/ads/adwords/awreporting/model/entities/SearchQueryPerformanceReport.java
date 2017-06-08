@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.StringsUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -233,10 +233,6 @@ public class SearchQueryPerformanceReport extends DateReport {
   @Column(name = "KeywordTextMatchingQuery")
   @CsvField(value = "Keyword", reportField = "KeywordTextMatchingQuery")
   private String keywordTextMatchingQuery;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "Query")
   @CsvField(value = "Search term", reportField = "Query")
@@ -724,14 +720,6 @@ public class SearchQueryPerformanceReport extends DateReport {
     this.keywordTextMatchingQuery = keywordTextMatchingQuery;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getQuery() {
     return query;
   }
@@ -960,7 +948,6 @@ public class SearchQueryPerformanceReport extends DateReport {
       .append(interactions, other.interactions)
       .append(interactionTypes, other.interactionTypes)
       .append(keywordTextMatchingQuery, other.keywordTextMatchingQuery)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(query, other.query)
       .append(queryMatchTypeWithVariant, other.queryMatchTypeWithVariant)
       .append(trackingUrlTemplate, other.trackingUrlTemplate)
@@ -1027,7 +1014,6 @@ public class SearchQueryPerformanceReport extends DateReport {
       .append(interactions)
       .append(interactionTypes)
       .append(keywordTextMatchingQuery)
-      .append(primaryCompanyName)
       .append(query)
       .append(queryMatchTypeWithVariant)
       .append(trackingUrlTemplate)

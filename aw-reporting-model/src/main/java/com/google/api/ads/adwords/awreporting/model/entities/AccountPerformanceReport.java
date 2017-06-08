@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -250,10 +250,6 @@ public class AccountPerformanceReport extends DateReport {
   @Column(name = "IsTestAccount")
   @CsvField(value = "Test account", reportField = "IsTestAccount")
   private String isTestAccount;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "SearchBudgetLostImpressionShare")
   @CsvField(value = "Search Lost IS (budget)", reportField = "SearchBudgetLostImpressionShare")
@@ -793,14 +789,6 @@ public class AccountPerformanceReport extends DateReport {
     this.isTestAccount = isTestAccount;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getSearchBudgetLostImpressionShare() {
     return BigDecimalUtil.formatAsReadable(searchBudgetLostImpressionShare);
   }
@@ -1005,7 +993,6 @@ public class AccountPerformanceReport extends DateReport {
       .append(invalidClicks, other.invalidClicks)
       .append(isAutoTaggingEnabled, other.isAutoTaggingEnabled)
       .append(isTestAccount, other.isTestAccount)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(searchBudgetLostImpressionShare, other.searchBudgetLostImpressionShare)
       .append(searchExactMatchImpressionShare, other.searchExactMatchImpressionShare)
       .append(searchImpressionShare, other.searchImpressionShare)
@@ -1074,7 +1061,6 @@ public class AccountPerformanceReport extends DateReport {
       .append(invalidClicks)
       .append(isAutoTaggingEnabled)
       .append(isTestAccount)
-      .append(primaryCompanyName)
       .append(searchBudgetLostImpressionShare)
       .append(searchExactMatchImpressionShare)
       .append(searchImpressionShare)

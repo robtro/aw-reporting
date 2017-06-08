@@ -63,4 +63,17 @@ public class DownloadSetting {
     Preconditions.checkArgument(backoffInterval >= 0, "backoffInterval must be non-negative.");
     this.backoffInterval = backoffInterval.intValue();
   }
+  
+  /**
+   * Apply relevant settings ({@link #numAttempts}, {@link #backoffInterval}) to the RateLimiter
+   * regarding report downloading.
+   */
+  public void applyToRateLimiter() {
+    System.setProperty(
+        "com.google.api.ads.adwords.extension.ratelimiter.ApiReportingRetryStrategy.maxAttemptsOnRateExceededError",
+        String.valueOf(numAttempts));
+    System.setProperty(
+        "com.google.api.ads.adwords.extension.ratelimiter.ApiReportingRetryStrategy.backoffIntervalOnRateExceededError",
+        String.valueOf(backoffInterval));
+  }
 }

@@ -23,18 +23,18 @@ import com.google.api.ads.adwords.awreporting.model.entities.DateRangeAndType;
 import com.google.api.ads.adwords.awreporting.model.entities.Report;
 import com.google.api.ads.adwords.awreporting.model.persistence.EntityPersister;
 import com.google.api.ads.adwords.awreporting.model.util.StringsUtil;
+import com.google.api.ads.adwords.awreporting.util.AdWordsServicesUtil;
 import com.google.api.ads.adwords.lib.client.AdWordsSession.ImmutableAdWordsSession;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinition;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponse;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponseException;
 import com.google.api.ads.adwords.lib.utils.ReportException;
-import com.google.api.ads.adwords.lib.utils.v201702.ReportDownloader;
+import com.google.api.ads.adwords.lib.utils.v201705.ReportDownloaderInterface;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
@@ -52,8 +52,6 @@ public class StreamingRunnableProcessor<R extends Report> implements Runnable {
   private static final Logger logger = LoggerFactory.getLogger(StreamingRunnableProcessor.class);
 
   private final String topCustomerId;
-  private final int numAttempts;
-  private final int backoffInterval;
   private final ImmutableAdWordsSession session;
   private final ReportDefinition reportDefinition;
   private final DateRangeAndType dateRangeAndType;
@@ -66,8 +64,6 @@ public class StreamingRunnableProcessor<R extends Report> implements Runnable {
    * Constructor for {@code Runnable} to download reports from AdWords API.
    *
    * @param topCustomerId the top customer account id.
-   * @param numAttempts the number of attempts if an error occur.
-   * @param backoffInterval the time to backoff (in millis) if an error occur to prevent QPS limits.
    * @param session AdWords session used for downloading report stream.
    * @param reportDefinition {@code ReportDefinition} to define report parameters.
    * @param csvToBean the {@code CsvToBean}.
@@ -78,8 +74,6 @@ public class StreamingRunnableProcessor<R extends Report> implements Runnable {
    */
   public StreamingRunnableProcessor(
       String topCustomerId,
-      int numAttempts,
-      int backoffInterval,
       ImmutableAdWordsSession session,
       ReportDefinition reportDefinition,
       DateRangeAndType dateRangeAndType,
@@ -88,8 +82,6 @@ public class StreamingRunnableProcessor<R extends Report> implements Runnable {
       EntityPersister entityPersister,
       int reportRowsSetSize) {
     this.topCustomerId = Preconditions.checkNotNull(topCustomerId, "topCustomerId cannot be null");
-    this.numAttempts = numAttempts;
-    this.backoffInterval = backoffInterval;
     
     this.session = Preconditions.checkNotNull(session, "session cannot be null.");
     this.reportDefinition =
@@ -150,60 +142,20 @@ public class StreamingRunnableProcessor<R extends Report> implements Runnable {
    * @return the InputStream from the online report, null if httpStatus is not {@code HTTP_OK}.
    */
   private InputStream getReportInputStream() {
-    String errorMessage = null;
-    Exception lastException = null;
+    ReportDownloaderInterface reportDownloader =
+        AdWordsServicesUtil.getUtility(session, ReportDownloaderInterface.class);
+    
     InputStream result = null;
-
-    ReportDownloader reportDownloader = new ReportDownloader(session);
-    for (int i = 1; i <= numAttempts; i++) {
-      try {
-        ReportDownloadResponse reportDownloadResponse =
-            reportDownloader.downloadReport(reportDefinition);
-        
-        if (reportDownloadResponse.getHttpStatus() == HttpURLConnection.HTTP_OK) {
-          result = reportDownloadResponse.getInputStream();
-          break;
-        } else {
-          logger.error(
-              "Failed to download report stream for account "
-              + session.getClientCustomerId()
-              + " with httpStatus: "
-              + reportDownloadResponse.getHttpStatus()
-              + " httpResponseMessage: "
-              + reportDownloadResponse.getHttpResponseMessage());
-          result = null;
-        }
-      } catch (ReportException e) {
-        errorMessage = "ReportException occurs when downloading report stream for "
-            + reportDefinition.getReportType() + " with account "
-            + session.getClientCustomerId() + ".";
-        lastException = e;
-        logger.error(errorMessage, e);
-      } catch (ReportDownloadResponseException e) {
-        errorMessage = "ReportDownloadResponseException occurs when downloading report stream for "
-            + reportDefinition.getReportType() + " with account "
-            + session.getClientCustomerId() + ".";
-        lastException = e;
-        logger.error(errorMessage, e);
-      }
-      
-      // If we haven't succeeded, slow down the rate of requests (with exponential back off).
-      try {
-        // Sleep unless this was the last attempt.
-        if (i < numAttempts) {
-          long backoff = (long) Math.scalb(backoffInterval, i);
-          logger.info("Back off for {}ms before next retry.", backoff);
-          Thread.sleep(backoff);
-        }
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        logger.error("InterruptedException occurs while waiting to download report stream.", e);
-        break;
-      }
-    }
-
-    if (result == null) {
-      logger.error("Failed to download report stream after all attempts.", lastException);
+    try {
+      ReportDownloadResponse reportDownloadResponse =
+          reportDownloader.downloadReport(reportDefinition);
+      result = reportDownloadResponse.getInputStream();
+    } catch (ReportException | ReportDownloadResponseException e) {
+      logger.error(
+          "Failed to download report stream for {} with account {}.",
+          reportDefinition.getReportType(),
+          session.getClientCustomerId(),
+          e);
     }
 
     return result;

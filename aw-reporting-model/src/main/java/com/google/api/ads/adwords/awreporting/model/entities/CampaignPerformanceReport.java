@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -192,6 +192,10 @@ public class CampaignPerformanceReport extends DateReport {
   @Column(name = "CampaignDesktopBidModifier")
   @CsvField(value = "Desktop bid adj.", reportField = "CampaignDesktopBidModifier")
   private BigDecimal campaignDesktopBidModifier;
+
+  @Column(name = "CampaignGroupId")
+  @CsvField(value = "Campaign Group ID", reportField = "CampaignGroupId")
+  private Long campaignGroupId;
 
   @Column(name = "CampaignId")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
@@ -415,10 +419,6 @@ public class CampaignPerformanceReport extends DateReport {
   @Column(name = "PercentNewVisitors")
   @CsvField(value = "% new sessions", reportField = "PercentNewVisitors")
   private BigDecimal percentNewVisitors;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "RelativeCtr")
   @CsvField(value = "Relative CTR", reportField = "RelativeCtr")
@@ -852,6 +852,14 @@ public class CampaignPerformanceReport extends DateReport {
 
   public void setCampaignDesktopBidModifier(String campaignDesktopBidModifier) {
     this.campaignDesktopBidModifier = BigDecimalUtil.parseFromNumberString(campaignDesktopBidModifier);
+  }
+
+  public Long getCampaignGroupId() {
+    return campaignGroupId;
+  }
+
+  public void setCampaignGroupId(Long campaignGroupId) {
+    this.campaignGroupId = campaignGroupId;
   }
 
   public Long getCampaignId() {
@@ -1382,14 +1390,6 @@ public class CampaignPerformanceReport extends DateReport {
     this.percentNewVisitors = BigDecimalUtil.parseFromNumberString(percentNewVisitors);
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getRelativeCtr() {
     return BigDecimalUtil.formatAsReadable(relativeCtr);
   }
@@ -1671,6 +1671,7 @@ public class CampaignPerformanceReport extends DateReport {
       .append(bounceRate, other.bounceRate)
       .append(budgetId, other.budgetId)
       .append(campaignDesktopBidModifier, other.campaignDesktopBidModifier)
+      .append(campaignGroupId, other.campaignGroupId)
       .append(campaignId, other.campaignId)
       .append(campaignMobileBidModifier, other.campaignMobileBidModifier)
       .append(campaignName, other.campaignName)
@@ -1726,7 +1727,6 @@ public class CampaignPerformanceReport extends DateReport {
       .append(numOfflineInteractions, other.numOfflineInteractions)
       .append(offlineInteractionRate, other.offlineInteractionRate)
       .append(percentNewVisitors, other.percentNewVisitors)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(relativeCtr, other.relativeCtr)
       .append(searchBudgetLostImpressionShare, other.searchBudgetLostImpressionShare)
       .append(searchExactMatchImpressionShare, other.searchExactMatchImpressionShare)
@@ -1789,6 +1789,7 @@ public class CampaignPerformanceReport extends DateReport {
       .append(bounceRate)
       .append(budgetId)
       .append(campaignDesktopBidModifier)
+      .append(campaignGroupId)
       .append(campaignId)
       .append(campaignMobileBidModifier)
       .append(campaignName)
@@ -1844,7 +1845,6 @@ public class CampaignPerformanceReport extends DateReport {
       .append(numOfflineInteractions)
       .append(offlineInteractionRate)
       .append(percentNewVisitors)
-      .append(primaryCompanyName)
       .append(relativeCtr)
       .append(searchBudgetLostImpressionShare)
       .append(searchExactMatchImpressionShare)

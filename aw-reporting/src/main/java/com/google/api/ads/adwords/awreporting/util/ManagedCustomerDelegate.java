@@ -14,15 +14,14 @@
 
 package com.google.api.ads.adwords.awreporting.util;
 
-import com.google.api.ads.adwords.jaxws.factory.AdWordsServices;
-import com.google.api.ads.adwords.jaxws.utils.v201702.SelectorBuilder;
-import com.google.api.ads.adwords.jaxws.v201702.cm.Selector;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.ApiException;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.ManagedCustomer;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.ManagedCustomerPage;
-import com.google.api.ads.adwords.jaxws.v201702.mcm.ManagedCustomerServiceInterface;
+import com.google.api.ads.adwords.jaxws.utils.v201705.SelectorBuilder;
+import com.google.api.ads.adwords.jaxws.v201705.cm.Selector;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.ApiException;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.ManagedCustomer;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.ManagedCustomerPage;
+import com.google.api.ads.adwords.jaxws.v201705.mcm.ManagedCustomerServiceInterface;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
-import com.google.api.ads.adwords.lib.selectorfields.v201702.cm.ManagedCustomerField;
+import com.google.api.ads.adwords.lib.selectorfields.v201705.cm.ManagedCustomerField;
 import com.google.common.annotations.VisibleForTesting;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -59,8 +58,7 @@ public class ManagedCustomerDelegate {
   @VisibleForTesting
   ManagedCustomerServiceInterface getManagedCustomerServiceInterface(
       AdWordsSession adWordsSession){
-    return new AdWordsServices()
-        .get(adWordsSession, ManagedCustomerServiceInterface.class);
+    return AdWordsServicesUtil.getService(adWordsSession, ManagedCustomerServiceInterface.class);
   }
 
   /**
@@ -89,14 +87,8 @@ public class ManagedCustomerDelegate {
     do {
       LOGGER.info("Retrieving next {} accounts.", NUMBER_OF_RESULTS);
 
-      try {
-        managedCustomerPage = managedCustomerService.get(selector);
-        addClientCustomerIds(managedCustomerPage, clientCustomerIdsSet);
-      } catch (ApiException e) {
-        // Retry once.
-        managedCustomerPage = managedCustomerService.get(selector);
-        addClientCustomerIds(managedCustomerPage, clientCustomerIdsSet);
-      }
+      managedCustomerPage = managedCustomerService.get(selector);
+      addClientCustomerIds(managedCustomerPage, clientCustomerIdsSet);
 
       LOGGER.info("{} accounts retrieved.", clientCustomerIdsSet.size());
       offset += NUMBER_OF_RESULTS;

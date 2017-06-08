@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -39,10 +39,6 @@ import javax.persistence.Table;
 @CsvReport(value = ReportDefinitionReportType.AD_PERFORMANCE_REPORT)
 public class AdPerformanceReport extends DateReport {
 
-  @Column(name = "AdGroupAdTrademarkDisapproved")
-  @CsvField(value = "Trademark Disapproved", reportField = "AdGroupAdTrademarkDisapproved")
-  private String adGroupAdTrademarkDisapproved;
-
   @Column(name = "CallOnlyPhoneNumber")
   @CsvField(value = "Call-only ad phone number", reportField = "CallOnlyPhoneNumber")
   private String callOnlyPhoneNumber;
@@ -54,10 +50,6 @@ public class AdPerformanceReport extends DateReport {
   @Column(name = "PolicySummary")
   @CsvField(value = "Policy", reportField = "PolicySummary")
   private String policySummary;
-
-  @Column(name = "Trademarks")
-  @CsvField(value = "Trademarks", reportField = "Trademarks")
-  private String trademarks;
 
   @Column(name = "AccountCurrencyCode")
   @CsvField(value = "Currency", reportField = "AccountCurrencyCode")
@@ -100,10 +92,6 @@ public class AdPerformanceReport extends DateReport {
   @Column(name = "ActiveViewViewability")
   @CsvField(value = "Active View viewable impr. / measurable impr.", reportField = "ActiveViewViewability")
   private BigDecimal activeViewViewability;
-
-  @Column(name = "AdGroupAdDisapprovalReasons")
-  @CsvField(value = "Disapproval reasons", reportField = "AdGroupAdDisapprovalReasons")
-  private String adGroupAdDisapprovalReasons;
 
   @Column(name = "AdGroupId")
   @CsvField(value = "Ad group ID", reportField = "AdGroupId")
@@ -225,7 +213,7 @@ public class AdPerformanceReport extends DateReport {
   private String clickType;
 
   @Column(name = "CombinedApprovalStatus")
-  @CsvField(value = "Policy approval status", reportField = "CombinedApprovalStatus")
+  @CsvField(value = "Approval status", reportField = "CombinedApprovalStatus")
   private String combinedApprovalStatus;
 
   @Column(name = "ConversionCategoryName")
@@ -270,10 +258,6 @@ public class AdPerformanceReport extends DateReport {
   @Column(name = "CostPerCurrentModelAttributedConversion")
   @CsvField(value = "Cost / conv. (current model)", reportField = "CostPerCurrentModelAttributedConversion")
   private BigDecimal costPerCurrentModelAttributedConversion;
-
-  @Column(name = "CreativeApprovalStatus")
-  @CsvField(value = "Ad Approval Status", reportField = "CreativeApprovalStatus")
-  private String creativeApprovalStatus;
 
   @Column(name = "CreativeDestinationUrl", length = 2048)
   @CsvField(value = "Destination URL", reportField = "CreativeDestinationUrl")
@@ -471,10 +455,6 @@ public class AdPerformanceReport extends DateReport {
   @CsvField(value = "% new sessions", reportField = "PercentNewVisitors")
   private BigDecimal percentNewVisitors;
 
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
-
   @Column(name = "ShortHeadline")
   @CsvField(value = "Short headline", reportField = "ShortHeadline")
   private String shortHeadline;
@@ -537,14 +517,6 @@ public class AdPerformanceReport extends DateReport {
     super(topAccountId, accountId);
   }
 
-  public String getAdGroupAdTrademarkDisapproved() {
-    return adGroupAdTrademarkDisapproved;
-  }
-
-  public void setAdGroupAdTrademarkDisapproved(String adGroupAdTrademarkDisapproved) {
-    this.adGroupAdTrademarkDisapproved = adGroupAdTrademarkDisapproved;
-  }
-
   public String getCallOnlyPhoneNumber() {
     return callOnlyPhoneNumber;
   }
@@ -567,14 +539,6 @@ public class AdPerformanceReport extends DateReport {
 
   public void setPolicySummary(String policySummary) {
     this.policySummary = policySummary;
-  }
-
-  public String getTrademarks() {
-    return trademarks;
-  }
-
-  public void setTrademarks(String trademarks) {
-    this.trademarks = trademarks;
   }
 
   public String getAccountCurrencyCode() {
@@ -667,14 +631,6 @@ public class AdPerformanceReport extends DateReport {
 
   public void setActiveViewViewability(String activeViewViewability) {
     this.activeViewViewability = BigDecimalUtil.parseFromNumberString(activeViewViewability);
-  }
-
-  public String getAdGroupAdDisapprovalReasons() {
-    return adGroupAdDisapprovalReasons;
-  }
-
-  public void setAdGroupAdDisapprovalReasons(String adGroupAdDisapprovalReasons) {
-    this.adGroupAdDisapprovalReasons = adGroupAdDisapprovalReasons;
   }
 
   public Long getAdGroupId() {
@@ -1055,14 +1011,6 @@ public class AdPerformanceReport extends DateReport {
 
   public void setCostPerCurrentModelAttributedConversion(String costPerCurrentModelAttributedConversion) {
     this.costPerCurrentModelAttributedConversion = BigDecimalUtil.parseFromNumberString(costPerCurrentModelAttributedConversion);
-  }
-
-  public String getCreativeApprovalStatus() {
-    return creativeApprovalStatus;
-  }
-
-  public void setCreativeApprovalStatus(String creativeApprovalStatus) {
-    this.creativeApprovalStatus = creativeApprovalStatus;
   }
 
   public String getCreativeDestinationUrl() {
@@ -1493,14 +1441,6 @@ public class AdPerformanceReport extends DateReport {
     this.percentNewVisitors = BigDecimalUtil.parseFromNumberString(percentNewVisitors);
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getShortHeadline() {
     return shortHeadline;
   }
@@ -1694,11 +1634,9 @@ public class AdPerformanceReport extends DateReport {
     AdPerformanceReport other = (AdPerformanceReport) obj;
     return new EqualsBuilder()
       .appendSuper(super.equals(obj))
-      .append(adGroupAdTrademarkDisapproved, other.adGroupAdTrademarkDisapproved)
       .append(callOnlyPhoneNumber, other.callOnlyPhoneNumber)
       .append(imageAdUrl, other.imageAdUrl)
       .append(policySummary, other.policySummary)
-      .append(trademarks, other.trademarks)
       .append(accountCurrencyCode, other.accountCurrencyCode)
       .append(accountDescriptiveName, other.accountDescriptiveName)
       .append(accountTimeZone, other.accountTimeZone)
@@ -1709,7 +1647,6 @@ public class AdPerformanceReport extends DateReport {
       .append(activeViewMeasurableCost, other.activeViewMeasurableCost)
       .append(activeViewMeasurableImpressions, other.activeViewMeasurableImpressions)
       .append(activeViewViewability, other.activeViewViewability)
-      .append(adGroupAdDisapprovalReasons, other.adGroupAdDisapprovalReasons)
       .append(adGroupId, other.adGroupId)
       .append(adGroupName, other.adGroupName)
       .append(adGroupStatus, other.adGroupStatus)
@@ -1750,7 +1687,6 @@ public class AdPerformanceReport extends DateReport {
       .append(costPerAllConversion, other.costPerAllConversion)
       .append(costPerConversion, other.costPerConversion)
       .append(costPerCurrentModelAttributedConversion, other.costPerCurrentModelAttributedConversion)
-      .append(creativeApprovalStatus, other.creativeApprovalStatus)
       .append(creativeDestinationUrl, other.creativeDestinationUrl)
       .append(creativeFinalAppUrls, other.creativeFinalAppUrls)
       .append(creativeFinalMobileUrls, other.creativeFinalMobileUrls)
@@ -1800,7 +1736,6 @@ public class AdPerformanceReport extends DateReport {
       .append(path1, other.path1)
       .append(path2, other.path2)
       .append(percentNewVisitors, other.percentNewVisitors)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(shortHeadline, other.shortHeadline)
       .append(slot, other.slot)
       .append(status, other.status)
@@ -1821,11 +1756,9 @@ public class AdPerformanceReport extends DateReport {
   public int hashCode() {
     return new HashCodeBuilder(17, 37)
       .appendSuper(super.hashCode())
-      .append(adGroupAdTrademarkDisapproved)
       .append(callOnlyPhoneNumber)
       .append(imageAdUrl)
       .append(policySummary)
-      .append(trademarks)
       .append(accountCurrencyCode)
       .append(accountDescriptiveName)
       .append(accountTimeZone)
@@ -1836,7 +1769,6 @@ public class AdPerformanceReport extends DateReport {
       .append(activeViewMeasurableCost)
       .append(activeViewMeasurableImpressions)
       .append(activeViewViewability)
-      .append(adGroupAdDisapprovalReasons)
       .append(adGroupId)
       .append(adGroupName)
       .append(adGroupStatus)
@@ -1877,7 +1809,6 @@ public class AdPerformanceReport extends DateReport {
       .append(costPerAllConversion)
       .append(costPerConversion)
       .append(costPerCurrentModelAttributedConversion)
-      .append(creativeApprovalStatus)
       .append(creativeDestinationUrl)
       .append(creativeFinalAppUrls)
       .append(creativeFinalMobileUrls)
@@ -1927,7 +1858,6 @@ public class AdPerformanceReport extends DateReport {
       .append(path1)
       .append(path2)
       .append(percentNewVisitors)
-      .append(primaryCompanyName)
       .append(shortHeadline)
       .append(slot)
       .append(status)

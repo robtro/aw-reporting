@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.StringsUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -267,10 +267,6 @@ public class UrlPerformanceReport extends DateReport {
   @Column(name = "IsAutoOptimized")
   @CsvField(value = "Targeting Mode", reportField = "IsAutoOptimized")
   private String isAutoOptimized;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "Url", length = 2048)
   @CsvField(value = "URL", reportField = "Url")
@@ -822,14 +818,6 @@ public class UrlPerformanceReport extends DateReport {
     this.isAutoOptimized = isAutoOptimized;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getUrl() {
     return url;
   }
@@ -1047,7 +1035,6 @@ public class UrlPerformanceReport extends DateReport {
       .append(interactions, other.interactions)
       .append(interactionTypes, other.interactionTypes)
       .append(isAutoOptimized, other.isAutoOptimized)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(url, other.url)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
@@ -1120,7 +1107,6 @@ public class UrlPerformanceReport extends DateReport {
       .append(interactions)
       .append(interactionTypes)
       .append(isAutoOptimized)
-      .append(primaryCompanyName)
       .append(url)
       .append(valuePerAllConversion)
       .append(valuePerConversion)

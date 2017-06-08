@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -184,10 +184,6 @@ public class CampaignLocationTargetReport extends DateReport {
   @Column(name = "IsNegative")
   @CsvField(value = "Is negative", reportField = "IsNegative")
   private String isNegative;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "ValuePerAllConversion")
   @CsvField(value = "Value / all conv.", reportField = "ValuePerAllConversion")
@@ -555,14 +551,6 @@ public class CampaignLocationTargetReport extends DateReport {
     this.isNegative = isNegative;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getValuePerAllConversion() {
     return BigDecimalUtil.formatAsReadable(valuePerAllConversion);
   }
@@ -677,7 +665,6 @@ public class CampaignLocationTargetReport extends DateReport {
       .append(interactions, other.interactions)
       .append(interactionTypes, other.interactionTypes)
       .append(isNegative, other.isNegative)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
       .append(videoViewRate, other.videoViewRate)
@@ -725,7 +712,6 @@ public class CampaignLocationTargetReport extends DateReport {
       .append(interactions)
       .append(interactionTypes)
       .append(isNegative)
-      .append(primaryCompanyName)
       .append(valuePerAllConversion)
       .append(valuePerConversion)
       .append(videoViewRate)

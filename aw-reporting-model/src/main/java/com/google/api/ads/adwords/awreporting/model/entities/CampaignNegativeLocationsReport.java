@@ -16,7 +16,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -74,10 +74,6 @@ public class CampaignNegativeLocationsReport extends Report {
   @Column(name = "IsNegative")
   @CsvField(value = "Is negative", reportField = "IsNegative")
   private String isNegative;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   /**
    * Hibernate needs an empty constructor
@@ -169,14 +165,6 @@ public class CampaignNegativeLocationsReport extends Report {
     this.isNegative = isNegative;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   @Override
   public void setRowId() {
     // General fields for generating unique id.
@@ -210,7 +198,6 @@ public class CampaignNegativeLocationsReport extends Report {
       .append(customerDescriptiveName, other.customerDescriptiveName)
       .append(id, other.id)
       .append(isNegative, other.isNegative)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .isEquals();
   }
 
@@ -228,7 +215,6 @@ public class CampaignNegativeLocationsReport extends Report {
       .append(customerDescriptiveName)
       .append(id)
       .append(isNegative)
-      .append(primaryCompanyName)
       .toHashCode();
   }
 

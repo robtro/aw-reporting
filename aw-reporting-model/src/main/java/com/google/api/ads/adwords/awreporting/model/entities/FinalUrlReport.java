@@ -19,7 +19,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
 import com.google.api.ads.adwords.awreporting.model.util.StringsUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -263,10 +263,6 @@ public class FinalUrlReport extends DateReport {
   @Column(name = "InteractionTypes")
   @CsvField(value = "Interaction Types", reportField = "InteractionTypes")
   private String interactionTypes;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "Slot")
   @CsvField(value = "Top vs. Other", reportField = "Slot")
@@ -794,14 +790,6 @@ public class FinalUrlReport extends DateReport {
     this.interactionTypes = interactionTypes;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getSlot() {
     return slot;
   }
@@ -965,7 +953,6 @@ public class FinalUrlReport extends DateReport {
       .append(interactionRate, other.interactionRate)
       .append(interactions, other.interactions)
       .append(interactionTypes, other.interactionTypes)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(slot, other.slot)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
@@ -1032,7 +1019,6 @@ public class FinalUrlReport extends DateReport {
       .append(interactionRate)
       .append(interactions)
       .append(interactionTypes)
-      .append(primaryCompanyName)
       .append(slot)
       .append(valuePerAllConversion)
       .append(valuePerConversion)

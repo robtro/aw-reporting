@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -224,10 +224,6 @@ public class GeoPerformanceReport extends DateReport {
   @Column(name = "MostSpecificCriteriaId")
   @CsvField(value = "Most specific location", reportField = "MostSpecificCriteriaId")
   private Long mostSpecificCriteriaId;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   @Column(name = "RegionCriteriaId")
   @CsvField(value = "Region", reportField = "RegionCriteriaId")
@@ -667,14 +663,6 @@ public class GeoPerformanceReport extends DateReport {
     this.mostSpecificCriteriaId = mostSpecificCriteriaId;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public Integer getRegionCriteriaId() {
     return regionCriteriaId;
   }
@@ -840,7 +828,6 @@ public class GeoPerformanceReport extends DateReport {
       .append(locationType, other.locationType)
       .append(metroCriteriaId, other.metroCriteriaId)
       .append(mostSpecificCriteriaId, other.mostSpecificCriteriaId)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(regionCriteriaId, other.regionCriteriaId)
       .append(valuePerAllConversion, other.valuePerAllConversion)
       .append(valuePerConversion, other.valuePerConversion)
@@ -899,7 +886,6 @@ public class GeoPerformanceReport extends DateReport {
       .append(locationType)
       .append(metroCriteriaId)
       .append(mostSpecificCriteriaId)
-      .append(primaryCompanyName)
       .append(regionCriteriaId)
       .append(valuePerAllConversion)
       .append(valuePerConversion)

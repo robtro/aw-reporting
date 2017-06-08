@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.awreporting.model.entities;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -117,10 +117,6 @@ public class CreativeConversionReport extends DateReport {
   @Column(name = "Impressions")
   @CsvField(value = "Impressions", reportField = "Impressions")
   private Long impressions;
-
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
 
   /**
    * Hibernate needs an empty constructor
@@ -296,14 +292,6 @@ public class CreativeConversionReport extends DateReport {
     this.impressions = impressions;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   @Override
   public void setRowId() {
     // General fields for generating unique id.
@@ -363,7 +351,6 @@ public class CreativeConversionReport extends DateReport {
       .append(criterionId, other.criterionId)
       .append(customerDescriptiveName, other.customerDescriptiveName)
       .append(impressions, other.impressions)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .isEquals();
   }
 
@@ -391,7 +378,6 @@ public class CreativeConversionReport extends DateReport {
       .append(criterionId)
       .append(customerDescriptiveName)
       .append(impressions)
-      .append(primaryCompanyName)
       .toHashCode();
   }
 

@@ -18,7 +18,7 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvField;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.awreporting.model.csv.annotation.MoneyField;
 import com.google.api.ads.adwords.awreporting.model.util.BigDecimalUtil;
-import com.google.api.ads.adwords.lib.jaxb.v201702.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 import java.math.BigDecimal;
 
@@ -38,10 +38,6 @@ import javax.persistence.Table;
 @Table(name = "AW_PlaceholderFeedItemReport")
 @CsvReport(value = ReportDefinitionReportType.PLACEHOLDER_FEED_ITEM_REPORT)
 public class PlaceholderFeedItemReport extends DateReport {
-
-  @Column(name = "AttributeValues")
-  @CsvField(value = "Attribute Values", reportField = "AttributeValues")
-  private String attributeValues;
 
   @Column(name = "Scheduling")
   @CsvField(value = "Scheduling", reportField = "Scheduling")
@@ -102,6 +98,10 @@ public class PlaceholderFeedItemReport extends DateReport {
   @Column(name = "AllConversionValue")
   @CsvField(value = "All conv. value", reportField = "AllConversionValue")
   private BigDecimal allConversionValue;
+
+  @Column(name = "AttributeValues")
+  @CsvField(value = "Attribute Values", reportField = "AttributeValues")
+  private String attributeValues;
 
   @Column(name = "AverageCost")
   @CsvField(value = "Avg. Cost", reportField = "AverageCost")
@@ -289,10 +289,6 @@ public class PlaceholderFeedItemReport extends DateReport {
   @CsvField(value = "Feed placeholder type", reportField = "PlaceholderType")
   private Integer placeholderType;
 
-  @Column(name = "PrimaryCompanyName")
-  @CsvField(value = "Company name", reportField = "PrimaryCompanyName")
-  private String primaryCompanyName;
-
   @Column(name = "Slot")
   @CsvField(value = "Top vs. Other", reportField = "Slot")
   private String slot;
@@ -337,14 +333,6 @@ public class PlaceholderFeedItemReport extends DateReport {
 
   public PlaceholderFeedItemReport(Long topAccountId, Long accountId){
     super(topAccountId, accountId);
-  }
-
-  public String getAttributeValues() {
-    return attributeValues;
-  }
-
-  public void setAttributeValues(String attributeValues) {
-    this.attributeValues = attributeValues;
   }
 
   public String getScheduling() {
@@ -477,6 +465,14 @@ public class PlaceholderFeedItemReport extends DateReport {
 
   public void setAllConversionValue(String allConversionValue) {
     this.allConversionValue = BigDecimalUtil.parseFromNumberString(allConversionValue);
+  }
+
+  public String getAttributeValues() {
+    return attributeValues;
+  }
+
+  public void setAttributeValues(String attributeValues) {
+    this.attributeValues = attributeValues;
   }
 
   public BigDecimal getAverageCost() {
@@ -879,14 +875,6 @@ public class PlaceholderFeedItemReport extends DateReport {
     this.placeholderType = placeholderType;
   }
 
-  public String getPrimaryCompanyName() {
-    return primaryCompanyName;
-  }
-
-  public void setPrimaryCompanyName(String primaryCompanyName) {
-    this.primaryCompanyName = primaryCompanyName;
-  }
-
   public String getSlot() {
     return slot;
   }
@@ -1043,7 +1031,6 @@ public class PlaceholderFeedItemReport extends DateReport {
     PlaceholderFeedItemReport other = (PlaceholderFeedItemReport) obj;
     return new EqualsBuilder()
       .appendSuper(super.equals(obj))
-      .append(attributeValues, other.attributeValues)
       .append(scheduling, other.scheduling)
       .append(urlCustomParameters, other.urlCustomParameters)
       .append(validationDetails, other.validationDetails)
@@ -1059,6 +1046,7 @@ public class PlaceholderFeedItemReport extends DateReport {
       .append(allConversionRate, other.allConversionRate)
       .append(allConversions, other.allConversions)
       .append(allConversionValue, other.allConversionValue)
+      .append(attributeValues, other.attributeValues)
       .append(averageCost, other.averageCost)
       .append(averageCpc, other.averageCpc)
       .append(averageCpe, other.averageCpe)
@@ -1104,7 +1092,6 @@ public class PlaceholderFeedItemReport extends DateReport {
       .append(keywordTargetingMatchType, other.keywordTargetingMatchType)
       .append(keywordTargetingText, other.keywordTargetingText)
       .append(placeholderType, other.placeholderType)
-      .append(primaryCompanyName, other.primaryCompanyName)
       .append(slot, other.slot)
       .append(startTime, other.startTime)
       .append(status, other.status)
@@ -1121,7 +1108,6 @@ public class PlaceholderFeedItemReport extends DateReport {
   public int hashCode() {
     return new HashCodeBuilder(17, 37)
       .appendSuper(super.hashCode())
-      .append(attributeValues)
       .append(scheduling)
       .append(urlCustomParameters)
       .append(validationDetails)
@@ -1137,6 +1123,7 @@ public class PlaceholderFeedItemReport extends DateReport {
       .append(allConversionRate)
       .append(allConversions)
       .append(allConversionValue)
+      .append(attributeValues)
       .append(averageCost)
       .append(averageCpc)
       .append(averageCpe)
@@ -1182,7 +1169,6 @@ public class PlaceholderFeedItemReport extends DateReport {
       .append(keywordTargetingMatchType)
       .append(keywordTargetingText)
       .append(placeholderType)
-      .append(primaryCompanyName)
       .append(slot)
       .append(startTime)
       .append(status)

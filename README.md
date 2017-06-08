@@ -95,7 +95,7 @@ Specify report types and fields you want to get data.
 Now, you are ready to run AwReporting with the following command.
 ```
 $ java -Xmx1G -jar aw-reporting/target/aw-reporting.jar -startDate YYYYMMDD -endDate YYYYMMDD \
--file aw-reporting/src/main/resources/aw-report-sample.properties -verbose
+-file aw-reporting/src/main/resources/aw-report-sample.properties
 ```
 
 Be sure to specify the properties file you edited above on the command line.

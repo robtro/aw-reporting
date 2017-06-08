@@ -19,7 +19,6 @@ import com.google.api.ads.adwords.awreporting.model.csv.annotation.CsvReport;
 import com.google.api.ads.adwords.lib.jaxb.v201705.ReportDefinitionReportType;
 
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -28,17 +27,29 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
-   * Specific report class for CampaignSharedSetReport.
+   * Specific report class for CampaignCriteriaReport.
  *
 */
 @Entity
-@Table(name = "AW_CampaignSharedSetReport")
-@CsvReport(value = ReportDefinitionReportType.CAMPAIGN_SHARED_SET_REPORT)
-public class CampaignSharedSetReport extends Report {
+@Table(name = "AW_CampaignCriteriaReport")
+@CsvReport(value = ReportDefinitionReportType.CAMPAIGN_CRITERIA_REPORT)
+public class CampaignCriteriaReport extends DateReport {
+
+  @Column(name = "AccountCurrencyCode")
+  @CsvField(value = "Currency", reportField = "AccountCurrencyCode")
+  private String accountCurrencyCode;
 
   @Column(name = "AccountDescriptiveName")
   @CsvField(value = "Account", reportField = "AccountDescriptiveName")
   private String accountDescriptiveName;
+
+  @Column(name = "AccountTimeZone")
+  @CsvField(value = "Time zone", reportField = "AccountTimeZone")
+  private String accountTimeZone;
+
+  @Column(name = "BaseCampaignId")
+  @CsvField(value = "Base Campaign ID", reportField = "BaseCampaignId")
+  private Long baseCampaignId;
 
   @Column(name = "CampaignId")
   @CsvField(value = "Campaign ID", reportField = "CampaignId")
@@ -52,26 +63,42 @@ public class CampaignSharedSetReport extends Report {
   @CsvField(value = "Campaign state", reportField = "CampaignStatus")
   private String campaignStatus;
 
-  @Column(name = "SharedSetName")
-  @CsvField(value = "Shared Set Name", reportField = "SharedSetName")
-  private String sharedSetName;
+  @Column(name = "Criteria")
+  @CsvField(value = "Criterion", reportField = "Criteria")
+  private String criteria;
 
-  @Column(name = "SharedSetType")
-  @CsvField(value = "Shared Set Type", reportField = "SharedSetType")
-  private String sharedSetType;
+  @Column(name = "CriteriaType")
+  @CsvField(value = "Criteria Type", reportField = "CriteriaType")
+  private String criteriaType;
 
-  @Column(name = "Status")
-  @CsvField(value = "State", reportField = "Status")
-  private String status;
+  @Column(name = "CustomerDescriptiveName")
+  @CsvField(value = "Client name", reportField = "CustomerDescriptiveName")
+  private String customerDescriptiveName;
+
+  @Column(name = "Id")
+  @CsvField(value = "Criterion ID", reportField = "Id")
+  private Long id;
+
+  @Column(name = "IsNegative")
+  @CsvField(value = "Is negative", reportField = "IsNegative")
+  private String isNegative;
 
   /**
    * Hibernate needs an empty constructor
    */
-  public CampaignSharedSetReport() {
+  public CampaignCriteriaReport() {
   }
 
-  public CampaignSharedSetReport(Long topAccountId, Long accountId){
+  public CampaignCriteriaReport(Long topAccountId, Long accountId){
     super(topAccountId, accountId);
+  }
+
+  public String getAccountCurrencyCode() {
+    return accountCurrencyCode;
+  }
+
+  public void setAccountCurrencyCode(String accountCurrencyCode) {
+    this.accountCurrencyCode = accountCurrencyCode;
   }
 
   public String getAccountDescriptiveName() {
@@ -80,6 +107,22 @@ public class CampaignSharedSetReport extends Report {
 
   public void setAccountDescriptiveName(String accountDescriptiveName) {
     this.accountDescriptiveName = accountDescriptiveName;
+  }
+
+  public String getAccountTimeZone() {
+    return accountTimeZone;
+  }
+
+  public void setAccountTimeZone(String accountTimeZone) {
+    this.accountTimeZone = accountTimeZone;
+  }
+
+  public Long getBaseCampaignId() {
+    return baseCampaignId;
+  }
+
+  public void setBaseCampaignId(Long baseCampaignId) {
+    this.baseCampaignId = baseCampaignId;
   }
 
   public Long getCampaignId() {
@@ -106,40 +149,51 @@ public class CampaignSharedSetReport extends Report {
     this.campaignStatus = campaignStatus;
   }
 
-  public String getSharedSetName() {
-    return sharedSetName;
+  public String getCriteria() {
+    return criteria;
   }
 
-  public void setSharedSetName(String sharedSetName) {
-    this.sharedSetName = sharedSetName;
+  public void setCriteria(String criteria) {
+    this.criteria = criteria;
   }
 
-  public String getSharedSetType() {
-    return sharedSetType;
+  public String getCriteriaType() {
+    return criteriaType;
   }
 
-  public void setSharedSetType(String sharedSetType) {
-    this.sharedSetType = sharedSetType;
+  public void setCriteriaType(String criteriaType) {
+    this.criteriaType = criteriaType;
   }
 
-  public String getStatus() {
-    return status;
+  public String getCustomerDescriptiveName() {
+    return customerDescriptiveName;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setCustomerDescriptiveName(String customerDescriptiveName) {
+    this.customerDescriptiveName = customerDescriptiveName;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getIsNegative() {
+    return isNegative;
+  }
+
+  public void setIsNegative(String isNegative) {
+    this.isNegative = isNegative;
   }
 
   @Override
   public void setRowId() {
     // General fields for generating unique id.
     StringBuilder idBuilder = new StringBuilder(getCustomerId().toString());
-    if (campaignId != null) {
-      idBuilder.append("-").append(campaignId);
-    }
-    if (!StringUtils.isEmpty(sharedSetName)) {
-      idBuilder.append("-").append(sharedSetName);
-    }
+    idBuilder.append("-").append(getDateLabel());
 
     // Include all segmentation fields (if set).
     this.rowId = idBuilder.toString();
@@ -150,16 +204,21 @@ public class CampaignSharedSetReport extends Report {
     if (obj == null) { return false; }
     if (obj == this) { return true; }
     if (obj.getClass() != getClass()) { return false; }
-    CampaignSharedSetReport other = (CampaignSharedSetReport) obj;
+    CampaignCriteriaReport other = (CampaignCriteriaReport) obj;
     return new EqualsBuilder()
       .appendSuper(super.equals(obj))
+      .append(accountCurrencyCode, other.accountCurrencyCode)
       .append(accountDescriptiveName, other.accountDescriptiveName)
+      .append(accountTimeZone, other.accountTimeZone)
+      .append(baseCampaignId, other.baseCampaignId)
       .append(campaignId, other.campaignId)
       .append(campaignName, other.campaignName)
       .append(campaignStatus, other.campaignStatus)
-      .append(sharedSetName, other.sharedSetName)
-      .append(sharedSetType, other.sharedSetType)
-      .append(status, other.status)
+      .append(criteria, other.criteria)
+      .append(criteriaType, other.criteriaType)
+      .append(customerDescriptiveName, other.customerDescriptiveName)
+      .append(id, other.id)
+      .append(isNegative, other.isNegative)
       .isEquals();
   }
 
@@ -167,13 +226,18 @@ public class CampaignSharedSetReport extends Report {
   public int hashCode() {
     return new HashCodeBuilder(17, 37)
       .appendSuper(super.hashCode())
+      .append(accountCurrencyCode)
       .append(accountDescriptiveName)
+      .append(accountTimeZone)
+      .append(baseCampaignId)
       .append(campaignId)
       .append(campaignName)
       .append(campaignStatus)
-      .append(sharedSetName)
-      .append(sharedSetType)
-      .append(status)
+      .append(criteria)
+      .append(criteriaType)
+      .append(customerDescriptiveName)
+      .append(id)
+      .append(isNegative)
       .toHashCode();
   }
 
